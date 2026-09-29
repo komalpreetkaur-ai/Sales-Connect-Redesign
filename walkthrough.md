@@ -9,7 +9,8 @@ The **Category Tab Slider** on the **All Active Follow-Ups** screen in [`sales_c
 1. **Unified Active Selection**:
    - Replaced clashing dual styles (pill fill vs outline button vs bottom border lines) with a single, elegant **Segmented Control Slider**.
    - **Active Tab**: Clean white elevated card (`bg-white shadow-xs text-[#007AFF] font-extrabold`) with subtle border.
-   - **Inactive Tabs**: Soft slate text (`text-slate-600 font-bold hover:bg-white/50`) with smooth active hover states.
+   - **Inactive Tabs**: Soft slate text (`text-slate-600 font-bold`) with clean active touch states.
+   - **Zero Web Hover Effects**: All `hover:` states removed across pills, buttons, cards, and modal options to match native iOS/Android mobile app behavior.
 
 2. **Categorized Icon Labels**:
    - `Follow-Ups (6)`: `<i class="fa-solid fa-list-check"></i>`

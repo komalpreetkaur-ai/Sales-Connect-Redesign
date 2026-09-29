@@ -591,17 +591,17 @@
           <div id="activeChipsBar" class="hidden flex items-center gap-1.5 overflow-x-auto pb-0.5 custom-scroll text-[10px]">
             <span class="font-bold text-slate-400 uppercase tracking-wider shrink-0">Active:</span>
             <div id="activeChipsContainer" class="flex items-center gap-1.5 shrink-0"></div>
-            <button onclick="resetAllFilters()" class="text-[10px] text-slate-400 underline font-semibold shrink-0 hover:text-slate-700 ml-1">Clear all</button>
+            <button onclick="resetAllFilters()" class="text-[10px] text-slate-400 underline font-semibold shrink-0 ml-1">Clear all</button>
           </div>
         </div>
 
         <!-- Non-Scrolling Stage Filter Grid -->
         <div class="grid grid-cols-3 gap-1.5 p-1 bg-slate-100/80 rounded-2xl border border-slate-200/60">
           <button onclick="filterEnquiryStage('all', this)" class="enquiry-stage-pill py-1.5 px-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-xs text-center shadow-xs cursor-pointer">All (6)</button>
-          <button onclick="filterEnquiryStage('new', this)" class="enquiry-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">New (2)</button>
-          <button onclick="filterEnquiryStage('testdrive', this)" class="enquiry-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Test Drive (2)</button>
-          <button onclick="filterEnquiryStage('negotiation', this)" class="enquiry-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Negotiation (1)</button>
-          <button onclick="filterEnquiryStage('booking', this)" class="enquiry-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer col-span-2">Pre-booked (1)</button>
+          <button onclick="filterEnquiryStage('new', this)" class="enquiry-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">New (2)</button>
+          <button onclick="filterEnquiryStage('testdrive', this)" class="enquiry-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Test Drive (2)</button>
+          <button onclick="filterEnquiryStage('negotiation', this)" class="enquiry-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Negotiation (1)</button>
+          <button onclick="filterEnquiryStage('booking', this)" class="enquiry-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer col-span-2">Pre-booked (1)</button>
         </div>
 
         <!-- Lead Cards Feed -->
@@ -792,7 +792,7 @@
             <div class="flex items-center gap-2">
               <button class="w-7 h-7 rounded-full bg-blue-50 text-[#007AFF] flex items-center justify-center text-xs active:scale-90 border border-blue-100"><i class="fa-solid fa-phone"></i></button>
               <button class="w-7 h-7 rounded-full bg-blue-50 text-[#007AFF] flex items-center justify-center text-xs active:scale-90 border border-blue-100"><i class="fa-regular fa-envelope"></i></button>
-              <button onclick="openCreateBookingForm()" class="text-xs font-bold text-[#007AFF] hover:underline ml-1">+ Booking</button>
+              <button onclick="openCreateBookingForm()" class="text-xs font-bold text-[#007AFF] ml-1">+ Booking</button>
             </div>
           </div>
           <h2 id="detail-customer-name" class="text-lg font-black text-[#1E293B]">Rupesh Ranjan Bhatt</h2>
@@ -921,7 +921,7 @@
             <div class="flex items-center justify-between cursor-pointer" onclick="toggleSectionAccordion('basicSec')">
               <span class="text-xs font-black text-slate-800 uppercase tracking-wider">BASIC DETAILS</span>
               <div class="flex items-center gap-3">
-                <button type="button" class="text-xs font-semibold text-slate-500 hover:text-slate-800">Edit</button>
+                <button type="button" class="text-xs font-semibold text-slate-500">Edit</button>
                 <i id="basicSec-icon" class="fa-solid fa-chevron-up text-xs text-slate-500"></i>
               </div>
             </div>
@@ -943,7 +943,7 @@
             <div class="flex items-center justify-between cursor-pointer" onclick="toggleSectionAccordion('addSec')">
               <span class="text-xs font-black text-slate-800 uppercase tracking-wider">ADDITIONAL DETAILS</span>
               <div class="flex items-center gap-3">
-                <button type="button" class="text-xs font-semibold text-slate-500 hover:text-slate-800">Edit</button>
+                <button type="button" class="text-xs font-semibold text-slate-500">Edit</button>
                 <i id="addSec-icon" class="fa-solid fa-chevron-down text-xs text-slate-500"></i>
               </div>
             </div>
@@ -1140,19 +1140,19 @@
             <i class="fa-solid fa-list-check text-xs"></i>
             <span>Follow-Ups (6)</span>
           </button>
-          <button onclick="switchActivityTab('addfollowup', this)" class="act-tab-btn px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-xs shrink-0 transition-all cursor-pointer hover:bg-white/50 flex items-center gap-1.5">
+          <button onclick="switchActivityTab('addfollowup', this)" class="act-tab-btn px-3.5 py-2 rounded-xl text-slate-600 font-bold text-xs shrink-0 transition-all cursor-pointer flex items-center gap-1.5">
             <i class="fa-solid fa-plus-circle text-xs"></i>
             <span>Log Activity</span>
           </button>
-          <button onclick="switchActivityTab('comment', this)" class="act-tab-btn px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-xs shrink-0 transition-all cursor-pointer hover:bg-white/50 flex items-center gap-1.5">
+          <button onclick="switchActivityTab('comment', this)" class="act-tab-btn px-3.5 py-2 rounded-xl text-slate-600 font-bold text-xs shrink-0 transition-all cursor-pointer flex items-center gap-1.5">
             <i class="fa-regular fa-comment-dots text-xs"></i>
             <span>Comments</span>
           </button>
-          <button onclick="switchActivityTab('brochure', this)" class="act-tab-btn px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-xs shrink-0 transition-all cursor-pointer hover:bg-white/50 flex items-center gap-1.5">
+          <button onclick="switchActivityTab('brochure', this)" class="act-tab-btn px-3.5 py-2 rounded-xl text-slate-600 font-bold text-xs shrink-0 transition-all cursor-pointer flex items-center gap-1.5">
             <i class="fa-regular fa-file-pdf text-xs"></i>
             <span>Brochures</span>
           </button>
-          <button onclick="switchActivityTab('appointment', this)" class="act-tab-btn px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-xs shrink-0 transition-all cursor-pointer hover:bg-white/50 flex items-center gap-1.5">
+          <button onclick="switchActivityTab('appointment', this)" class="act-tab-btn px-3.5 py-2 rounded-xl text-slate-600 font-bold text-xs shrink-0 transition-all cursor-pointer flex items-center gap-1.5">
             <i class="fa-regular fa-calendar-check text-xs"></i>
             <span>Appointments</span>
           </button>
@@ -1169,10 +1169,10 @@
           <!-- Non-Scrolling Stage Filter Grid -->
           <div class="grid grid-cols-3 gap-1.5 p-1 bg-slate-100/80 rounded-2xl border border-slate-200/60">
             <button onclick="filterActivityStage('all', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-xs text-center shadow-xs cursor-pointer">All (6)</button>
-            <button onclick="filterActivityStage('hot', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Hot (2)</button>
-            <button onclick="filterActivityStage('testdrive', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Test Drive (2)</button>
-            <button onclick="filterActivityStage('warm', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Warm (1)</button>
-            <button onclick="filterActivityStage('followup', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer col-span-2">Follow-up (1)</button>
+            <button onclick="filterActivityStage('hot', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Hot (2)</button>
+            <button onclick="filterActivityStage('testdrive', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Test Drive (2)</button>
+            <button onclick="filterActivityStage('warm', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Warm (1)</button>
+            <button onclick="filterActivityStage('followup', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer col-span-2">Follow-up (1)</button>
           </div>
 
           <!-- List of All 6 Follow-ups -->
@@ -1733,11 +1733,11 @@
 
         <!-- Sticky Action Buttons Row (Submit & Cancel CTAs) -->
         <div class="grid grid-cols-2 gap-3 pt-2 pb-6">
-          <button type="button" onclick="cancelBookingForm()" class="w-full py-3 rounded-full border border-slate-300 bg-white text-slate-700 font-bold text-xs hover:bg-slate-50 active:scale-95 transition-all shadow-xs flex items-center justify-center gap-1.5">
+          <button type="button" onclick="cancelBookingForm()" class="w-full py-3 rounded-full border border-slate-300 bg-white text-slate-700 font-bold text-xs active:scale-95 transition-all shadow-xs flex items-center justify-center gap-1.5">
             <i class="fa-solid fa-xmark text-slate-400"></i>
             <span>Cancel</span>
           </button>
-          <button type="button" onclick="submitBookingForm()" class="w-full py-3 rounded-full bg-[#007AFF] text-white font-bold text-xs hover:bg-blue-600 active:scale-95 transition-all shadow-md flex items-center justify-center gap-1.5">
+          <button type="button" onclick="submitBookingForm()" class="w-full py-3 rounded-full bg-[#007AFF] text-white font-bold text-xs active:scale-95 transition-all shadow-md flex items-center justify-center gap-1.5">
             <i class="fa-solid fa-check text-xs"></i>
             <span>Submit Booking</span>
           </button>
@@ -1777,28 +1777,28 @@
         </div>
 
         <div class="bg-white rounded-2xl border border-[#E0E8F5] shadow-xs divide-y divide-slate-100 text-xs font-bold text-slate-700">
-          <div class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-slate-50">
+          <div class="p-3.5 flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
               <i class="fa-solid fa-user text-blue-500 w-4"></i>
               <span>My Profile & Performance</span>
             </div>
             <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
           </div>
-          <div class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-slate-50">
+          <div class="p-3.5 flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
               <i class="fa-solid fa-gear text-slate-500 w-4"></i>
               <span>App Preferences</span>
             </div>
             <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
           </div>
-          <div class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-slate-50">
+          <div class="p-3.5 flex items-center justify-between cursor-pointer">
             <div class="flex items-center gap-3">
               <i class="fa-solid fa-bell text-amber-500 w-4"></i>
               <span>Notification Settings</span>
             </div>
             <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
           </div>
-          <div class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-slate-50 text-rose-600">
+          <div class="p-3.5 flex items-center justify-between cursor-pointer text-rose-600">
             <div class="flex items-center gap-3">
               <i class="fa-solid fa-right-from-bracket text-rose-500 w-4"></i>
               <span>Log Out</span>
@@ -2335,36 +2335,36 @@
       <!-- Action Card Options (No Icons) -->
       <div class="space-y-2.5">
         <!-- Sales Option Card -->
-        <button onclick="selectEnquiryCategory('Sales')" class="w-full bg-slate-50/90 hover:bg-blue-50/60 active:bg-blue-100/70 border border-slate-200/80 hover:border-[#007AFF]/40 p-4 rounded-2xl text-left transition-all group flex items-center justify-between shadow-xs">
+        <button onclick="selectEnquiryCategory('Sales')" class="w-full bg-slate-50/90 active:bg-blue-100/70 border border-slate-200/80 p-4 rounded-2xl text-left transition-all group flex items-center justify-between shadow-xs">
           <div>
-            <div class="text-sm font-extrabold text-slate-900 group-hover:text-[#007AFF] transition-colors">Sales</div>
+            <div class="text-sm font-extrabold text-slate-900 group- transition-colors">Sales</div>
             <div class="text-xs font-medium text-slate-500 mt-0.5">Vehicle purchases & new model enquiries</div>
           </div>
-          <span class="text-xs font-extrabold text-[#007AFF] bg-blue-50 px-3 py-1 rounded-full border border-blue-100 group-hover:bg-[#007AFF] group-hover:text-white transition-all">Select</span>
+          <span class="text-xs font-extrabold text-[#007AFF] bg-blue-50 px-3 py-1 rounded-full border border-blue-100 group- group- transition-all">Select</span>
         </button>
 
         <!-- Service Option Card -->
-        <button onclick="selectEnquiryCategory('Service')" class="w-full bg-slate-50/90 hover:bg-amber-50/60 active:bg-amber-100/70 border border-slate-200/80 hover:border-amber-400/40 p-4 rounded-2xl text-left transition-all group flex items-center justify-between shadow-xs">
+        <button onclick="selectEnquiryCategory('Service')" class="w-full bg-slate-50/90 active:bg-amber-100/70 border border-slate-200/80 p-4 rounded-2xl text-left transition-all group flex items-center justify-between shadow-xs">
           <div>
-            <div class="text-sm font-extrabold text-slate-900 group-hover:text-amber-600 transition-colors">Service</div>
+            <div class="text-sm font-extrabold text-slate-900 group- transition-colors">Service</div>
             <div class="text-xs font-medium text-slate-500 mt-0.5">Vehicle maintenance & workshop bookings</div>
           </div>
-          <span class="text-xs font-extrabold text-amber-600 bg-amber-50 px-3 py-1 rounded-full border border-amber-100 group-hover:bg-amber-500 group-hover:text-white transition-all">Select</span>
+          <span class="text-xs font-extrabold text-amber-600 bg-amber-50 px-3 py-1 rounded-full border border-amber-100 group- group- transition-all">Select</span>
         </button>
 
         <!-- Other Option Card -->
-        <button onclick="selectEnquiryCategory('Other')" class="w-full bg-slate-50/90 hover:bg-purple-50/60 active:bg-purple-100/70 border border-slate-200/80 hover:border-purple-400/40 p-4 rounded-2xl text-left transition-all group flex items-center justify-between shadow-xs">
+        <button onclick="selectEnquiryCategory('Other')" class="w-full bg-slate-50/90 active:bg-purple-100/70 border border-slate-200/80 p-4 rounded-2xl text-left transition-all group flex items-center justify-between shadow-xs">
           <div>
-            <div class="text-sm font-extrabold text-slate-900 group-hover:text-purple-600 transition-colors">Other</div>
+            <div class="text-sm font-extrabold text-slate-900 group- transition-colors">Other</div>
             <div class="text-xs font-medium text-slate-500 mt-0.5">General requests & support queries</div>
           </div>
-          <span class="text-xs font-extrabold text-purple-600 bg-purple-50 px-3 py-1 rounded-full border border-purple-100 group-hover:bg-purple-600 group-hover:text-white transition-all">Select</span>
+          <span class="text-xs font-extrabold text-purple-600 bg-purple-50 px-3 py-1 rounded-full border border-purple-100 group- group- transition-all">Select</span>
         </button>
       </div>
 
       <!-- Cancel CTA -->
       <div class="pt-1">
-        <button onclick="closeCategoryModal()" class="w-full py-3.5 bg-slate-100 hover:bg-slate-200 active:scale-98 text-rose-600 font-extrabold text-sm rounded-2xl transition-all text-center">
+        <button onclick="closeCategoryModal()" class="w-full py-3.5 bg-slate-100 active:scale-98 text-rose-600 font-extrabold text-sm rounded-2xl transition-all text-center">
           Cancel
         </button>
       </div>
@@ -2374,7 +2374,7 @@
   <!-- DIGITAL SIGNATURE MODAL -->
   <div id="digitalSignatureModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-50 p-4">
     <div class="bg-white rounded-3xl w-[340px] p-6 space-y-5 shadow-2xl border border-slate-100 relative">
-      <button onclick="closeSignatureModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors">
+      <button onclick="closeSignatureModal()" class="absolute top-4 right-4 text-slate-400 transition-colors">
         <i class="fa-solid fa-xmark text-base"></i>
       </button>
 
@@ -2383,7 +2383,7 @@
       <div class="border border-slate-200/90 rounded-2xl p-3.5 bg-[#F5F8FC] relative">
         <div class="flex items-center justify-between mb-1">
           <span class="text-[10px] font-bold text-slate-400 tracking-wider uppercase select-none">DIGITAL SIGNATURE</span>
-          <button type="button" onclick="clearSignatureCanvas()" class="text-[10px] font-bold text-[#007AFF] hover:underline">Clear</button>
+          <button type="button" onclick="clearSignatureCanvas()" class="text-[10px] font-bold text-[#007AFF]">Clear</button>
         </div>
         <canvas id="sigCanvas" width="280" height="130" class="w-full h-32 touch-none cursor-crosshair rounded-xl bg-[#F5F8FC]"></canvas>
       </div>
@@ -2399,7 +2399,7 @@
   <!-- VERIFY OTP MODAL -->
   <div id="verifyOtpModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-50 p-4">
     <div class="bg-[#F8FAFC] rounded-3xl w-[340px] p-6 space-y-5 shadow-2xl border border-slate-100 relative">
-      <button onclick="closeVerifyOtpModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors">
+      <button onclick="closeVerifyOtpModal()" class="absolute top-4 right-4 text-slate-400 transition-colors">
         <i class="fa-solid fa-xmark text-base"></i>
       </button>
 
@@ -2421,7 +2421,7 @@
 
       <div class="text-center space-y-1">
         <p class="text-xs text-slate-700 font-medium">Didn't receive the OTP?</p>
-        <button type="button" class="text-xs font-semibold text-[#007AFF] hover:underline" id="resendOtpTimer">Resend in 00:00 seconds</button>
+        <button type="button" class="text-xs font-semibold text-[#007AFF]" id="resendOtpTimer">Resend in 00:00 seconds</button>
       </div>
 
       <div class="flex justify-center pt-2">
@@ -2446,7 +2446,7 @@
             <p class="text-[10px] text-slate-500 font-semibold" id="selectedRangeSubtitle">1 Apr 2026 - 14 Apr 2026</p>
           </div>
         </div>
-        <button type="button" onclick="closeDateRangePickerModal()" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 hover:text-slate-900 font-bold flex items-center justify-center text-sm cursor-pointer">
+        <button type="button" onclick="closeDateRangePickerModal()" class="w-7 h-7 rounded-full bg-slate-100 text-slate-600 font-bold flex items-center justify-center text-sm cursor-pointer">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
@@ -2465,11 +2465,11 @@
       <!-- Month Navigation Header -->
       <div class="bg-slate-50 rounded-2xl p-3 border border-slate-100 space-y-2">
         <div class="flex items-center justify-between">
-          <button class="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-600 text-xs flex items-center justify-center shadow-2xs hover:bg-slate-100">
+          <button class="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-600 text-xs flex items-center justify-center shadow-2xs">
             <i class="fa-solid fa-chevron-left"></i>
           </button>
           <span class="text-xs font-extrabold text-slate-800">April 2026</span>
-          <button class="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-600 text-xs flex items-center justify-center shadow-2xs hover:bg-slate-100">
+          <button class="w-7 h-7 rounded-lg bg-white border border-slate-200 text-slate-600 text-xs flex items-center justify-center shadow-2xs">
             <i class="fa-solid fa-chevron-right"></i>
           </button>
         </div>
@@ -2500,22 +2500,22 @@
           <button onclick="toggleCalendarDate(12)" class="cal-day day-12 py-1.5 rounded-lg bg-blue-50 text-[#007AFF]">12</button>
           <button onclick="toggleCalendarDate(13)" class="cal-day day-13 py-1.5 rounded-lg bg-blue-50 text-[#007AFF]">13</button>
           <button onclick="toggleCalendarDate(14)" class="cal-day day-14 py-1.5 rounded-lg bg-[#007AFF] text-white font-black shadow-2xs">14</button>
-          <button onclick="toggleCalendarDate(15)" class="cal-day day-15 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">15</button>
-          <button onclick="toggleCalendarDate(16)" class="cal-day day-16 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">16</button>
-          <button onclick="toggleCalendarDate(17)" class="cal-day day-17 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">17</button>
-          <button onclick="toggleCalendarDate(18)" class="cal-day day-18 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">18</button>
-          <button onclick="toggleCalendarDate(19)" class="cal-day day-19 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">19</button>
-          <button onclick="toggleCalendarDate(20)" class="cal-day day-20 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">20</button>
-          <button onclick="toggleCalendarDate(21)" class="cal-day day-21 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">21</button>
-          <button onclick="toggleCalendarDate(22)" class="cal-day day-22 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">22</button>
-          <button onclick="toggleCalendarDate(23)" class="cal-day day-23 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">23</button>
-          <button onclick="toggleCalendarDate(24)" class="cal-day day-24 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">24</button>
-          <button onclick="toggleCalendarDate(25)" class="cal-day day-25 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">25</button>
-          <button onclick="toggleCalendarDate(26)" class="cal-day day-26 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">26</button>
-          <button onclick="toggleCalendarDate(27)" class="cal-day day-27 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">27</button>
-          <button onclick="toggleCalendarDate(28)" class="cal-day day-28 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">28</button>
-          <button onclick="toggleCalendarDate(29)" class="cal-day day-29 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">29</button>
-          <button onclick="toggleCalendarDate(30)" class="cal-day day-30 py-1.5 rounded-lg hover:bg-slate-100 text-slate-700">30</button>
+          <button onclick="toggleCalendarDate(15)" class="cal-day day-15 py-1.5 rounded-lg text-slate-700">15</button>
+          <button onclick="toggleCalendarDate(16)" class="cal-day day-16 py-1.5 rounded-lg text-slate-700">16</button>
+          <button onclick="toggleCalendarDate(17)" class="cal-day day-17 py-1.5 rounded-lg text-slate-700">17</button>
+          <button onclick="toggleCalendarDate(18)" class="cal-day day-18 py-1.5 rounded-lg text-slate-700">18</button>
+          <button onclick="toggleCalendarDate(19)" class="cal-day day-19 py-1.5 rounded-lg text-slate-700">19</button>
+          <button onclick="toggleCalendarDate(20)" class="cal-day day-20 py-1.5 rounded-lg text-slate-700">20</button>
+          <button onclick="toggleCalendarDate(21)" class="cal-day day-21 py-1.5 rounded-lg text-slate-700">21</button>
+          <button onclick="toggleCalendarDate(22)" class="cal-day day-22 py-1.5 rounded-lg text-slate-700">22</button>
+          <button onclick="toggleCalendarDate(23)" class="cal-day day-23 py-1.5 rounded-lg text-slate-700">23</button>
+          <button onclick="toggleCalendarDate(24)" class="cal-day day-24 py-1.5 rounded-lg text-slate-700">24</button>
+          <button onclick="toggleCalendarDate(25)" class="cal-day day-25 py-1.5 rounded-lg text-slate-700">25</button>
+          <button onclick="toggleCalendarDate(26)" class="cal-day day-26 py-1.5 rounded-lg text-slate-700">26</button>
+          <button onclick="toggleCalendarDate(27)" class="cal-day day-27 py-1.5 rounded-lg text-slate-700">27</button>
+          <button onclick="toggleCalendarDate(28)" class="cal-day day-28 py-1.5 rounded-lg text-slate-700">28</button>
+          <button onclick="toggleCalendarDate(29)" class="cal-day day-29 py-1.5 rounded-lg text-slate-700">29</button>
+          <button onclick="toggleCalendarDate(30)" class="cal-day day-30 py-1.5 rounded-lg text-slate-700">30</button>
         </div>
       </div>
 
@@ -2542,9 +2542,9 @@
         </div>
         
         <div class="flex items-center gap-3">
-          <button type="button" onclick="resetAllFilters()" class="text-xs font-semibold text-slate-600 underline hover:text-slate-900">Update</button>
-          <button type="button" class="border border-[#007AFF] text-[#007AFF] text-xs font-bold px-3 py-1 rounded-lg hover:bg-blue-50 transition-colors">+ Add Filter</button>
-          <button type="button" onclick="closeFilterModal()" class="text-slate-800 hover:text-slate-900 font-extrabold text-base ml-1">
+          <button type="button" onclick="resetAllFilters()" class="text-xs font-semibold text-slate-600 underline">Update</button>
+          <button type="button" class="border border-[#007AFF] text-[#007AFF] text-xs font-bold px-3 py-1 rounded-lg transition-colors">+ Add Filter</button>
+          <button type="button" onclick="closeFilterModal()" class="text-slate-800 font-extrabold text-base ml-1">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -2564,7 +2564,7 @@
             <span id="defaultGroup-badge" class="hidden w-5 h-5 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center">0</span>
           </div>
           <div class="flex items-center gap-3">
-            <button type="button" onclick="event.stopPropagation(); resetAllFilters()" class="text-xs font-semibold text-slate-500 hover:text-slate-800">Reset</button>
+            <button type="button" onclick="event.stopPropagation(); resetAllFilters()" class="text-xs font-semibold text-slate-500">Reset</button>
             <i id="defaultGroup-icon" class="fa-solid fa-chevron-up text-xs text-slate-600"></i>
           </div>
         </div>
@@ -2580,7 +2580,7 @@
                 <span id="stageStatus-badge" class="hidden w-5 h-5 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center">0</span>
               </div>
               <div class="flex items-center gap-3">
-                <button type="button" onclick="event.stopPropagation();" class="text-xs font-semibold text-slate-500 hover:text-slate-800">Reset</button>
+                <button type="button" onclick="event.stopPropagation();" class="text-xs font-semibold text-slate-500">Reset</button>
                 <i id="stageStatus-icon" class="fa-solid fa-chevron-up text-xs text-slate-600"></i>
               </div>
             </div>
@@ -2789,7 +2789,7 @@
       const container = document.getElementById('bookingCardsContainer');
       if (container) {
         const newCard = document.createElement('div');
-        newCard.className = 'booking-card bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-3.5 hover:shadow-md transition-shadow relative overflow-hidden';
+        newCard.className = 'booking-card bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-3.5  transition-shadow relative overflow-hidden';
         newCard.innerHTML = `
           <div class="flex items-start justify-between">
             <div class="space-y-0.5">
@@ -2826,10 +2826,10 @@
               <span>Delivery: <strong class="text-slate-900 font-extrabold">${dateVal}</strong></span>
             </div>
             <div class="flex items-center gap-2">
-              <a href="tel:${phoneVal}" class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center hover:bg-slate-200">
+              <a href="tel:${phoneVal}" class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center">
                 <i class="fa-solid fa-phone text-xs"></i>
               </a>
-              <a href="https://wa.me/91${phoneClean}" target="_blank" class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center hover:bg-emerald-200">
+              <a href="https://wa.me/91${phoneClean}" target="_blank" class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
                 <i class="fa-brands fa-whatsapp text-xs"></i>
               </a>
             </div>
@@ -2961,7 +2961,7 @@
       if (target) target.classList.add('active');
 
       document.querySelectorAll('.act-tab-btn').forEach(b => {
-        b.className = 'act-tab-btn px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-xs shrink-0 transition-all cursor-pointer hover:bg-white/50 flex items-center gap-1.5';
+        b.className = 'act-tab-btn px-3.5 py-2 rounded-xl text-slate-600  font-bold text-xs shrink-0 transition-all cursor-pointer  flex items-center gap-1.5';
       });
       if (btn) {
         btn.className = 'act-tab-btn px-3.5 py-2 rounded-xl bg-white text-[#007AFF] font-extrabold text-xs shrink-0 shadow-xs border border-slate-200/60 transition-all cursor-pointer flex items-center gap-1.5';
@@ -3084,8 +3084,8 @@
         followupCount: "2",
         stagePillsHTML: `
           <button onclick="filterHomeLeads('all', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-xs text-center shadow-xs cursor-pointer">All (2)</button>
-          <button onclick="filterHomeLeads('hot', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Hot (1)</button>
-          <button onclick="filterHomeLeads('testdrive', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer col-span-2">Test Drive (1)</button>
+          <button onclick="filterHomeLeads('hot', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Hot (1)</button>
+          <button onclick="filterHomeLeads('testdrive', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer col-span-2">Test Drive (1)</button>
         `,
         visibleLeadIds: ['homeLeadItem1', 'homeLeadItem2']
       },
@@ -3111,9 +3111,9 @@
         followupCount: "4",
         stagePillsHTML: `
           <button onclick="filterHomeLeads('all', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-xs text-center shadow-xs cursor-pointer">All (4)</button>
-          <button onclick="filterHomeLeads('hot', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Hot (2)</button>
-          <button onclick="filterHomeLeads('testdrive', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Test Drive (1)</button>
-          <button onclick="filterHomeLeads('warm', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer col-span-3">Warm (1)</button>
+          <button onclick="filterHomeLeads('hot', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Hot (2)</button>
+          <button onclick="filterHomeLeads('testdrive', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Test Drive (1)</button>
+          <button onclick="filterHomeLeads('warm', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer col-span-3">Warm (1)</button>
         `,
         visibleLeadIds: ['homeLeadItem1', 'homeLeadItem2', 'homeLeadItem3', 'homeLeadItem4']
       },
@@ -3139,10 +3139,10 @@
         followupCount: "6",
         stagePillsHTML: `
           <button onclick="filterHomeLeads('all', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-xs text-center shadow-xs cursor-pointer">All (6)</button>
-          <button onclick="filterHomeLeads('hot', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Hot (2)</button>
-          <button onclick="filterHomeLeads('testdrive', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Test Drive (2)</button>
-          <button onclick="filterHomeLeads('warm', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Warm (1)</button>
-          <button onclick="filterHomeLeads('followup', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 hover:text-slate-900 font-bold text-xs text-center border border-slate-200/50 cursor-pointer col-span-2">Follow-up (1)</button>
+          <button onclick="filterHomeLeads('hot', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Hot (2)</button>
+          <button onclick="filterHomeLeads('testdrive', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Test Drive (2)</button>
+          <button onclick="filterHomeLeads('warm', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Warm (1)</button>
+          <button onclick="filterHomeLeads('followup', this)" class="home-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer col-span-2">Follow-up (1)</button>
         `,
         visibleLeadIds: ['homeLeadItem1', 'homeLeadItem2', 'homeLeadItem3', 'homeLeadItem4', 'homeLeadItem5', 'homeLeadItem6']
       }
@@ -3759,16 +3759,16 @@
           } else if (d > selectedStartDay && d < selectedEndDay) {
             btn.className = `cal-day day-${d} py-1.5 rounded-lg bg-blue-50 text-[#007AFF] font-bold`;
           } else {
-            btn.className = `cal-day day-${d} py-1.5 rounded-lg hover:bg-slate-100 text-slate-700 font-semibold`;
+            btn.className = `cal-day day-${d} py-1.5 rounded-lg  text-slate-700 font-semibold`;
           }
         } else if (selectedStartDay) {
           if (d === selectedStartDay) {
             btn.className = `cal-day day-${d} py-1.5 rounded-lg bg-[#007AFF] text-white font-black shadow-2xs`;
           } else {
-            btn.className = `cal-day day-${d} py-1.5 rounded-lg hover:bg-slate-100 text-slate-700 font-semibold`;
+            btn.className = `cal-day day-${d} py-1.5 rounded-lg  text-slate-700 font-semibold`;
           }
         } else {
-          btn.className = `cal-day day-${d} py-1.5 rounded-lg hover:bg-slate-100 text-slate-700 font-semibold`;
+          btn.className = `cal-day day-${d} py-1.5 rounded-lg  text-slate-700 font-semibold`;
         }
       }
     }
