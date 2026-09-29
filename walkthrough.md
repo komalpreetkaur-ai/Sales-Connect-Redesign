@@ -119,14 +119,12 @@ The **Category Tab Slider** on the **All Active Follow-Ups** screen in [`sales_c
 ## 📊 Redesigned MY PIPELINE (Home Screen)
 
 1. **Segmented Multi-Color Funnel Track**:
-   - Displays real-time funnel ratios across stages with a continuous multi-color progress track.
-   - Shows conversion metrics e.g., `6.7% Win Rate` and total `99 Active Leads`.
+   - Displays real-time funnel ratios across pipeline stages with a continuous multi-color progress track.
+   - Shows conversion metrics e.g., `12.5% Conversion Rate` and total `24 Active Pipeline Leads`.
 
 2. **Interactive Stage Metric Cards Grid**:
-   - **Assigned (45)**: Blue theme with progress bar (`45%`).
-   - **Qualified (30)**: Indigo theme with progress bar (`30%`).
-   - **Test Drive (15)**: Emerald theme with progress bar (`15%`).
-   - **Negotiation (6)**: Amber theme with progress bar (`6%`).
+   - **Test Drive (15)**: Emerald theme with progress bar (`62.5% of pipeline`).
+   - **Negotiation (6)**: Amber theme with progress bar (`25% of pipeline`).
    - **Booking / Won (3)**: Full-width Gold/Purple gradient highlight card.
    - **Direct Navigation**: Tapping any card switches to the Enquiries screen pre-filtered for that stage.
 
