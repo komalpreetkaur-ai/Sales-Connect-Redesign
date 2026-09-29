@@ -1463,7 +1463,7 @@
         <div id="bookingCardsContainer" class="space-y-3">
           
           <!-- Booking Card 1: Confirmed -->
-          <div class="booking-card bg-white rounded-2xl border border-[#E0E8F5] p-4 shadow-xs space-y-3 active:scale-[0.99] transition-transform cursor-pointer">
+          <div onclick="openBookingDetails('BK987875311')" class="booking-card bg-white rounded-2xl border border-[#E0E8F5] p-4 shadow-xs space-y-3 active:scale-[0.99] transition-transform cursor-pointer">
             <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
               <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
                 <i class="fa-solid fa-receipt text-[#007AFF]"></i>
@@ -1506,12 +1506,12 @@
                   <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
                 </button>
               </div>
-              <span class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+              <span onclick="event.stopPropagation(); openBookingDetails('BK987875311');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 active:opacity-75 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
             </div>
           </div>
 
           <!-- Booking Card 2: Pending Delivery -->
-          <div class="booking-card bg-white rounded-2xl border border-[#E0E8F5] p-4 shadow-xs space-y-3 active:scale-[0.99] transition-transform cursor-pointer">
+          <div onclick="openBookingDetails('BK987875364')" class="booking-card bg-white rounded-2xl border border-[#E0E8F5] p-4 shadow-xs space-y-3 active:scale-[0.99] transition-transform cursor-pointer">
             <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
               <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
                 <i class="fa-solid fa-receipt text-[#007AFF]"></i>
@@ -1554,12 +1554,12 @@
                   <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
                 </button>
               </div>
-              <span class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+              <span onclick="event.stopPropagation(); openBookingDetails('BK987875364');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 active:opacity-75 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
             </div>
           </div>
 
           <!-- Booking Card 3: Pre-booked -->
-          <div class="booking-card bg-white rounded-2xl border border-[#E0E8F5] p-4 shadow-xs space-y-3 active:scale-[0.99] transition-transform cursor-pointer">
+          <div onclick="openBookingDetails('BK987875399')" class="booking-card bg-white rounded-2xl border border-[#E0E8F5] p-4 shadow-xs space-y-3 active:scale-[0.99] transition-transform cursor-pointer">
             <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
               <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
                 <i class="fa-solid fa-receipt text-[#007AFF]"></i>
@@ -1602,10 +1602,146 @@
                   <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
                 </button>
               </div>
-              <span class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+              <span onclick="event.stopPropagation(); openBookingDetails('BK987875399');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 active:opacity-75 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
             </div>
           </div>
 
+        </div>
+      </div>
+
+      <!-- DEDICATED BOOKING DETAILS SCREEN -->
+      <div id="screen-booking-details" class="app-screen space-y-4">
+        <!-- Top Navigation Header -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <button onclick="exitBookingDetails()" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-700 border border-slate-200 active:bg-slate-100 shadow-xs">
+              <i class="fa-solid fa-arrow-left text-sm"></i>
+            </button>
+            <div>
+              <h1 class="text-base font-black text-[#1E293B]">Booking Details</h1>
+              <p id="bdetHeaderSub" class="text-[10px] text-slate-400 font-medium">Ref: BK987875311</p>
+            </div>
+          </div>
+          <span id="bdetBadge" class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-emerald-50 text-emerald-600 border border-emerald-100">Deposit Received</span>
+        </div>
+
+        <!-- Main Booking Info Banner Card -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs space-y-3">
+          <div class="flex items-start justify-between">
+            <div>
+              <span id="bdetId" class="text-xs font-bold text-[#007AFF] uppercase tracking-wider block">BK987875311</span>
+              <h2 id="bdetName" class="text-base font-black text-[#1E293B]">Mike Alex Tyson</h2>
+            </div>
+            <div class="text-right">
+              <span id="bdetTokenPaid" class="text-sm font-black text-[#007AFF]">₹50,000</span>
+              <span class="text-[9px] font-bold text-slate-400 block uppercase">Token Paid</span>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100">
+            <button id="bdetCallBtn" onclick="window.location.href='tel:+919876589706'" class="w-full py-2 bg-blue-50 text-[#007AFF] rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 border border-blue-100 active:bg-blue-100">
+              <i class="fa-solid fa-phone text-xs"></i><span>Call Customer</span>
+            </button>
+            <button id="bdetWaBtn" onclick="window.open('https://wa.me/919876589706','_blank')" class="w-full py-2 bg-emerald-50 text-emerald-600 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 border border-emerald-100 active:bg-emerald-100">
+              <i class="fa-brands fa-whatsapp text-sm"></i><span>WhatsApp</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Customer Contact Details Card -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs space-y-3">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-user-gear text-[#007AFF]"></i> Customer Information
+          </h3>
+          <div class="grid grid-cols-1 gap-2.5 text-xs border-t border-slate-100 pt-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Full Name</span>
+              <span id="bdetCustomerFullName" class="font-extrabold text-[#1E293B]">Mike Alex Tyson</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Phone Number</span>
+              <span id="bdetPhone" class="font-bold text-slate-700">+91 98765 89706</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Email Address</span>
+              <span id="bdetEmail" class="font-bold text-slate-700">mikytyson@gmail.com</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Address</span>
+              <span id="bdetAddress" class="font-bold text-slate-700 text-right">Sector 62, Noida, UP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vehicle Details Card -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs space-y-3">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-motorcycle text-[#007AFF]"></i> Vehicle Specifications
+          </h3>
+          <div class="grid grid-cols-1 gap-2.5 text-xs border-t border-slate-100 pt-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Model Name</span>
+              <span id="bdetCarModel" class="font-extrabold text-[#007AFF]">Suzuki Hayabusa 2025</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Variant</span>
+              <span id="bdetCarVariant" class="font-bold text-slate-700">Standard 1340 CC</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Color</span>
+              <span id="bdetCarColor" class="font-bold text-slate-700">Metallic Black</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Ex-Showroom Price</span>
+              <span id="bdetExPrice" class="font-extrabold text-slate-800">₹17,70,000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment & Delivery Breakdown Card -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs space-y-3">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-credit-card text-[#007AFF]"></i> Payment & Delivery Details
+          </h3>
+          <div class="grid grid-cols-1 gap-2.5 text-xs border-t border-slate-100 pt-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Booking Date</span>
+              <span id="bdetBookingDate" class="font-bold text-slate-800">22/09/2026</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Expected Delivery</span>
+              <span id="bdetExpectedDelivery" class="font-bold text-emerald-600">10/10/2026</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Payment Mode</span>
+              <span id="bdetPaymentMode" class="font-bold text-slate-700">UPI / NetBanking</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Transaction ID</span>
+              <span id="bdetTxnId" class="font-mono font-bold text-slate-600">TXN99887766</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Booking Lifecycle Timeline Card -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs space-y-3">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-clock-rotate-left text-[#007AFF]"></i> Booking Status Timeline
+          </h3>
+          <div id="bdetTimeline" class="space-y-3 border-t border-slate-100 pt-3">
+            <!-- Dynamic steps populated by JS -->
+          </div>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="space-y-2 pt-2">
+          <button onclick="showNotification('Booking receipt downloaded as PDF!')" class="w-full py-3 bg-[#007AFF] text-white font-extrabold rounded-2xl text-xs flex items-center justify-center gap-2 shadow-sm active:bg-blue-700">
+            <i class="fa-solid fa-file-arrow-down"></i> Download Booking Receipt PDF
+          </button>
+          <button onclick="exitBookingDetails()" class="w-full py-3 bg-white text-slate-600 font-bold rounded-2xl text-xs border border-slate-200 active:bg-slate-50">
+            Back to Bookings
+          </button>
         </div>
       </div>
 
@@ -2686,7 +2822,7 @@
       const currentActive = document.querySelector('.app-screen.active');
       if (currentActive && currentActive.id) {
         const currentId = currentActive.id.replace('screen-', '');
-        if (currentId !== 'enquiry-details' && currentId !== 'activities' && currentId !== 'sales-enquiry' && currentId !== 'service-enquiry' && currentId !== 'other-enquiry') {
+        if (currentId !== 'enquiry-details' && currentId !== 'activities' && currentId !== 'sales-enquiry' && currentId !== 'service-enquiry' && currentId !== 'other-enquiry' && currentId !== 'booking-details') {
           lastActiveScreen = currentId;
         }
       }
@@ -2704,7 +2840,7 @@
         if(label) label.classList.replace('font-bold', 'font-medium');
       });
 
-      const navKey = (screenName === 'enquiry-details' || screenName === 'activities' || screenName === 'sales-enquiry' || screenName === 'service-enquiry' || screenName === 'other-enquiry') ? 'enquiry' : (screenName === 'booking-create' ? 'booking' : screenName);
+      const navKey = (screenName === 'enquiry-details' || screenName === 'activities' || screenName === 'sales-enquiry' || screenName === 'service-enquiry' || screenName === 'other-enquiry') ? 'enquiry' : ((screenName === 'booking-create' || screenName === 'booking-details') ? 'booking' : screenName);
       const activeNavBtn = document.getElementById('nav-' + navKey);
       if(activeNavBtn) {
         activeNavBtn.classList.remove('text-[#94A3B8]');
@@ -2718,6 +2854,166 @@
 
     function goBackFromDetails() {
       switchScreen(lastActiveScreen || 'home');
+    }
+
+    const bookingMockData = {
+      'BK987875311': {
+        id: 'BK987875311',
+        customerName: 'Mike Alex Tyson',
+        phone: '+91 98765 89706',
+        email: 'mikytyson@gmail.com',
+        address: 'Sector 62, Noida, UP',
+        model: 'Suzuki Hayabusa 2025',
+        variant: 'Standard 1340 CC',
+        color: 'Metallic Black',
+        exPrice: '₹17,70,000',
+        tokenPaid: '₹50,000',
+        tokenStatus: 'Deposit Received',
+        tokenBadgeClass: 'bg-emerald-50 text-emerald-600 border-emerald-100',
+        bookingDate: '22/09/2026',
+        expectedDelivery: '10/10/2026',
+        paymentMode: 'UPI / Online Transfer',
+        txnId: 'TXN9988776655',
+        currentStepIndex: 1,
+        timeline: [
+          { title: 'Pre-booking Registered', date: '21 Sep 2026, 04:30 PM', desc: 'Booking form generated via Sales Connect', completed: true },
+          { title: 'Token Amount Received (₹50,000)', date: '22 Sep 2026, 11:15 AM', desc: 'Payment verified via Razorpay / UPI', completed: true },
+          { title: 'Vehicle Allotment & VIN Tagging', date: 'Expected 30 Sep 2026', desc: 'Chassis assignment pending from plant dispatch', completed: false },
+          { title: 'In Transit / Showroom Dispatch', date: 'Expected 05 Oct 2026', desc: 'Transport from regional stockyard', completed: false },
+          { title: 'Final Delivery & Key Handover', date: 'Expected 10 Oct 2026', desc: 'RTO registration & vehicle handover to customer', completed: false }
+        ]
+      },
+      'BK987875364': {
+        id: 'BK987875364',
+        customerName: 'Aarti Sharma',
+        phone: '+91 99102 44331',
+        email: 'aarti.sharma@gmail.com',
+        address: 'Vasant Kunj, New Delhi',
+        model: 'Suzuki Gixxer SF 250',
+        variant: 'Ride Connect Edition',
+        color: 'Matte Black',
+        exPrice: '₹1,92,000',
+        tokenPaid: '₹25,000',
+        tokenStatus: 'In Transit',
+        tokenBadgeClass: 'bg-blue-50 text-[#007AFF] border-blue-100',
+        bookingDate: '18/09/2026',
+        expectedDelivery: '28/09/2026',
+        paymentMode: 'Debit Card / HDFC POS',
+        txnId: 'TXN4433221199',
+        currentStepIndex: 3,
+        timeline: [
+          { title: 'Pre-booking Registered', date: '17 Sep 2026, 02:10 PM', desc: 'Booking recorded at Delhi dealership', completed: true },
+          { title: 'Token Amount Received (₹25,000)', date: '18 Sep 2026, 10:00 AM', desc: 'Payment approved', completed: true },
+          { title: 'Vehicle Allotment & VIN Tagging', date: '21 Sep 2026, 05:45 PM', desc: 'VIN #MBH456721 Tagged to customer', completed: true },
+          { title: 'In Transit / Showroom Dispatch', date: '25 Sep 2026, 09:30 AM', desc: 'Transit container en route to dealer outlet', completed: true },
+          { title: 'Final Delivery & Key Handover', date: 'Expected 28 Sep 2026', desc: 'PDI check & registration paperwork', completed: false }
+        ]
+      },
+      'BK987875399': {
+        id: 'BK987875399',
+        customerName: 'Rupesh Ranjan Bhatt',
+        phone: '+91 98100 77665',
+        email: 'rupesh.bhatt@gmail.com',
+        address: 'Indirapuram, Ghaziabad, UP',
+        model: 'Suzuki Access 125',
+        variant: 'Special Edition',
+        color: 'Pearl White',
+        exPrice: '₹89,500',
+        tokenPaid: '₹10,000',
+        tokenStatus: 'Token Pending',
+        tokenBadgeClass: 'bg-amber-50 text-amber-600 border-amber-100',
+        bookingDate: '14/09/2026',
+        expectedDelivery: '05/10/2026',
+        paymentMode: 'Pending Verification',
+        txnId: 'TXN1122334455',
+        currentStepIndex: 0,
+        timeline: [
+          { title: 'Pre-booking Registered', date: '14 Sep 2026, 06:15 PM', desc: 'Lead converted to pre-booking status', completed: true },
+          { title: 'Token Amount Verification', date: 'Pending Confirmation', desc: 'Awaiting banking confirmation for ₹10,000 token', completed: false },
+          { title: 'Vehicle Allotment', date: 'Expected 28 Sep 2026', desc: 'Stock allocation after payment confirmation', completed: false },
+          { title: 'In Transit', date: 'Expected 01 Oct 2026', desc: 'Vehicle movement from warehouse', completed: false },
+          { title: 'Final Delivery & Key Handover', date: 'Expected 05 Oct 2026', desc: 'Customer delivery appointment', completed: false }
+        ]
+      }
+    };
+
+    function openBookingDetails(bookingId) {
+      const data = bookingMockData[bookingId] || bookingMockData['BK987875311'];
+      
+      document.getElementById('bdetHeaderSub').innerText = 'Ref: ' + data.id;
+      document.getElementById('bdetId').innerText = data.id;
+      document.getElementById('bdetName').innerText = data.customerName;
+      document.getElementById('bdetCustomerFullName').innerText = data.customerName;
+      document.getElementById('bdetTokenPaid').innerText = data.tokenPaid;
+      
+      const badgeEl = document.getElementById('bdetBadge');
+      badgeEl.className = `px-2.5 py-1 rounded-full text-[10px] font-extrabold ${data.tokenBadgeClass}`;
+      badgeEl.innerText = data.tokenStatus;
+      
+      document.getElementById('bdetCallBtn').setAttribute('onclick', `window.location.href='tel:${data.phone.replace(/\s+/g, '')}'`);
+      document.getElementById('bdetWaBtn').setAttribute('onclick', `window.open('https://wa.me/${data.phone.replace(/[^0-9]/g, '')}','_blank')`);
+      
+      document.getElementById('bdetPhone').innerText = data.phone;
+      document.getElementById('bdetEmail').innerText = data.email;
+      document.getElementById('bdetAddress').innerText = data.address;
+      
+      document.getElementById('bdetCarModel').innerText = data.model;
+      document.getElementById('bdetCarVariant').innerText = data.variant;
+      document.getElementById('bdetCarColor').innerText = data.color;
+      document.getElementById('bdetExPrice').innerText = data.exPrice;
+      
+      document.getElementById('bdetBookingDate').innerText = data.bookingDate;
+      document.getElementById('bdetExpectedDelivery').innerText = data.expectedDelivery;
+      document.getElementById('bdetPaymentMode').innerText = data.paymentMode;
+      document.getElementById('bdetTxnId').innerText = data.txnId;
+      
+      const timelineContainer = document.getElementById('bdetTimeline');
+      timelineContainer.innerHTML = '';
+      
+      data.timeline.forEach((step, idx) => {
+        const isDone = step.completed;
+        const isCurrent = idx === data.currentStepIndex;
+        
+        let iconBg = 'bg-slate-100 text-slate-400 border-slate-200';
+        let lineBg = 'bg-slate-200';
+        let textColor = 'text-slate-500';
+        
+        if (isDone) {
+          iconBg = 'bg-emerald-500 text-white border-emerald-500';
+          lineBg = 'bg-emerald-500';
+          textColor = 'text-slate-800';
+        } else if (isCurrent) {
+          iconBg = 'bg-[#007AFF] text-white border-[#007AFF] ring-4 ring-blue-100';
+          textColor = 'text-[#007AFF]';
+        }
+        
+        const isLast = idx === data.timeline.length - 1;
+        
+        const stepHTML = `
+          <div class="flex items-start gap-3 relative">
+            <div class="flex flex-col items-center">
+              <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center text-[10px] font-black ${iconBg} shrink-0 z-10">
+                ${isDone ? '<i class="fa-solid fa-check"></i>' : (idx + 1)}
+              </div>
+              ${!isLast ? `<div class="w-0.5 h-10 ${lineBg} my-0.5"></div>` : ''}
+            </div>
+            <div class="pb-2 space-y-0.5 flex-1">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xs font-black ${textColor}">${step.title}</h4>
+                <span class="text-[9px] font-bold text-slate-400">${step.date}</span>
+              </div>
+              <p class="text-[11px] font-medium text-slate-500">${step.desc}</p>
+            </div>
+          </div>
+        `;
+        timelineContainer.innerHTML += stepHTML;
+      });
+      
+      switchScreen('booking-details');
+    }
+
+    function exitBookingDetails() {
+      switchScreen('booking');
     }
 
     function openCreateBookingForm() {

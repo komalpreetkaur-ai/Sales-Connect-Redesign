@@ -149,10 +149,22 @@ The **Category Tab Slider** on the **All Active Follow-Ups** screen in [`sales_c
      - **Cancel CTA**: Discards changes and returns to the Bookings list.
      - **Submit Booking CTA**: Validates mandatory fields, creates a new booking card dynamically on `#screen-booking`, alerts success, and updates total count.
 
+3. **Dedicated Booking Details Screen (`#screen-booking-details`)**:
+   - **Clickable Booking Cards & Details CTAs**: Tapping any vehicle booking card or its `Details >` CTA button opens the full-screen `#screen-booking-details`.
+   - **Header & Navigation**: Displays booking reference ID (e.g. `Ref: BK987875311`), back button returning to Bookings tab, and current status badge.
+   - **Customer Information Card**: Displays customer name, phone number, email address, and residential address with one-touch **Call Customer** and **WhatsApp** action buttons.
+   - **Vehicle Specifications Card**: Detailed breakdown of Model Name, Variant, Colour, and Ex-Showroom Price.
+   - **Payment & Delivery Details Card**: Booking Date, Expected Delivery Date, Payment Mode (e.g. UPI / NetBanking), and Transaction ID.
+   - **Interactive 5-Step Booking Status Timeline**:
+     - Visual vertical progress tracker with numbered step icons & green completion checkmarks.
+     - Tracks steps: `Pre-booking Registered` -> `Token Amount Received` -> `Vehicle Allotment & VIN Tagging` -> `In Transit / Showroom Dispatch` -> `Final Delivery & Key Handover`.
+   - **Action CTAs**: Includes `Download Booking Receipt PDF` button with confirmation toast and `Back to Bookings` CTA.
+
 ---
 
 ## 🌐 Live Prototype Link
 
 - **Local HTML File**: [sales_connect_redesign.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/sales_connect_redesign.html)
 - **Live Local Server**: [http://localhost:9847/sales_connect_redesign.html](http://localhost:9847/sales_connect_redesign.html)
+
 
