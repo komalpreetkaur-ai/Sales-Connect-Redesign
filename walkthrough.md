@@ -117,9 +117,14 @@ The **Category Tab Slider** on the **All Active Follow-Ups** screen in [`sales_c
 
 ---
 
-## 📊 Home Screen Pipeline Update
+## 📊 Home Screen Target & KPIs Redesign
 
-- **Removed MY PIPELINE Section**: The `MY PIPELINE` section has been removed from the Home screen for a cleaner, streamlined dashboard.
+- **Redesigned Target & KPIs Hero Section**: Updated exclusively to match the provided high-fidelity reference UI.
+  - **Header & Pill Badge**: `WEEKLY TARGET & KPIS` with a top-right light blue `75% Achieved` pill badge (`bg-[#EFF6FF] text-[#007AFF] px-3.5 py-1 rounded-full border border-blue-100`).
+  - **Dark Hero Card Container**: Sleek dark navy card container (`bg-[#182030] rounded-3xl p-5 text-white shadow-lg`).
+  - **Target Header & Title**: `WEEKLY VEHICLE SALES TARGET` subtitle in muted grey text above large white bold title `3 of 4 Units Sold`.
+  - **Interactive Circular Progress SVG Gauge**: A custom SVG circular donut gauge with gradient ring fill (`#007AFF` to `#10B981`) and dynamic `75%` text center.
+  - **Gradient Progress Bar & Goal Indicator**: High-contrast blue-to-emerald gradient progress bar (`from-[#007AFF] via-cyan-400 to-[#10B981]`), `Target: 4 Units` label on bottom left, and `1 Unit to Goal 🔥` indicator in vibrant emerald green on bottom right.
 
 ---
 

@@ -156,16 +156,16 @@
           <div class="flex items-center gap-2">
             <!-- Date Filter Button -->
             <div class="relative">
-              <button id="dateFilterBtn" onclick="toggleDateMenu()" class="px-3 py-2 bg-white rounded-full text-xs font-bold text-slate-700 border border-slate-200/80 shadow-xs flex items-center gap-1.5 active:bg-slate-100 transition-all">
+              <button id="dateFilterBtn" onclick="toggleDateMenu()" class="px-3 py-2 bg-white rounded-full text-xs font-bold text-slate-700 border border-slate-200/80 shadow-xs flex items-center gap-1.5 active:bg-slate-100 transition-all cursor-pointer">
                 <i class="fa-regular fa-calendar-days text-[#007AFF] text-xs"></i>
-                <span id="selectedDateLabel">This Month</span>
+                <span id="selectedDateLabel">This Week</span>
                 <i class="fa-solid fa-chevron-down text-[9px] text-slate-400"></i>
               </button>
 
               <div id="dateMenu" class="hidden absolute right-0 mt-2 w-36 bg-white rounded-xl shadow-xl border border-slate-200 py-1 z-40 text-xs font-semibold text-slate-700">
                 <button id="dateOptToday" onclick="selectDate('Today', this)" class="date-menu-opt w-full text-left px-3 py-2 active:bg-blue-50">Today</button>
-                <button id="dateOptThisWeek" onclick="selectDate('This Week', this)" class="date-menu-opt w-full text-left px-3 py-2 active:bg-blue-50">This Week</button>
-                <button id="dateOptThisMonth" onclick="selectDate('This Month', this)" class="date-menu-opt w-full text-left px-3 py-2 active:bg-blue-50 text-[#007AFF] font-bold">This Month</button>
+                <button id="dateOptThisWeek" onclick="selectDate('This Week', this)" class="date-menu-opt w-full text-left px-3 py-2 active:bg-blue-50 text-[#007AFF] font-bold">This Week</button>
+                <button id="dateOptThisMonth" onclick="selectDate('This Month', this)" class="date-menu-opt w-full text-left px-3 py-2 active:bg-blue-50">This Month</button>
               </div>
             </div>
           </div>
@@ -198,30 +198,42 @@
         <!-- TARGET & PERFORMANCE SECTION -->
         <section class="space-y-3">
           <div class="flex items-center justify-between">
-            <h2 id="homeSectionTargetHeader" class="text-xs font-black text-slate-500 uppercase tracking-wider">MONTHLY TARGET & KPIs</h2>
-            <span id="homeTargetAchievedBadge" class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">80% Achieved</span>
+            <h2 id="homeSectionTargetHeader" class="text-xs font-black text-slate-500 uppercase tracking-wider">WEEKLY TARGET & KPIs</h2>
+            <span id="homeTargetAchievedBadge" class="text-xs font-extrabold text-[#007AFF] bg-[#EFF6FF] px-3.5 py-1 rounded-full border border-blue-100/90 shadow-2xs">75% Achieved</span>
           </div>
 
           <!-- Target Progress Hero Card -->
-          <div class="bg-gradient-to-r from-[#1E293B] to-slate-800 rounded-2xl p-4 text-white shadow-md space-y-3">
+          <div class="bg-[#182030] rounded-3xl p-5 text-white shadow-lg space-y-4 border border-slate-800/40">
             <div class="flex items-center justify-between">
               <div>
-                <span id="homeTargetTitle" class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">MARCH VEHICLE SALES TARGET</span>
-                <div id="homeTargetUnits" class="text-xl font-black tracking-tight mt-0.5">8 of 10 Units Sold</div>
+                <span id="homeTargetTitle" class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">WEEKLY VEHICLE SALES TARGET</span>
+                <div id="homeTargetUnits" class="text-2xl font-black tracking-tight text-white mt-0.5">3 of 4 Units Sold</div>
               </div>
-              <div id="homeTargetCircle" class="w-12 h-12 rounded-full border-4 border-[#007AFF] border-t-emerald-400 flex items-center justify-center font-black text-xs bg-slate-800">
-                80%
+              
+              <!-- Circular Donut SVG Progress Gauge -->
+              <div id="homeTargetCircle" class="relative w-12 h-12 flex items-center justify-center shrink-0">
+                <svg class="w-12 h-12 transform -rotate-90" viewBox="0 0 36 36">
+                  <path class="text-[#242E42]" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <path id="homeTargetSvgArc" stroke-dasharray="75, 100" stroke-width="3.5" stroke-linecap="round" stroke="url(#targetRingGradient)" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <defs>
+                    <linearGradient id="targetRingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#007AFF" />
+                      <stop offset="100%" stop-color="#10B981" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <span id="homeTargetCircleVal" class="absolute text-xs font-black text-white">75%</span>
               </div>
             </div>
 
             <!-- Progress Bar -->
-            <div class="space-y-1.5">
-              <div class="w-full bg-slate-700 h-2.5 rounded-full overflow-hidden">
-                <div id="homeTargetProgressBar" class="bg-gradient-to-r from-[#007AFF] to-emerald-400 h-full rounded-full transition-all duration-700" style="width: 80%"></div>
+            <div class="space-y-2">
+              <div class="w-full bg-[#242E42] h-2.5 rounded-full overflow-hidden">
+                <div id="homeTargetProgressBar" class="bg-gradient-to-r from-[#007AFF] via-cyan-400 to-[#10B981] h-full rounded-full transition-all duration-700" style="width: 75%"></div>
               </div>
-              <div class="flex items-center justify-between text-[10px] font-semibold text-slate-400 pt-0.5">
-                <span id="homeTargetTotalUnitsText">Target: 10 Units</span>
-                <span id="homeTargetGoalText" class="text-emerald-400 font-bold">2 Units to Goal 🔥</span>
+              <div class="flex items-center justify-between text-xs font-medium text-slate-400 pt-0.5">
+                <span id="homeTargetTotalUnitsText">Target: 4 Units</span>
+                <span id="homeTargetGoalText" class="text-[#10B981] font-extrabold flex items-center gap-1">1 Unit to Goal 🔥</span>
               </div>
             </div>
           </div>
@@ -3477,8 +3489,14 @@
       const units = document.getElementById('homeTargetUnits');
       if (units) units.innerText = d.targetUnits;
 
-      const circle = document.getElementById('homeTargetCircle');
-      if (circle) circle.innerText = d.targetCircle;
+      const circleVal = document.getElementById('homeTargetCircleVal');
+      if (circleVal) circleVal.innerText = d.targetCircle;
+
+      const svgArc = document.getElementById('homeTargetSvgArc');
+      if (svgArc) {
+        const pct = parseInt(d.targetCircle) || 75;
+        svgArc.setAttribute('stroke-dasharray', `${pct}, 100`);
+      }
 
       const pbar = document.getElementById('homeTargetProgressBar');
       if (pbar) pbar.style.width = d.progressWidth;
