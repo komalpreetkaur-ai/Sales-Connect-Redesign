@@ -29,9 +29,11 @@ The **Category Tab Slider** on the **All Active Follow-Ups** screen in [`sales_c
 1. **Clickable FOLLOW-UPS KPI Card**:
    - Tapping the **FOLLOW-UPS** card (`15, +3 new today`) on the Home screen directly opens the **Follow-Ups Management** screen (`#screen-activities`).
 
-2. **Search & Date Range Filter Bar**:
-   - **Real-Time Search**: Instant search bar filtering by customer name, lead ID, or car model.
-   - **Date Range Filter Pills**: Filter dynamically by `All Dates`, `Today (3)`, `This Week (5)`, or `This Month (7)`.
+2. **Combined Search Bar & Compact Date Icon Filter**:
+   - **Category Tab Slider Removed**: Category tabs removed from `#screen-activities` header for a clean, streamlined top layout.
+   - **Real-Time Search Input**: Instant search bar filtering by customer name, lead ID, or car model.
+   - **Compact Date Icon Filter Dropdown**: Features a calendar icon filter button (`<i class="fa-regular fa-calendar-days text-[#007AFF]"></i>`) with dropdown menu (`All Dates (7)`, `Today (3)`, `This Week (5)`, `This Month (7)`).
+   - **Dynamic Filtering**: Selecting `Today` filters immediately to today's due follow-ups while selecting `All Dates` restores the full list.
 
 3. **Structured Feed (Today's Follow-Ups First)**:
    - **Section 1: TODAY'S FOLLOW-UPS (Shown FIRST!)**:
