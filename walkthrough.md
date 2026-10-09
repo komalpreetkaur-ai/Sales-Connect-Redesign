@@ -43,7 +43,7 @@ All 4 Home Screen KPI cards follow the identical high-fidelity mobile flow struc
 3. **`PRE-BOOKINGS` / `BOOKINGS` Card (`5, ₹2.4L revenue`)**:
    - Opens **Vehicle Bookings Screen** (`#screen-booking`).
    - Combined Search Bar + Mobile Bottom Sheet Date Filter Popup + `+ New Booking` CTA.
-   - **Section 1: TODAY'S BOOKINGS & RECENT CONFIRMATIONS (Shown FIRST!)** (`Mike Alex Tyson`, `Aarti Sharma`) with `Confirmed` & `Pre-booked` badges.
+   - **Section 1: TODAY'S BOOKING (Shown FIRST!)** (`Mike Alex Tyson`, `Aarti Sharma`) with `Confirmed` & `Pre-booked` badges.
    - **Section 2: UPCOMING DELIVERIES & OTHER BOOKINGS (Shown SECOND!)** (`Rohan Verma`, `Pooja Mehta`, `Suresh Patel`).
 
 4. **`DELIVERIES` Card (`8, 2 pending sign-off`)**:
