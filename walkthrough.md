@@ -172,6 +172,23 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
 
 ---
 
+## 📅 Inline `+ Activities` Tab in Enquiry Details Screen
+
+Integrated the **`+ Activities`** tab directly inside the **Enquiry Details** screen (`#screen-enquiry-details`):
+
+1. **Native Tab Navigation**:
+   - Tapping `+ Activities` on the detail tab bar (`General` | `Product` | `History` | `+ Activities`) seamlessly displays the customer's recorded activity cards without leaving the screen.
+
+2. **Rich Activity Cards & Follow-Up Details**:
+   - **Follow-up Call Activity**: Highlights `FOLLOWUP DATE` (e.g. `24th Aug 2026, 08:14 PM`), `ASSIGNED TO` (`Swati Jain`), `STAGE` (`Negotiation`), `STATUS` (`Open`), detailed customer remarks, and one-touch **Call** and **WhatsApp** CTAs.
+   - **Home Test Drive Activity**: Displays location (`Customer Residence`), driver license verification (`Verified ✓`), assigned driver (`Rajesh Kumar`), and scheduled time (`25 Aug 2026, 11:30 AM`).
+   - **E-Brochure Activity**: Details brochure & price list dispatch history (`22 Aug 2026`).
+
+3. **`+ Log Activity` CTA**:
+   - Header action button allowing sales consultants to instantly log new follow-up notes or schedule next steps for the selected lead.
+
+---
+
 ## 📊 Home Screen Target & KPIs Redesign (Light & Clean Theme)
 
 - **Redesigned Target & KPIs Hero Section**: Redesigned from dark background to a clean, crisp, light iOS-native theme matching the app's unified design system:

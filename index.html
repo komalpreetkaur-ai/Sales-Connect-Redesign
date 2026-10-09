@@ -930,7 +930,7 @@
           <button onclick="setDetailTab('general', this)" class="detail-tab-btn flex-1 py-2 text-center text-[#007AFF] border-b-2 border-[#007AFF]">General</button>
           <button onclick="setDetailTab('product', this)" class="detail-tab-btn flex-1 py-2 text-center text-slate-500">Product</button>
           <button onclick="setDetailTab('history', this)" class="detail-tab-btn flex-1 py-2 text-center text-slate-500">History</button>
-          <button id="detailTabCtaBtn" onclick="switchScreen('activities')" class="py-2 px-3 text-[#007AFF] flex items-center gap-1 font-bold shrink-0"><i class="fa-solid fa-plus text-[10px]"></i> Activities</button>
+          <button id="detailTabCtaBtn" onclick="setDetailTab('activities', this)" class="detail-tab-btn flex-1 py-2 text-center text-slate-500 flex items-center justify-center gap-1 cursor-pointer"><i class="fa-solid fa-plus text-[10px]"></i> Activities</button>
         </div>
 
         <!-- TAB CONTENT 1: GENERAL -->
@@ -1159,6 +1159,122 @@
                     Enquiry For Service Appointment By Anita Meti Already Assigned To The Concerned Person By NAITA METI
                   </p>
                 </div>
+              </div>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 4: ACTIVITIES -->
+        <div id="detail-tab-activities" class="detail-tab-content hidden space-y-3">
+          <!-- Section Header & Add Activity CTA -->
+          <div class="bg-white rounded-2xl border border-[#E0E8F5] p-3.5 shadow-xs flex items-center justify-between">
+            <div>
+              <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">UPCOMING & RECENT ACTIVITIES</h3>
+              <p class="text-[10px] font-semibold text-slate-400">3 Activities recorded for this enquiry</p>
+            </div>
+            <button onclick="openFollowupDateModal()" class="px-3 py-1.5 bg-[#007AFF] active:bg-blue-600 text-white rounded-xl text-xs font-bold shadow-xs flex items-center gap-1 shrink-0 active:scale-95 transition-transform cursor-pointer">
+              <i class="fa-solid fa-plus text-xs"></i>
+              <span>Log Activity</span>
+            </button>
+          </div>
+
+          <!-- Activity Cards List -->
+          <div class="space-y-3">
+            <!-- Activity Card 1: Follow-up Call -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-[#007AFF] animate-pulse"></span>
+                  <span class="text-xs font-extrabold text-[#1E293B]">Follow-up Call</span>
+                  <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#007AFF] border border-blue-100">Open • Due Today</span>
+                </div>
+                <span class="text-[10px] font-medium text-slate-400">24/08/2026, 07:51 PM</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-y-2 text-xs pt-0.5">
+                <div>
+                  <span class="text-[9px] text-slate-400 font-bold block uppercase">FOLLOWUP DATE</span>
+                  <span class="font-extrabold text-slate-800">24th Aug 2026, 08:14 PM</span>
+                </div>
+                <div>
+                  <span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span>
+                  <span class="font-extrabold text-slate-800">Swati Jain</span>
+                </div>
+                <div>
+                  <span class="text-[9px] text-slate-400 font-bold block uppercase">STAGE</span>
+                  <span class="font-extrabold text-[#007AFF]">Negotiation</span>
+                </div>
+                <div>
+                  <span class="text-[9px] text-slate-400 font-bold block uppercase">STATUS</span>
+                  <span class="font-extrabold text-[#007AFF]">Open</span>
+                </div>
+              </div>
+
+              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1">
+                <span class="text-[9px] text-slate-400 font-bold block uppercase">REMARKS</span>
+                <p class="text-xs font-semibold text-slate-800 leading-relaxed">
+                  Customer interested in Swift Dzire AX7 L. Requested home test drive & zero-debt insurance quotation.
+                </p>
+              </div>
+
+              <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+                <span class="text-[10px] font-semibold text-slate-500">Action Required: <strong class="text-slate-800">Call Back</strong></span>
+                <div class="flex items-center gap-1.5">
+                  <button onclick="event.stopPropagation(); window.location.href='tel:+919999944444';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90 cursor-pointer">
+                    <i class="fa-solid fa-phone text-xs"></i>
+                  </button>
+                  <button onclick="event.stopPropagation(); window.open('https://wa.me/919999944444','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90 cursor-pointer">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Activity Card 2: Home Test Drive -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-car-side text-[#007AFF] text-xs"></i>
+                  <span class="text-xs font-extrabold text-[#1E293B]">Home Test Drive</span>
+                  <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#007AFF] border border-blue-100">Scheduled</span>
+                </div>
+                <span class="text-[10px] font-medium text-slate-400">25/08/2026, 11:30 AM</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-y-2 text-xs pt-0.5">
+                <div>
+                  <span class="text-[9px] text-slate-400 font-bold block uppercase">LOCATION</span>
+                  <span class="font-extrabold text-slate-800">Customer Residence</span>
+                </div>
+                <div>
+                  <span class="text-[9px] text-slate-400 font-bold block uppercase">DRIVER LICENSE</span>
+                  <span class="font-extrabold text-[#007AFF]">Verified ✓</span>
+                </div>
+              </div>
+
+              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1">
+                <span class="text-[9px] text-slate-400 font-bold block uppercase">REMARKS</span>
+                <p class="text-xs font-semibold text-slate-800 leading-relaxed">
+                  Home test drive scheduled for Swift Dzire VXi AMT. Driver assigned: Rajesh Kumar.
+                </p>
+              </div>
+            </div>
+
+            <!-- Activity Card 3: E-Brochure Shared -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                <div class="flex items-center gap-2">
+                  <i class="fa-regular fa-file-pdf text-[#007AFF] text-xs"></i>
+                  <span class="text-xs font-extrabold text-[#1E293B]">E-Brochure Shared</span>
+                  <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#007AFF] border border-blue-100">Completed</span>
+                </div>
+                <span class="text-[10px] font-medium text-slate-400">22/08/2026, 04:15 PM</span>
+              </div>
+
+              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1">
+                <span class="text-[9px] text-slate-400 font-bold block uppercase">REMARKS</span>
+                <p class="text-xs font-semibold text-slate-800 leading-relaxed">
+                  Shared official product brochure and accessory price list via WhatsApp.
+                </p>
               </div>
             </div>
           </div>
