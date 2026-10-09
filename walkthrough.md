@@ -24,23 +24,20 @@ The **Category Tab Slider** on the **All Active Follow-Ups** screen in [`sales_c
 
 ---
 
-## 🔍 All Active Follow-Ups Screen (`View All` Flow)
+## 🔍 Dedicated Follow-Ups Screen (`FOLLOW-UPS` Card Flow)
 
-1. **Seamless View All Navigation**:
-   - Tapping **View All** on the Home screen automatically sets the date filter to show all active follow-ups and switches to the dedicated **All Active Follow-Ups** screen (`screen-activities`).
+1. **Clickable FOLLOW-UPS KPI Card**:
+   - Tapping the **FOLLOW-UPS** card (`15, +3 new today`) on the Home screen directly opens the **Follow-Ups Management** screen (`#screen-activities`).
 
-2. **Complete Follow-Ups Feed**:
-   - Lists **all 6 active customer follow-up leads**:
-     - `Priya M.` (Hot — Suzuki Gixxer SF — Due 15 Apr)
-     - `Shreya S.` (Test Drive — Test Drive Scheduled — Due 10 Apr)
-     - `Kumari T.` (Warm — Suzuki Hayabusa 2024 — Due 05 Apr)
-     - `Harsh M.` (Hot — Suzuki Gixxer SF — Due 25 Mar)
-     - `Akash S.` (Test Drive — Test Drive Scheduled — Due 15 Mar)
-     - `Rahul K.` (Follow-up — Suzuki Hayabusa 2024 — Due 09 Mar)
+2. **Search & Date Range Filter Bar**:
+   - **Real-Time Search**: Instant search bar filtering by customer name, lead ID, or car model.
+   - **Date Range Filter Pills**: Filter dynamically by `All Dates`, `Today (3)`, `This Week (5)`, or `This Month (7)`.
 
-3. **Search & Interactive Filters**:
-   - **Instant Search Bar**: Filter by customer name, lead ID, or model name.
-   - **Stage Filter Pills**: Tap `All (6)`, `Hot (2)`, `Test Drive (2)`, `Warm (1)`, or `Follow-up (1)` to instantly filter leads.
+3. **Structured Feed (Today's Follow-Ups First)**:
+   - **Section 1: TODAY'S FOLLOW-UPS (Shown FIRST!)**:
+     - Prominently displays today's due leads (`Priya M.`, `Shreya S.`, `Rohan Verma`) with `DUE TODAY` badges & green accent rings.
+   - **Section 2: UPCOMING & OTHER FOLLOW-UPS (Shown SECOND!)**:
+     - Lists all other upcoming and historical follow-up leads (`Kumari T.`, `Harsh M.`, `Akash S.`, `Rahul K.`).
 
 ---
 

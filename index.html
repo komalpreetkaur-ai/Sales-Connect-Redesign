@@ -237,7 +237,7 @@
 
           <!-- 4 KPI Grid Cards -->
           <div class="grid grid-cols-2 gap-2.5">
-            <div class="bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2">
+            <div onclick="openFollowUpsScreen()" class="bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2 cursor-pointer active:scale-[0.98] transition-transform">
               <div class="flex items-center justify-between">
                 <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">FOLLOW-UPS</span>
                 <div class="w-7 h-7 rounded-lg bg-blue-50 text-[#007AFF] flex items-center justify-center text-xs font-bold">
@@ -1172,22 +1172,39 @@
           <!-- Search Input Bar -->
           <div class="relative">
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
-            <input type="text" onkeyup="searchActivityFollowups(this.value)" placeholder="Search customer, lead ID, model..." class="w-full pl-9 pr-4 py-2.5 bg-white border border-[#DCE5F2] rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:ring-2 focus:ring-blue-100 shadow-xs transition-all">
+            <input type="text" onkeyup="searchActivityFollowups(this.value)" placeholder="Search customer, lead ID, car model..." class="w-full pl-9 pr-4 py-2.5 bg-white border border-[#DCE5F2] rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:ring-2 focus:ring-blue-100 shadow-xs transition-all">
+          </div>
+
+          <!-- Date Range Filter Pills -->
+          <div class="flex items-center gap-1.5 overflow-x-auto custom-scroll pb-0.5">
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider shrink-0 mr-1"><i class="fa-regular fa-calendar-days text-[#007AFF] mr-1"></i>Date Range:</span>
+            <button onclick="filterFollowupDateRange('all', this)" class="act-date-pill px-3 py-1 rounded-full bg-[#007AFF] text-white font-extrabold text-[11px] shrink-0 shadow-xs cursor-pointer">All Dates</button>
+            <button onclick="filterFollowupDateRange('today', this)" class="act-date-pill px-3 py-1 rounded-full bg-white text-slate-700 font-bold text-[11px] shrink-0 border border-slate-200 active:bg-blue-50 cursor-pointer">Today (3)</button>
+            <button onclick="filterFollowupDateRange('week', this)" class="act-date-pill px-3 py-1 rounded-full bg-white text-slate-700 font-bold text-[11px] shrink-0 border border-slate-200 active:bg-blue-50 cursor-pointer">This Week (5)</button>
+            <button onclick="filterFollowupDateRange('month', this)" class="act-date-pill px-3 py-1 rounded-full bg-white text-slate-700 font-bold text-[11px] shrink-0 border border-slate-200 active:bg-blue-50 cursor-pointer">This Month (7)</button>
           </div>
 
           <!-- Non-Scrolling Stage Filter Grid -->
           <div class="grid grid-cols-3 gap-1.5 p-1 bg-slate-100/80 rounded-2xl border border-slate-200/60">
-            <button onclick="filterActivityStage('all', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-xs text-center shadow-xs cursor-pointer">All (6)</button>
-            <button onclick="filterActivityStage('hot', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Hot (2)</button>
+            <button onclick="filterActivityStage('all', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-xs text-center shadow-xs cursor-pointer">All (7)</button>
+            <button onclick="filterActivityStage('hot', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Hot (3)</button>
             <button onclick="filterActivityStage('testdrive', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Test Drive (2)</button>
             <button onclick="filterActivityStage('warm', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Warm (1)</button>
             <button onclick="filterActivityStage('followup', this)" class="act-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer col-span-2">Follow-up (1)</button>
           </div>
 
-          <!-- List of All 6 Follow-ups -->
-          <div id="activityFollowupsContainer" class="space-y-2.5">
-            <!-- Followup 1 -->
-            <div onclick="openEnquiryDetails('Priya M.', 'ENQ987875364')" class="act-lead-card hot all bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+          <!-- SECTION 1: TODAY'S FOLLOW-UPS (SHOWN FIRST!) -->
+          <div id="todayFollowupsSection" class="space-y-2.5 pt-1">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>TODAY'S FOLLOW-UPS</span>
+              </h3>
+              <span class="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-100">3 Due Today</span>
+            </div>
+
+            <!-- Today's Followup 1 -->
+            <div onclick="openEnquiryDetails('Priya M.', 'ENQ987875364')" class="act-lead-card hot all bg-white p-3.5 rounded-2xl border border-emerald-200/90 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer ring-1 ring-emerald-100">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3 min-w-0">
                   <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 font-bold text-xs flex items-center justify-center shrink-0 border border-amber-200/60">
@@ -1201,23 +1218,23 @@
                     <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">SUZUKI GIXXER SF • ENQ987875364</p>
                   </div>
                 </div>
-                <span class="text-[10px] font-bold text-[#007AFF] bg-[#EBF5FF] px-2.5 py-1 rounded-full shrink-0">15 APR</span>
+                <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-200">DUE TODAY</span>
               </div>
               <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
                 <span class="text-[10px] font-semibold text-slate-500">Stage: <strong class="text-slate-800">Negotiation</strong></span>
                 <div class="flex items-center gap-1.5">
-                  <button onclick="event.stopPropagation();" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
+                  <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
                     <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
                   </button>
-                  <button onclick="event.stopPropagation();" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
+                  <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
                     <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
                   </button>
                 </div>
               </div>
             </div>
 
-            <!-- Followup 2 -->
-            <div onclick="openEnquiryDetails('Shreya S.', 'ENQ987875364')" class="act-lead-card testdrive all bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <!-- Today's Followup 2 -->
+            <div onclick="openEnquiryDetails('Shreya S.', 'ENQ987875365')" class="act-lead-card testdrive all bg-white p-3.5 rounded-2xl border border-emerald-200/90 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer ring-1 ring-emerald-100">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3 min-w-0">
                   <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 font-bold text-xs flex items-center justify-center shrink-0 border border-purple-100">
@@ -1231,23 +1248,64 @@
                     <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">TEST DRIVE SCHEDULED • ENQ987875365</p>
                   </div>
                 </div>
-                <span class="text-[10px] font-bold text-[#007AFF] bg-[#EBF5FF] px-2.5 py-1 rounded-full shrink-0">10 APR</span>
+                <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-200">DUE TODAY</span>
               </div>
               <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
                 <span class="text-[10px] font-semibold text-slate-500">Stage: <strong class="text-slate-800">Test Drive</strong></span>
                 <div class="flex items-center gap-1.5">
-                  <button onclick="event.stopPropagation();" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
+                  <button onclick="event.stopPropagation(); window.location.href='tel:+919910244331';" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
                     <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
                   </button>
-                  <button onclick="event.stopPropagation();" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
+                  <button onclick="event.stopPropagation(); window.open('https://wa.me/919910244331','_blank');" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
                     <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
                   </button>
                 </div>
               </div>
             </div>
 
-            <!-- Followup 3 -->
-            <div onclick="openEnquiryDetails('Kumari T.', 'ENQ987875364')" class="act-lead-card warm all bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <!-- Today's Followup 3 -->
+            <div onclick="openEnquiryDetails('Rohan Verma', 'ENQ987875370')" class="act-lead-card hot all bg-white p-3.5 rounded-2xl border border-emerald-200/90 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer ring-1 ring-emerald-100">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3 min-w-0">
+                  <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-100">
+                    RV
+                  </div>
+                  <div class="truncate">
+                    <div class="flex items-center gap-1.5">
+                      <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Rohan Verma</h3>
+                      <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-amber-50 text-amber-600 border border-amber-200/60 shrink-0">Hot</span>
+                    </div>
+                    <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">SUZUKI ACCESS 125 • ENQ987875370</p>
+                  </div>
+                </div>
+                <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-200">DUE TODAY</span>
+              </div>
+              <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+                <span class="text-[10px] font-semibold text-slate-500">Stage: <strong class="text-slate-800">Booking Planned</strong></span>
+                <div class="flex items-center gap-1.5">
+                  <button onclick="event.stopPropagation(); window.location.href='tel:+919810077665';" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
+                    <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
+                  </button>
+                  <button onclick="event.stopPropagation(); window.open('https://wa.me/919810077665','_blank');" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 2: ALL OTHER FOLLOW-UPS (SHOWN SECOND!) -->
+          <div id="otherFollowupsSection" class="space-y-2.5 pt-3 border-t border-slate-200/80">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-black text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#007AFF]"></span>
+                <span>UPCOMING & OTHER FOLLOW-UPS</span>
+              </h3>
+              <span class="text-[10px] font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">4 Leads</span>
+            </div>
+
+            <!-- Followup 4 -->
+            <div onclick="openEnquiryDetails('Kumari T.', 'ENQ987875366')" class="act-lead-card warm all bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3 min-w-0">
                   <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
@@ -1276,8 +1334,8 @@
               </div>
             </div>
 
-            <!-- Followup 4 -->
-            <div onclick="openEnquiryDetails('Harsh M.', 'ENQ987875364')" class="act-lead-card hot all bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <!-- Followup 5 -->
+            <div onclick="openEnquiryDetails('Harsh M.', 'ENQ987875367')" class="act-lead-card hot all bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3 min-w-0">
                   <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 font-bold text-xs flex items-center justify-center shrink-0 border border-indigo-100">
@@ -1306,8 +1364,8 @@
               </div>
             </div>
 
-            <!-- Followup 5 -->
-            <div onclick="openEnquiryDetails('Akash S.', 'ENQ987875364')" class="act-lead-card testdrive all bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <!-- Followup 6 -->
+            <div onclick="openEnquiryDetails('Akash S.', 'ENQ987875368')" class="act-lead-card testdrive all bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3 min-w-0">
                   <div class="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-600 font-bold text-xs flex items-center justify-center shrink-0 border border-cyan-100">
@@ -1336,8 +1394,8 @@
               </div>
             </div>
 
-            <!-- Followup 6 -->
-            <div onclick="openEnquiryDetails('Rahul K.', 'ENQ987875364')" class="act-lead-card followup all bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <!-- Followup 7 -->
+            <div onclick="openEnquiryDetails('Rahul K.', 'ENQ987875369')" class="act-lead-card followup all bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3 min-w-0">
                   <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 font-bold text-xs flex items-center justify-center shrink-0 border border-amber-100">
@@ -1354,7 +1412,7 @@
                 <span class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full shrink-0">09 MAR</span>
               </div>
               <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-                <span class="text-[10px] font-semibold text-slate-500">Stage: <strong class="text-slate-800">Follow-up</strong></span>
+                <span class="text-[10px] font-semibold text-slate-500">Stage: <strong class="text-slate-800">Initial Contact</strong></span>
                 <div class="flex items-center gap-1.5">
                   <button onclick="event.stopPropagation();" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
                     <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
@@ -3574,6 +3632,32 @@
           card.classList.add('hidden');
         }
       });
+    }
+
+    function openFollowUpsScreen() {
+      switchScreen('activities');
+      const followupTabBtn = document.querySelector('.act-tab-btn');
+      if (followupTabBtn) switchActivityTab('followup', followupTabBtn);
+    }
+
+    function filterFollowupDateRange(range, element) {
+      document.querySelectorAll('.act-date-pill').forEach(btn => {
+        btn.className = 'act-date-pill px-3 py-1 rounded-full bg-white text-slate-700 font-bold text-[11px] shrink-0 border border-slate-200 active:bg-blue-50 cursor-pointer';
+      });
+      if (element) {
+        element.className = 'act-date-pill px-3 py-1 rounded-full bg-[#007AFF] text-white font-extrabold text-[11px] shrink-0 shadow-xs cursor-pointer';
+      }
+
+      const todaySection = document.getElementById('todayFollowupsSection');
+      const otherSection = document.getElementById('otherFollowupsSection');
+
+      if (range === 'today') {
+        if (todaySection) todaySection.classList.remove('hidden');
+        if (otherSection) otherSection.classList.add('hidden');
+      } else {
+        if (todaySection) todaySection.classList.remove('hidden');
+        if (otherSection) otherSection.classList.remove('hidden');
+      }
     }
 
     function searchActivityFollowups(query) {
