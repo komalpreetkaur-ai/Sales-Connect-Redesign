@@ -37,23 +37,26 @@ All 4 Home Screen KPI cards follow the identical high-fidelity mobile flow struc
 2. **`TEST DRIVES` Card (`4, 2 scheduled today`)**:
    - Opens **Test Drives Management Screen** (`#screen-test-drives`).
    - Combined Search Bar + Mobile Bottom Sheet Date Filter Popup.
-   - Non-scrolling stage grid: `All (4)`, `Today (2)`, `Upcoming (1)`, `Completed (1)`.
    - **Section 1: TODAY'S SCHEDULED TEST DRIVES (Shown FIRST!)** (`Amit Roy`, `Neha Gupta`) with `DL Verified ✓` & `Start Drive` CTAs.
    - **Section 2: UPCOMING & RECENT TEST DRIVES (Shown SECOND!)** (`Vikram Malhotra`, `Kavita Reddy`).
 
 3. **`PRE-BOOKINGS` / `BOOKINGS` Card (`5, ₹2.4L revenue`)**:
    - Opens **Vehicle Bookings Screen** (`#screen-booking`).
    - Combined Search Bar + Mobile Bottom Sheet Date Filter Popup + `+ New Booking` CTA.
-   - Non-scrolling stage grid: `All (5)`, `Confirmed (2)`, `Pre-booked (2)`, `Pending Delivery (1)`.
    - **Section 1: TODAY'S BOOKINGS & RECENT CONFIRMATIONS (Shown FIRST!)** (`Mike Alex Tyson`, `Aarti Sharma`) with `Confirmed` & `Pre-booked` badges.
    - **Section 2: UPCOMING DELIVERIES & OTHER BOOKINGS (Shown SECOND!)** (`Rohan Verma`, `Pooja Mehta`, `Suresh Patel`).
 
 4. **`DELIVERIES` Card (`8, 2 pending sign-off`)**:
    - Opens **Vehicle Deliveries Screen** (`#screen-deliveries`).
    - Combined Search Bar + Mobile Bottom Sheet Date Filter Popup.
-   - Non-scrolling stage grid: `All (8)`, `Today (2)`, `Pending (2)`, `Delivered (4)`.
    - **Section 1: TODAY'S DELIVERIES & PDI SIGN-OFFS (Shown FIRST!)** (`Rajesh Kumar`, `Ananya Deshmukh`) with `PENDING SIGN-OFF ⚠️`, `PDI Ready`, & `Handover` CTAs.
    - **Section 2: UPCOMING & RECENT DELIVERIES (Shown SECOND!)** (`Siddharth Kapoor`, `Meera Sen`).
+
+---
+
+## 🧹 Streamlined Screen Headers (Stage Grid Pills Removed)
+
+- Removed the stage filter pill grid bars (`All`, `Today`, `Upcoming`, `Completed`, etc.) across all screens for a clean, uncluttered layout focused on search, date filtering, and the primary structured feeds.
 
 ---
 
