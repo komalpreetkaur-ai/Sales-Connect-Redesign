@@ -24,6 +24,24 @@ The **Category Tab Slider** on the **All Active Follow-Ups** screen in [`sales_c
 
 ---
 
+## 🎯 Prominent LEADS ASSIGNED Dashboard Metric Card
+
+Added a dedicated **`LEADS ASSIGNED`** hero section directly at the top of the main dashboard feed (`#screen-home`):
+
+1. **Top Dashboard Visibility**:
+   - Displays right below Quick Actions so sales consultants instantly see their assigned lead count upon opening the app.
+   - Pulsing brand blue indicator dot (`bg-[#007AFF] animate-pulse`) and `View All >` CTA link.
+
+2. **Metrics & Temperature Breakdown Grid**:
+   - **Total Assigned Leads**: Large primary metric e.g. `24` with a dynamic highlight badge e.g. `+4 New Today`.
+   - **3-Column Lead Breakdown**: Clean, structured breakdown for `Hot Leads` (8), `Warm Leads` (11), and `Cold Leads` (5).
+
+3. **Interactive & Dynamic Date Filtering**:
+   - Tapping anywhere on the card opens the full **Enquiries / Leads List** screen (`#screen-enquiry`).
+   - Changing the top date filter (`Today`, `This Week`, `This Month`) dynamically updates assigned lead counts, new lead badges, and lead temperature breakdowns.
+
+---
+
 ## 📊 4 KPI Grid Cards Unified Flow Structure
 
 All 4 Home Screen KPI cards follow the identical high-fidelity mobile flow structure:
