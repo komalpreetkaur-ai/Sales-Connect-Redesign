@@ -24,21 +24,36 @@ The **Category Tab Slider** on the **All Active Follow-Ups** screen in [`sales_c
 
 ---
 
-## 🔍 Dedicated Follow-Ups Screen (`FOLLOW-UPS` Card Flow)
+## 📊 4 KPI Grid Cards Unified Flow Structure
 
-1. **Clickable FOLLOW-UPS KPI Card**:
-   - Tapping the **FOLLOW-UPS** card (`15, +3 new today`) on the Home screen directly opens the **Follow-Ups Management** screen (`#screen-activities`).
+All 4 Home Screen KPI cards follow the identical high-fidelity mobile flow structure:
 
-2. **Mobile App Date Filter Popup & Custom Date Range**:
-   - **Mobile Bottom Sheet Popup Modal (`#actDateFilterModal`)**: Tapping the date filter button opens a clean mobile app bottom sheet popup modal matching mobile app guidelines with a top drag indicator handle and backdrop blur.
-   - **Preset Date Options**: Includes options with real-time lead counts (`All Dates (7)`, `Today (3)`, `This Week (5)`, `This Month (7)`).
-   - **Custom Date Range Selector**: Features a **Custom Date Range** action row with icon (`<i class="fa-solid fa-sliders text-[#007AFF]"></i>`). Tapping it smoothly opens the interactive April 2026 Calendar Date Picker Modal (`#dateRangePickerModal`), allowing users to pick custom start and end dates and update the header button label dynamically (e.g. `1/04 - 14/04`).
+1. **`FOLLOW-UPS` Card (`15, +3 new today`)**:
+   - Opens **Follow-Ups Management Screen** (`#screen-activities`).
+   - Combined Search Bar + Mobile Bottom Sheet Date Filter Popup (with Custom Date Range Picker).
+   - **Section 1: TODAY'S FOLLOW-UPS (Shown FIRST!)** with green pulse animation and `DUE TODAY` badges.
+   - **Section 2: UPCOMING & OTHER FOLLOW-UPS (Shown SECOND!)**.
 
-3. **Structured Feed (Today's Follow-Ups First)**:
-   - **Section 1: TODAY'S FOLLOW-UPS (Shown FIRST!)**:
-     - Prominently displays today's due leads (`Priya M.`, `Shreya S.`, `Rohan Verma`) with `DUE TODAY` badges & green accent rings.
-   - **Section 2: UPCOMING & OTHER FOLLOW-UPS (Shown SECOND!)**:
-     - Lists all other upcoming and historical follow-up leads (`Kumari T.`, `Harsh M.`, `Akash S.`, `Rahul K.`).
+2. **`TEST DRIVES` Card (`4, 2 scheduled today`)**:
+   - Opens **Test Drives Management Screen** (`#screen-test-drives`).
+   - Combined Search Bar + Mobile Bottom Sheet Date Filter Popup.
+   - Non-scrolling stage grid: `All (4)`, `Today (2)`, `Upcoming (1)`, `Completed (1)`.
+   - **Section 1: TODAY'S SCHEDULED TEST DRIVES (Shown FIRST!)** (`Amit Roy`, `Neha Gupta`) with `DL Verified ✓` & `Start Drive` CTAs.
+   - **Section 2: UPCOMING & RECENT TEST DRIVES (Shown SECOND!)** (`Vikram Malhotra`, `Kavita Reddy`).
+
+3. **`PRE-BOOKINGS` / `BOOKINGS` Card (`5, ₹2.4L revenue`)**:
+   - Opens **Vehicle Bookings Screen** (`#screen-booking`).
+   - Combined Search Bar + Mobile Bottom Sheet Date Filter Popup + `+ New Booking` CTA.
+   - Non-scrolling stage grid: `All (5)`, `Confirmed (2)`, `Pre-booked (2)`, `Pending Delivery (1)`.
+   - **Section 1: TODAY'S BOOKINGS & RECENT CONFIRMATIONS (Shown FIRST!)** (`Mike Alex Tyson`, `Aarti Sharma`) with `Confirmed` & `Pre-booked` badges.
+   - **Section 2: UPCOMING DELIVERIES & OTHER BOOKINGS (Shown SECOND!)** (`Rohan Verma`, `Pooja Mehta`, `Suresh Patel`).
+
+4. **`DELIVERIES` Card (`8, 2 pending sign-off`)**:
+   - Opens **Vehicle Deliveries Screen** (`#screen-deliveries`).
+   - Combined Search Bar + Mobile Bottom Sheet Date Filter Popup.
+   - Non-scrolling stage grid: `All (8)`, `Today (2)`, `Pending (2)`, `Delivered (4)`.
+   - **Section 1: TODAY'S DELIVERIES & PDI SIGN-OFFS (Shown FIRST!)** (`Rajesh Kumar`, `Ananya Deshmukh`) with `PENDING SIGN-OFF ⚠️`, `PDI Ready`, & `Handover` CTAs.
+   - **Section 2: UPCOMING & RECENT DELIVERIES (Shown SECOND!)** (`Siddharth Kapoor`, `Meera Sen`).
 
 ---
 

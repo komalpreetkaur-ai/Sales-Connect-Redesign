@@ -237,6 +237,7 @@
 
           <!-- 4 KPI Grid Cards -->
           <div class="grid grid-cols-2 gap-2.5">
+            <!-- 1. FOLLOW-UPS Card -->
             <div onclick="openFollowUpsScreen()" class="bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2 cursor-pointer active:scale-[0.98] transition-transform">
               <div class="flex items-center justify-between">
                 <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">FOLLOW-UPS</span>
@@ -253,7 +254,8 @@
               </div>
             </div>
 
-            <div class="bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2">
+            <!-- 2. TEST DRIVES Card -->
+            <div onclick="openTestDrivesScreen()" class="bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2 cursor-pointer active:scale-[0.98] transition-transform">
               <div class="flex items-center justify-between">
                 <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">TEST DRIVES</span>
                 <div class="w-7 h-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-xs font-bold">
@@ -269,7 +271,8 @@
               </div>
             </div>
 
-            <div class="bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2">
+            <!-- 3. PRE-BOOKINGS Card -->
+            <div onclick="openBookingsScreen()" class="bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2 cursor-pointer active:scale-[0.98] transition-transform">
               <div class="flex items-center justify-between">
                 <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">PRE-BOOKINGS</span>
                 <div class="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs font-bold">
@@ -282,7 +285,8 @@
               </div>
             </div>
 
-            <div class="bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2">
+            <!-- 4. DELIVERIES Card -->
+            <div onclick="openDeliveriesScreen()" class="bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2 cursor-pointer active:scale-[0.98] transition-transform">
               <div class="flex items-center justify-between">
                 <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">DELIVERIES</span>
                 <div class="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-xs font-bold">
@@ -1481,35 +1485,270 @@
         <h1 class="text-2xl font-extrabold text-[#1E293B]">Notifications</h1>
       </div>
 
-      <!-- SCREEN 6: REDESIGNED BOOKINGS SCREEN -->
-      <div id="screen-booking" class="app-screen space-y-4">
-        <!-- Screen Header -->
+      <!-- SCREEN 6: REDESIGNED TEST DRIVES SCREEN -->
+      <div id="screen-test-drives" class="app-screen space-y-3.5">
+        <!-- Header -->
         <div class="flex items-center justify-between border-b border-[#E0E8F5] pb-3 pt-1">
-          <div>
-            <h1 class="text-lg font-black text-[#1E293B] leading-tight">Vehicle Bookings</h1>
-            <p class="text-[10px] font-semibold text-slate-400">Track and manage customer car bookings</p>
+          <div class="flex items-center gap-3">
+            <button onclick="switchScreen('home')" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-700 border border-slate-200 active:bg-slate-100 shadow-xs cursor-pointer">
+              <i class="fa-solid fa-arrow-left text-sm"></i>
+            </button>
+            <div>
+              <h1 class="text-lg font-black text-[#1E293B] leading-tight">Test Drives</h1>
+              <p class="text-[10px] font-semibold text-slate-400">Scheduled customer test drives & feedback</p>
+            </div>
           </div>
-          <button onclick="openCreateBookingForm()" class="px-3.5 py-2 bg-[#007AFF] active:bg-blue-600 text-white rounded-xl text-xs font-extrabold shadow-sm flex items-center gap-1.5 shrink-0 active:scale-95 transition-transform cursor-pointer">
+          <span class="text-xs font-extrabold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full border border-purple-100">4 Test Drives</span>
+        </div>
+
+        <!-- Combined Search Bar & Date Icon Filter -->
+        <div class="flex items-center gap-2">
+          <div class="relative flex-1">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+            <input type="text" onkeyup="searchTestDriveCards(this.value)" placeholder="Search customer, car model, slot..." class="w-full pl-9 pr-4 py-2.5 bg-white border border-[#DCE5F2] rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:ring-2 focus:ring-blue-100 shadow-xs transition-all">
+          </div>
+
+          <!-- Date Icon Filter Button -->
+          <div class="relative shrink-0">
+            <button onclick="openFollowupDateModal()" class="h-[38px] px-3 bg-white rounded-xl border border-[#DCE5F2] shadow-xs flex items-center gap-1.5 text-xs font-bold text-slate-700 active:bg-slate-100 transition-all cursor-pointer">
+              <i class="fa-regular fa-calendar-days text-[#007AFF] text-sm"></i>
+              <span>All Dates</span>
+              <i class="fa-solid fa-chevron-down text-[9px] text-slate-400"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Non-Scrolling Stage Filter Grid -->
+        <div class="grid grid-cols-4 gap-1.5 p-1 bg-slate-100/80 rounded-2xl border border-slate-200/60">
+          <button onclick="filterTestDriveStage('all', this)" class="td-stage-pill py-1.5 px-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-xs text-center shadow-xs cursor-pointer">All (4)</button>
+          <button onclick="filterTestDriveStage('today', this)" class="td-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Today (2)</button>
+          <button onclick="filterTestDriveStage('upcoming', this)" class="td-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Upcoming (1)</button>
+          <button onclick="filterTestDriveStage('completed', this)" class="td-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Completed (1)</button>
+        </div>
+
+        <!-- SECTION 1: TODAY'S TEST DRIVES (SHOWN FIRST!) -->
+        <div id="todayTestDrivesSection" class="space-y-2.5 pt-1">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-purple-600 animate-pulse"></span>
+              <span>TODAY'S SCHEDULED TEST DRIVES</span>
+            </h3>
+            <span class="text-[10px] font-extrabold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-100">2 Scheduled Today</span>
+          </div>
+
+          <!-- Card 1 (Today): Amit Roy -->
+          <div class="td-card today all bg-white p-3.5 rounded-2xl border border-purple-200/90 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer ring-1 ring-purple-100">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 font-bold text-xs flex items-center justify-center shrink-0 border border-purple-200">
+                  AR
+                </div>
+                <div class="truncate">
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Amit Roy</h3>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-purple-50 text-purple-700 border border-purple-200 shrink-0">Today • 2:30 PM</span>
+                  </div>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">MAHINDRA THAR ROXX AX7 L • TD98781</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-black text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full shrink-0 border border-purple-200">SCHEDULED</span>
+            </div>
+
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-car-side text-purple-600 text-xs"></i>
+                <span class="font-extrabold text-slate-800">Thar Roxx (Diesel AT)</span>
+              </div>
+              <span class="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">DL Verified ✓</span>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Executive: <strong class="text-slate-800">Komalpreet K.</strong></span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589701';" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
+                  <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
+                </button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589701','_blank');" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
+                  <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
+                </button>
+                <button onclick="event.stopPropagation(); alert('Starting Test Drive for Amit Roy...');" class="px-2.5 py-1 bg-purple-600 text-white rounded-lg text-xs font-bold flex items-center gap-1 shadow-xs active:scale-95">
+                  <i class="fa-solid fa-key text-[10px]"></i><span>Start Drive</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 (Today): Neha Gupta -->
+          <div class="td-card today all bg-white p-3.5 rounded-2xl border border-purple-200/90 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer ring-1 ring-purple-100">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-200">
+                  NG
+                </div>
+                <div class="truncate">
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Neha Gupta</h3>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-purple-50 text-purple-700 border border-purple-200 shrink-0">Today • 4:00 PM</span>
+                  </div>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">MAHINDRA XUV700 AX7 L • TD98782</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-black text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full shrink-0 border border-purple-200">CONFIRMED</span>
+            </div>
+
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-car-side text-blue-600 text-xs"></i>
+                <span class="font-extrabold text-slate-800">XUV700 (Midnight Black)</span>
+              </div>
+              <span class="text-[10px] font-extrabold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">MH-12-AB-9876</span>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Executive: <strong class="text-slate-800">Rajesh M.</strong></span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589702';" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
+                  <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
+                </button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589702','_blank');" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
+                  <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
+                </button>
+                <button onclick="event.stopPropagation(); alert('Starting Test Drive for Neha Gupta...');" class="px-2.5 py-1 bg-purple-600 text-white rounded-lg text-xs font-bold flex items-center gap-1 shadow-xs active:scale-95">
+                  <i class="fa-solid fa-key text-[10px]"></i><span>Start Drive</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: UPCOMING & RECENT TEST DRIVES (SHOWN SECOND!) -->
+        <div id="otherTestDrivesSection" class="space-y-2.5 pt-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider">UPCOMING & RECENT TEST DRIVES</h3>
+            <span class="text-[10px] font-bold text-slate-500">2 Drives</span>
+          </div>
+
+          <!-- Card 3 (Upcoming): Vikram Malhotra -->
+          <div class="td-card upcoming all bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 font-bold text-xs flex items-center justify-center shrink-0 border border-amber-200">
+                  VM
+                </div>
+                <div class="truncate">
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Vikram Malhotra</h3>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-amber-50 text-amber-600 border border-amber-200 shrink-0">Tomorrow</span>
+                  </div>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">SCORPIO-N Z8 L • TD98783</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full shrink-0">UPCOMING</span>
+            </div>
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Slot: <strong class="text-slate-800">11:00 AM Tomorrow</strong></span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation();" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
+                  <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
+                </button>
+                <button onclick="event.stopPropagation();" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
+                  <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 (Completed): Kavita Reddy -->
+          <div class="td-card completed all bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-200">
+                  KR
+                </div>
+                <div class="truncate">
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Kavita Reddy</h3>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-emerald-50 text-emerald-600 border border-emerald-200 shrink-0">Yesterday</span>
+                  </div>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">MAHINDRA XUV400 EV • TD98784</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-200">COMPLETED</span>
+            </div>
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Feedback: <strong class="text-emerald-700">High Interest (Loved EV Drive)</strong></span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation();" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
+                  <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
+                </button>
+                <button onclick="event.stopPropagation();" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
+                  <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- SCREEN: REDESIGNED VEHICLE BOOKINGS        -->
+      <!-- ========================================== -->
+      <div id="screen-booking" class="app-screen space-y-3.5">
+        <!-- Header -->
+        <div class="flex items-center justify-between border-b border-[#E0E8F5] pb-3 pt-1">
+          <div class="flex items-center gap-3">
+            <button onclick="switchScreen('home')" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-700 border border-slate-200 active:bg-slate-100 shadow-xs cursor-pointer">
+              <i class="fa-solid fa-arrow-left text-sm"></i>
+            </button>
+            <div>
+              <h1 class="text-lg font-black text-[#1E293B] leading-tight">Vehicle Bookings</h1>
+              <p class="text-[10px] font-semibold text-slate-400">Track and manage customer car bookings</p>
+            </div>
+          </div>
+          <button onclick="openCreateBookingForm()" class="px-3 py-1.5 bg-[#007AFF] active:bg-blue-600 text-white rounded-xl text-xs font-bold shadow-sm flex items-center gap-1 shrink-0 active:scale-95 transition-transform cursor-pointer">
             <i class="fa-solid fa-plus text-xs"></i>
             <span>New Booking</span>
           </button>
         </div>
 
-        <!-- Search & Filter Bar -->
+        <!-- Combined Search Bar & Date Icon Filter -->
         <div class="flex items-center gap-2">
           <div class="relative flex-1">
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
-            <input type="text" onkeyup="searchBookingCards(this.value)" placeholder="Search customer name, booking ID, car..." class="w-full pl-9 pr-4 py-2.5 bg-white border border-[#DCE5F2] rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:ring-2 focus:ring-blue-100 shadow-xs transition-all">
+            <input type="text" onkeyup="searchBookingCards(this.value)" placeholder="Search customer, booking ID, car..." class="w-full pl-9 pr-4 py-2.5 bg-white border border-[#DCE5F2] rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:ring-2 focus:ring-blue-100 shadow-xs transition-all">
           </div>
-          <span id="bookingCountBadge" class="text-xs font-extrabold text-[#007AFF] bg-blue-50 px-3 py-2.5 rounded-xl border border-blue-100 shrink-0">Total: 3</span>
+
+          <!-- Date Icon Filter Button -->
+          <div class="relative shrink-0">
+            <button onclick="openFollowupDateModal()" class="h-[38px] px-3 bg-white rounded-xl border border-[#DCE5F2] shadow-xs flex items-center gap-1.5 text-xs font-bold text-slate-700 active:bg-slate-100 transition-all cursor-pointer">
+              <i class="fa-regular fa-calendar-days text-[#007AFF] text-sm"></i>
+              <span>All Dates</span>
+              <i class="fa-solid fa-chevron-down text-[9px] text-slate-400"></i>
+            </button>
+          </div>
         </div>
 
-        <!-- BOOKING CARDS FEED -->
-        <div id="bookingCardsContainer" class="space-y-3">
-          
+        <!-- Non-Scrolling Stage Filter Grid -->
+        <div class="grid grid-cols-4 gap-1.5 p-1 bg-slate-100/80 rounded-2xl border border-slate-200/60">
+          <button onclick="filterBookingStage('all', this)" class="bk-stage-pill py-1.5 px-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-xs text-center shadow-xs cursor-pointer">All (5)</button>
+          <button onclick="filterBookingStage('confirmed', this)" class="bk-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Confirmed (2)</button>
+          <button onclick="filterBookingStage('prebooked', this)" class="bk-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Pre-booked (2)</button>
+          <button onclick="filterBookingStage('pending', this)" class="bk-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Pending (1)</button>
+        </div>
+
+        <!-- SECTION 1: TODAY'S BOOKINGS & RECENT CONFIRMATIONS (SHOWN FIRST!) -->
+        <div id="todayBookingsSection" class="space-y-2.5 pt-1">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>TODAY'S BOOKINGS & RECENT CONFIRMATIONS</span>
+            </h3>
+            <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-100">2 Active Today</span>
+          </div>
+
           <!-- Booking Card 1: Confirmed -->
-          <div onclick="openBookingDetails('BK987875311')" class="booking-card bg-white rounded-2xl border border-[#E0E8F5] p-4 shadow-xs space-y-3 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+          <div onclick="openBookingDetails('BK987875311')" class="booking-card confirmed today all bg-white rounded-2xl border border-[#E0E8F5] p-3.5 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
               <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
                 <i class="fa-solid fa-receipt text-[#007AFF]"></i>
                 <span>BK987875311 || <span class="text-emerald-600 font-extrabold">Confirmed</span></span>
@@ -1521,7 +1760,6 @@
               <div class="space-y-0.5">
                 <h3 class="text-sm font-black text-[#1E293B]">Mike Alex Tyson</h3>
                 <p class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-phone text-[10px] text-slate-400 mr-1"></i>+91 98765 89706</p>
-                <p class="text-xs font-medium text-slate-400"><i class="fa-regular fa-envelope text-[10px] mr-1"></i>mikytyson@gmail.com</p>
               </div>
               <div class="text-right">
                 <span class="text-xs font-black text-[#007AFF]">₹50,000</span>
@@ -1531,45 +1769,40 @@
 
             <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1 text-xs">
               <div class="flex items-center justify-between">
-                <span class="text-[10px] font-bold text-slate-400 uppercase">CAR DETAILS</span>
-                <span class="text-[10px] font-extrabold text-[#007AFF]">Suzuki Hayabusa 2025</span>
+                <span class="text-[10px] font-bold text-slate-400 uppercase">VEHICLE DETAILS</span>
+                <span class="text-[10px] font-extrabold text-[#007AFF]">Mahindra Thar Roxx</span>
               </div>
-              <p class="font-extrabold text-slate-800">Standard 1340 CC — Metallic Black</p>
+              <p class="font-extrabold text-slate-800">AX7 L Diesel AT — Midnight Black</p>
             </div>
 
-            <div class="grid grid-cols-2 gap-2 text-xs pt-1 border-t border-slate-100">
-              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">BOOKING DATE</span><span class="font-bold text-slate-800">22/09/2026</span></div>
-              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">EXPECTED DELIVERY</span><span class="font-bold text-emerald-600">10/10/2026</span></div>
-            </div>
-
-            <div class="pt-2 flex items-center justify-between border-t border-slate-100">
-              <div class="flex items-center gap-2">
-                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" class="px-3 py-1.5 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center gap-1 border border-blue-100 active:bg-blue-100">
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Delivery: <strong class="text-emerald-600">10 Oct 2026</strong></span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
                   <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
                 </button>
-                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" class="px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center gap-1 border border-emerald-100 active:bg-emerald-100">
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
                   <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
                 </button>
+                <span onclick="event.stopPropagation(); openBookingDetails('BK987875311');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
               </div>
-              <span onclick="event.stopPropagation(); openBookingDetails('BK987875311');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 active:opacity-75 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
             </div>
           </div>
 
-          <!-- Booking Card 2: Pending Delivery -->
-          <div onclick="openBookingDetails('BK987875364')" class="booking-card bg-white rounded-2xl border border-[#E0E8F5] p-4 shadow-xs space-y-3 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+          <!-- Booking Card 2: Pre-booked -->
+          <div onclick="openBookingDetails('BK987875364')" class="booking-card prebooked today all bg-white rounded-2xl border border-[#E0E8F5] p-3.5 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
               <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
                 <i class="fa-solid fa-receipt text-[#007AFF]"></i>
-                <span>BK987875364 || <span class="text-blue-600 font-extrabold">Pending Delivery</span></span>
+                <span>BK987875364 || <span class="text-indigo-600 font-extrabold">Pre-booked</span></span>
               </div>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-50 text-[#007AFF] border border-blue-100">In Transit</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-indigo-50 text-indigo-600 border border-indigo-100">Token Verified</span>
             </div>
 
             <div class="flex items-start justify-between">
               <div class="space-y-0.5">
                 <h3 class="text-sm font-black text-[#1E293B]">Aarti Sharma</h3>
                 <p class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-phone text-[10px] text-slate-400 mr-1"></i>+91 99102 44331</p>
-                <p class="text-xs font-medium text-slate-400"><i class="fa-regular fa-envelope text-[10px] mr-1"></i>aarti.sharma@gmail.com</p>
               </div>
               <div class="text-right">
                 <span class="text-xs font-black text-[#007AFF]">₹25,000</span>
@@ -1579,78 +1812,283 @@
 
             <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1 text-xs">
               <div class="flex items-center justify-between">
-                <span class="text-[10px] font-bold text-slate-400 uppercase">CAR DETAILS</span>
-                <span class="text-[10px] font-extrabold text-[#007AFF]">Suzuki Gixxer SF 250</span>
+                <span class="text-[10px] font-bold text-slate-400 uppercase">VEHICLE DETAILS</span>
+                <span class="text-[10px] font-extrabold text-[#007AFF]">Mahindra XUV700</span>
               </div>
-              <p class="font-extrabold text-slate-800">Ride Connect Edition — Matte Black</p>
+              <p class="font-extrabold text-slate-800">AX7 Petrol Automatic — Everest White</p>
             </div>
 
-            <div class="grid grid-cols-2 gap-2 text-xs pt-1 border-t border-slate-100">
-              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">BOOKING DATE</span><span class="font-bold text-slate-800">18/09/2026</span></div>
-              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">EXPECTED DELIVERY</span><span class="font-bold text-emerald-600">28/09/2026</span></div>
-            </div>
-
-            <div class="pt-2 flex items-center justify-between border-t border-slate-100">
-              <div class="flex items-center gap-2">
-                <button onclick="event.stopPropagation(); window.location.href='tel:+919910244331';" class="px-3 py-1.5 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center gap-1 border border-blue-100 active:bg-blue-100">
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Delivery: <strong class="text-emerald-600">28 Sep 2026</strong></span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919910244331';" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
                   <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
                 </button>
-                <button onclick="event.stopPropagation(); window.open('https://wa.me/919910244331','_blank');" class="px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center gap-1 border border-emerald-100 active:bg-emerald-100">
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919910244331','_blank');" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
                   <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
                 </button>
+                <span onclick="event.stopPropagation(); openBookingDetails('BK987875364');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
               </div>
-              <span onclick="event.stopPropagation(); openBookingDetails('BK987875364');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 active:opacity-75 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
             </div>
           </div>
+        </div>
 
-          <!-- Booking Card 3: Pre-booked -->
-          <div onclick="openBookingDetails('BK987875399')" class="booking-card bg-white rounded-2xl border border-[#E0E8F5] p-4 shadow-xs space-y-3 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+        <!-- SECTION 2: UPCOMING DELIVERIES & OTHER BOOKINGS (SHOWN SECOND!) -->
+        <div id="otherBookingsSection" class="space-y-2.5 pt-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider">UPCOMING DELIVERIES & OTHER BOOKINGS</h3>
+            <span class="text-[10px] font-bold text-slate-500">3 Bookings</span>
+          </div>
+
+          <!-- Booking Card 3: Pending Delivery -->
+          <div onclick="openBookingDetails('BK987875399')" class="booking-card pending all bg-white rounded-2xl border border-[#E0E8F5] p-3.5 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
               <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
                 <i class="fa-solid fa-receipt text-[#007AFF]"></i>
-                <span>BK987875399 || <span class="text-amber-600 font-extrabold">Pre-booked</span></span>
+                <span>BK987875399 || <span class="text-amber-600 font-extrabold">Pending Delivery</span></span>
               </div>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-50 text-amber-600 border border-amber-100">Token Pending</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-50 text-amber-600 border border-amber-100">In Transit</span>
             </div>
 
             <div class="flex items-start justify-between">
               <div class="space-y-0.5">
-                <h3 class="text-sm font-black text-[#1E293B]">Rupesh Ranjan Bhatt</h3>
+                <h3 class="text-sm font-black text-[#1E293B]">Rohan Verma</h3>
                 <p class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-phone text-[10px] text-slate-400 mr-1"></i>+91 98100 77665</p>
-                <p class="text-xs font-medium text-slate-400"><i class="fa-regular fa-envelope text-[10px] mr-1"></i>rupesh.bhatt@gmail.com</p>
               </div>
               <div class="text-right">
-                <span class="text-xs font-black text-[#007AFF]">₹10,000</span>
+                <span class="text-xs font-black text-[#007AFF]">₹25,000</span>
                 <span class="text-[9px] font-bold text-slate-400 block uppercase">Token Paid</span>
               </div>
             </div>
 
             <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1 text-xs">
               <div class="flex items-center justify-between">
-                <span class="text-[10px] font-bold text-slate-400 uppercase">CAR DETAILS</span>
-                <span class="text-[10px] font-extrabold text-[#007AFF]">Suzuki Access 125</span>
+                <span class="text-[10px] font-bold text-slate-400 uppercase">VEHICLE DETAILS</span>
+                <span class="text-[10px] font-extrabold text-[#007AFF]">Scorpio-N Z8 L</span>
               </div>
-              <p class="font-extrabold text-slate-800">Special Edition — Pearl White</p>
+              <p class="font-extrabold text-slate-800">4X4 Diesel AT — Deep Forest Green</p>
             </div>
 
-            <div class="grid grid-cols-2 gap-2 text-xs pt-1 border-t border-slate-100">
-              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">BOOKING DATE</span><span class="font-bold text-slate-800">14/09/2026</span></div>
-              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">EXPECTED DELIVERY</span><span class="font-bold text-slate-600">05/10/2026</span></div>
-            </div>
-
-            <div class="pt-2 flex items-center justify-between border-t border-slate-100">
-              <div class="flex items-center gap-2">
-                <button onclick="event.stopPropagation(); window.location.href='tel:+919810077665';" class="px-3 py-1.5 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center gap-1 border border-blue-100 active:bg-blue-100">
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Delivery: <strong class="text-amber-600">05 Oct 2026</strong></span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919810077665';" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
                   <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
                 </button>
-                <button onclick="event.stopPropagation(); window.open('https://wa.me/919810077665','_blank');" class="px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center gap-1 border border-emerald-100 active:bg-emerald-100">
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919810077665','_blank');" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
                   <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
                 </button>
+                <span onclick="event.stopPropagation(); openBookingDetails('BK987875399');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
               </div>
-              <span onclick="event.stopPropagation(); openBookingDetails('BK987875399');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 active:opacity-75 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- SCREEN: DEDICATED DELIVERIES MANAGEMENT    -->
+      <!-- ========================================== -->
+      <div id="screen-deliveries" class="app-screen space-y-3.5">
+        <!-- Header -->
+        <div class="flex items-center justify-between border-b border-[#E0E8F5] pb-3 pt-1">
+          <div class="flex items-center gap-3">
+            <button onclick="switchScreen('home')" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-700 border border-slate-200 active:bg-slate-100 shadow-xs cursor-pointer">
+              <i class="fa-solid fa-arrow-left text-sm"></i>
+            </button>
+            <div>
+              <h1 class="text-lg font-black text-[#1E293B] leading-tight">Vehicle Deliveries</h1>
+              <p class="text-[10px] font-semibold text-slate-400">Handover schedules & PDI sign-offs</p>
+            </div>
+          </div>
+          <span class="text-xs font-extrabold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">8 Deliveries</span>
+        </div>
+
+        <!-- Combined Search Bar & Date Icon Filter -->
+        <div class="flex items-center gap-2">
+          <div class="relative flex-1">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+            <input type="text" onkeyup="searchDeliveryCards(this.value)" placeholder="Search customer, VIN, car model..." class="w-full pl-9 pr-4 py-2.5 bg-white border border-[#DCE5F2] rounded-xl text-xs font-semibold text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:ring-2 focus:ring-blue-100 shadow-xs transition-all">
+          </div>
+
+          <!-- Date Icon Filter Button -->
+          <div class="relative shrink-0">
+            <button onclick="openFollowupDateModal()" class="h-[38px] px-3 bg-white rounded-xl border border-[#DCE5F2] shadow-xs flex items-center gap-1.5 text-xs font-bold text-slate-700 active:bg-slate-100 transition-all cursor-pointer">
+              <i class="fa-regular fa-calendar-days text-[#007AFF] text-sm"></i>
+              <span>All Dates</span>
+              <i class="fa-solid fa-chevron-down text-[9px] text-slate-400"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Non-Scrolling Stage Filter Grid -->
+        <div class="grid grid-cols-4 gap-1.5 p-1 bg-slate-100/80 rounded-2xl border border-slate-200/60">
+          <button onclick="filterDeliveryStage('all', this)" class="del-stage-pill py-1.5 px-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-xs text-center shadow-xs cursor-pointer">All (8)</button>
+          <button onclick="filterDeliveryStage('today', this)" class="del-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Today (2)</button>
+          <button onclick="filterDeliveryStage('pending', this)" class="del-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Pending (2)</button>
+          <button onclick="filterDeliveryStage('completed', this)" class="del-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer">Delivered (4)</button>
+        </div>
+
+        <!-- SECTION 1: TODAY'S DELIVERIES & PDI SIGN-OFFS (SHOWN FIRST!) -->
+        <div id="todayDeliveriesSection" class="space-y-2.5 pt-1">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+              <span>TODAY'S DELIVERIES & PDI SIGN-OFFS</span>
+            </h3>
+            <span class="text-[10px] font-extrabold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">2 Pending Sign-off</span>
+          </div>
+
+          <!-- Card 1 (Today): Rajesh Kumar -->
+          <div class="del-card today pending all bg-white p-3.5 rounded-2xl border border-amber-200/90 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer ring-1 ring-amber-100">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 font-bold text-xs flex items-center justify-center shrink-0 border border-amber-200">
+                  RK
+                </div>
+                <div class="truncate">
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Rajesh Kumar</h3>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-amber-50 text-amber-700 border border-amber-200 shrink-0">Today • Bay 1</span>
+                  </div>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">MAHINDRA XUV700 AX7 L • VIN: MA12345678</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-black text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full shrink-0 border border-amber-200">PENDING SIGN-OFF</span>
+            </div>
+
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-key text-amber-600 text-xs"></i>
+                <span class="font-extrabold text-slate-800">Midnight Black • AX7 L Diesel</span>
+              </div>
+              <span class="text-[10px] font-extrabold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">PDI Ready ⚠️</span>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Fastag: <strong class="text-emerald-600">Issued ✓</strong></span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589703';" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
+                  <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
+                </button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589703','_blank');" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
+                  <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
+                </button>
+                <button onclick="event.stopPropagation(); alert('PDI Sign-off completed for Rajesh Kumar!');" class="px-2.5 py-1 bg-amber-500 text-white rounded-lg text-xs font-bold flex items-center gap-1 shadow-xs active:scale-95">
+                  <i class="fa-solid fa-file-signature text-[10px]"></i><span>Sign-off</span>
+                </button>
+              </div>
             </div>
           </div>
 
+          <!-- Card 2 (Today): Ananya Deshmukh -->
+          <div class="del-card today pending all bg-white p-3.5 rounded-2xl border border-amber-200/90 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer ring-1 ring-amber-100">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-200">
+                  AD
+                </div>
+                <div class="truncate">
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Ananya Deshmukh</h3>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-amber-50 text-amber-700 border border-amber-200 shrink-0">Today • Bay 2</span>
+                  </div>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">THAR ROXX 4X4 • VIN: MA87654321</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-200">READY HANDOVER</span>
+            </div>
+
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-car text-blue-600 text-xs"></i>
+                <span class="font-extrabold text-slate-800">Everest White • AX7 L AT</span>
+              </div>
+              <span class="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Signed Off ✓</span>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Ribbon: <strong class="text-slate-800">Decorated ✨</strong></span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589704';" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
+                  <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
+                </button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589704','_blank');" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
+                  <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
+                </button>
+                <button onclick="event.stopPropagation(); alert('Keys handed over to Ananya Deshmukh! Congratulations 🎉');" class="px-2.5 py-1 bg-emerald-600 text-white rounded-lg text-xs font-bold flex items-center gap-1 shadow-xs active:scale-95">
+                  <i class="fa-solid fa-key text-[10px]"></i><span>Handover</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: UPCOMING & RECENT DELIVERIES (SHOWN SECOND!) -->
+        <div id="otherDeliveriesSection" class="space-y-2.5 pt-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider">UPCOMING & RECENT DELIVERIES</h3>
+            <span class="text-[10px] font-bold text-slate-500">6 Deliveries</span>
+          </div>
+
+          <!-- Card 3 (Upcoming): Siddharth Kapoor -->
+          <div class="del-card upcoming all bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 font-bold text-xs flex items-center justify-center shrink-0 border border-purple-200">
+                  SK
+                </div>
+                <div class="truncate">
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Siddharth Kapoor</h3>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-purple-50 text-purple-700 border border-purple-200 shrink-0">Tomorrow</span>
+                  </div>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">SCORPIO-N Z8 L • VIN: MA99887766</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full shrink-0">PDI IN PROGRESS</span>
+            </div>
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Expected: <strong class="text-slate-800">Tomorrow, 11:30 AM</strong></span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation();" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
+                  <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
+                </button>
+                <button onclick="event.stopPropagation();" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
+                  <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 (Delivered): Meera Sen -->
+          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-200">
+                  MS
+                </div>
+                <div class="truncate">
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Meera Sen</h3>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-emerald-50 text-emerald-600 border border-emerald-200 shrink-0">Yesterday</span>
+                  </div>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">BOLERO NEO N10 • VIN: MA44332211</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-200">DELIVERED ✨</span>
+            </div>
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Status: <strong class="text-emerald-700">Handover Complete</strong></span>
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation();" class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-bold flex items-center gap-1 border border-emerald-200 active:scale-95">
+                  <i class="fa-solid fa-phone text-[10px]"></i><span>Call</span>
+                </button>
+                <button onclick="event.stopPropagation();" class="px-2.5 py-1 bg-[#EBF5FF] text-[#007AFF] rounded-lg text-xs font-bold flex items-center gap-1 border border-blue-200 active:scale-95">
+                  <i class="fa-brands fa-whatsapp text-xs"></i><span>WhatsApp</span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -3706,6 +4144,112 @@
       switchScreen('activities');
       const followupTabBtn = document.querySelector('.act-tab-btn');
       if (followupTabBtn) switchActivityTab('followup', followupTabBtn);
+    }
+
+    function openTestDrivesScreen() {
+      switchScreen('test-drives');
+    }
+
+    function openBookingsScreen() {
+      switchScreen('booking');
+    }
+
+    function openDeliveriesScreen() {
+      switchScreen('deliveries');
+    }
+
+    function filterTestDriveStage(stage, el) {
+      document.querySelectorAll('.td-stage-pill').forEach(pill => {
+        pill.className = 'td-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer';
+      });
+      if (el) {
+        el.className = 'td-stage-pill py-1.5 px-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-xs text-center shadow-xs cursor-pointer';
+      }
+
+      const todaySec = document.getElementById('todayTestDrivesSection');
+      const otherSec = document.getElementById('otherTestDrivesSection');
+      const cards = document.querySelectorAll('.td-card');
+
+      cards.forEach(card => {
+        if (stage === 'all' || card.classList.contains(stage)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (stage === 'today') {
+        if (todaySec) todaySec.classList.remove('hidden');
+        if (otherSec) otherSec.classList.add('hidden');
+      } else if (stage === 'upcoming' || stage === 'completed') {
+        if (todaySec) todaySec.classList.add('hidden');
+        if (otherSec) otherSec.classList.remove('hidden');
+      } else {
+        if (todaySec) todaySec.classList.remove('hidden');
+        if (otherSec) otherSec.classList.remove('hidden');
+      }
+    }
+
+    function filterBookingStage(stage, el) {
+      document.querySelectorAll('.bk-stage-pill').forEach(pill => {
+        pill.className = 'bk-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer';
+      });
+      if (el) {
+        el.className = 'bk-stage-pill py-1.5 px-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-xs text-center shadow-xs cursor-pointer';
+      }
+
+      const cards = document.querySelectorAll('.booking-card');
+      cards.forEach(card => {
+        if (stage === 'all' || card.classList.contains(stage)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    function filterDeliveryStage(stage, el) {
+      document.querySelectorAll('.del-stage-pill').forEach(pill => {
+        pill.className = 'del-stage-pill py-1.5 px-2 rounded-xl bg-white text-slate-700 font-bold text-xs text-center border border-slate-200/50 cursor-pointer';
+      });
+      if (el) {
+        el.className = 'del-stage-pill py-1.5 px-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-xs text-center shadow-xs cursor-pointer';
+      }
+
+      const cards = document.querySelectorAll('.del-card');
+      cards.forEach(card => {
+        if (stage === 'all' || card.classList.contains(stage)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    function searchTestDriveCards(query) {
+      const q = query.toLowerCase().trim();
+      const cards = document.querySelectorAll('.td-card');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (!q || text.includes(q)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    function searchDeliveryCards(query) {
+      const q = query.toLowerCase().trim();
+      const cards = document.querySelectorAll('.del-card');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (!q || text.includes(q)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
     }
 
     function filterFollowupDateRange(range, element) {
