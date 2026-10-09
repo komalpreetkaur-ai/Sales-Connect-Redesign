@@ -29,11 +29,10 @@ The **Category Tab Slider** on the **All Active Follow-Ups** screen in [`sales_c
 1. **Clickable FOLLOW-UPS KPI Card**:
    - Tapping the **FOLLOW-UPS** card (`15, +3 new today`) on the Home screen directly opens the **Follow-Ups Management** screen (`#screen-activities`).
 
-2. **Combined Search Bar & Compact Date Icon Filter**:
-   - **Category Tab Slider Removed**: Category tabs removed from `#screen-activities` header for a clean, streamlined top layout.
-   - **Real-Time Search Input**: Instant search bar filtering by customer name, lead ID, or car model.
-   - **Compact Date Icon Filter Dropdown**: Features a calendar icon filter button (`<i class="fa-regular fa-calendar-days text-[#007AFF]"></i>`) with dropdown menu (`All Dates (7)`, `Today (3)`, `This Week (5)`, `This Month (7)`).
-   - **Dynamic Filtering**: Selecting `Today` filters immediately to today's due follow-ups while selecting `All Dates` restores the full list.
+2. **Mobile App Date Filter Popup & Custom Date Range**:
+   - **Mobile Bottom Sheet Popup Modal (`#actDateFilterModal`)**: Tapping the date filter button opens a clean mobile app bottom sheet popup modal matching mobile app guidelines with a top drag indicator handle and backdrop blur.
+   - **Preset Date Options**: Includes options with real-time lead counts (`All Dates (7)`, `Today (3)`, `This Week (5)`, `This Month (7)`).
+   - **Custom Date Range Selector**: Features a **Custom Date Range** action row with icon (`<i class="fa-solid fa-sliders text-[#007AFF]"></i>`). Tapping it smoothly opens the interactive April 2026 Calendar Date Picker Modal (`#dateRangePickerModal`), allowing users to pick custom start and end dates and update the header button label dynamically (e.g. `1/04 - 14/04`).
 
 3. **Structured Feed (Today's Follow-Ups First)**:
    - **Section 1: TODAY'S FOLLOW-UPS (Shown FIRST!)**:
