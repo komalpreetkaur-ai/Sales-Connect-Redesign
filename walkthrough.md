@@ -154,14 +154,14 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
 
 ---
 
-## 📊 Home Screen Target & KPIs Redesign
+## 📊 Home Screen Target & KPIs Redesign (Light & Clean Theme)
 
-- **Redesigned Target & KPIs Hero Section**: Updated exclusively to match the provided high-fidelity reference UI.
-  - **Header & Pill Badge**: `WEEKLY TARGET & KPIS` with a top-right light blue `75% Achieved` pill badge (`bg-[#EFF6FF] text-[#007AFF] px-3.5 py-1 rounded-full border border-blue-100`).
-  - **Dark Hero Card Container**: Sleek dark navy card container (`bg-[#182030] rounded-3xl p-5 text-white shadow-lg`).
-  - **Target Header & Title**: `WEEKLY VEHICLE SALES TARGET` subtitle in muted grey text above large white bold title `3 of 4 Units Sold`.
-  - **Interactive Circular Progress SVG Gauge**: A custom SVG circular donut gauge with gradient ring fill (`#007AFF` to `#10B981`) and dynamic `75%` text center.
-  - **Gradient Progress Bar & Goal Indicator**: High-contrast blue-to-emerald gradient progress bar (`from-[#007AFF] via-cyan-400 to-[#10B981]`), `Target: 4 Units` label on bottom left, and `1 Unit to Goal 🔥` indicator in vibrant emerald green on bottom right.
+- **Redesigned Target & KPIs Hero Section**: Redesigned from dark background to a clean, crisp, light iOS-native theme matching the app's unified design system:
+  - **Header & Pill Badge**: `WEEKLY TARGET & KPIS` with top-right brand blue `75% Achieved` pill badge (`bg-[#EFF6FF] text-[#007AFF] px-3.5 py-1 rounded-full border border-blue-100`).
+  - **Light Clean Card Container**: Pure white card with subtle border (`bg-white rounded-3xl p-5 border border-slate-200/80 shadow-xs`).
+  - **Target Header & Title**: `WEEKLY VEHICLE SALES TARGET` uppercase category label in muted slate (`text-slate-400`) above bold dark slate title `3 of 4 Units Sold` (`text-[#1E293B]`).
+  - **Clean Circular Progress SVG Gauge**: Light slate SVG track (`stroke-slate-100`), brand blue gradient arc (`#007AFF` to `#00C6FF`), and brand blue center text (`text-[#007AFF] font-black`).
+  - **Brand Blue Progress Bar & Goal Indicator**: Soft light slate progress track (`bg-slate-100`), vibrant brand blue progress fill (`bg-[#007AFF]`), `Target: 4 Units` label in slate, and `1 Unit to Goal 🔥` highlight in brand blue (`text-[#007AFF] font-extrabold`).
 
 ---
 
