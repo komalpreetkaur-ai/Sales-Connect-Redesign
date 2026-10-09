@@ -40,7 +40,7 @@ All 4 Home Screen KPI cards follow the identical high-fidelity mobile flow struc
    - **Section 1: TODAY'S TEST DRIVE (Shown FIRST!)** (`Amit Roy`, `Neha Gupta`) with `DL Verified ✓` & `Start Drive` CTAs.
    - **Section 2: OTHER TEST DRIVE (Shown SECOND!)** (`Vikram Malhotra`, `Kavita Reddy`).
 
-3. **`PRE-BOOKINGS` / `BOOKINGS` Card (`5, ₹2.4L revenue`)**:
+3. **`BOOKINGS` Card (`5, ₹2.4L revenue`)**:
    - Opens **Vehicle Bookings Screen** (`#screen-booking`).
    - Combined Search Bar + Mobile Bottom Sheet Date Filter Popup + `+ New Booking` CTA.
    - **Section 1: TODAY'S BOOKING (Shown FIRST!)** (`Mike Alex Tyson`, `Aarti Sharma`) with `Confirmed` & `Pre-booked` badges.
