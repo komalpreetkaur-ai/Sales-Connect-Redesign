@@ -38,7 +38,7 @@ All 4 Home Screen KPI cards follow the identical high-fidelity mobile flow struc
    - Opens **Test Drives Management Screen** (`#screen-test-drives`).
    - Combined Search Bar + Mobile Bottom Sheet Date Filter Popup.
    - **Section 1: TODAY'S TEST DRIVE (Shown FIRST!)** (`Amit Roy`, `Neha Gupta`) with `DL Verified ✓` & `Start Drive` CTAs.
-   - **Section 2: UPCOMING & RECENT TEST DRIVES (Shown SECOND!)** (`Vikram Malhotra`, `Kavita Reddy`).
+   - **Section 2: OTHER TEST DRIVE (Shown SECOND!)** (`Vikram Malhotra`, `Kavita Reddy`).
 
 3. **`PRE-BOOKINGS` / `BOOKINGS` Card (`5, ₹2.4L revenue`)**:
    - Opens **Vehicle Bookings Screen** (`#screen-booking`).
