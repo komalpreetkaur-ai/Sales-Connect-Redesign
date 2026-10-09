@@ -54,6 +54,27 @@ All 4 Home Screen KPI cards follow the identical high-fidelity mobile flow struc
 
 ---
 
+## 🎨 Unified Simple & Clean Design System Across KPI Screens
+
+Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, indigo) across all 4 KPI management screens linked to the dashboard cards (`#screen-activities`, `#screen-test-drives`, `#screen-booking`, `#screen-deliveries`):
+
+1. **Clean Neutral Card Containers**:
+   - Standardized all card wrappers to crisp white containers with subtle neutral borders: `bg-white rounded-2xl border border-slate-200/80 shadow-xs`.
+   - Removed distracting colored ring outlines and thick status borders (`border-purple-200`, `border-amber-200/90`, `ring-1 ring-amber-100`, `border-emerald-200`).
+
+2. **Unified Brand Blue (`#007AFF`) Section Indicators & Count Badges**:
+   - Section pulsing dot indicators updated to brand blue: `bg-[#007AFF] animate-pulse`.
+   - Section item count badges standardized to brand blue soft pills: `bg-blue-50 text-[#007AFF] border border-blue-100 font-extrabold`.
+
+3. **Consistent Status Badges & Avatars**:
+   - Avatars standardized to brand blue tint: `bg-blue-50 text-[#007AFF] border border-blue-100`.
+   - Status badges (`Confirmed`, `Pre-booked`, `Pending Delivery`, `PENDING SIGN-OFF`, `READY HANDOVER`, `PDI IN PROGRESS`, `DELIVERED`) unified to brand blue: `bg-blue-50 text-[#007AFF] border border-blue-100 font-extrabold`.
+
+4. **Brand Blue Primary Action CTAs**:
+   - Primary operational buttons (`Start Drive`, `Sign-off`, `Handover`) standardized to solid brand blue: `bg-[#007AFF] text-white rounded-lg text-xs font-bold shadow-xs active:scale-95`.
+
+---
+
 ## 🧹 Streamlined Screen Headers (Stage Grid Pills Removed)
 
 - Removed the stage filter pill grid bars (`All`, `Today`, `Upcoming`, `Completed`, etc.) across all screens for a clean, uncluttered layout focused on search, date filtering, and the primary structured feeds.
