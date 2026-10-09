@@ -183,6 +183,17 @@ All 4 Home Screen KPI cards follow the identical high-fidelity mobile flow struc
 
 ---
 
+## 📞 Brand Blue Icon-Only Action Buttons (Call & WhatsApp)
+
+1. **Icon-Only Layout Across All Feeds**:
+   - Replaced all text-labeled Call and WhatsApp action buttons (`Call`, `WhatsApp`) across Priority cards, Enquiries feed, Follow-ups feed, Test Drives feed, Bookings feed, and Deliveries feed with clean, icon-only buttons (`<i class="fa-solid fa-phone"></i>`, `<i class="fa-brands fa-whatsapp"></i>`).
+
+2. **Unified Brand Blue Styling**:
+   - Both Call and WhatsApp action buttons use consistent brand blue styling (`bg-blue-50 text-[#007AFF] border border-blue-200`) instead of green, matching all other blue CTAs across the application.
+   - Preserved active touch feedback (`active:scale-90`) and native tooltips.
+
+---
+
 ## 🌐 Live Prototype Link
 
 - **Local HTML File**: [sales_connect_redesign.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/sales_connect_redesign.html)
