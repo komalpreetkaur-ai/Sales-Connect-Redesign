@@ -49,7 +49,7 @@ All 4 Home Screen KPI cards follow the identical high-fidelity mobile flow struc
 4. **`DELIVERIES` Card (`8, 2 pending sign-off`)**:
    - Opens **Vehicle Deliveries Screen** (`#screen-deliveries`).
    - Combined Search Bar + Mobile Bottom Sheet Date Filter Popup.
-   - **Section 1: TODAY'S DELIVERIES & PDI SIGN-OFFS (Shown FIRST!)** (`Rajesh Kumar`, `Ananya Deshmukh`) with `PENDING SIGN-OFF ⚠️`, `PDI Ready`, & `Handover` CTAs.
+   - **Section 1: TODAY'S DELIVERY (Shown FIRST!)** (`Rajesh Kumar`, `Ananya Deshmukh`) with `PENDING SIGN-OFF ⚠️`, `PDI Ready`, & `Handover` CTAs.
    - **Section 2: UPCOMING & RECENT DELIVERIES (Shown SECOND!)** (`Siddharth Kapoor`, `Meera Sen`).
 
 ---
