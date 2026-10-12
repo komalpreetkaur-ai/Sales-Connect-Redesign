@@ -1,6 +1,37 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-Removed the **Lead Pipeline** section from the Home Screen (`#screen-home`) as requested. The **Leads Assigned** metric card now transitions cleanly into the **Target & Performance** section. Stage filtering continues to be accessible directly via the **Enquiries / Leads List** screen (`#screen-enquiry`).
+## 🚗 Exchange Vehicle Information Form (Sales Enquiry Step 3)
+
+Implemented the **Exchange Vehicle Information** form in the **Sales Enquiry Form** (Step 3: Source Information) matching the user's uploaded design specifications.
+
+### 📸 Visual Comparison & States
+````carousel
+![First Time Selected (Form Hidden)](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_first_time.png)
+<!-- slide -->
+![Exchange Selected (Form Revealed)](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_exchange_scrolled.png)
+````
+
+### ✨ Key Features Implemented
+1. **Interactive Buyer Type Selector (Matching Reference Image 1)**:
+   - Designed side-by-side pill cards for **First Time** and **Exchange**:
+     - **Selected State**: Outlined blue rounded square with concentric bullseye dot indicator (`#007AFF`) and subtle blue background tint (`bg-blue-50/20 border-[#007AFF]`).
+     - **Unselected State**: Clean neutral circular radio indicator (`border-slate-400 bg-white`).
+   - Tapping **First Time** hides the exchange form.
+   - Tapping **Exchange** immediately reveals the **Exchange Vehicle information** form.
+
+2. **Exchange Vehicle Information Form (Matching Reference Image 2)**:
+   - **Header**: `Exchange Vehicle information` in soft slate/gray (`text-slate-500 font-normal`).
+   - **Notched / Floating Outlined Labels**:
+     - `Manufacturer`: Outlined dropdown with notched label, chevron icon, and manufacturer choices (Maruti Suzuki, Hyundai, Tata Motors, Mahindra, Honda, Toyota, Kia, etc.).
+     - `Model`: Outlined dropdown with notched label, dynamically populated based on the chosen manufacturer (e.g. Swift, Dzire, Baleno, Creta, Nexon, etc.).
+     - `Variant`: Outlined dropdown with notched label (VXi, ZXi, ZXi Plus, LXi, Delta, Zeta, Alpha, Standard, etc.).
+     - `Colour`: Outlined dropdown with notched label (Pearl Arctic White, Metallic Magma Grey, Prime Splendid Silver, Pearl Midnight Black, Phoenix Red, Bluish Black, etc.).
+   - **Registration Number Field**:
+     - Standard outlined box with interior placeholder `Registration Number*` with uppercase formatting.
+
+3. **Data Integration & Persistence**:
+   - Captured exchange information is preserved upon form completion and attached to the newly created enquiry card in the leads catalog.
+   - When submitting with an exchange vehicle, the resulting lead card renders an **Exchange** badge indicating vehicle manufacturer, model, and registration.
 
 ---
 

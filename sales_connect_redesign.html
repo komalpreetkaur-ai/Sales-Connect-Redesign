@@ -3482,17 +3482,137 @@
               </div>
             </div>
 
-            <div>
-              <label class="text-xs font-extrabold text-slate-700 block mb-1">Buyer Type</label>
-              <div class="grid grid-cols-2 gap-2 pt-1">
-                <label class="flex items-center gap-2 text-xs font-semibold text-slate-700 cursor-pointer p-2.5 border border-slate-200 rounded-xl bg-slate-50">
-                  <input type="radio" name="buyerTypeRadio" value="First Time" checked class="w-4 h-4 accent-[#007AFF]">
-                  <span>First Time</span>
-                </label>
-                <label class="flex items-center gap-2 text-xs font-semibold text-slate-700 cursor-pointer p-2.5 border border-slate-200 rounded-xl bg-slate-50">
-                  <input type="radio" name="buyerTypeRadio" value="Exchange" class="w-4 h-4 accent-[#007AFF]">
-                  <span>Exchange</span>
-                </label>
+            <!-- BUYER TYPE SECTION (Matching media_1791797390611.png) -->
+            <div class="pt-1">
+              <label class="text-sm font-bold text-[#1E293B] block mb-2">Buyer Type</label>
+              <div class="grid grid-cols-2 gap-2.5">
+                <!-- First Time Option -->
+                <div id="buyerTypeCard-first" onclick="selectBuyerType('First Time')" class="flex items-center gap-2.5 py-3 px-3.5 border border-[#007AFF] bg-blue-50/20 rounded-2xl cursor-pointer transition-all select-none">
+                  <div id="buyerTypeIcon-first" class="shrink-0 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-[#007AFF]" viewBox="0 0 24 24" fill="none">
+                      <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="#007AFF" stroke-width="2.2" fill="white"/>
+                      <circle cx="12" cy="12" r="4.5" stroke="#007AFF" stroke-width="1.8" fill="white"/>
+                      <circle cx="12" cy="12" r="2.5" fill="#007AFF"/>
+                    </svg>
+                  </div>
+                  <span class="text-sm font-semibold text-[#1E293B]">First Time</span>
+                  <input type="radio" id="buyerTypeRadio-first" name="buyerTypeRadio" value="First Time" checked class="sr-only">
+                </div>
+
+                <!-- Exchange Option -->
+                <div id="buyerTypeCard-exchange" onclick="selectBuyerType('Exchange')" class="flex items-center gap-2.5 py-3 px-3.5 border border-slate-200 bg-white rounded-2xl cursor-pointer transition-all select-none">
+                  <div id="buyerTypeIcon-exchange" class="shrink-0 flex items-center justify-center">
+                    <div class="w-5 h-5 rounded-full border-[1.5px] border-slate-400 bg-white"></div>
+                  </div>
+                  <span class="text-sm font-semibold text-[#1E293B]">Exchange</span>
+                  <input type="radio" id="buyerTypeRadio-exchange" name="buyerTypeRadio" value="Exchange" class="sr-only">
+                </div>
+              </div>
+
+              <!-- EXCHANGE VEHICLE INFORMATION SECTION (Matching media_1791797451211.png) -->
+              <div id="exchangeVehicleSection" class="hidden space-y-3.5 pt-3 mt-2 transition-all">
+                <div class="text-sm font-normal text-slate-500">Exchange Vehicle information</div>
+
+                <!-- Manufacturer Field -->
+                <div class="relative pt-1">
+                  <div class="relative border border-slate-300 rounded-xl bg-white focus-within:border-[#007AFF] transition-colors">
+                    <label class="absolute -top-2 left-3 bg-white px-1 text-[11px] font-medium text-slate-600 pointer-events-none z-10 leading-none">Manufacturer</label>
+                    <div class="relative flex items-center">
+                      <select id="exchangeManufacturer" onchange="handleExchangeManufacturerChange(this.value)" class="w-full py-3 px-3.5 pr-10 text-sm font-medium text-slate-800 bg-transparent outline-none appearance-none cursor-pointer">
+                        <option value="" selected>Select</option>
+                        <option value="Maruti Suzuki">Maruti Suzuki</option>
+                        <option value="Hyundai">Hyundai</option>
+                        <option value="Tata Motors">Tata Motors</option>
+                        <option value="Mahindra">Mahindra</option>
+                        <option value="Honda">Honda</option>
+                        <option value="Toyota">Toyota</option>
+                        <option value="Kia">Kia</option>
+                        <option value="Renault">Renault</option>
+                        <option value="Volkswagen">Volkswagen</option>
+                        <option value="Skoda">Skoda</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <i class="fa-solid fa-chevron-down text-slate-700 text-xs pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Model Field -->
+                <div class="relative pt-1">
+                  <div class="relative border border-slate-300 rounded-xl bg-white focus-within:border-[#007AFF] transition-colors">
+                    <label class="absolute -top-2 left-3 bg-white px-1 text-[11px] font-medium text-slate-600 pointer-events-none z-10 leading-none">Model</label>
+                    <div class="relative flex items-center">
+                      <select id="exchangeModel" class="w-full py-3 px-3.5 pr-10 text-sm font-medium text-slate-800 bg-transparent outline-none appearance-none cursor-pointer">
+                        <option value="" selected>Select</option>
+                        <option value="Swift">Swift</option>
+                        <option value="Dzire">Dzire</option>
+                        <option value="Baleno">Baleno</option>
+                        <option value="Brezza">Brezza</option>
+                        <option value="WagonR">WagonR</option>
+                        <option value="Alto">Alto</option>
+                        <option value="Ertiga">Ertiga</option>
+                        <option value="Grand Vitara">Grand Vitara</option>
+                        <option value="i20">i20</option>
+                        <option value="Creta">Creta</option>
+                        <option value="Nexon">Nexon</option>
+                        <option value="City">City</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <i class="fa-solid fa-chevron-down text-slate-700 text-xs pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Variant Field -->
+                <div class="relative pt-1">
+                  <div class="relative border border-slate-300 rounded-xl bg-white focus-within:border-[#007AFF] transition-colors">
+                    <label class="absolute -top-2 left-3 bg-white px-1 text-[11px] font-medium text-slate-600 pointer-events-none z-10 leading-none">Variant</label>
+                    <div class="relative flex items-center">
+                      <select id="exchangeVariant" class="w-full py-3 px-3.5 pr-10 text-sm font-medium text-slate-800 bg-transparent outline-none appearance-none cursor-pointer">
+                        <option value="" selected>Select</option>
+                        <option value="VXi">VXi</option>
+                        <option value="ZXi">ZXi</option>
+                        <option value="ZXi Plus">ZXi Plus</option>
+                        <option value="LXi">LXi</option>
+                        <option value="Delta">Delta</option>
+                        <option value="Zeta">Zeta</option>
+                        <option value="Alpha">Alpha</option>
+                        <option value="Standard">Standard</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <i class="fa-solid fa-chevron-down text-slate-700 text-xs pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Colour Field -->
+                <div class="relative pt-1">
+                  <div class="relative border border-slate-300 rounded-xl bg-white focus-within:border-[#007AFF] transition-colors">
+                    <label class="absolute -top-2 left-3 bg-white px-1 text-[11px] font-medium text-slate-600 pointer-events-none z-10 leading-none">Colour</label>
+                    <div class="relative flex items-center">
+                      <select id="exchangeColour" class="w-full py-3 px-3.5 pr-10 text-sm font-medium text-slate-800 bg-transparent outline-none appearance-none cursor-pointer">
+                        <option value="" selected>Select</option>
+                        <option value="Pearl Arctic White">Pearl Arctic White</option>
+                        <option value="Metallic Magma Grey">Metallic Magma Grey</option>
+                        <option value="Prime Splendid Silver">Prime Splendid Silver</option>
+                        <option value="Pearl Midnight Black">Pearl Midnight Black</option>
+                        <option value="Phoenix Red">Phoenix Red</option>
+                        <option value="Bluish Black">Bluish Black</option>
+                        <option value="Silky Silver">Silky Silver</option>
+                        <option value="Granite Grey">Granite Grey</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <i class="fa-solid fa-chevron-down text-slate-700 text-xs pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Registration Number* Field (Placeholder inside, matching media_1791797451211.png) -->
+                <div class="pt-0.5">
+                  <div class="relative border border-slate-300 rounded-xl bg-white focus-within:border-[#007AFF] transition-colors">
+                    <input type="text" id="exchangeRegNumber" placeholder="Registration Number*" class="w-full py-3.5 px-3.5 text-sm font-normal text-slate-800 placeholder-slate-400 bg-transparent outline-none uppercase" maxlength="15">
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -5638,6 +5758,9 @@
 
         currentSalesStep = 1;
         updateSalesStepUI();
+        if (typeof selectBuyerType === 'function') {
+          selectBuyerType('First Time');
+        }
         switchScreen('sales-enquiry');
       }
     }
@@ -5707,6 +5830,86 @@
 
     function exitSalesEnquiryForm() {
       switchScreen(lastActiveScreen || 'enquiry');
+    }
+
+    function selectBuyerType(type) {
+      const cardFirst = document.getElementById('buyerTypeCard-first');
+      const cardExchange = document.getElementById('buyerTypeCard-exchange');
+      const iconFirst = document.getElementById('buyerTypeIcon-first');
+      const iconExchange = document.getElementById('buyerTypeIcon-exchange');
+      const exchangeSection = document.getElementById('exchangeVehicleSection');
+      const radioFirst = document.getElementById('buyerTypeRadio-first');
+      const radioExchange = document.getElementById('buyerTypeRadio-exchange');
+
+      const selectedSvg = `
+        <svg class="w-5 h-5 text-[#007AFF]" viewBox="0 0 24 24" fill="none">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="#007AFF" stroke-width="2.2" fill="white"/>
+          <circle cx="12" cy="12" r="4.5" stroke="#007AFF" stroke-width="1.8" fill="white"/>
+          <circle cx="12" cy="12" r="2.5" fill="#007AFF"/>
+        </svg>
+      `;
+      const unselectedIcon = `
+        <div class="w-5 h-5 rounded-full border-[1.5px] border-slate-400 bg-white"></div>
+      `;
+
+      if (type === 'Exchange') {
+        if (radioExchange) radioExchange.checked = true;
+        if (radioFirst) radioFirst.checked = false;
+        if (cardExchange) {
+          cardExchange.classList.add('border-[#007AFF]', 'bg-blue-50/20');
+          cardExchange.classList.remove('border-slate-200', 'bg-white');
+        }
+        if (cardFirst) {
+          cardFirst.classList.remove('border-[#007AFF]', 'bg-blue-50/20');
+          cardFirst.classList.add('border-slate-200', 'bg-white');
+        }
+        if (iconExchange) iconExchange.innerHTML = selectedSvg;
+        if (iconFirst) iconFirst.innerHTML = unselectedIcon;
+        if (exchangeSection) {
+          exchangeSection.classList.remove('hidden');
+        }
+      } else {
+        if (radioFirst) radioFirst.checked = true;
+        if (radioExchange) radioExchange.checked = false;
+        if (cardFirst) {
+          cardFirst.classList.add('border-[#007AFF]', 'bg-blue-50/20');
+          cardFirst.classList.remove('border-slate-200', 'bg-white');
+        }
+        if (cardExchange) {
+          cardExchange.classList.remove('border-[#007AFF]', 'bg-blue-50/20');
+          cardExchange.classList.add('border-slate-200', 'bg-white');
+        }
+        if (iconFirst) iconFirst.innerHTML = selectedSvg;
+        if (iconExchange) iconExchange.innerHTML = unselectedIcon;
+        if (exchangeSection) {
+          exchangeSection.classList.add('hidden');
+        }
+      }
+    }
+
+    function handleExchangeManufacturerChange(mfg) {
+      const modelSelect = document.getElementById('exchangeModel');
+      if (!modelSelect) return;
+
+      const modelsByMfg = {
+        "Maruti Suzuki": ["Swift", "Dzire", "Baleno", "Brezza", "WagonR", "Alto", "Ertiga", "Grand Vitara", "Fronx", "Jimny", "Ciaz", "Other"],
+        "Hyundai": ["Creta", "Venue", "i20", "Verna", "Grand i10 Nios", "Exter", "Aura", "Tucson", "Alcazar", "Other"],
+        "Tata Motors": ["Nexon", "Punch", "Harrier", "Safari", "Altroz", "Tiago", "Tigor", "Curvv", "Other"],
+        "Mahindra": ["Thar", "Scorpio-N", "Scorpio Classic", "XUV700", "XUV300", "Bolero", "XUV400", "Other"],
+        "Honda": ["City", "Amaze", "Elevate", "Jazz", "WR-V", "Civic", "Other"],
+        "Toyota": ["Innova Crysta", "Innova Hycross", "Fortuner", "Glanza", "Urban Cruiser", "Hilux", "Other"],
+        "Kia": ["Seltos", "Sonet", "Carens", "EV6", "Carnival", "Other"],
+        "Renault": ["Kwid", "Triber", "Kiger", "Duster", "Other"],
+        "Volkswagen": ["Polo", "Taigun", "Virtus", "Vento", "Tiguan", "Other"],
+        "Skoda": ["Kushaq", "Slavia", "Rapid", "Octavia", "Kodiaq", "Other"]
+      };
+
+      const list = modelsByMfg[mfg] || ["Swift", "Dzire", "Baleno", "Brezza", "Creta", "Nexon", "City", "Other"];
+      let html = '<option value="" selected>Select</option>';
+      list.forEach(m => {
+        html += `<option value="${m}">${m}</option>`;
+      });
+      modelSelect.innerHTML = html;
     }
 
     function navigateSalesStep(direction) {
@@ -5784,6 +5987,15 @@
       const fullName = `${firstName} ${lastName}`.trim();
       const phone = document.getElementById('fieldPhone')?.value || '+91 98112 33445';
       const model = document.getElementById('fieldModel')?.value || 'Suzuki Hayabusa 2025';
+      const buyerType = document.querySelector('input[name="buyerTypeRadio"]:checked')?.value || 'First Time';
+      const exchangeMfg = document.getElementById('exchangeManufacturer')?.value || '';
+      const exchangeModel = document.getElementById('exchangeModel')?.value || '';
+      const exchangeReg = document.getElementById('exchangeRegNumber')?.value || '';
+      const exchangeTag = (buyerType === 'Exchange' && (exchangeMfg || exchangeModel))
+        ? `<div class="mt-1.5 flex items-center gap-1.5 text-[10px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-xl border border-amber-200 w-fit">
+             <i class="fa-solid fa-repeat text-[9px]"></i> Exchange: ${exchangeMfg} ${exchangeModel} ${exchangeReg ? '(' + exchangeReg + ')' : ''}
+           </div>`
+        : '';
 
       const listContainer = document.querySelector('#screen-enquiry .space-y-3');
       if (listContainer) {
@@ -5808,6 +6020,7 @@
             <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATED ON</span><span class="font-bold text-slate-800">24/09/2026</span></div>
             <div><span class="text-[9px] text-slate-400 font-bold block uppercase">FOLLOWUP DATE</span><span class="font-bold text-slate-800">30/09/2026</span></div>
           </div>
+          ${exchangeTag}
           <div class="pt-1 flex items-center justify-between border-t border-slate-100 text-xs font-bold text-[#007AFF]">
             <span>View Details</span>
             <i class="fa-solid fa-chevron-right text-[10px]"></i>
@@ -5816,7 +6029,11 @@
         listContainer.prepend(newCard);
       }
 
-      alert(`✅ ${selectedCategory} Enquiry created successfully for ${fullName}!`);
+      if (buyerType === 'Exchange' && exchangeMfg) {
+        alert(`✅ ${selectedCategory} Enquiry created successfully for ${fullName} with Exchange Vehicle (${exchangeMfg} ${exchangeModel || ''})!`);
+      } else {
+        alert(`✅ ${selectedCategory} Enquiry created successfully for ${fullName}!`);
+      }
       switchScreen('enquiry');
     }
 
@@ -6328,6 +6545,29 @@
 
       closeDateRangePickerModal();
     }
+
+    // Check URL parameters for direct deep-linking & testing
+    window.addEventListener('load', function() {
+      const params = new URLSearchParams(window.location.search);
+      const targetScreen = params.get('screen');
+      if (targetScreen) {
+        switchScreen(targetScreen);
+        const step = parseInt(params.get('step'));
+        if (targetScreen === 'sales-enquiry' && step) {
+          currentSalesStep = step;
+          updateSalesStepUI();
+          if (params.get('exchange') === 'true' || params.get('exchange') === '1') {
+            selectBuyerType('Exchange');
+          }
+          if (params.get('scroll') === 'bottom') {
+            setTimeout(() => {
+              const main = document.querySelector('main');
+              if (main) main.scrollTop = 400;
+            }, 100);
+          }
+        }
+      }
+    });
   </script>
 </body>
 </html>
