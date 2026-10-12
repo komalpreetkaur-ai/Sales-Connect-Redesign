@@ -6,26 +6,40 @@ Added the **Lead Pipeline** section (`New → Contacted → Test Drive → Negot
 
 ## 🚀 Lead Pipeline (`#screen-home` & `#screen-enquiry`)
 
-### 1. Home Screen Lead Pipeline Component
+### 1. Multi-Mode Pipeline Experience (Chat Form, Funnel Chart, Stage Cards)
 - **Positioning**: Positioned prominently directly below the `LEADS ASSIGNED` section on the dashboard for immediate visibility.
-- **8-Stage Sequential Flow**:
-  `New → Contacted → Test Drive → Negotiation → Booking → Delivered → Lost → Junk`
-- **Interactive Progression Ribbon (Horizontal Stepper)**:
-  - Scrollable track showing all 8 numbered stages with live counts and forward chevron arrows (`→`).
-  - Active touch feedback on each stage pill.
-- **Structured 2-Column Stage Overview Grid**:
-  - 8 distinct cards featuring dedicated stage icons, stage order badges (`Stage 1` to `Stage 8`), lead metrics, and forward progress indicators (`→ Contacted`, `→ Test Drive`, `→ Negotiation`, `→ Booking`, `→ Delivered`, `✓ Won Lead`, `✕ Dropped`, `✕ Excluded`).
-  - Cohesive light gradient styling matching the clean white-card design system.
-- **Dynamic Date Filter Reactivity**:
-  - Selecting `Today`, `This Week`, or `This Month` from the top header automatically synchronizes both the total pipeline count badge and individual stage metrics (e.g. 28 leads for This Week, 9 for Today, 82 for This Month).
+- **Unified 3-Way Segmented Switcher**:
+  - `💬 Chat Form` (Active by Default): Interactive conversational Co-pilot pipeline feed.
+  - `📊 Funnel Chart`: Visual conversion funnel bar chart with throughput & velocity metrics.
+  - `🗂️ Stage Cards`: Compact 8-stage stepper & structured 2-column cards grid.
+
+#### Mode A: 💬 Chat Form (Conversational Pipeline Feed)
+- **Pipeline Co-pilot Header**: Assistant avatar with live indicator badge (`Pipeline Co-pilot • LIVE CHAT`).
+- **Conversational Stage Bubbles**:
+  - *Intake Flow*: 6 New arrivals & 5 Contacted leads summary with direct action buttons (`View 6 New Leads →`, `Contacted (5) →`).
+  - *Engagement Flow*: 4 Test Drives confirmed & 3 Deals in Negotiation (₹68L pipeline) with quick jump buttons.
+  - *Closures & Won*: 4 Confirmed Bookings with token advances & 3 Deliveries ready for keys handover.
+- **Interactive Quick Prompt Chips**:
+  - One-tap query pills: `⚡ New Inquiries`, `🚗 Test Drives`, `🤝 Price Deals`, `🎉 Bookings`, `✕ Lost Analysis`.
+  - Tapping dynamically generates conversational user queries and assistant responses with direct stage links.
+- **Chat Input Bar**: Interactive input field (`Ask about stages, conversion, or leads...`) with send button for real-time AI sales co-pilot queries.
+
+#### Mode B: 📊 Funnel Chart Form (Conversion Funnel Visualizer)
+- **Visual Conversion Funnel Bars**:
+  - Stage-by-stage throughput: New (100%), Contacted (83%), Test Drive (67%), Negotiation (50%), Booking (67%), Delivered (50%), plus Lost & Junk drop-offs.
+  - Color-coded progress bars with direct tap-to-stage filter navigation.
+- **Pipeline Velocity KPIs**: Win rate (`42.8%`), Active Pipeline (`₹94.2 Lakh`), Average Velocity (`3.8 Days`), and Funnel Health indicator.
+
+#### Mode C: 🗂️ Stage Cards Form
+- Horizontal stepper track (`New → Contacted → Test Drive → Negotiation → Booking → Delivered → Lost → Junk`).
+- 2-column card tiles with live metrics and forward progress indicators.
 
 ### 2. One-Tap Stage Navigation to Corresponding Lead Lists
-- **Direct Filtering**: Tapping any stage anywhere in the pipeline calls `openLeadPipelineStage(stageKey)`.
+- **Direct Filtering**: Tapping any stage in the Chat Feed, Funnel Chart, or Cards Grid calls `openLeadPipelineStage(stageKey)`.
 - **Transitions to Enquiries Screen (`#screen-enquiry`)**:
   - Automatically switches the active view to `#screen-enquiry`.
-  - Highlights the corresponding stage pill in the newly added horizontal **Stage Filter Segmented Bar** (`All`, `New`, `Contacted`, `Test Drive`, `Negotiation`, `Booking`, `Delivered`, `Lost`, `Junk`).
+  - Highlights the corresponding stage pill in the horizontal **Stage Filter Segmented Bar** (`All`, `New`, `Contacted`, `Test Drive`, `Negotiation`, `Booking`, `Delivered`, `Lost`, `Junk`).
   - Filters the lead cards in real-time, displaying only leads matching the selected stage.
-  - Updates the top badge (e.g. `Contacted: 2 Leads`).
   - Activates a removable filter chip (`Stage: Contacted ✕`) with `clearPipelineFilter()` support to reset back to all leads.
   - Smoothly scrolls to the top of the leads list.
 - **Full 15-Lead Sample Catalog**:
