@@ -195,17 +195,18 @@
         <section class="space-y-2.5">
           <div class="flex items-center justify-between">
             <h2 class="text-xs font-black text-slate-500 uppercase tracking-wider">LEADS ASSIGNED</h2>
-            <button onclick="switchScreen('enquiry')" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer active:opacity-75">
-              <span>View All</span>
+            <button onclick="openEnquiryWithTemperature('all')" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer active:opacity-75">
+              <span>View All (24)</span>
               <i class="fa-solid fa-chevron-right text-[10px]"></i>
             </button>
           </div>
 
           <!-- Leads Assigned Main Metric Card -->
-          <div onclick="switchScreen('enquiry')" class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs space-y-3 cursor-pointer active:scale-[0.99] transition-transform">
-            <div class="flex items-center justify-between">
+          <div id="homeAssignedMainCard" class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs space-y-3 transition-all">
+            <!-- Top Metric Header (Clickable for All Leads) -->
+            <div onclick="toggleHomeAssignedLeads('all')" class="flex items-center justify-between cursor-pointer group active:opacity-80 p-1 -m-1 rounded-xl transition-colors hover:bg-slate-50/70" title="Click to view all 24 assigned leads">
               <div class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-2xl bg-blue-50 text-[#007AFF] border border-blue-100 flex items-center justify-center text-lg font-black shrink-0">
+                <div class="w-11 h-11 rounded-2xl bg-blue-50 text-[#007AFF] border border-blue-100 flex items-center justify-center text-lg font-black shrink-0 group-hover:scale-105 transition-transform">
                   <i class="fa-solid fa-user-check"></i>
                 </div>
                 <div>
@@ -216,21 +217,55 @@
                   <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Leads Assigned To You</p>
                 </div>
               </div>
+              <div class="flex items-center gap-1.5 text-slate-400 group-hover:text-[#007AFF] transition-colors">
+                <span id="homeAssignedChevronText" class="text-[10px] font-bold">Tap to view</span>
+                <i id="homeAssignedChevronIcon" class="fa-solid fa-chevron-down text-xs transition-transform duration-200"></i>
+              </div>
             </div>
 
             <!-- Leads Temperature & Category Breakdown Grid -->
             <div class="grid grid-cols-3 gap-2 pt-1">
-              <div class="bg-slate-50 border border-slate-200/60 rounded-xl p-2 text-center">
-                <span id="homeAssignedHotVal" class="block text-sm font-black text-[#007AFF]">8</span>
-                <span class="text-[9px] font-extrabold text-slate-500 uppercase">Hot Leads</span>
+              <!-- Hot Leads Card -->
+              <button type="button" id="homeAssignedBtn-hot" onclick="toggleHomeAssignedLeads('hot')" class="home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-amber-50/40" title="View 8 Hot Leads">
+                <span id="homeAssignedHotVal" class="block text-base font-black text-[#007AFF]">8</span>
+                <span class="text-[9px] font-extrabold text-slate-500 uppercase tracking-wide mt-0.5">Hot Leads</span>
+              </button>
+
+              <!-- Warm Leads Card -->
+              <button type="button" id="homeAssignedBtn-warm" onclick="toggleHomeAssignedLeads('warm')" class="home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-blue-50/40" title="View 11 Warm Leads">
+                <span id="homeAssignedWarmVal" class="block text-base font-black text-[#007AFF]">11</span>
+                <span class="text-[9px] font-extrabold text-slate-500 uppercase tracking-wide mt-0.5">Warm Leads</span>
+              </button>
+
+              <!-- Cold Leads Card -->
+              <button type="button" id="homeAssignedBtn-cold" onclick="toggleHomeAssignedLeads('cold')" class="home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-slate-100" title="View 5 Cold Leads">
+                <span id="homeAssignedColdVal" class="block text-base font-black text-slate-700">5</span>
+                <span class="text-[9px] font-extrabold text-slate-500 uppercase tracking-wide mt-0.5">Cold Leads</span>
+              </button>
+            </div>
+
+            <!-- Expandable Leads List Drawer (Revealed on click) -->
+            <div id="homeAssignedDataSection" class="hidden pt-3 border-t border-slate-100 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span id="homeAssignedListIndicator" class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                  <h3 id="homeAssignedListTitle" class="text-xs font-black text-slate-800 tracking-tight">8 Hot Leads</h3>
+                  <span id="homeAssignedListTag" class="text-[9px] font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">High Priority</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button type="button" id="homeAssignedDeepLinkBtn" onclick="openEnquiryWithTemperature('hot')" class="text-[11px] font-extrabold text-[#007AFF] hover:underline flex items-center gap-1 active:opacity-75 cursor-pointer">
+                    <span>View in Leads</span>
+                    <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                  </button>
+                  <button type="button" onclick="closeHomeAssignedDataSection()" class="w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center active:scale-90 cursor-pointer" title="Close List">
+                    <i class="fa-solid fa-xmark text-xs"></i>
+                  </button>
+                </div>
               </div>
-              <div class="bg-slate-50 border border-slate-200/60 rounded-xl p-2 text-center">
-                <span id="homeAssignedWarmVal" class="block text-sm font-black text-[#007AFF]">11</span>
-                <span class="text-[9px] font-extrabold text-slate-500 uppercase">Warm Leads</span>
-              </div>
-              <div class="bg-slate-50 border border-slate-200/60 rounded-xl p-2 text-center">
-                <span id="homeAssignedColdVal" class="block text-sm font-black text-slate-700">5</span>
-                <span class="text-[9px] font-extrabold text-slate-500 uppercase">Cold Leads</span>
+
+              <!-- Scrollable Lead Cards List -->
+              <div id="homeAssignedListContainer" class="max-h-80 overflow-y-auto space-y-2 pr-1 custom-scroll">
+                <!-- Dynamically populated by renderHomeAssignedLeadsList() -->
               </div>
             </div>
           </div>
@@ -613,7 +648,7 @@
             </button>
             <h1 class="text-2xl font-black text-[#1E293B] tracking-tight">Enquiries</h1>
           </div>
-          <span id="enquiryTotalBadge" class="text-xs font-bold text-[#007AFF] bg-[#EBF5FF] px-3 py-1 rounded-full border border-blue-100">Total: 15</span>
+          <span id="enquiryTotalBadge" class="text-xs font-bold text-[#007AFF] bg-[#EBF5FF] px-3 py-1 rounded-full border border-blue-100">Total: 24</span>
         </div>
 
         <!-- Search Input Bar -->
@@ -652,15 +687,33 @@
           </div>
         </div>
 
+        <!-- Temperature / Lead Priority Segmented Filter Bar -->
+        <div class="flex items-center gap-1 bg-slate-100/90 p-1 rounded-2xl border border-slate-200/70 text-xs font-bold">
+          <button id="enqTempBtn-all" onclick="filterByTemperature('all', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs text-center cursor-pointer transition-all">
+            All (24)
+          </button>
+          <button id="enqTempBtn-hot" onclick="filterByTemperature('hot', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-amber-600 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1">
+            <span>Hot</span>
+            <span class="text-[9px] px-1.5 py-0.2 rounded-full bg-amber-100 text-amber-700 font-extrabold">8</span>
+          </button>
+          <button id="enqTempBtn-warm" onclick="filterByTemperature('warm', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-blue-600 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1">
+            <span>Warm</span>
+            <span class="text-[9px] px-1.5 py-0.2 rounded-full bg-blue-100 text-blue-700 font-extrabold">11</span>
+          </button>
+          <button id="enqTempBtn-cold" onclick="filterByTemperature('cold', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-800 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1">
+            <span>Cold</span>
+            <span class="text-[9px] px-1.5 py-0.2 rounded-full bg-slate-200 text-slate-700 font-extrabold">5</span>
+          </button>
+        </div>
 
         <!-- Stage Filter Tabs Bar (All 8 Stages in Pipeline Order) -->
         <div class="flex items-center gap-1.5 overflow-x-auto custom-scroll -mx-4 px-4 py-1 text-xs shrink-0">
-          <button id="enqStageBtn-all" onclick="filterEnquiryStage('all', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-[#007AFF] text-white font-extrabold whitespace-nowrap shadow-xs cursor-pointer transition-all">All (<span id="stageTabCount-all">15</span>)</button>
-          <button id="enqStageBtn-new" onclick="filterEnquiryStage('new', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">New (<span id="stageTabCount-new">2</span>)</button>
-          <button id="enqStageBtn-contacted" onclick="filterEnquiryStage('contacted', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Contacted (<span id="stageTabCount-contacted">2</span>)</button>
-          <button id="enqStageBtn-testdrive" onclick="filterEnquiryStage('testdrive', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Test Drive (<span id="stageTabCount-testdrive">2</span>)</button>
-          <button id="enqStageBtn-negotiation" onclick="filterEnquiryStage('negotiation', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Negotiation (<span id="stageTabCount-negotiation">2</span>)</button>
-          <button id="enqStageBtn-booking" onclick="filterEnquiryStage('booking', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Booking (<span id="stageTabCount-booking">2</span>)</button>
+          <button id="enqStageBtn-all" onclick="filterEnquiryStage('all', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-[#007AFF] text-white font-extrabold whitespace-nowrap shadow-xs cursor-pointer transition-all">All (<span id="stageTabCount-all">24</span>)</button>
+          <button id="enqStageBtn-new" onclick="filterEnquiryStage('new', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">New (<span id="stageTabCount-new">3</span>)</button>
+          <button id="enqStageBtn-contacted" onclick="filterEnquiryStage('contacted', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Contacted (<span id="stageTabCount-contacted">5</span>)</button>
+          <button id="enqStageBtn-testdrive" onclick="filterEnquiryStage('testdrive', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Test Drive (<span id="stageTabCount-testdrive">4</span>)</button>
+          <button id="enqStageBtn-negotiation" onclick="filterEnquiryStage('negotiation', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Negotiation (<span id="stageTabCount-negotiation">4</span>)</button>
+          <button id="enqStageBtn-booking" onclick="filterEnquiryStage('booking', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Booking (<span id="stageTabCount-booking">3</span>)</button>
           <button id="enqStageBtn-delivered" onclick="filterEnquiryStage('delivered', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Delivered (<span id="stageTabCount-delivered">2</span>)</button>
           <button id="enqStageBtn-lost" onclick="filterEnquiryStage('lost', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Lost (<span id="stageTabCount-lost">2</span>)</button>
           <button id="enqStageBtn-junk" onclick="filterEnquiryStage('junk', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Junk (<span id="stageTabCount-junk">1</span>)</button>
@@ -669,7 +722,7 @@
         <!-- Lead Cards Feed -->
         <div id="enquiryCardsContainer" class="space-y-3">
           <!-- Card 1: Mohit Kumar (Stage: New) -->
-          <div class="enquiry-card stage-new new all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-new new priority-hot hot all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ987875440 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
               <span class="text-[10px] font-extrabold text-cyan-700 bg-cyan-50 px-2.5 py-0.5 rounded-full border border-cyan-200/80">New Lead</span>
@@ -700,7 +753,7 @@
           </div>
 
           <!-- Card 2: Aarav Sharma (Stage: New) -->
-          <div class="enquiry-card stage-new new all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-new new priority-warm warm all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ987875451 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
               <span class="text-[10px] font-extrabold text-cyan-700 bg-cyan-50 px-2.5 py-0.5 rounded-full border border-cyan-200/80">New Lead</span>
@@ -731,7 +784,7 @@
           </div>
 
           <!-- Card 3: Gurjant Singh (Stage: Contacted) -->
-          <div class="enquiry-card stage-contacted contacted all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-contacted contacted priority-hot hot all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ00006849 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
               <span class="text-[10px] font-extrabold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200/80">Contacted</span>
@@ -762,7 +815,7 @@
           </div>
 
           <!-- Card 4: Vikram Malhotra (Stage: Contacted) -->
-          <div class="enquiry-card stage-contacted contacted all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-contacted contacted priority-warm warm all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ987875460 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
               <span class="text-[10px] font-extrabold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200/80">Contacted</span>
@@ -793,7 +846,7 @@
           </div>
 
           <!-- Card 5: Rupesh Ranjan Bhatt (Stage: Test Drive) -->
-          <div class="enquiry-card stage-testdrive testdrive all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-testdrive testdrive priority-hot hot all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ987875364 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
               <span class="text-[10px] font-extrabold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200/80">Test Drive Scheduled</span>
@@ -824,7 +877,7 @@
           </div>
 
           <!-- Card 6: Shreya Singhania (Stage: Test Drive) -->
-          <div class="enquiry-card stage-testdrive testdrive all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-testdrive testdrive priority-hot hot all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ987875375 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
               <span class="text-[10px] font-extrabold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200/80">Home Test Drive</span>
@@ -855,7 +908,7 @@
           </div>
 
           <!-- Card 7: Swati Jain (Stage: Negotiation) -->
-          <div class="enquiry-card stage-negotiation negotiation all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-negotiation negotiation priority-warm warm all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ987875399 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
               <span class="text-[10px] font-extrabold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200/80">In Negotiation</span>
@@ -886,7 +939,7 @@
           </div>
 
           <!-- Card 8: Priya Mukherjee (Stage: Negotiation) -->
-          <div class="enquiry-card stage-negotiation negotiation all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-negotiation negotiation priority-hot hot all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ987875368 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
               <span class="text-[10px] font-extrabold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200/80">In Negotiation</span>
@@ -917,7 +970,7 @@
           </div>
 
           <!-- Card 9: Neha Agarwal (Stage: Booking) -->
-          <div class="enquiry-card stage-booking booking all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-booking booking priority-warm warm all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ987875412 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
               <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80">Pre-booked</span>
@@ -948,7 +1001,7 @@
           </div>
 
           <!-- Card 10: Aarti Sharma (Stage: Booking) -->
-          <div class="enquiry-card stage-booking booking all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-booking booking priority-warm warm all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ987875425 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
               <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80">Booking Confirmed</span>
@@ -979,7 +1032,7 @@
           </div>
 
           <!-- Card 11: Rohan Verma (Stage: Delivered) -->
-          <div class="enquiry-card stage-delivered delivered all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-delivered delivered priority-cold cold all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ987875430 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
               <span class="text-[10px] font-extrabold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-200/80">Vehicle Delivered</span>
@@ -1010,7 +1063,7 @@
           </div>
 
           <!-- Card 12: Rajesh Khanna (Stage: Delivered) -->
-          <div class="enquiry-card stage-delivered delivered all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-delivered delivered priority-cold cold all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ987875435 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
               <span class="text-[10px] font-extrabold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-200/80">Vehicle Delivered</span>
@@ -1041,7 +1094,7 @@
           </div>
 
           <!-- Card 13: Suresh Patel (Stage: Lost) -->
-          <div class="enquiry-card stage-lost lost all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-lost lost priority-cold cold all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ987875470 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
               <span class="text-[10px] font-extrabold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded-full border border-rose-200/80">Lost (Competitor)</span>
@@ -1072,7 +1125,7 @@
           </div>
 
           <!-- Card 14: Ananya Roy (Stage: Lost) -->
-          <div class="enquiry-card stage-lost lost all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-lost lost priority-cold cold all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ987875475 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
               <span class="text-[10px] font-extrabold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded-full border border-rose-200/80">Lost (Postponed)</span>
@@ -1103,7 +1156,7 @@
           </div>
 
           <!-- Card 15: Sandeep Verma (Stage: Junk) -->
-          <div class="enquiry-card stage-junk junk all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <div class="enquiry-card stage-junk junk priority-cold cold all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
               <span class="text-xs font-bold text-slate-500">ENQ987875480 || <span class="text-slate-400 font-extrabold">Junk</span></span>
               <span class="text-[10px] font-extrabold text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">Junk Lead</span>
@@ -1125,6 +1178,285 @@
             <div class="flex items-center justify-between pt-1">
               <span class="text-[10px] font-semibold text-slate-400 italic">Excluded from active pipeline</span>
               <button onclick="openEnquiryDetails('Sandeep Verma', 'ENQ987875480')" class="px-3.5 py-1.5 bg-slate-100 text-slate-700 rounded-xl text-xs font-extrabold shadow-2xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 16: Kavita Desai (Stage: New, Hot) -->
+          <div class="enquiry-card stage-new new priority-hot hot all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875465 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-cyan-700 bg-cyan-50 px-2.5 py-0.5 rounded-full border border-cyan-200/80">New Lead</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 font-black text-xs flex items-center justify-center shrink-0 border border-amber-200">KD</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Kavita Desai</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Mahindra XUV700 AX7L</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-600 border border-amber-200/60">Hot Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">Today, 11:20 AM</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Niket Kumar</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919820154321';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919820154321','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Kavita Desai', 'ENQ987875465')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 17: Aditya Vardhan (Stage: Contacted, Hot) -->
+          <div class="enquiry-card stage-contacted contacted priority-hot hot all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875482 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200/80">Contacted</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 font-black text-xs flex items-center justify-center shrink-0 border border-amber-200">AV</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Aditya Vardhan</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Tata Harrier Fearless+</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-600 border border-amber-200/60">Hot Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">Yesterday</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Akash Gupta</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919845012890';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919845012890','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Aditya Vardhan', 'ENQ987875482')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 18: Rakesh Nair (Stage: Negotiation, Hot) -->
+          <div class="enquiry-card stage-negotiation negotiation priority-hot hot all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875495 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200/80">In Negotiation</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 font-black text-xs flex items-center justify-center shrink-0 border border-amber-200">RN</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Rakesh Nair</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Suzuki Fronx Turbo Alpha</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-600 border border-amber-200/60">Hot Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">14/12/2024</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Niket Kumar</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919711288492';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919711288492','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Rakesh Nair', 'ENQ987875495')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 19: Manish Chawla (Stage: Contacted, Warm) -->
+          <div class="enquiry-card stage-contacted contacted priority-warm warm all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875501 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200/80">Contacted</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-200">MC</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Manish Chawla</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Honda City ZX e:HEV</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-600 border border-blue-200/60">Warm Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">12/12/2024</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Akash Gupta</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919811033490';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919811033490','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Manish Chawla', 'ENQ987875501')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 20: Deepak Mehta (Stage: Test Drive, Warm) -->
+          <div class="enquiry-card stage-testdrive testdrive priority-warm warm all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875512 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200/80">Test Drive Scheduled</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-200">DM</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Deepak Mehta</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Kia Seltos GTX+</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-600 border border-blue-200/60">Warm Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">13/12/2024</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Niket Kumar</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919823077119';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919823077119','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Deepak Mehta', 'ENQ987875512')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 21: Sunita Rao (Stage: Test Drive, Warm) -->
+          <div class="enquiry-card stage-testdrive testdrive priority-warm warm all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875520 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200/80">Home Test Drive</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-200">SR</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Sunita Rao</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Maruti Ertiga ZXi+</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-600 border border-blue-200/60">Warm Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">Yesterday</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Sheeba Siddiqui</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919833411287';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919833411287','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Sunita Rao', 'ENQ987875520')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 22: Kunal Kashyap (Stage: Negotiation, Warm) -->
+          <div class="enquiry-card stage-negotiation negotiation priority-warm warm all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875533 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200/80">In Negotiation</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-200">KK</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Kunal Kashyap</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Tata Nexon EV Empowered</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-600 border border-blue-200/60">Warm Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">Today, 10:45 AM</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Niket Kumar</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919899144520';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919899144520','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Kunal Kashyap', 'ENQ987875533')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 23: Meenakshi Sundaram (Stage: Booking, Warm) -->
+          <div class="enquiry-card stage-booking booking priority-warm warm all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875545 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80">Pre-booked</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-200">MS</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Meenakshi Sundaram</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Suzuki XL6 Alpha+</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-600 border border-blue-200/60">Warm Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">14/12/2024</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Akash Gupta</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919840099312';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919840099312','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Meenakshi Sundaram', 'ENQ987875545')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 24: Harshvardhan Kapoor (Stage: Contacted, Warm) -->
+          <div class="enquiry-card stage-contacted contacted priority-warm warm all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875558 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200/80">Contacted</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-200">HK</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Harshvardhan Kapoor</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Hyundai Verna SX(O) Turbo</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-600 border border-blue-200/60">Warm Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">15/12/2024</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Niket Kumar</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919810266778';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919810266778','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Harshvardhan Kapoor', 'ENQ987875558')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
                 <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
               </button>
             </div>
@@ -5407,6 +5739,10 @@
       const acoldVal = document.getElementById('homeAssignedColdVal');
       if (acoldVal) acoldVal.innerText = d.assignedColdVal;
 
+      if (typeof currentHomeAssignedFilter !== 'undefined' && currentHomeAssignedFilter) {
+        renderHomeAssignedLeadsList(currentHomeAssignedFilter);
+      }
+
       // Update Pipeline Section Metrics
       if (d.pipelineBadge) {
         const pipeBadge = document.getElementById('pipelineTotalBadge');
@@ -6149,6 +6485,8 @@
 
     function resetAllFilters() {
       document.querySelectorAll('#filterModal input[type="checkbox"]').forEach(cb => cb.checked = false);
+      if (typeof filterByTemperature === 'function') filterByTemperature('all');
+      if (typeof filterEnquiryStage === 'function') filterEnquiryStage('all');
       applyFilters();
     }
 
@@ -6338,16 +6676,242 @@
       }
     }
 
-    function clearPipelineFilter() {
-      const allBtn = document.getElementById('enqStageBtn-all');
-      filterEnquiryStage('all', allBtn);
-      const chipsBar = document.getElementById('activeChipsBar');
-      const chipsContainer = document.getElementById('activeChipsContainer');
-      if (chipsBar) chipsBar.classList.add('hidden');
-      if (chipsContainer) chipsContainer.innerHTML = '';
+    // ========================================================
+    // ASSIGNED LEADS DATA STORE (24 Assigned Leads: 8 Hot, 11 Warm, 5 Cold)
+    // ========================================================
+    const allAssignedLeadsData = [
+      // 8 HOT LEADS
+      { id: "ENQ987875440", name: "Mohit Kumar", initials: "MK", model: "Suzuki Brezza ZXi", stage: "New Lead", stageKey: "new", temp: "hot", priorityLabel: "Hot Lead", date: "18/12/2024", assignedTo: "Akash Gupta", phone: "+919876589706" },
+      { id: "ENQ00006849", name: "Gurjant Singh", initials: "GS", model: "Hyundai Creta SX (O) Diesel", stage: "Contacted", stageKey: "contacted", temp: "hot", priorityLabel: "Hot Lead", date: "Today, 09:30 AM", assignedTo: "Niket Kumar", phone: "+919876589706" },
+      { id: "ENQ987875364", name: "Rupesh Ranjan Bhatt", initials: "RB", model: "Swift Dzire ZXi+", stage: "Test Drive Scheduled", stageKey: "testdrive", temp: "hot", priorityLabel: "Hot Lead", date: "10/12/2024", assignedTo: "Akash Gupta", phone: "+919876589706" },
+      { id: "ENQ987875375", name: "Shreya Singhania", initials: "SS", model: "Suzuki Baleno Alpha", stage: "Home Test Drive", stageKey: "testdrive", temp: "hot", priorityLabel: "Hot Lead", date: "11/12/2024", assignedTo: "Niket Kumar", phone: "+919910244331" },
+      { id: "ENQ987875368", name: "Priya Mukherjee", initials: "PM", model: "Suzuki Grand Vitara Alpha", stage: "In Negotiation", stageKey: "negotiation", temp: "hot", priorityLabel: "Hot Lead", date: "13/12/2024", assignedTo: "Niket Kumar", phone: "+919876589706" },
+      { id: "ENQ987875465", name: "Kavita Desai", initials: "KD", model: "Mahindra XUV700 AX7L", stage: "New Lead", stageKey: "new", temp: "hot", priorityLabel: "Hot Lead", date: "Today, 11:20 AM", assignedTo: "Niket Kumar", phone: "+919820154321" },
+      { id: "ENQ987875482", name: "Aditya Vardhan", initials: "AV", model: "Tata Harrier Fearless+", stage: "Contacted", stageKey: "contacted", temp: "hot", priorityLabel: "Hot Lead", date: "Yesterday", assignedTo: "Akash Gupta", phone: "+919845012890" },
+      { id: "ENQ987875495", name: "Rakesh Nair", initials: "RN", model: "Suzuki Fronx Turbo Alpha", stage: "In Negotiation", stageKey: "negotiation", temp: "hot", priorityLabel: "Hot Lead", date: "14/12/2024", assignedTo: "Niket Kumar", phone: "+919711288492" },
+
+      // 11 WARM LEADS
+      { id: "ENQ987875451", name: "Aarav Sharma", initials: "AS", model: "Mahindra Thar Roxx (AX7L)", stage: "New Lead", stageKey: "new", temp: "warm", priorityLabel: "Warm Lead", date: "Today, 09:15 AM", assignedTo: "Niket Kumar", phone: "+919876543210" },
+      { id: "ENQ987875460", name: "Vikram Malhotra", initials: "VM", model: "Tata Safari Dark Edition", stage: "Contacted", stageKey: "contacted", temp: "warm", priorityLabel: "Warm Lead", date: "Yesterday", assignedTo: "Akash Gupta", phone: "+919876589706" },
+      { id: "ENQ987875399", name: "Swati Jain", initials: "SJ", model: "Suzuki Baleno (Delta)", stage: "In Negotiation", stageKey: "negotiation", temp: "warm", priorityLabel: "Warm Lead", date: "12/12/2024", assignedTo: "Niket Kumar", phone: "+919876589706" },
+      { id: "ENQ987875412", name: "Neha Agarwal", initials: "NA", model: "Suzuki Hayabusa 2024", stage: "Pre-booked", stageKey: "booking", temp: "warm", priorityLabel: "Warm Lead", date: "14/12/2024", assignedTo: "Sheeba Siddiqui", phone: "+919876589706" },
+      { id: "ENQ987875425", name: "Aarti Sharma", initials: "AS", model: "Hyundai Alcazar Signature", stage: "Booking Confirmed", stageKey: "booking", temp: "warm", priorityLabel: "Warm Lead", date: "15/12/2024", assignedTo: "Niket Kumar", phone: "+919876543210" },
+      { id: "ENQ987875501", name: "Manish Chawla", initials: "MC", model: "Honda City ZX e:HEV", stage: "Contacted", stageKey: "contacted", temp: "warm", priorityLabel: "Warm Lead", date: "12/12/2024", assignedTo: "Akash Gupta", phone: "+919811033490" },
+      { id: "ENQ987875512", name: "Deepak Mehta", initials: "DM", model: "Kia Seltos GTX+", stage: "Test Drive Scheduled", stageKey: "testdrive", temp: "warm", priorityLabel: "Warm Lead", date: "13/12/2024", assignedTo: "Niket Kumar", phone: "+919823077119" },
+      { id: "ENQ987875520", name: "Sunita Rao", initials: "SR", model: "Maruti Ertiga ZXi+", stage: "Home Test Drive", stageKey: "testdrive", temp: "warm", priorityLabel: "Warm Lead", date: "Yesterday", assignedTo: "Sheeba Siddiqui", phone: "+919833411287" },
+      { id: "ENQ987875533", name: "Kunal Kashyap", initials: "KK", model: "Tata Nexon EV Empowered", stage: "In Negotiation", stageKey: "negotiation", temp: "warm", priorityLabel: "Warm Lead", date: "Today, 10:45 AM", assignedTo: "Niket Kumar", phone: "+919899144520" },
+      { id: "ENQ987875545", name: "Meenakshi Sundaram", initials: "MS", model: "Suzuki XL6 Alpha+", stage: "Pre-booked", stageKey: "booking", temp: "warm", priorityLabel: "Warm Lead", date: "14/12/2024", assignedTo: "Akash Gupta", phone: "+919840099312" },
+      { id: "ENQ987875558", name: "Harshvardhan Kapoor", initials: "HK", model: "Hyundai Verna SX(O) Turbo", stage: "Contacted", stageKey: "contacted", temp: "warm", priorityLabel: "Warm Lead", date: "15/12/2024", assignedTo: "Niket Kumar", phone: "+919810266778" },
+
+      // 5 COLD LEADS
+      { id: "ENQ987875430", name: "Rohan Verma", initials: "RV", model: "Mahindra XUV700 AX7", stage: "Vehicle Delivered", stageKey: "delivered", temp: "cold", priorityLabel: "Cold Lead", date: "05/12/2024", assignedTo: "Niket Kumar", phone: "+919876543210" },
+      { id: "ENQ987875435", name: "Rajesh Khanna", initials: "RK", model: "Maruti Grand Vitara Hybrid", stage: "Vehicle Delivered", stageKey: "delivered", temp: "cold", priorityLabel: "Cold Lead", date: "02/12/2024", assignedTo: "Akash Gupta", phone: "+919876543210" },
+      { id: "ENQ987875470", name: "Suresh Patel", initials: "SP", model: "Toyota Urban Cruiser Hyryder", stage: "Lost (Competitor)", stageKey: "lost", temp: "cold", priorityLabel: "Cold Lead", date: "28/11/2024", assignedTo: "Niket Kumar", phone: "+919876543210" },
+      { id: "ENQ987875475", name: "Ananya Roy", initials: "AR", model: "Honda Elevate ZX", stage: "Lost (Postponed)", stageKey: "lost", temp: "cold", priorityLabel: "Cold Lead", date: "25/11/2024", assignedTo: "Sheeba Siddiqui", phone: "+919876543210" },
+      { id: "ENQ987875480", name: "Sandeep Verma", initials: "SV", model: "Maruti Alto K10 (Unreachable)", stage: "Marked Junk", stageKey: "junk", temp: "cold", priorityLabel: "Cold Lead", date: "20/11/2024", assignedTo: "Niket Kumar", phone: "+919876543210" }
+    ];
+
+    // ========================================================
+    // HOME SCREEN: LEADS ASSIGNED SECTION INTERACTIVITY
+    // ========================================================
+    let currentHomeAssignedFilter = null;
+
+    function toggleHomeAssignedLeads(tempKey) {
+      const dataSection = document.getElementById('homeAssignedDataSection');
+      if (!dataSection) return;
+
+      // If clicked currently active tab and drawer is open, toggle close
+      if (currentHomeAssignedFilter === tempKey && !dataSection.classList.contains('hidden')) {
+        closeHomeAssignedDataSection();
+        return;
+      }
+
+      currentHomeAssignedFilter = tempKey;
+      renderHomeAssignedLeadsList(tempKey);
+      dataSection.classList.remove('hidden');
+      updateHomeAssignedPillsStyle(tempKey);
+
+      // Smooth scroll if needed
+      dataSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function closeHomeAssignedDataSection() {
+      const dataSection = document.getElementById('homeAssignedDataSection');
+      if (dataSection) dataSection.classList.add('hidden');
+      currentHomeAssignedFilter = null;
+      updateHomeAssignedPillsStyle(null);
+    }
+
+    function updateHomeAssignedPillsStyle(activeKey) {
+      const btns = {
+        hot: document.getElementById('homeAssignedBtn-hot'),
+        warm: document.getElementById('homeAssignedBtn-warm'),
+        cold: document.getElementById('homeAssignedBtn-cold')
+      };
+
+      // Reset base styling for cards
+      if (btns.hot) btns.hot.className = "home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-amber-50/40";
+      if (btns.warm) btns.warm.className = "home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-blue-50/40";
+      if (btns.cold) btns.cold.className = "home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-slate-100";
+
+      // Reset number colors
+      const hotVal = document.getElementById('homeAssignedHotVal');
+      const warmVal = document.getElementById('homeAssignedWarmVal');
+      const coldVal = document.getElementById('homeAssignedColdVal');
+      if (hotVal) hotVal.className = "block text-base font-black text-[#007AFF]";
+      if (warmVal) warmVal.className = "block text-base font-black text-[#007AFF]";
+      if (coldVal) coldVal.className = "block text-base font-black text-slate-700";
+
+      const chevronIcon = document.getElementById('homeAssignedChevronIcon');
+      const chevronText = document.getElementById('homeAssignedChevronText');
+
+      if (!activeKey) {
+        if (chevronIcon) chevronIcon.className = "fa-solid fa-chevron-down text-xs transition-transform duration-200";
+        if (chevronText) chevronText.innerText = "Tap to view";
+        return;
+      }
+
+      if (chevronIcon) chevronIcon.className = "fa-solid fa-chevron-up text-xs transition-transform duration-200 text-[#007AFF]";
+      if (chevronText) chevronText.innerText = "Active filter";
+
+      if (activeKey === 'hot' && btns.hot) {
+        btns.hot.className = "home-temp-card bg-amber-50/90 border-amber-300 ring-2 ring-amber-400 rounded-xl p-2.5 text-center cursor-pointer shadow-xs transition-all active:scale-95 flex flex-col items-center justify-center";
+        if (hotVal) hotVal.className = "block text-base font-black text-amber-600";
+      } else if (activeKey === 'warm' && btns.warm) {
+        btns.warm.className = "home-temp-card bg-blue-50/90 border-blue-300 ring-2 ring-blue-400 rounded-xl p-2.5 text-center cursor-pointer shadow-xs transition-all active:scale-95 flex flex-col items-center justify-center";
+        if (warmVal) warmVal.className = "block text-base font-black text-[#007AFF]";
+      } else if (activeKey === 'cold' && btns.cold) {
+        btns.cold.className = "home-temp-card bg-slate-100 border-slate-300 ring-2 ring-slate-400 rounded-xl p-2.5 text-center cursor-pointer shadow-xs transition-all active:scale-95 flex flex-col items-center justify-center";
+        if (coldVal) coldVal.className = "block text-base font-black text-slate-800";
+      }
+    }
+
+    function renderHomeAssignedLeadsList(tempKey) {
+      const container = document.getElementById('homeAssignedListContainer');
+      const title = document.getElementById('homeAssignedListTitle');
+      const tag = document.getElementById('homeAssignedListTag');
+      const indicator = document.getElementById('homeAssignedListIndicator');
+      const deepBtn = document.getElementById('homeAssignedDeepLinkBtn');
+      if (!container) return;
+
+      const filtered = (tempKey === 'all' || !tempKey)
+        ? allAssignedLeadsData
+        : allAssignedLeadsData.filter(l => l.temp === tempKey);
+
+      if (tempKey === 'hot') {
+        if (title) title.innerText = `${filtered.length} Hot Leads`;
+        if (tag) {
+          tag.innerText = "High Priority";
+          tag.className = "text-[9px] font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200";
+        }
+        if (indicator) indicator.className = "w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse";
+        if (deepBtn) deepBtn.setAttribute('onclick', "openEnquiryWithTemperature('hot')");
+      } else if (tempKey === 'warm') {
+        if (title) title.innerText = `${filtered.length} Warm Leads`;
+        if (tag) {
+          tag.innerText = "Medium Priority";
+          tag.className = "text-[9px] font-black text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200";
+        }
+        if (indicator) indicator.className = "w-2.5 h-2.5 rounded-full bg-[#007AFF]";
+        if (deepBtn) deepBtn.setAttribute('onclick', "openEnquiryWithTemperature('warm')");
+      } else if (tempKey === 'cold') {
+        if (title) title.innerText = `${filtered.length} Cold Leads`;
+        if (tag) {
+          tag.innerText = "Low Priority";
+          tag.className = "text-[9px] font-black text-slate-700 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200";
+        }
+        if (indicator) indicator.className = "w-2.5 h-2.5 rounded-full bg-slate-400";
+        if (deepBtn) deepBtn.setAttribute('onclick', "openEnquiryWithTemperature('cold')");
+      } else {
+        if (title) title.innerText = `All ${filtered.length} Assigned Leads`;
+        if (tag) {
+          tag.innerText = "Active Pipeline";
+          tag.className = "text-[9px] font-black text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200";
+        }
+        if (indicator) indicator.className = "w-2.5 h-2.5 rounded-full bg-[#007AFF]";
+        if (deepBtn) deepBtn.setAttribute('onclick', "openEnquiryWithTemperature('all')");
+      }
+
+      container.innerHTML = filtered.map(lead => {
+        const badgeColor = lead.temp === 'hot' 
+          ? 'bg-amber-50 text-amber-600 border-amber-200/80' 
+          : lead.temp === 'warm' 
+            ? 'bg-blue-50 text-blue-600 border-blue-200/80' 
+            : 'bg-slate-100 text-slate-600 border-slate-200/80';
+        
+        const avatarColor = lead.temp === 'hot'
+          ? 'bg-amber-50 text-amber-600 border-amber-200'
+          : lead.temp === 'warm'
+            ? 'bg-blue-50 text-[#007AFF] border-blue-200'
+            : 'bg-slate-100 text-slate-600 border-slate-200';
+
+        return `
+          <div onclick="openEnquiryDetails('${lead.name}', '${lead.id}')" class="bg-slate-50 hover:bg-white p-2.5 rounded-xl border border-slate-200/80 shadow-2xs flex items-center justify-between active:scale-[0.99] transition-all cursor-pointer">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="w-9 h-9 rounded-xl ${avatarColor} font-black text-xs flex items-center justify-center shrink-0 border">
+                ${lead.initials}
+              </div>
+              <div class="truncate">
+                <div class="flex items-center gap-1.5">
+                  <h4 class="text-xs font-black text-slate-800 truncate">${lead.name}</h4>
+                  <span class="text-[8px] font-extrabold px-1.5 py-0.2 rounded ${badgeColor} border shrink-0">${lead.priorityLabel}</span>
+                </div>
+                <p class="text-[10px] font-semibold text-slate-500 truncate mt-0.5">${lead.model} • <span class="text-slate-600 font-bold">${lead.stage}</span></p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0 ml-2">
+              <button onclick="event.stopPropagation(); window.location.href='tel:${lead.phone}';" title="Call" class="w-7 h-7 rounded-lg bg-white text-[#007AFF] border border-blue-100 flex items-center justify-center text-xs active:scale-90 shadow-2xs hover:bg-blue-50">
+                <i class="fa-solid fa-phone text-[10px]"></i>
+              </button>
+              <button onclick="event.stopPropagation(); window.open('https://wa.me/${lead.phone.replace(/[^0-9]/g, '')}','_blank');" title="WhatsApp" class="w-7 h-7 rounded-lg bg-white text-[#007AFF] border border-blue-100 flex items-center justify-center text-xs active:scale-90 shadow-2xs hover:bg-blue-50">
+                <i class="fa-brands fa-whatsapp text-xs"></i>
+              </button>
+              <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 pl-1"></i>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openEnquiryWithTemperature(tempKey) {
+      switchScreen('enquiry');
+      filterByTemperature(tempKey);
+      const screenEl = document.getElementById('screen-enquiry');
+      if (screenEl) {
+        screenEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // ========================================================
+    // SCREEN 2: ENQUIRIES SCREEN FILTERING & TABS
+    // ========================================================
+    let currentEnquiryStage = 'all';
+    let currentEnquiryTemp = 'all';
+    let currentEnquirySearch = '';
+
+    function filterByTemperature(tempKey, btn) {
+      currentEnquiryTemp = tempKey || 'all';
+      document.querySelectorAll('.enq-temp-filter-btn').forEach(b => {
+        b.className = 'enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1';
+      });
+      const activeBtn = btn || document.getElementById('enqTempBtn-' + tempKey);
+      if (activeBtn) {
+        if (tempKey === 'hot') {
+          activeBtn.className = 'enq-temp-filter-btn flex-1 py-1.5 rounded-xl bg-amber-500 text-white font-black shadow-2xs text-center cursor-pointer transition-all flex items-center justify-center gap-1';
+        } else if (tempKey === 'warm') {
+          activeBtn.className = 'enq-temp-filter-btn flex-1 py-1.5 rounded-xl bg-[#007AFF] text-white font-black shadow-2xs text-center cursor-pointer transition-all flex items-center justify-center gap-1';
+        } else if (tempKey === 'cold') {
+          activeBtn.className = 'enq-temp-filter-btn flex-1 py-1.5 rounded-xl bg-slate-700 text-white font-black shadow-2xs text-center cursor-pointer transition-all flex items-center justify-center gap-1';
+        } else {
+          activeBtn.className = 'enq-temp-filter-btn flex-1 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs text-center cursor-pointer transition-all';
+        }
+      }
+      applyCombinedEnquiryFilters();
     }
 
     function filterEnquiryStage(filterType, btn) {
+      currentEnquiryStage = filterType || 'all';
       document.querySelectorAll('.enquiry-stage-tab-btn').forEach(p => {
         p.className = 'enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all';
       });
@@ -6355,11 +6919,45 @@
       if (activeBtn) {
         activeBtn.className = 'enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-[#007AFF] text-white font-extrabold whitespace-nowrap shadow-xs cursor-pointer transition-all';
       }
+      applyCombinedEnquiryFilters();
+    }
 
+    function searchEnquiryCards(query) {
+      currentEnquirySearch = (query || '').toLowerCase().trim();
+      applyCombinedEnquiryFilters();
+    }
+
+    function clearTemperatureFilter() {
+      filterByTemperature('all');
+    }
+
+    function clearPipelineFilter() {
+      filterEnquiryStage('all');
+    }
+
+    function applyCombinedEnquiryFilters() {
       const cards = document.querySelectorAll('.enquiry-card');
       let visibleCount = 0;
+
       cards.forEach(card => {
-        if (filterType === 'all' || card.classList.contains('stage-' + filterType) || card.classList.contains(filterType)) {
+        // Match Stage
+        const stageMatch = (currentEnquiryStage === 'all') || 
+                           card.classList.contains('stage-' + currentEnquiryStage) || 
+                           card.classList.contains(currentEnquiryStage);
+
+        // Match Temperature / Priority
+        const tempMatch = (currentEnquiryTemp === 'all') || 
+                          card.classList.contains('priority-' + currentEnquiryTemp) || 
+                          card.classList.contains(currentEnquiryTemp);
+
+        // Match Search Query
+        let searchMatch = true;
+        if (currentEnquirySearch) {
+          const text = card.textContent.toLowerCase();
+          searchMatch = text.includes(currentEnquirySearch);
+        }
+
+        if (stageMatch && tempMatch && searchMatch) {
           card.classList.remove('hidden');
           visibleCount++;
         } else {
@@ -6367,11 +6965,13 @@
         }
       });
 
+      // Update Top Badge
       const badge = document.getElementById('enquiryTotalBadge');
       if (badge) {
-        if (filterType === 'all') {
-          badge.innerText = 'Total: ' + visibleCount;
-        } else {
+        let label = 'Total: ' + visibleCount;
+        if (currentEnquiryTemp !== 'all') {
+          label = currentEnquiryTemp.toUpperCase() + ': ' + visibleCount;
+        } else if (currentEnquiryStage !== 'all') {
           const names = {
             'new': 'New',
             'contacted': 'Contacted',
@@ -6382,15 +6982,32 @@
             'lost': 'Lost',
             'junk': 'Junk'
           };
-          badge.innerText = (names[filterType] || filterType) + ': ' + visibleCount;
+          label = (names[currentEnquiryStage] || currentEnquiryStage) + ': ' + visibleCount;
         }
+        badge.innerText = label;
       }
 
-      // Update active chip
+      // Update Active Chips Bar
       const chipsBar = document.getElementById('activeChipsBar');
       const chipsContainer = document.getElementById('activeChipsContainer');
       if (chipsBar && chipsContainer) {
-        if (filterType !== 'all') {
+        let chipsHtml = '';
+
+        if (currentEnquiryTemp !== 'all') {
+          const tempColors = {
+            hot: 'bg-amber-50 text-amber-700 border-amber-200',
+            warm: 'bg-blue-50 text-[#007AFF] border-blue-200',
+            cold: 'bg-slate-100 text-slate-700 border-slate-200'
+          };
+          chipsHtml += `
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full ${tempColors[currentEnquiryTemp] || 'bg-blue-50 text-[#007AFF]'} font-bold border">
+              <span>Priority: ${currentEnquiryTemp.toUpperCase()}</span>
+              <button onclick="clearTemperatureFilter()" class="hover:opacity-75 cursor-pointer"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+            </span>
+          `;
+        }
+
+        if (currentEnquiryStage !== 'all') {
           const names = {
             'new': 'New',
             'contacted': 'Contacted',
@@ -6401,36 +7018,22 @@
             'lost': 'Lost',
             'junk': 'Junk'
           };
-          chipsBar.classList.remove('hidden');
-          chipsContainer.innerHTML = `
+          chipsHtml += `
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-[#007AFF] font-bold border border-blue-200">
-              <span>Stage: ${names[filterType] || filterType}</span>
+              <span>Stage: ${names[currentEnquiryStage] || currentEnquiryStage}</span>
               <button onclick="clearPipelineFilter()" class="hover:text-blue-900 cursor-pointer"><i class="fa-solid fa-xmark text-[10px]"></i></button>
             </span>
           `;
+        }
+
+        if (chipsHtml) {
+          chipsBar.classList.remove('hidden');
+          chipsContainer.innerHTML = chipsHtml;
         } else {
           chipsBar.classList.add('hidden');
           chipsContainer.innerHTML = '';
         }
       }
-    }
-
-    function searchEnquiryCards(query) {
-      const q = query.toLowerCase().trim();
-      const cards = document.querySelectorAll('.enquiry-card');
-      let visibleCount = 0;
-      cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        if (!q || text.includes(q)) {
-          card.classList.remove('hidden');
-          visibleCount++;
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-
-      const badge = document.getElementById('enquiryTotalBadge');
-      if (badge) badge.innerText = 'Total: ' + visibleCount;
     }
 
     // Date Range Picker Modal Logic
@@ -6549,9 +7152,17 @@
     // Check URL parameters for direct deep-linking & testing
     window.addEventListener('load', function() {
       const params = new URLSearchParams(window.location.search);
+      const homeFilter = params.get('home_filter');
+      if (homeFilter) {
+        toggleHomeAssignedLeads(homeFilter);
+      }
       const targetScreen = params.get('screen');
       if (targetScreen) {
         switchScreen(targetScreen);
+        const temp = params.get('temp');
+        if (targetScreen === 'enquiry' && temp) {
+          filterByTemperature(temp);
+        }
         const step = parseInt(params.get('step'));
         if (targetScreen === 'sales-enquiry' && step) {
           currentSalesStep = step;
