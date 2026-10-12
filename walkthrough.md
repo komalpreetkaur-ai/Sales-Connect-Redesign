@@ -91,12 +91,14 @@ Implemented the **Exchange Vehicle Information** form in the **Sales Enquiry For
 ---
 
 ## 🔍 Stage-Based Filtering in Enquiries Screen (`#screen-enquiry`)
-- The 8 stages (`New → Contacted → Test Drive → Negotiation → Booking → Delivered → Lost → Junk`) remain available as top segmented filter tabs on `#screen-enquiry`:
+- **Clean Header (Removed Redundant Active Chips Bar)**:
+  - Removed the redundant `ACTIVE: Priority: HOT × Clear all` chips row that previously appeared below the search bar.
+  - The temperature segmented tabs (`All | Hot | Warm | Cold`) and stage tabs (`All | New | Contacted...`) already visually show the active selections clearly.
+- **Top Segmented Tabs**:
   - Quick stage pill selection (`All`, `New`, `Contacted`, `Test Drive`, `Negotiation`, `Booking`, `Delivered`, `Lost`, `Junk`).
-  - Active filter chip dismissal (`Stage: Contacted ✕`).
   - Real-time catalog filtering across all sample lead records.
-- **Full 15-Lead Sample Catalog**:
-  - Added sample leads covering all 8 stages with detailed tags, dates, consultant assignments, phone/WhatsApp quick actions, and direct links to the Enquiry Details screen.
+- **Full Sample Catalog**:
+  - Sample leads covering all stages with detailed tags, dates, consultant assignments, phone/WhatsApp quick actions, and direct links to the Enquiry Details screen.
 
 ---
 

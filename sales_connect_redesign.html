@@ -663,13 +663,6 @@
               <span>Add Enquiry</span>
             </button>
           </div>
-
-          <!-- Active Applied Filters Chips Bar (Hidden initially, shown on selection) -->
-          <div id="activeChipsBar" class="hidden flex items-center gap-1.5 overflow-x-auto pb-0.5 custom-scroll text-[10px]">
-            <span class="font-bold text-slate-400 uppercase tracking-wider shrink-0">Active:</span>
-            <div id="activeChipsContainer" class="flex items-center gap-1.5 shrink-0"></div>
-            <button onclick="resetAllFilters()" class="text-[10px] text-slate-400 underline font-semibold shrink-0 ml-1">Clear all</button>
-          </div>
         </div>
 
         <!-- Temperature / Lead Priority Segmented Filter Bar -->
@@ -7021,55 +7014,6 @@
             'junk': 'Junk'
           };
           label = (names[currentEnquiryStage] || currentEnquiryStage) + ': ' + visibleCount;
-        }
-        badge.innerText = label;
-      }
-
-      // Update Active Chips Bar
-      const chipsBar = document.getElementById('activeChipsBar');
-      const chipsContainer = document.getElementById('activeChipsContainer');
-      if (chipsBar && chipsContainer) {
-        let chipsHtml = '';
-
-        if (currentEnquiryTemp !== 'all') {
-          const tempColors = {
-            hot: 'bg-amber-50 text-amber-700 border-amber-200',
-            warm: 'bg-blue-50 text-[#007AFF] border-blue-200',
-            cold: 'bg-slate-100 text-slate-700 border-slate-200'
-          };
-          chipsHtml += `
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full ${tempColors[currentEnquiryTemp] || 'bg-blue-50 text-[#007AFF]'} font-bold border">
-              <span>Priority: ${currentEnquiryTemp.toUpperCase()}</span>
-              <button onclick="clearTemperatureFilter()" class="hover:opacity-75 cursor-pointer"><i class="fa-solid fa-xmark text-[10px]"></i></button>
-            </span>
-          `;
-        }
-
-        if (currentEnquiryStage !== 'all') {
-          const names = {
-            'new': 'New',
-            'contacted': 'Contacted',
-            'testdrive': 'Test Drive',
-            'negotiation': 'Negotiation',
-            'booking': 'Booking',
-            'delivered': 'Delivered',
-            'lost': 'Lost',
-            'junk': 'Junk'
-          };
-          chipsHtml += `
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-[#007AFF] font-bold border border-blue-200">
-              <span>Stage: ${names[currentEnquiryStage] || currentEnquiryStage}</span>
-              <button onclick="clearPipelineFilter()" class="hover:text-blue-900 cursor-pointer"><i class="fa-solid fa-xmark text-[10px]"></i></button>
-            </span>
-          `;
-        }
-
-        if (chipsHtml) {
-          chipsBar.classList.remove('hidden');
-          chipsContainer.innerHTML = chipsHtml;
-        } else {
-          chipsBar.classList.add('hidden');
-          chipsContainer.innerHTML = '';
         }
       }
     }
