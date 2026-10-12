@@ -278,18 +278,21 @@
             <span id="homeTargetAchievedBadge" class="text-xs font-extrabold text-[#007AFF] bg-[#EFF6FF] px-3.5 py-1 rounded-full border border-blue-100/90 shadow-2xs">75% Achieved</span>
           </div>
 
-          <!-- Target Progress Hero Card (Light & Clean) -->
-          <div class="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-xs space-y-4">
-            <div class="flex items-center justify-between">
+          <!-- Target Progress Hero Card (Light & Distinct Accent) -->
+          <div class="bg-gradient-to-br from-[#F0F6FF] via-[#EBF4FE] to-[#F5F8FF] rounded-3xl p-5 border border-[#BFDBFE] shadow-sm space-y-4 relative overflow-hidden">
+            <!-- Subtle decorative ambient glow -->
+            <div class="absolute -top-8 -right-8 w-28 h-28 bg-blue-200/40 rounded-full blur-xl pointer-events-none"></div>
+
+            <div class="relative z-10 flex items-center justify-between">
               <div>
-                <span id="homeTargetTitle" class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">WEEKLY VEHICLE SALES TARGET</span>
-                <div id="homeTargetUnits" class="text-2xl font-black tracking-tight text-[#1E293B] mt-0.5">3 of 4 Units Sold</div>
+                <span id="homeTargetTitle" class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block">WEEKLY VEHICLE SALES TARGET</span>
+                <div id="homeTargetUnits" class="text-2xl font-black tracking-tight text-[#0F172A] mt-0.5">3 of 4 Units Sold</div>
               </div>
               
               <!-- Circular Donut SVG Progress Gauge -->
-              <div id="homeTargetCircle" class="relative w-12 h-12 flex items-center justify-center shrink-0">
-                <svg class="w-12 h-12 transform -scale-x-100" viewBox="0 0 36 36">
-                  <path class="text-slate-100" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              <div id="homeTargetCircle" class="relative w-12 h-12 flex items-center justify-center shrink-0 bg-white/80 rounded-full shadow-2xs">
+                <svg class="w-11 h-11 transform -scale-x-100" viewBox="0 0 36 36">
+                  <path class="text-blue-100" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                   <path id="homeTargetSvgArc" stroke-dasharray="75, 100" stroke-width="3.5" stroke-linecap="round" stroke="url(#targetRingGradient)" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                   <defs>
                     <linearGradient id="targetRingGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -303,11 +306,11 @@
             </div>
 
             <!-- Progress Bar -->
-            <div class="space-y-2">
-              <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+            <div class="relative z-10 space-y-2">
+              <div class="w-full bg-white/90 border border-blue-100/70 h-2.5 rounded-full overflow-hidden shadow-2xs">
                 <div id="homeTargetProgressBar" class="bg-[#007AFF] h-full rounded-full transition-all duration-700" style="width: 75%"></div>
               </div>
-              <div class="flex items-center justify-between text-xs font-semibold text-slate-500 pt-0.5">
+              <div class="flex items-center justify-between text-xs font-bold text-slate-600 pt-0.5">
                 <span id="homeTargetTotalUnitsText">Target: 4 Units</span>
                 <span id="homeTargetGoalText" class="text-[#007AFF] font-extrabold flex items-center gap-1">1 Unit to Goal 🔥</span>
               </div>

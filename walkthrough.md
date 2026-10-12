@@ -327,14 +327,16 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
 
 ---
 
-## 📊 Home Screen Target & KPIs Redesign (Light & Clean Theme)
+## 📊 Home Screen Target & KPIs Redesign (Light Distinct Accent Theme)
 
-- **Redesigned Target & KPIs Hero Section**: Redesigned from dark background to a clean, crisp, light iOS-native theme matching the app's unified design system:
-  - **Header & Pill Badge**: `WEEKLY TARGET & KPIS` with top-right brand blue `75% Achieved` pill badge (`bg-[#EFF6FF] text-[#007AFF] px-3.5 py-1 rounded-full border border-blue-100`).
-  - **Light Clean Card Container**: Pure white card with subtle border (`bg-white rounded-3xl p-5 border border-slate-200/80 shadow-xs`).
-  - **Target Header & Title**: `WEEKLY VEHICLE SALES TARGET` uppercase category label in muted slate (`text-slate-400`) above bold dark slate title `3 of 4 Units Sold` (`text-[#1E293B]`).
-  - **Clean Circular Progress SVG Gauge**: Light slate SVG track (`stroke-slate-100`), brand blue gradient arc (`#007AFF` to `#00C6FF`), and brand blue center text (`text-[#007AFF] font-black`).
-  - **Brand Blue Progress Bar & Goal Indicator**: Soft light slate progress track (`bg-slate-100`), vibrant brand blue progress fill (`bg-[#007AFF]`), `Target: 4 Units` label in slate, and `1 Unit to Goal 🔥` highlight in brand blue (`text-[#007AFF] font-extrabold`).
+- **Redesigned Target & KPIs Hero Section**: Styled with a distinctive light ice-blue gradient background that makes the sales target stand out as the primary focal point amidst all standard white cards on the dashboard:
+  - **Light Distinct Card Container**: Soft ice-blue gradient (`bg-gradient-to-br from-[#F0F6FF] via-[#EBF4FE] to-[#F5F8FF] rounded-3xl p-5 border border-[#BFDBFE] shadow-sm relative overflow-hidden`) with a subtle ambient radial glow (`bg-blue-200/40 blur-xl`).
+  - **Header & Pill Badge**: `WEEKLY TARGET & KPIS` with top-right brand blue `75% Achieved` pill badge (`bg-[#EFF6FF] text-[#007AFF] px-3.5 py-1 rounded-full border border-blue-100/90`).
+  - **Target Header & Title**: `WEEKLY VEHICLE SALES TARGET` uppercase category label in slate-500 above bold dark slate title `3 of 4 Units Sold` (`text-[#0F172A]`).
+  - **Clean Circular Progress SVG Gauge**: Embedded in a white backdrop pill (`bg-white/80 shadow-2xs`) with soft blue SVG track (`stroke-blue-100`), vibrant brand blue gradient arc (`#007AFF` to `#00C6FF`), and brand blue center text (`text-[#007AFF] font-black`).
+  - **Brand Blue Progress Bar & Goal Indicator**: High-contrast white track with subtle border (`bg-white/90 border border-blue-100/70`), vibrant brand blue progress fill (`bg-[#007AFF]`), `Target: 4 Units` label, and `1 Unit to Goal 🔥` highlight in brand blue (`text-[#007AFF] font-extrabold`).
+
+![Target Card Standout Visual](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_target_standout.png)
 
 ---
 
