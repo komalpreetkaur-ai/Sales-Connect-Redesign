@@ -1,47 +1,45 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-## 🔥 Interactive Leads Assigned Filtering (Hot, Warm, Cold Leads)
+## 📱 Bottom Sheet Slider for Assigned Leads Details (Hot, Warm, Cold Leads)
 
-Implemented interactive filtering for the **"LEADS ASSIGNED" Hero Card** (`TOTAL LEADS ASSIGNED TO YOU: 24`, `HOT LEADS: 8`, `WARM LEADS: 11`, `COLD LEADS: 5`) on the Home Screen (`#screen-home`) as requested: *"When we click on any of the cards in this section the particular data should appear For example : if user click on hot leads show only hot leads"*.
+Implemented a native **Bottom Sheet Slider** that slides up from the bottom of the screen when any of the 3 small cards (`Hot Leads`, `Warm Leads`, `Cold Leads`) or the Total Assigned Leads card is tapped, as requested: *"Open the details in a slider which will come from bottom all the thre small card details"*.
 
 ### 📸 Visual Demonstration & States
 ````carousel
-![Hot Leads Active State (Inline Expandable Drawer)](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_hot_leads.png)
+![Clean Home Dashboard with Clickable Cards](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_clean.png)
 <!-- slide -->
-![Warm Leads Active State (Inline Expandable Drawer)](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_warm_leads.png)
+![Hot Leads (8) Bottom Sheet Slider](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_slider_hot.png)
 <!-- slide -->
-![Enquiries Screen Deep Filter (Hot: 8 Leads Catalog)](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiry_temp_hot.png)
+![Warm Leads (11) Bottom Sheet Slider](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_slider_warm.png)
+<!-- slide -->
+![Cold Leads (5) Bottom Sheet Slider](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_slider_cold.png)
 ````
 
 ### ✨ Key Features Implemented
 
-1. **Inline Expandable Drawer on Home Dashboard**:
-   - Tapping **HOT LEADS (8)**, **WARM LEADS (11)**, **COLD LEADS (5)**, or **TOTAL LEADS (24)** activates the respective card with a distinct active ring (amber ring for Hot, brand-blue ring for Warm, dark-slate ring for Cold) and opens an inline drawer directly underneath the metric cards.
-   - **Drawer Header**:
-     - Status dot and lead count (e.g. `🟠 8 Hot Leads`, `🔵 11 Warm Leads`, `⚫ 5 Cold Leads`).
-     - Priority pill indicator (`High Priority`, `Medium Priority`, `Standard Priority`).
-     - Deep-link button: `View in Leads →` which navigates to the Enquiries screen with the selected temperature pre-filtered.
-     - Close `✕` button to collapse the drawer and reset active card borders.
-   - **Inline Lead Cards**:
-     - Customer avatar circle with initials and priority color palette.
+1. **Native Bottom Sheet Slider (`#assignedLeadsSliderModal`)**:
+   - Tapping **HOT LEADS (8)**, **WARM LEADS (11)**, **COLD LEADS (5)**, or the header **TOTAL LEADS ASSIGNED TO YOU (24)** opens a modal that slides up smoothly from the bottom with a dimmed backdrop.
+   - **Pull Handle**: Clean iOS-style grab bar at the top of the sheet for intuitive dragging/closing.
+   - **Header**:
+     - Dynamic title & priority tag (e.g. `🟠 8 Hot Leads (High Priority)`, `🔵 11 Warm Leads (Medium Priority)`, `⚫ 5 Cold Leads (Low Priority)`).
+     - Direct CTA link: `View in Leads →` which navigates to the Enquiries screen with the selected temperature pre-filtered.
+     - Close `✕` button to dismiss the slider.
+   - **Segmented Control Slider Tabs Inside the Bottom Sheet**:
+     - Includes segmented tabs at the top of the sheet: `🔥 Hot (8)` | `⚡ Warm (11)` | `❄️ Cold (5)` | `All (24)`.
+     - Users can switch between all three small cards directly within the slider without needing to close and re-open.
+   - **Scrollable Lead Cards Feed**:
+     - Customer avatar circle with initials and temperature color coding.
      - Customer name, model interest, and stage tag (e.g. `Mohit Kumar`, `Hot Lead`, `Suzuki Brezza ZXi • New Lead`).
      - Instant action buttons: Brand blue **Call** (`fa-phone`) and **WhatsApp** (`fa-whatsapp`) buttons.
-     - Chevron indicator to open lead details.
+     - Tapping any lead card closes the slider and navigates directly to the lead's detailed view.
+   - **Bottom Summary Bar**: Displays live count note (e.g. `Showing 8 high priority hot leads`) and an `Open Full Catalog →` CTA.
 
-2. **Enquiries Screen Temperature Segmented Control & Deep Linking**:
-   - Added a dedicated **Temperature Segmented Filter Bar** on `#screen-enquiry`:
-     `All (24) | Hot (8) | Warm (11) | Cold (5)`
-   - Tapping `View in Leads →` from the home drawer or clicking the temperature pills on the Enquiries screen filters the full 24-lead feed down to matching records in real-time.
-   - Highlights active temperature button with solid pill styling (amber for Hot, blue for Warm, slate for Cold).
-   - Dynamically updates active filter chip (`Priority: HOT ✕`) and allows single-tap dismissal via `Clear all`.
-   - Supports cross-filtering with stage tabs (`All`, `New`, `Contacted`, `Test Drive`, `Negotiation`, etc.) and search bar input.
+2. **Clean & Compact Home Dashboard**:
+   - The inline accordion was removed from inside `#homeAssignedMainCard`, keeping the Home screen clean, uncluttered, and fixed height.
+   - The 3 small cards (`Hot Leads`, `Warm Leads`, `Cold Leads`) remain compact and responsive.
 
-3. **Complete 24-Lead Sample Dataset**:
-   - Expanded the leads catalog to exactly 24 structured leads matching the hero metrics:
-     - **8 Hot Leads**: Mohit Kumar, Gurjant Singh, Rupesh Ranjan, Shreya Singhania, Priya Mukherjee, Amit Roy, Rajiv Khanna, Karan Malhotra.
-     - **11 Warm Leads**: Aarav Sharma, Vikram Malhotra, Swati Jain, Neha Agarwal, Aarti Sharma, Siddharth Verma, Manish Tiwari, Ananya Sen, Rohit Bajaj, Sneha Kapoor, Gaurav Patel.
-     - **5 Cold Leads**: Sandeep Joshi, Deepa Nair, Alok Bansal, Ritu Saxena, Kunal Bose.
-   - Each lead contains detailed attributes, vehicle interests, stages, dates, and consultant assignments.
+3. **Enquiries Screen Temperature Segmented Control & Deep Linking**:
+   - The dedicated **Temperature Segmented Filter Bar** on `#screen-enquiry` (`All (24) | Hot (8) | Warm (11) | Cold (5)`) remains fully synchronized with all deep links from the slider.
 
 ---
 

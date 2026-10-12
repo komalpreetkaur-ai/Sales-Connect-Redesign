@@ -107,6 +107,13 @@
       color: #FFFFFF;
       border-color: #007AFF;
     }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    .animate-slide-up {
+      animation: slideUp 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
   </style>
 </head>
 <body class="h-screen w-screen bg-slate-950 flex items-center justify-center overflow-hidden antialiased text-slate-800">
@@ -203,8 +210,8 @@
 
           <!-- Leads Assigned Main Metric Card -->
           <div id="homeAssignedMainCard" class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs space-y-3 transition-all">
-            <!-- Top Metric Header (Clickable for All Leads) -->
-            <div onclick="toggleHomeAssignedLeads('all')" class="flex items-center justify-between cursor-pointer group active:opacity-80 p-1 -m-1 rounded-xl transition-colors hover:bg-slate-50/70" title="Click to view all 24 assigned leads">
+            <!-- Top Metric Header (Clickable to open Bottom Slider for All Leads) -->
+            <div onclick="openAssignedLeadsSlider('all')" class="flex items-center justify-between cursor-pointer group active:opacity-80 p-1 -m-1 rounded-xl transition-colors hover:bg-slate-50/70" title="Click to view all 24 assigned leads">
               <div class="flex items-center gap-3">
                 <div class="w-11 h-11 rounded-2xl bg-blue-50 text-[#007AFF] border border-blue-100 flex items-center justify-center text-lg font-black shrink-0 group-hover:scale-105 transition-transform">
                   <i class="fa-solid fa-user-check"></i>
@@ -218,55 +225,30 @@
                 </div>
               </div>
               <div class="flex items-center gap-1.5 text-slate-400 group-hover:text-[#007AFF] transition-colors">
-                <span id="homeAssignedChevronText" class="text-[10px] font-bold">Tap to view</span>
-                <i id="homeAssignedChevronIcon" class="fa-solid fa-chevron-down text-xs transition-transform duration-200"></i>
+                <span class="text-[10px] font-bold">Tap to view</span>
+                <i class="fa-solid fa-chevron-right text-xs"></i>
               </div>
             </div>
 
-            <!-- Leads Temperature & Category Breakdown Grid -->
+            <!-- Leads Temperature & Category Breakdown Grid (3 Small Cards) -->
             <div class="grid grid-cols-3 gap-2 pt-1">
               <!-- Hot Leads Card -->
-              <button type="button" id="homeAssignedBtn-hot" onclick="toggleHomeAssignedLeads('hot')" class="home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-amber-50/40" title="View 8 Hot Leads">
+              <button type="button" id="homeAssignedBtn-hot" onclick="openAssignedLeadsSlider('hot')" class="home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-amber-50/40" title="Open 8 Hot Leads in bottom slider">
                 <span id="homeAssignedHotVal" class="block text-base font-black text-[#007AFF]">8</span>
                 <span class="text-[9px] font-extrabold text-slate-500 uppercase tracking-wide mt-0.5">Hot Leads</span>
               </button>
 
               <!-- Warm Leads Card -->
-              <button type="button" id="homeAssignedBtn-warm" onclick="toggleHomeAssignedLeads('warm')" class="home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-blue-50/40" title="View 11 Warm Leads">
+              <button type="button" id="homeAssignedBtn-warm" onclick="openAssignedLeadsSlider('warm')" class="home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-blue-50/40" title="Open 11 Warm Leads in bottom slider">
                 <span id="homeAssignedWarmVal" class="block text-base font-black text-[#007AFF]">11</span>
                 <span class="text-[9px] font-extrabold text-slate-500 uppercase tracking-wide mt-0.5">Warm Leads</span>
               </button>
 
               <!-- Cold Leads Card -->
-              <button type="button" id="homeAssignedBtn-cold" onclick="toggleHomeAssignedLeads('cold')" class="home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-slate-100" title="View 5 Cold Leads">
+              <button type="button" id="homeAssignedBtn-cold" onclick="openAssignedLeadsSlider('cold')" class="home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-slate-100" title="Open 5 Cold Leads in bottom slider">
                 <span id="homeAssignedColdVal" class="block text-base font-black text-slate-700">5</span>
                 <span class="text-[9px] font-extrabold text-slate-500 uppercase tracking-wide mt-0.5">Cold Leads</span>
               </button>
-            </div>
-
-            <!-- Expandable Leads List Drawer (Revealed on click) -->
-            <div id="homeAssignedDataSection" class="hidden pt-3 border-t border-slate-100 space-y-2.5">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <span id="homeAssignedListIndicator" class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-                  <h3 id="homeAssignedListTitle" class="text-xs font-black text-slate-800 tracking-tight">8 Hot Leads</h3>
-                  <span id="homeAssignedListTag" class="text-[9px] font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">High Priority</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <button type="button" id="homeAssignedDeepLinkBtn" onclick="openEnquiryWithTemperature('hot')" class="text-[11px] font-extrabold text-[#007AFF] hover:underline flex items-center gap-1 active:opacity-75 cursor-pointer">
-                    <span>View in Leads</span>
-                    <i class="fa-solid fa-arrow-right text-[9px]"></i>
-                  </button>
-                  <button type="button" onclick="closeHomeAssignedDataSection()" class="w-6 h-6 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center active:scale-90 cursor-pointer" title="Close List">
-                    <i class="fa-solid fa-xmark text-xs"></i>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Scrollable Lead Cards List -->
-              <div id="homeAssignedListContainer" class="max-h-80 overflow-y-auto space-y-2 pr-1 custom-scroll">
-                <!-- Dynamically populated by renderHomeAssignedLeadsList() -->
-              </div>
             </div>
           </div>
         </section>
@@ -4278,6 +4260,66 @@
 
   </div>
 
+  <!-- ASSIGNED LEADS BOTTOM SHEET SLIDER (OPENS ON CLICKING ANY OF THE 3 CARDS) -->
+  <div id="assignedLeadsSliderModal" onclick="if(event.target === this) closeAssignedLeadsSlider()" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end justify-center z-50 transition-opacity">
+    <div id="assignedLeadsSliderSheet" class="bg-white rounded-t-3xl w-full max-w-[402px] p-4.5 space-y-3.5 shadow-2xl border-t border-slate-100 animate-slide-up flex flex-col max-h-[82vh]">
+      
+      <!-- Drag & Pull Handle -->
+      <div class="w-12 h-1.5 bg-slate-200 rounded-full mx-auto -mt-1 cursor-pointer shrink-0" onclick="closeAssignedLeadsSlider()"></div>
+
+      <!-- Slider Header -->
+      <div class="flex items-center justify-between shrink-0 pb-1.5 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <span id="sliderAssignedIndicator" class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+          <h3 id="sliderAssignedTitle" class="text-sm font-black text-slate-900 tracking-tight">8 Hot Leads</h3>
+          <span id="sliderAssignedTag" class="text-[9px] font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">High Priority</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" id="sliderAssignedDeepLinkBtn" onclick="openEnquiryFromSlider()" class="text-xs font-extrabold text-[#007AFF] hover:underline flex items-center gap-1 active:opacity-75 cursor-pointer">
+            <span>View in Leads</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+          <button type="button" onclick="closeAssignedLeadsSlider()" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center active:scale-90 cursor-pointer" title="Close Slider">
+            <i class="fa-solid fa-xmark text-xs font-bold"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 3 Small Cards Filter Tabs Segment inside Slider -->
+      <div class="flex items-center bg-slate-100/90 p-1 rounded-2xl gap-1 shrink-0 text-xs font-bold">
+        <button type="button" id="sliderTab-hot" onclick="switchSliderLeadsTab('hot')" class="slider-temp-tab flex-1 py-1.5 rounded-xl font-black text-center cursor-pointer transition-all flex items-center justify-center gap-1 bg-amber-500 text-white shadow-2xs">
+          <span>Hot</span>
+          <span id="sliderCount-hot" class="text-[10px] opacity-90">(8)</span>
+        </button>
+        <button type="button" id="sliderTab-warm" onclick="switchSliderLeadsTab('warm')" class="slider-temp-tab flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1">
+          <span>Warm</span>
+          <span id="sliderCount-warm" class="text-[10px] opacity-80">(11)</span>
+        </button>
+        <button type="button" id="sliderTab-cold" onclick="switchSliderLeadsTab('cold')" class="slider-temp-tab flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1">
+          <span>Cold</span>
+          <span id="sliderCount-cold" class="text-[10px] opacity-80">(5)</span>
+        </button>
+        <button type="button" id="sliderTab-all" onclick="switchSliderLeadsTab('all')" class="slider-temp-tab px-2.5 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all">
+          <span>All (24)</span>
+        </button>
+      </div>
+
+      <!-- Scrollable Lead Cards Feed -->
+      <div id="sliderAssignedListContainer" class="flex-1 overflow-y-auto space-y-2 pr-1 custom-scroll max-h-[50vh]">
+        <!-- Dynamically populated by renderSliderAssignedLeadsList() -->
+      </div>
+
+      <!-- Bottom Quick Summary / CTA -->
+      <div class="pt-1.5 border-t border-slate-100 flex items-center justify-between shrink-0">
+        <span id="sliderAssignedCountNote" class="text-[11px] font-semibold text-slate-500">Showing 8 priority leads</span>
+        <button onclick="openEnquiryFromSlider()" class="text-xs font-black text-[#007AFF] flex items-center gap-1 cursor-pointer active:opacity-75">
+          <span>Open Full Catalog</span>
+          <i class="fa-solid fa-chevron-right text-[10px]"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- SELECT ENQUIRY CATEGORY BOTTOM SHEET MODAL (APP-NATIVE NO-ICON DESIGN) -->
   <div id="categorySelectModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end justify-center z-50 transition-opacity">
     <div class="bg-white rounded-t-3xl w-full max-w-[402px] p-5 space-y-4 shadow-2xl border-t border-slate-100 animate-slide-up">
@@ -6715,34 +6757,50 @@
     ];
 
     // ========================================================
-    // HOME SCREEN: LEADS ASSIGNED SECTION INTERACTIVITY
+    // HOME SCREEN: LEADS ASSIGNED BOTTOM SHEET SLIDER
     // ========================================================
+    let currentSliderTemp = 'hot';
     let currentHomeAssignedFilter = null;
 
-    function toggleHomeAssignedLeads(tempKey) {
-      const dataSection = document.getElementById('homeAssignedDataSection');
-      if (!dataSection) return;
+    function openAssignedLeadsSlider(tempKey) {
+      currentSliderTemp = tempKey || 'hot';
+      currentHomeAssignedFilter = currentSliderTemp;
+      const modal = document.getElementById('assignedLeadsSliderModal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      renderSliderAssignedLeadsList(currentSliderTemp);
+      updateHomeAssignedPillsStyle(currentSliderTemp);
+    }
 
-      // If clicked currently active tab and drawer is open, toggle close
-      if (currentHomeAssignedFilter === tempKey && !dataSection.classList.contains('hidden')) {
-        closeHomeAssignedDataSection();
-        return;
-      }
+    function closeAssignedLeadsSlider() {
+      const modal = document.getElementById('assignedLeadsSliderModal');
+      if (modal) modal.classList.add('hidden');
+      updateHomeAssignedPillsStyle(null);
+    }
 
+    function switchSliderLeadsTab(tempKey) {
+      currentSliderTemp = tempKey;
       currentHomeAssignedFilter = tempKey;
-      renderHomeAssignedLeadsList(tempKey);
-      dataSection.classList.remove('hidden');
+      renderSliderAssignedLeadsList(tempKey);
       updateHomeAssignedPillsStyle(tempKey);
+    }
 
-      // Smooth scroll if needed
-      dataSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    function openEnquiryFromSlider() {
+      closeAssignedLeadsSlider();
+      openEnquiryWithTemperature(currentSliderTemp);
+    }
+
+    // Aliases for backwards compatibility
+    function toggleHomeAssignedLeads(tempKey) {
+      openAssignedLeadsSlider(tempKey);
     }
 
     function closeHomeAssignedDataSection() {
-      const dataSection = document.getElementById('homeAssignedDataSection');
-      if (dataSection) dataSection.classList.add('hidden');
-      currentHomeAssignedFilter = null;
-      updateHomeAssignedPillsStyle(null);
+      closeAssignedLeadsSlider();
+    }
+
+    function renderHomeAssignedLeadsList(tempKey) {
+      renderSliderAssignedLeadsList(tempKey);
     }
 
     function updateHomeAssignedPillsStyle(activeKey) {
@@ -6765,17 +6823,7 @@
       if (warmVal) warmVal.className = "block text-base font-black text-[#007AFF]";
       if (coldVal) coldVal.className = "block text-base font-black text-slate-700";
 
-      const chevronIcon = document.getElementById('homeAssignedChevronIcon');
-      const chevronText = document.getElementById('homeAssignedChevronText');
-
-      if (!activeKey) {
-        if (chevronIcon) chevronIcon.className = "fa-solid fa-chevron-down text-xs transition-transform duration-200";
-        if (chevronText) chevronText.innerText = "Tap to view";
-        return;
-      }
-
-      if (chevronIcon) chevronIcon.className = "fa-solid fa-chevron-up text-xs transition-transform duration-200 text-[#007AFF]";
-      if (chevronText) chevronText.innerText = "Active filter";
+      if (!activeKey) return;
 
       if (activeKey === 'hot' && btns.hot) {
         btns.hot.className = "home-temp-card bg-amber-50/90 border-amber-300 ring-2 ring-amber-400 rounded-xl p-2.5 text-center cursor-pointer shadow-xs transition-all active:scale-95 flex flex-col items-center justify-center";
@@ -6789,17 +6837,37 @@
       }
     }
 
-    function renderHomeAssignedLeadsList(tempKey) {
-      const container = document.getElementById('homeAssignedListContainer');
-      const title = document.getElementById('homeAssignedListTitle');
-      const tag = document.getElementById('homeAssignedListTag');
-      const indicator = document.getElementById('homeAssignedListIndicator');
-      const deepBtn = document.getElementById('homeAssignedDeepLinkBtn');
+    function renderSliderAssignedLeadsList(tempKey) {
+      const container = document.getElementById('sliderAssignedListContainer');
+      const title = document.getElementById('sliderAssignedTitle');
+      const tag = document.getElementById('sliderAssignedTag');
+      const indicator = document.getElementById('sliderAssignedIndicator');
+      const note = document.getElementById('sliderAssignedCountNote');
+      const deepBtn = document.getElementById('sliderAssignedDeepLinkBtn');
       if (!container) return;
 
       const filtered = (tempKey === 'all' || !tempKey)
         ? allAssignedLeadsData
         : allAssignedLeadsData.filter(l => l.temp === tempKey);
+
+      // Update Slider Tabs
+      ['hot', 'warm', 'cold', 'all'].forEach(k => {
+        const tabBtn = document.getElementById('sliderTab-' + k);
+        if (!tabBtn) return;
+        if (k === tempKey) {
+          if (k === 'hot') {
+            tabBtn.className = 'slider-temp-tab flex-1 py-1.5 rounded-xl font-black text-center cursor-pointer transition-all flex items-center justify-center gap-1 bg-amber-500 text-white shadow-2xs';
+          } else if (k === 'warm') {
+            tabBtn.className = 'slider-temp-tab flex-1 py-1.5 rounded-xl font-black text-center cursor-pointer transition-all flex items-center justify-center gap-1 bg-[#007AFF] text-white shadow-2xs';
+          } else if (k === 'cold') {
+            tabBtn.className = 'slider-temp-tab flex-1 py-1.5 rounded-xl font-black text-center cursor-pointer transition-all flex items-center justify-center gap-1 bg-slate-700 text-white shadow-2xs';
+          } else {
+            tabBtn.className = 'slider-temp-tab px-2.5 py-1.5 rounded-xl bg-white text-[#007AFF] font-black text-center cursor-pointer transition-all shadow-2xs';
+          }
+        } else {
+          tabBtn.className = 'slider-temp-tab ' + (k === 'all' ? 'px-2.5' : 'flex-1') + ' py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1';
+        }
+      });
 
       if (tempKey === 'hot') {
         if (title) title.innerText = `${filtered.length} Hot Leads`;
@@ -6808,7 +6876,8 @@
           tag.className = "text-[9px] font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200";
         }
         if (indicator) indicator.className = "w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse";
-        if (deepBtn) deepBtn.setAttribute('onclick', "openEnquiryWithTemperature('hot')");
+        if (note) note.innerText = `Showing ${filtered.length} high priority hot leads`;
+        if (deepBtn) deepBtn.setAttribute('onclick', "openEnquiryFromSlider()");
       } else if (tempKey === 'warm') {
         if (title) title.innerText = `${filtered.length} Warm Leads`;
         if (tag) {
@@ -6816,7 +6885,8 @@
           tag.className = "text-[9px] font-black text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200";
         }
         if (indicator) indicator.className = "w-2.5 h-2.5 rounded-full bg-[#007AFF]";
-        if (deepBtn) deepBtn.setAttribute('onclick', "openEnquiryWithTemperature('warm')");
+        if (note) note.innerText = `Showing ${filtered.length} warm follow-up leads`;
+        if (deepBtn) deepBtn.setAttribute('onclick', "openEnquiryFromSlider()");
       } else if (tempKey === 'cold') {
         if (title) title.innerText = `${filtered.length} Cold Leads`;
         if (tag) {
@@ -6824,7 +6894,8 @@
           tag.className = "text-[9px] font-black text-slate-700 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200";
         }
         if (indicator) indicator.className = "w-2.5 h-2.5 rounded-full bg-slate-400";
-        if (deepBtn) deepBtn.setAttribute('onclick', "openEnquiryWithTemperature('cold')");
+        if (note) note.innerText = `Showing ${filtered.length} cold / archived leads`;
+        if (deepBtn) deepBtn.setAttribute('onclick', "openEnquiryFromSlider()");
       } else {
         if (title) title.innerText = `All ${filtered.length} Assigned Leads`;
         if (tag) {
@@ -6832,7 +6903,8 @@
           tag.className = "text-[9px] font-black text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200";
         }
         if (indicator) indicator.className = "w-2.5 h-2.5 rounded-full bg-[#007AFF]";
-        if (deepBtn) deepBtn.setAttribute('onclick', "openEnquiryWithTemperature('all')");
+        if (note) note.innerText = `Showing all ${filtered.length} assigned leads`;
+        if (deepBtn) deepBtn.setAttribute('onclick', "openEnquiryFromSlider()");
       }
 
       container.innerHTML = filtered.map(lead => {
@@ -6849,7 +6921,7 @@
             : 'bg-slate-100 text-slate-600 border-slate-200';
 
         return `
-          <div onclick="openEnquiryDetails('${lead.name}', '${lead.id}')" class="bg-slate-50 hover:bg-white p-2.5 rounded-xl border border-slate-200/80 shadow-2xs flex items-center justify-between active:scale-[0.99] transition-all cursor-pointer">
+          <div onclick="closeAssignedLeadsSlider(); openEnquiryDetails('${lead.name}', '${lead.id}')" class="bg-slate-50/80 hover:bg-white p-2.5 rounded-xl border border-slate-200/80 shadow-2xs flex items-center justify-between active:scale-[0.99] transition-all cursor-pointer">
             <div class="flex items-center gap-2.5 min-w-0">
               <div class="w-9 h-9 rounded-xl ${avatarColor} font-black text-xs flex items-center justify-center shrink-0 border">
                 ${lead.initials}
