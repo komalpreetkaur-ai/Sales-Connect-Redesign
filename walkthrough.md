@@ -19,20 +19,21 @@ Implemented a native **Bottom Sheet Slider** that slides up from the bottom of t
 
 1. **Native Bottom Sheet Slider (`#assignedLeadsSliderModal`)**:
    - Tapping **HOT LEADS (8)**, **WARM LEADS (11)**, **COLD LEADS (5)**, or the header **TOTAL LEADS ASSIGNED TO YOU (24)** opens a modal that slides up smoothly from the bottom with a dimmed backdrop.
-   - **Pull Handle**: Clean iOS-style grab bar at the top of the sheet for intuitive dragging/closing.
+   - **Streamlined Card-Focused Content**: Removed the redundant segmented control tab bar from inside the slider, allowing each card tap to directly showcase its dedicated leads list with maximum vertical readability.
+   - **Optimized Padding & Safe Areas**:
+     - Generous horizontal padding (`px-5` / 20px) ensuring badges, avatars, and action buttons don't clip at device edges.
+     - Centered, unclipped pull handle bar (`mb-0.5`).
+     - Proper bottom padding (`pb-6`) and safe spacing for the footer count note and `Open Catalog →` CTA.
    - **Header**:
      - Dynamic title & priority tag (e.g. `🟠 8 Hot Leads (High Priority)`, `🔵 11 Warm Leads (Medium Priority)`, `⚫ 5 Cold Leads (Low Priority)`).
      - Direct CTA link: `View in Leads →` which navigates to the Enquiries screen with the selected temperature pre-filtered.
      - Close `✕` button to dismiss the slider.
-   - **Segmented Control Slider Tabs Inside the Bottom Sheet**:
-     - Includes segmented tabs at the top of the sheet: `🔥 Hot (8)` | `⚡ Warm (11)` | `❄️ Cold (5)` | `All (24)`.
-     - Users can switch between all three small cards directly within the slider without needing to close and re-open.
    - **Scrollable Lead Cards Feed**:
-     - Customer avatar circle with initials and temperature color coding.
+     - Generously padded lead cards (`p-3 rounded-xl`) with customer avatar circle, initials, and temperature color coding.
      - Customer name, model interest, and stage tag (e.g. `Mohit Kumar`, `Hot Lead`, `Suzuki Brezza ZXi • New Lead`).
      - Instant action buttons: Brand blue **Call** (`fa-phone`) and **WhatsApp** (`fa-whatsapp`) buttons.
      - Tapping any lead card closes the slider and navigates directly to the lead's detailed view.
-   - **Bottom Summary Bar**: Displays live count note (e.g. `Showing 8 high priority hot leads`) and an `Open Full Catalog →` CTA.
+   - **Bottom Summary Bar**: Displays live count note (e.g. `Showing 8 high priority hot leads`) and an `Open Catalog →` CTA.
 
 2. **Clean & Compact Home Dashboard**:
    - The inline accordion was removed from inside `#homeAssignedMainCard`, keeping the Home screen clean, uncluttered, and fixed height.

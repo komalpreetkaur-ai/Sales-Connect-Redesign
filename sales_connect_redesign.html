@@ -4262,19 +4262,19 @@
 
   <!-- ASSIGNED LEADS BOTTOM SHEET SLIDER (OPENS ON CLICKING ANY OF THE 3 CARDS) -->
   <div id="assignedLeadsSliderModal" onclick="if(event.target === this) closeAssignedLeadsSlider()" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end justify-center z-50 transition-opacity">
-    <div id="assignedLeadsSliderSheet" class="bg-white rounded-t-3xl w-full max-w-[402px] p-4.5 space-y-3.5 shadow-2xl border-t border-slate-100 animate-slide-up flex flex-col max-h-[82vh]">
+    <div id="assignedLeadsSliderSheet" class="bg-white rounded-t-3xl w-full max-w-[402px] px-5 pt-3.5 pb-6 shadow-2xl border-t border-slate-100 animate-slide-up flex flex-col max-h-[82vh] space-y-3.5">
       
       <!-- Drag & Pull Handle -->
-      <div class="w-12 h-1.5 bg-slate-200 rounded-full mx-auto -mt-1 cursor-pointer shrink-0" onclick="closeAssignedLeadsSlider()"></div>
+      <div class="w-12 h-1.5 bg-slate-300 rounded-full mx-auto mb-0.5 cursor-pointer shrink-0" onclick="closeAssignedLeadsSlider()"></div>
 
       <!-- Slider Header -->
-      <div class="flex items-center justify-between shrink-0 pb-1.5 border-b border-slate-100">
-        <div class="flex items-center gap-2">
-          <span id="sliderAssignedIndicator" class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-          <h3 id="sliderAssignedTitle" class="text-sm font-black text-slate-900 tracking-tight">8 Hot Leads</h3>
-          <span id="sliderAssignedTag" class="text-[9px] font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">High Priority</span>
+      <div class="flex items-center justify-between shrink-0 pb-2.5 border-b border-slate-100">
+        <div class="flex items-center gap-2 min-w-0">
+          <span id="sliderAssignedIndicator" class="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0"></span>
+          <h3 id="sliderAssignedTitle" class="text-sm font-black text-slate-900 tracking-tight truncate">8 Hot Leads</h3>
+          <span id="sliderAssignedTag" class="text-[9px] font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200 shrink-0">High Priority</span>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 shrink-0">
           <button type="button" id="sliderAssignedDeepLinkBtn" onclick="openEnquiryFromSlider()" class="text-xs font-extrabold text-[#007AFF] hover:underline flex items-center gap-1 active:opacity-75 cursor-pointer">
             <span>View in Leads</span>
             <i class="fa-solid fa-arrow-right text-[10px]"></i>
@@ -4285,36 +4285,17 @@
         </div>
       </div>
 
-      <!-- 3 Small Cards Filter Tabs Segment inside Slider -->
-      <div class="flex items-center bg-slate-100/90 p-1 rounded-2xl gap-1 shrink-0 text-xs font-bold">
-        <button type="button" id="sliderTab-hot" onclick="switchSliderLeadsTab('hot')" class="slider-temp-tab flex-1 py-1.5 rounded-xl font-black text-center cursor-pointer transition-all flex items-center justify-center gap-1 bg-amber-500 text-white shadow-2xs">
-          <span>Hot</span>
-          <span id="sliderCount-hot" class="text-[10px] opacity-90">(8)</span>
-        </button>
-        <button type="button" id="sliderTab-warm" onclick="switchSliderLeadsTab('warm')" class="slider-temp-tab flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1">
-          <span>Warm</span>
-          <span id="sliderCount-warm" class="text-[10px] opacity-80">(11)</span>
-        </button>
-        <button type="button" id="sliderTab-cold" onclick="switchSliderLeadsTab('cold')" class="slider-temp-tab flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1">
-          <span>Cold</span>
-          <span id="sliderCount-cold" class="text-[10px] opacity-80">(5)</span>
-        </button>
-        <button type="button" id="sliderTab-all" onclick="switchSliderLeadsTab('all')" class="slider-temp-tab px-2.5 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all">
-          <span>All (24)</span>
-        </button>
-      </div>
-
       <!-- Scrollable Lead Cards Feed -->
-      <div id="sliderAssignedListContainer" class="flex-1 overflow-y-auto space-y-2 pr-1 custom-scroll max-h-[50vh]">
+      <div id="sliderAssignedListContainer" class="flex-1 overflow-y-auto space-y-2.5 pr-0.5 custom-scroll max-h-[56vh] py-0.5">
         <!-- Dynamically populated by renderSliderAssignedLeadsList() -->
       </div>
 
       <!-- Bottom Quick Summary / CTA -->
-      <div class="pt-1.5 border-t border-slate-100 flex items-center justify-between shrink-0">
-        <span id="sliderAssignedCountNote" class="text-[11px] font-semibold text-slate-500">Showing 8 priority leads</span>
-        <button onclick="openEnquiryFromSlider()" class="text-xs font-black text-[#007AFF] flex items-center gap-1 cursor-pointer active:opacity-75">
-          <span>Open Full Catalog</span>
-          <i class="fa-solid fa-chevron-right text-[10px]"></i>
+      <div class="pt-2.5 pb-1 border-t border-slate-100 flex items-center justify-between shrink-0">
+        <span id="sliderAssignedCountNote" class="text-[11px] font-semibold text-slate-500 truncate mr-2">Showing 8 high priority hot leads</span>
+        <button onclick="openEnquiryFromSlider()" class="text-xs font-black text-[#007AFF] flex items-center gap-1.5 cursor-pointer shrink-0 active:opacity-75">
+          <span>Open Catalog</span>
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
         </button>
       </div>
     </div>
@@ -6851,24 +6832,6 @@
         : allAssignedLeadsData.filter(l => l.temp === tempKey);
 
       // Update Slider Tabs
-      ['hot', 'warm', 'cold', 'all'].forEach(k => {
-        const tabBtn = document.getElementById('sliderTab-' + k);
-        if (!tabBtn) return;
-        if (k === tempKey) {
-          if (k === 'hot') {
-            tabBtn.className = 'slider-temp-tab flex-1 py-1.5 rounded-xl font-black text-center cursor-pointer transition-all flex items-center justify-center gap-1 bg-amber-500 text-white shadow-2xs';
-          } else if (k === 'warm') {
-            tabBtn.className = 'slider-temp-tab flex-1 py-1.5 rounded-xl font-black text-center cursor-pointer transition-all flex items-center justify-center gap-1 bg-[#007AFF] text-white shadow-2xs';
-          } else if (k === 'cold') {
-            tabBtn.className = 'slider-temp-tab flex-1 py-1.5 rounded-xl font-black text-center cursor-pointer transition-all flex items-center justify-center gap-1 bg-slate-700 text-white shadow-2xs';
-          } else {
-            tabBtn.className = 'slider-temp-tab px-2.5 py-1.5 rounded-xl bg-white text-[#007AFF] font-black text-center cursor-pointer transition-all shadow-2xs';
-          }
-        } else {
-          tabBtn.className = 'slider-temp-tab ' + (k === 'all' ? 'px-2.5' : 'flex-1') + ' py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1';
-        }
-      });
-
       if (tempKey === 'hot') {
         if (title) title.innerText = `${filtered.length} Hot Leads`;
         if (tag) {
@@ -6921,7 +6884,7 @@
             : 'bg-slate-100 text-slate-600 border-slate-200';
 
         return `
-          <div onclick="closeAssignedLeadsSlider(); openEnquiryDetails('${lead.name}', '${lead.id}')" class="bg-slate-50/80 hover:bg-white p-2.5 rounded-xl border border-slate-200/80 shadow-2xs flex items-center justify-between active:scale-[0.99] transition-all cursor-pointer">
+          <div onclick="closeAssignedLeadsSlider(); openEnquiryDetails('${lead.name}', '${lead.id}')" class="bg-slate-50/80 hover:bg-white p-3 rounded-xl border border-slate-200/80 shadow-2xs flex items-center justify-between active:scale-[0.99] transition-all cursor-pointer">
             <div class="flex items-center gap-2.5 min-w-0">
               <div class="w-9 h-9 rounded-xl ${avatarColor} font-black text-xs flex items-center justify-center shrink-0 border">
                 ${lead.initials}
