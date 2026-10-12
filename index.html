@@ -837,10 +837,11 @@
         <div class="bg-white rounded-2xl border border-[#E0E8F5] p-3.5 shadow-xs space-y-2.5">
           <div class="flex items-center justify-between">
             <span id="detail-enq-id" class="text-xs font-bold text-slate-500">ENQ987875364 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1.5">
               <button class="w-7 h-7 rounded-full bg-blue-50 text-[#007AFF] flex items-center justify-center text-xs active:scale-90 border border-blue-100"><i class="fa-solid fa-phone"></i></button>
               <button class="w-7 h-7 rounded-full bg-blue-50 text-[#007AFF] flex items-center justify-center text-xs active:scale-90 border border-blue-100"><i class="fa-regular fa-envelope"></i></button>
-              <button onclick="openCreateBookingForm()" class="text-xs font-bold text-[#007AFF] ml-1">+ Booking</button>
+              <button onclick="openLeadActivitiesScreen()" class="px-2 py-1 bg-blue-50 text-[#007AFF] rounded-lg text-xs font-bold border border-blue-200 active:scale-95 flex items-center gap-1 cursor-pointer"><i class="fa-solid fa-plus text-[10px]"></i> Activity</button>
+              <button onclick="openCreateBookingForm()" class="text-xs font-bold text-[#007AFF] ml-0.5">+ Booking</button>
             </div>
           </div>
           <h2 id="detail-customer-name" class="text-lg font-black text-[#1E293B]">Rupesh Ranjan Bhatt</h2>
@@ -930,7 +931,7 @@
           <button onclick="setDetailTab('general', this)" class="detail-tab-btn flex-1 py-2 text-center text-[#007AFF] border-b-2 border-[#007AFF]">General</button>
           <button onclick="setDetailTab('product', this)" class="detail-tab-btn flex-1 py-2 text-center text-slate-500">Product</button>
           <button onclick="setDetailTab('history', this)" class="detail-tab-btn flex-1 py-2 text-center text-slate-500">History</button>
-          <button id="detailTabCtaBtn" onclick="setDetailTab('activities', this)" class="detail-tab-btn flex-1 py-2 text-center text-slate-500 flex items-center justify-center gap-1 cursor-pointer"><i class="fa-solid fa-plus text-[10px]"></i> Activities</button>
+          <button id="detailTabCtaBtn" onclick="openLeadActivitiesScreen()" class="py-2 px-3 text-[#007AFF] flex items-center gap-1 font-bold shrink-0 cursor-pointer active:opacity-75"><i class="fa-solid fa-plus text-[10px]"></i> Activities</button>
         </div>
 
         <!-- TAB CONTENT 1: GENERAL -->
@@ -1160,127 +1161,349 @@
                   </p>
                 </div>
               </div>
-          </div>
-        </div>
-
-        <!-- TAB CONTENT 4: ACTIVITIES -->
-        <div id="detail-tab-activities" class="detail-tab-content hidden space-y-3">
-          <!-- Section Header & Add Activity CTA -->
-          <div class="bg-white rounded-2xl border border-[#E0E8F5] p-3.5 shadow-xs flex items-center justify-between">
-            <div>
-              <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">UPCOMING & RECENT ACTIVITIES</h3>
-              <p class="text-[10px] font-semibold text-slate-400">3 Activities recorded for this enquiry</p>
-            </div>
-            <button onclick="openFollowupDateModal()" class="px-3 py-1.5 bg-[#007AFF] active:bg-blue-600 text-white rounded-xl text-xs font-bold shadow-xs flex items-center gap-1 shrink-0 active:scale-95 transition-transform cursor-pointer">
-              <i class="fa-solid fa-plus text-xs"></i>
-              <span>Log Activity</span>
-            </button>
-          </div>
-
-          <!-- Activity Cards List -->
-          <div class="space-y-3">
-            <!-- Activity Card 1: Follow-up Call -->
-            <div class="bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5">
-              <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 rounded-full bg-[#007AFF] animate-pulse"></span>
-                  <span class="text-xs font-extrabold text-[#1E293B]">Follow-up Call</span>
-                  <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#007AFF] border border-blue-100">Open • Due Today</span>
-                </div>
-                <span class="text-[10px] font-medium text-slate-400">24/08/2026, 07:51 PM</span>
-              </div>
-
-              <div class="grid grid-cols-2 gap-y-2 text-xs pt-0.5">
-                <div>
-                  <span class="text-[9px] text-slate-400 font-bold block uppercase">FOLLOWUP DATE</span>
-                  <span class="font-extrabold text-slate-800">24th Aug 2026, 08:14 PM</span>
-                </div>
-                <div>
-                  <span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span>
-                  <span class="font-extrabold text-slate-800">Swati Jain</span>
-                </div>
-                <div>
-                  <span class="text-[9px] text-slate-400 font-bold block uppercase">STAGE</span>
-                  <span class="font-extrabold text-[#007AFF]">Negotiation</span>
-                </div>
-                <div>
-                  <span class="text-[9px] text-slate-400 font-bold block uppercase">STATUS</span>
-                  <span class="font-extrabold text-[#007AFF]">Open</span>
-                </div>
-              </div>
-
-              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1">
-                <span class="text-[9px] text-slate-400 font-bold block uppercase">REMARKS</span>
-                <p class="text-xs font-semibold text-slate-800 leading-relaxed">
-                  Customer interested in Swift Dzire AX7 L. Requested home test drive & zero-debt insurance quotation.
-                </p>
-              </div>
-
-              <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-                <span class="text-[10px] font-semibold text-slate-500">Action Required: <strong class="text-slate-800">Call Back</strong></span>
-                <div class="flex items-center gap-1.5">
-                  <button onclick="event.stopPropagation(); window.location.href='tel:+919999944444';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90 cursor-pointer">
-                    <i class="fa-solid fa-phone text-xs"></i>
-                  </button>
-                  <button onclick="event.stopPropagation(); window.open('https://wa.me/919999944444','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90 cursor-pointer">
-                    <i class="fa-brands fa-whatsapp text-sm"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Activity Card 2: Home Test Drive -->
-            <div class="bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5">
-              <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-                <div class="flex items-center gap-2">
-                  <i class="fa-solid fa-car-side text-[#007AFF] text-xs"></i>
-                  <span class="text-xs font-extrabold text-[#1E293B]">Home Test Drive</span>
-                  <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#007AFF] border border-blue-100">Scheduled</span>
-                </div>
-                <span class="text-[10px] font-medium text-slate-400">25/08/2026, 11:30 AM</span>
-              </div>
-
-              <div class="grid grid-cols-2 gap-y-2 text-xs pt-0.5">
-                <div>
-                  <span class="text-[9px] text-slate-400 font-bold block uppercase">LOCATION</span>
-                  <span class="font-extrabold text-slate-800">Customer Residence</span>
-                </div>
-                <div>
-                  <span class="text-[9px] text-slate-400 font-bold block uppercase">DRIVER LICENSE</span>
-                  <span class="font-extrabold text-[#007AFF]">Verified ✓</span>
-                </div>
-              </div>
-
-              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1">
-                <span class="text-[9px] text-slate-400 font-bold block uppercase">REMARKS</span>
-                <p class="text-xs font-semibold text-slate-800 leading-relaxed">
-                  Home test drive scheduled for Swift Dzire VXi AMT. Driver assigned: Rajesh Kumar.
-                </p>
-              </div>
-            </div>
-
-            <!-- Activity Card 3: E-Brochure Shared -->
-            <div class="bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5">
-              <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-                <div class="flex items-center gap-2">
-                  <i class="fa-regular fa-file-pdf text-[#007AFF] text-xs"></i>
-                  <span class="text-xs font-extrabold text-[#1E293B]">E-Brochure Shared</span>
-                  <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-[#007AFF] border border-blue-100">Completed</span>
-                </div>
-                <span class="text-[10px] font-medium text-slate-400">22/08/2026, 04:15 PM</span>
-              </div>
-
-              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1">
-                <span class="text-[9px] text-slate-400 font-bold block uppercase">REMARKS</span>
-                <p class="text-xs font-semibold text-slate-800 leading-relaxed">
-                  Shared official product brochure and accessory price list via WhatsApp.
-                </p>
-              </div>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- ========================================== -->
+      <!-- SCREEN: LEAD ACTIVITIES FLOW (4 Tabs)       -->
+      <!-- ========================================== -->
+      <div id="screen-lead-activities" class="app-screen space-y-3.5">
+        <!-- Top Navigation Header -->
+        <div class="flex items-center justify-between border-b border-[#E0E8F5] pb-3 pt-1">
+          <div class="flex items-center gap-3">
+            <button onclick="switchScreen('enquiry-details')" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-700 border border-slate-200 active:bg-slate-100 shadow-xs cursor-pointer">
+              <i class="fa-solid fa-arrow-left text-sm"></i>
+            </button>
+            <div>
+              <h1 class="text-xl font-black text-[#1E293B] leading-tight">Activities</h1>
+              <p id="leadActSubhead" class="text-[10px] font-semibold text-slate-400">Lead: Gurjant • ENQ00006849</p>
+            </div>
+          </div>
+          <span id="leadActTotalBadge" class="text-xs font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">1 Activity</span>
+        </div>
+
+        <!-- Horizontal Tabs Bar (Follow Up, Comment, Brochure, New Appointment) -->
+        <div class="flex items-center border-b border-slate-200 overflow-x-auto custom-scroll -mx-4 px-4 gap-6 text-xs font-bold shrink-0">
+          <button id="tabBtn-followup" onclick="switchLeadActTab('followup')" class="lead-act-tab-btn py-2 text-[#007AFF] border-b-2 border-[#007AFF] whitespace-nowrap cursor-pointer transition-all">Follow Up</button>
+          <button id="tabBtn-comment" onclick="switchLeadActTab('comment')" class="lead-act-tab-btn py-2 text-slate-500 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">Comment</button>
+          <button id="tabBtn-brochure" onclick="switchLeadActTab('brochure')" class="lead-act-tab-btn py-2 text-slate-500 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">Brochure</button>
+          <button id="tabBtn-appointment" onclick="switchLeadActTab('appointment')" class="lead-act-tab-btn py-2 text-slate-500 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">New Appointment</button>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 1: FOLLOW UP                               -->
+        <!-- ============================================== -->
+        <div id="leadActTabContent-followup" class="lead-act-content space-y-3">
+          <div class="flex items-center justify-between pt-1">
+            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider">FOLLOW UPS</h3>
+            <button onclick="toggleLeadActForm('followup')" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 active:opacity-75 cursor-pointer">
+              <i class="fa-solid fa-plus text-[10px]"></i>
+              <span>Add Follow Up</span>
+            </button>
+          </div>
+
+          <!-- Inline Form: Add Follow Up (matching app design) -->
+          <div id="leadActForm-followup" class="hidden bg-white rounded-2xl border border-slate-200/90 p-4 shadow-sm space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+              <h3 class="text-xs font-black text-[#1E293B] uppercase tracking-wider">ADD FOLLOW UP (<span id="formFollowUpLeadId">ENQ00006849</span>)</h3>
+              <button onclick="toggleLeadActForm('followup')" class="w-6 h-6 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 cursor-pointer">
+                <i class="fa-solid fa-xmark text-sm"></i>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div>
+                <label class="font-bold text-slate-700 block mb-1">Followup Date*</label>
+                <input id="inputFollowupDate" type="date" value="2026-10-24" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
+              </div>
+              <div>
+                <label class="font-bold text-slate-700 block mb-1">Followup Time*</label>
+                <input id="inputFollowupTime" type="time" value="14:44" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div>
+                <label class="font-bold text-slate-700 block mb-1">Stage*</label>
+                <select id="inputFollowupStage" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
+                  <option selected>New</option>
+                  <option>Contacted</option>
+                  <option>Qualified</option>
+                  <option>Test Drive</option>
+                  <option>Negotiation</option>
+                  <option>Pre-booked</option>
+                </select>
+              </div>
+              <div>
+                <label class="font-bold text-slate-700 block mb-1">Status*</label>
+                <select id="inputFollowupStatus" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
+                  <option selected>Open</option>
+                  <option>In Progress</option>
+                  <option>Completed</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="space-y-1 text-xs">
+              <label class="font-bold text-slate-700 block">Remarks*</label>
+              <textarea id="inputFollowupRemarks" rows="2" placeholder="Testing remarks" oninput="updateCharCounter(this, 'followupCharCount')" maxlength="100" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] resize-none"></textarea>
+              <div class="text-right text-[10px] text-slate-400 font-semibold" id="followupCharCount">0/100</div>
+            </div>
+
+            <div class="flex items-center justify-end gap-2 pt-1">
+              <button onclick="toggleLeadActForm('followup')" class="px-4 py-2 bg-white rounded-xl border border-slate-200 text-xs font-bold text-slate-700 active:bg-slate-100 cursor-pointer">Cancel</button>
+              <button onclick="submitLeadFollowUp()" class="px-5 py-2 bg-[#007AFF] active:bg-blue-600 text-white rounded-xl text-xs font-bold shadow-xs cursor-pointer">Save</button>
+            </div>
+          </div>
+
+          <!-- Follow Up Cards List -->
+          <div id="leadFollowUpList" class="space-y-3">
+            <!-- Sample Followup Card 1 matching media_1791788513224.jpg -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-9 h-9 rounded-full bg-blue-50 text-[#007AFF] border border-blue-100 flex items-center justify-center font-bold text-sm">
+                    <i class="fa-regular fa-user"></i>
+                  </div>
+                  <span id="followUpCardClientName" class="text-sm font-black text-[#1E293B]">Gurjant</span>
+                </div>
+                <div class="flex items-center gap-1.5 text-[11px] font-semibold text-slate-400">
+                  <i class="fa-regular fa-calendar text-xs"></i>
+                  <span>12/10/2026, 11:17 AM</span>
+                </div>
+              </div>
+
+              <!-- 2x2 Grid with divider borders -->
+              <div class="grid grid-cols-2 gap-2 pt-1 border-t border-slate-100 text-xs">
+                <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/70 border border-slate-100">
+                  <div class="w-7 h-7 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100">
+                    <i class="fa-solid fa-seedling text-xs"></i>
+                  </div>
+                  <div>
+                    <span class="text-[9px] font-bold text-slate-400 uppercase block">Stage</span>
+                    <span class="font-extrabold text-slate-800">New</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/70 border border-slate-100">
+                  <div class="w-7 h-7 rounded-full bg-blue-50 text-[#007AFF] flex items-center justify-center shrink-0 border border-blue-100">
+                    <i class="fa-regular fa-circle-check text-xs"></i>
+                  </div>
+                  <div>
+                    <span class="text-[9px] font-bold text-slate-400 uppercase block">Status</span>
+                    <span class="font-extrabold text-slate-800">Open</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/70 border border-slate-100">
+                  <div class="w-7 h-7 rounded-full bg-blue-50 text-[#007AFF] flex items-center justify-center shrink-0 border border-blue-100">
+                    <i class="fa-regular fa-calendar-days text-xs"></i>
+                  </div>
+                  <div>
+                    <span class="text-[9px] font-bold text-slate-400 uppercase block">Followup Date</span>
+                    <span class="font-extrabold text-slate-800">24th Oct 2026</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/70 border border-slate-100">
+                  <div class="w-7 h-7 rounded-full bg-blue-50 text-[#007AFF] flex items-center justify-center shrink-0 border border-blue-100">
+                    <i class="fa-regular fa-clock text-xs"></i>
+                  </div>
+                  <div>
+                    <span class="text-[9px] font-bold text-slate-400 uppercase block">Followup Time</span>
+                    <span class="font-extrabold text-slate-800">02:44 PM</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Remarks box -->
+              <div class="space-y-1.5 pt-1 border-t border-slate-100">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center text-xs">
+                    <i class="fa-regular fa-comment-dots"></i>
+                  </div>
+                  <span class="text-xs font-bold text-slate-700">Remarks</span>
+                </div>
+                <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 text-xs font-semibold text-slate-700">
+                  Testing remarks
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 2: COMMENT                                 -->
+        <!-- ============================================== -->
+        <div id="leadActTabContent-comment" class="lead-act-content hidden space-y-3">
+          <div class="flex items-center justify-between pt-1">
+            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider">COMMENTS</h3>
+            <button onclick="toggleLeadActForm('comment')" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 active:opacity-75 cursor-pointer">
+              <i class="fa-solid fa-plus text-[10px]"></i>
+              <span>Add Comment</span>
+            </button>
+          </div>
+
+          <!-- Inline Form: Add Comment matching media_1791788534360.jpg -->
+          <div id="leadActForm-comment" class="hidden bg-white rounded-2xl border border-slate-200/90 p-4 shadow-sm space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+              <h3 class="text-xs font-black text-[#1E293B] uppercase tracking-wider">ADD COMMENT (<span id="formCommentLeadId">ENQ00006849</span>)</h3>
+              <button onclick="toggleLeadActForm('comment')" class="w-6 h-6 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 cursor-pointer">
+                <i class="fa-solid fa-xmark text-sm"></i>
+              </button>
+            </div>
+
+            <div class="space-y-1 text-xs">
+              <label class="font-bold text-slate-700 block">Comment*</label>
+              <textarea id="inputCommentText" rows="3" placeholder="Comment" oninput="updateCharCounter(this, 'commentCharCount')" maxlength="100" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] resize-none"></textarea>
+              <div class="text-right text-[10px] text-slate-400 font-semibold" id="commentCharCount">0/100</div>
+            </div>
+
+            <div class="flex items-center justify-end gap-2 pt-1">
+              <button onclick="toggleLeadActForm('comment')" class="px-4 py-2 bg-white rounded-xl border border-slate-200 text-xs font-bold text-slate-700 active:bg-slate-100 cursor-pointer">Cancel</button>
+              <button onclick="submitLeadComment()" class="px-5 py-2 bg-[#007AFF] active:bg-blue-600 text-white rounded-xl text-xs font-bold shadow-xs cursor-pointer">Save</button>
+            </div>
+          </div>
+
+          <!-- Comments List Container & Empty State matching media_1791788523536.jpg -->
+          <div id="leadCommentsList" class="space-y-2.5">
+            <div id="leadCommentsEmpty" class="py-16 text-center text-xs font-semibold text-slate-400">
+              No comments found.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 3: BROCHURE                                -->
+        <!-- ============================================== -->
+        <div id="leadActTabContent-brochure" class="lead-act-content hidden space-y-3">
+          <div class="flex items-center justify-between pt-1">
+            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider">BROCHURES</h3>
+            <button onclick="toggleLeadActForm('brochure')" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 active:opacity-75 cursor-pointer">
+              <i class="fa-solid fa-plus text-[10px]"></i>
+              <span>Add Brochure</span>
+            </button>
+          </div>
+
+          <!-- Inline Form: Share Brochure matching media_1791788544623.jpg -->
+          <div id="leadActForm-brochure" class="hidden bg-white rounded-2xl border border-slate-200/90 p-4 shadow-sm space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+              <h3 class="text-xs font-black text-[#1E293B] uppercase tracking-wider">SHARE BROCHURE</h3>
+              <button onclick="toggleLeadActForm('brochure')" class="w-6 h-6 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 cursor-pointer">
+                <i class="fa-solid fa-xmark text-sm"></i>
+              </button>
+            </div>
+
+            <div class="space-y-2.5 text-xs">
+              <div>
+                <label class="font-bold text-slate-700 block mb-1">Product Id*</label>
+                <div class="relative">
+                  <select id="inputBrochureProduct" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF] appearance-none pr-8">
+                    <option value="">Select Product Id</option>
+                    <option value="Mahindra Thar Roxx" selected>Mahindra Thar Roxx</option>
+                    <option value="Mahindra XUV700">Mahindra XUV700</option>
+                    <option value="Mahindra Scorpio-N">Mahindra Scorpio-N</option>
+                    <option value="Swift Dzire">Swift Dzire</option>
+                    <option value="Baleno">Baleno</option>
+                  </select>
+                  <i class="fa-solid fa-chevron-down absolute right-3 top-3 text-[10px] text-slate-400 pointer-events-none"></i>
+                </div>
+              </div>
+
+              <div>
+                <label class="font-bold text-slate-700 block mb-1">phone</label>
+                <input id="inputBrochurePhone" type="tel" placeholder="phone" value="+91 98765 89706" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
+              </div>
+
+              <div>
+                <label class="font-bold text-slate-700 block mb-1">email*</label>
+                <input id="inputBrochureEmail" type="email" placeholder="email*" value="gurjant.singh@gmail.com" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
+              </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-2 pt-1">
+              <button onclick="toggleLeadActForm('brochure')" class="px-4 py-2 bg-white rounded-xl border border-slate-200 text-xs font-bold text-slate-700 active:bg-slate-100 cursor-pointer">Cancel</button>
+              <button onclick="submitLeadBrochure()" class="px-5 py-2 bg-[#007AFF] active:bg-blue-600 text-white rounded-xl text-xs font-bold shadow-xs cursor-pointer">Share</button>
+            </div>
+          </div>
+
+          <!-- Brochure List Container & Empty State matching media_1791788544623.jpg -->
+          <div id="leadBrochureList" class="space-y-2.5">
+            <div id="leadBrochureEmpty" class="py-16 text-center text-xs font-semibold text-slate-400">
+              No brochure found.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 4: NEW APPOINTMENT                         -->
+        <!-- ============================================== -->
+        <div id="leadActTabContent-appointment" class="lead-act-content hidden space-y-3">
+          <div class="flex items-center justify-between pt-1">
+            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider">APPOINTMENTS</h3>
+            <button onclick="toggleLeadActForm('appointment')" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 active:opacity-75 cursor-pointer">
+              <i class="fa-solid fa-plus text-[10px]"></i>
+              <span>Add Appointment</span>
+            </button>
+          </div>
+
+          <!-- Inline Form: New Appointment -->
+          <div id="leadActForm-appointment" class="hidden bg-white rounded-2xl border border-slate-200/90 p-4 shadow-sm space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+              <h3 class="text-xs font-black text-[#1E293B] uppercase tracking-wider">NEW APPOINTMENT</h3>
+              <button onclick="toggleLeadActForm('appointment')" class="w-6 h-6 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 cursor-pointer">
+                <i class="fa-solid fa-xmark text-sm"></i>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div>
+                <label class="font-bold text-slate-700 block mb-1">Appointment Type*</label>
+                <select id="inputApptType" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
+                  <option selected>Showroom Visit</option>
+                  <option>Home Test Drive</option>
+                  <option>Price Negotiation</option>
+                  <option>PDI Sign-off</option>
+                </select>
+              </div>
+              <div>
+                <label class="font-bold text-slate-700 block mb-1">Bay / Location*</label>
+                <input id="inputApptBay" type="text" value="Main Showroom • Bay 1" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div>
+                <label class="font-bold text-slate-700 block mb-1">Date*</label>
+                <input id="inputApptDate" type="date" value="2026-10-18" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
+              </div>
+              <div>
+                <label class="font-bold text-slate-700 block mb-1">Time Slot*</label>
+                <input id="inputApptTime" type="time" value="11:30" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
+              </div>
+            </div>
+
+            <div class="space-y-1 text-xs">
+              <label class="font-bold text-slate-700 block">Notes</label>
+              <textarea id="inputApptNotes" rows="2" placeholder="Appointment notes..." class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] resize-none"></textarea>
+            </div>
+
+            <div class="flex items-center justify-end gap-2 pt-1">
+              <button onclick="toggleLeadActForm('appointment')" class="px-4 py-2 bg-white rounded-xl border border-slate-200 text-xs font-bold text-slate-700 active:bg-slate-100 cursor-pointer">Cancel</button>
+              <button onclick="submitLeadAppointment()" class="px-5 py-2 bg-[#007AFF] active:bg-blue-600 text-white rounded-xl text-xs font-bold shadow-xs cursor-pointer">Save</button>
+            </div>
+          </div>
+
+          <!-- Appointments List Container & Empty State -->
+          <div id="leadApptList" class="space-y-2.5">
+            <div id="leadApptEmpty" class="py-16 text-center text-xs font-semibold text-slate-400">
+              No appointments found.
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- ========================================== -->
       <!-- SCREEN 4: ACTIVITIES SCREEN (5 Sub-Tabs)   -->
@@ -3915,7 +4138,279 @@
     function openEnquiryDetails(name, id) {
       document.getElementById('detail-customer-name').innerText = name;
       document.getElementById('detail-enq-id').innerText = id;
+      activeLeadContext.name = name;
+      activeLeadContext.id = id;
       switchScreen('enquiry-details');
+    }
+
+    // Current active lead context for activities flow
+    let activeLeadContext = {
+      name: "Gurjant",
+      id: "ENQ00006849",
+      phone: "+91 98765 89706",
+      email: "gurjant.singh@gmail.com"
+    };
+
+    function openLeadActivitiesScreen(name, id) {
+      const currentName = name || document.getElementById('detail-customer-name')?.innerText || 'Gurjant';
+      const currentId = id || document.getElementById('detail-enq-id')?.innerText || 'ENQ00006849';
+      
+      activeLeadContext.name = currentName;
+      activeLeadContext.id = currentId;
+
+      const subhead = document.getElementById('leadActSubhead');
+      if (subhead) subhead.innerText = `Lead: ${currentName} • ${currentId}`;
+
+      const fId = document.getElementById('formFollowUpLeadId');
+      if (fId) fId.innerText = currentId;
+
+      const cId = document.getElementById('formCommentLeadId');
+      if (cId) cId.innerText = currentId;
+
+      const cardName = document.getElementById('followUpCardClientName');
+      if (cardName) cardName.innerText = currentName;
+
+      switchLeadActTab('followup');
+      switchScreen('lead-activities');
+    }
+
+    function switchLeadActTab(tabKey) {
+      const allTabs = ['followup', 'comment', 'brochure', 'appointment'];
+      allTabs.forEach(k => {
+        const btn = document.getElementById('tabBtn-' + k);
+        const content = document.getElementById('leadActTabContent-' + k);
+        if (btn) {
+          if (k === tabKey) {
+            btn.className = 'lead-act-tab-btn py-2 text-[#007AFF] border-b-2 border-[#007AFF] whitespace-nowrap cursor-pointer transition-all font-bold';
+          } else {
+            btn.className = 'lead-act-tab-btn py-2 text-slate-500 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all font-bold';
+          }
+        }
+        if (content) {
+          if (k === tabKey) content.classList.remove('hidden');
+          else content.classList.add('hidden');
+        }
+      });
+    }
+
+    function toggleLeadActForm(formKey) {
+      const formEl = document.getElementById('leadActForm-' + formKey);
+      if (formEl) {
+        formEl.classList.toggle('hidden');
+        if (!formEl.classList.contains('hidden')) {
+          formEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+    }
+
+    function updateCharCounter(el, counterId) {
+      const countEl = document.getElementById(counterId);
+      if (countEl) countEl.innerText = `${el.value.length}/100`;
+    }
+
+    function submitLeadFollowUp() {
+      const dateVal = document.getElementById('inputFollowupDate')?.value || '2026-10-24';
+      const timeVal = document.getElementById('inputFollowupTime')?.value || '14:44';
+      const stageVal = document.getElementById('inputFollowupStage')?.value || 'New';
+      const statusVal = document.getElementById('inputFollowupStatus')?.value || 'Open';
+      const remarksVal = document.getElementById('inputFollowupRemarks')?.value || 'Testing remarks';
+
+      const dObj = new Date(dateVal);
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const formattedDate = !isNaN(dObj.getTime()) ? `${dObj.getDate()}th ${months[dObj.getMonth()]} ${dObj.getFullYear()}` : dateVal;
+
+      const newCard = document.createElement('div');
+      newCard.className = 'bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-3';
+      newCard.innerHTML = `
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-full bg-blue-50 text-[#007AFF] border border-blue-100 flex items-center justify-center font-bold text-sm">
+              <i class="fa-regular fa-user"></i>
+            </div>
+            <span class="text-sm font-black text-[#1E293B]">${activeLeadContext.name}</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-[11px] font-semibold text-slate-400">
+            <i class="fa-regular fa-calendar text-xs"></i>
+            <span>Just now</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 pt-1 border-t border-slate-100 text-xs">
+          <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/70 border border-slate-100">
+            <div class="w-7 h-7 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100">
+              <i class="fa-solid fa-seedling text-xs"></i>
+            </div>
+            <div>
+              <span class="text-[9px] font-bold text-slate-400 uppercase block">Stage</span>
+              <span class="font-extrabold text-slate-800">${stageVal}</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/70 border border-slate-100">
+            <div class="w-7 h-7 rounded-full bg-blue-50 text-[#007AFF] flex items-center justify-center shrink-0 border border-blue-100">
+              <i class="fa-regular fa-circle-check text-xs"></i>
+            </div>
+            <div>
+              <span class="text-[9px] font-bold text-slate-400 uppercase block">Status</span>
+              <span class="font-extrabold text-slate-800">${statusVal}</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/70 border border-slate-100">
+            <div class="w-7 h-7 rounded-full bg-blue-50 text-[#007AFF] flex items-center justify-center shrink-0 border border-blue-100">
+              <i class="fa-regular fa-calendar-days text-xs"></i>
+            </div>
+            <div>
+              <span class="text-[9px] font-bold text-slate-400 uppercase block">Followup Date</span>
+              <span class="font-extrabold text-slate-800">${formattedDate}</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50/70 border border-slate-100">
+            <div class="w-7 h-7 rounded-full bg-blue-50 text-[#007AFF] flex items-center justify-center shrink-0 border border-blue-100">
+              <i class="fa-regular fa-clock text-xs"></i>
+            </div>
+            <div>
+              <span class="text-[9px] font-bold text-slate-400 uppercase block">Followup Time</span>
+              <span class="font-extrabold text-slate-800">${timeVal}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 pt-1 border-t border-slate-100">
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center text-xs">
+              <i class="fa-regular fa-comment-dots"></i>
+            </div>
+            <span class="text-xs font-bold text-slate-700">Remarks</span>
+          </div>
+          <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 text-xs font-semibold text-slate-700">
+            ${remarksVal}
+          </div>
+        </div>
+      `;
+
+      const list = document.getElementById('leadFollowUpList');
+      if (list) list.prepend(newCard);
+
+      toggleLeadActForm('followup');
+      alert('Follow-up scheduled successfully!');
+    }
+
+    function submitLeadComment() {
+      const textVal = document.getElementById('inputCommentText')?.value.trim();
+      if (!textVal) {
+        alert('Please enter a comment.');
+        return;
+      }
+
+      const emptyEl = document.getElementById('leadCommentsEmpty');
+      if (emptyEl) emptyEl.classList.add('hidden');
+
+      const newCommentCard = document.createElement('div');
+      newCommentCard.className = 'bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2';
+      newCommentCard.innerHTML = `
+        <div class="flex items-center justify-between pb-1 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-full bg-blue-50 text-[#007AFF] flex items-center justify-center text-xs font-bold">
+              <i class="fa-regular fa-comment"></i>
+            </div>
+            <span class="text-xs font-bold text-slate-800">You (Sales Consultant)</span>
+          </div>
+          <span class="text-[10px] font-semibold text-slate-400">Just now</span>
+        </div>
+        <p class="text-xs font-semibold text-slate-700 leading-relaxed bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+          ${textVal}
+        </p>
+      `;
+
+      const list = document.getElementById('leadCommentsList');
+      if (list) list.prepend(newCommentCard);
+
+      document.getElementById('inputCommentText').value = '';
+      updateCharCounter(document.getElementById('inputCommentText'), 'commentCharCount');
+      toggleLeadActForm('comment');
+      alert('Comment added successfully!');
+    }
+
+    function submitLeadBrochure() {
+      const productVal = document.getElementById('inputBrochureProduct')?.value;
+      const phoneVal = document.getElementById('inputBrochurePhone')?.value;
+      const emailVal = document.getElementById('inputBrochureEmail')?.value;
+
+      if (!productVal) {
+        alert('Please select a Product Id.');
+        return;
+      }
+
+      const emptyEl = document.getElementById('leadBrochureEmpty');
+      if (emptyEl) emptyEl.classList.add('hidden');
+
+      const newBrochureCard = document.createElement('div');
+      newBrochureCard.className = 'bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2';
+      newBrochureCard.innerHTML = `
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center text-sm">
+              <i class="fa-solid fa-file-pdf"></i>
+            </div>
+            <div>
+              <h4 class="text-xs font-extrabold text-[#1E293B]">${productVal} Brochure</h4>
+              <p class="text-[10px] font-semibold text-slate-400">Shared with ${activeLeadContext.name}</p>
+            </div>
+          </div>
+          <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">Sent ✓</span>
+        </div>
+        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100 text-[11px] font-semibold text-slate-600 flex items-center justify-between">
+          <span><i class="fa-solid fa-phone text-[10px] text-[#007AFF] mr-1"></i>${phoneVal}</span>
+          <span><i class="fa-solid fa-envelope text-[10px] text-[#007AFF] mr-1"></i>${emailVal}</span>
+        </div>
+      `;
+
+      const list = document.getElementById('leadBrochureList');
+      if (list) list.prepend(newBrochureCard);
+
+      toggleLeadActForm('brochure');
+      alert('Brochure shared successfully!');
+    }
+
+    function submitLeadAppointment() {
+      const typeVal = document.getElementById('inputApptType')?.value;
+      const bayVal = document.getElementById('inputApptBay')?.value;
+      const dateVal = document.getElementById('inputApptDate')?.value;
+      const timeVal = document.getElementById('inputApptTime')?.value;
+      const notesVal = document.getElementById('inputApptNotes')?.value || 'Scheduled via Activities';
+
+      const emptyEl = document.getElementById('leadApptEmpty');
+      if (emptyEl) emptyEl.classList.add('hidden');
+
+      const newApptCard = document.createElement('div');
+      newApptCard.className = 'bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2';
+      newApptCard.innerHTML = `
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center text-sm">
+              <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <div>
+              <h4 class="text-xs font-extrabold text-[#1E293B]">${typeVal}</h4>
+              <p class="text-[10px] font-semibold text-slate-400">${bayVal}</p>
+            </div>
+          </div>
+          <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">Confirmed</span>
+        </div>
+        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100 text-[11px] font-semibold text-slate-700 flex items-center justify-between">
+          <span><i class="fa-regular fa-calendar text-[10px] text-[#007AFF] mr-1"></i>${dateVal}</span>
+          <span><i class="fa-regular fa-clock text-[10px] text-[#007AFF] mr-1"></i>${timeVal}</span>
+        </div>
+        ${notesVal ? `<p class="text-[10px] font-semibold text-slate-500 pt-1 border-t border-slate-100">${notesVal}</p>` : ''}
+      `;
+
+      const list = document.getElementById('leadApptList');
+      if (list) list.prepend(newApptCard);
+
+      toggleLeadActForm('appointment');
+      alert('New appointment scheduled successfully!');
     }
 
     function switchActivityTab(tabId, btn) {

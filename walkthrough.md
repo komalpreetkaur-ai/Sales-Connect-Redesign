@@ -24,6 +24,40 @@ The **Category Tab Slider** on the **All Active Follow-Ups** screen in [`sales_c
 
 ---
 
+## 📋 Lead Details Activities Flow (`#screen-lead-activities`)
+
+Implemented the full **Activities** flow accessed directly from the **Customer Profile Card** in Enquiry Details (`#screen-enquiry-details` via `+ Activity` button and `Activities` tab):
+
+1. **Header & Navigation**:
+   - `<-` Back button returning seamlessly to Enquiry Details.
+   - Title **Activities** with dynamic lead reference subhead (`Lead: Gurjant • ENQ00006849`).
+   - Clean, horizontal scrollable tab bar with active brand blue indicator (`border-b-2 border-[#007AFF] text-[#007AFF]`).
+
+2. **Tab 1: Follow Up**:
+   - Header: `FOLLOW UPS` with `+ Add Follow Up` action.
+   - Inline Form: `ADD FOLLOW UP` with date picker (`Followup Date*`), time picker (`Followup Time*`), stage selector, status selector, remarks textarea (`0/100` counter), and `Cancel` / `Save` buttons.
+   - Follow-up card matching the uploaded specification:
+     - Avatar circle, lead name, formatted date/time.
+     - 2x2 grid for **Stage** (e.g. `New`), **Status** (e.g. `Open`), **Followup Date** (`24th Oct 2026`), **Followup Time** (`02:44 PM`).
+     - Remarks section with purple chat icon and styled container.
+
+3. **Tab 2: Comment**:
+   - Header: `COMMENTS` with `+ Add Comment` action.
+   - Inline Form: `ADD COMMENT (ENQ00006849)` with `Comment*` textarea, dynamic `0/100` character counter, and `Cancel` / `Save` buttons.
+   - Centered empty state `No comments found.` when empty, dynamically displaying styled comment cards upon addition.
+
+4. **Tab 3: Brochure**:
+   - Header: `BROCHURES` with `+ Add Brochure` action.
+   - Inline Form: `SHARE BROCHURE` with `Product Id*` selector (Mahindra Thar Roxx, XUV700, Scorpio-N, etc.), `phone`, `email*`, and `Cancel` / `Share` buttons.
+   - Centered empty state `No brochure found.` when empty, dynamically displaying brochure shared cards with channel tags.
+
+5. **Tab 4: New Appointment**:
+   - Header: `APPOINTMENTS` with `+ Add Appointment` action.
+   - Inline Form: `NEW APPOINTMENT` with `Appointment Type*`, `Bay / Location*`, `Date*`, `Time Slot*`, `Notes`, and `Cancel` / `Save` buttons.
+   - Centered empty state `No appointments found.` when empty, dynamically displaying scheduled appointment cards.
+
+---
+
 ## 🎯 Prominent LEADS ASSIGNED Dashboard Metric Card
 
 Added a dedicated **`LEADS ASSIGNED`** hero section directly at the top of the main dashboard feed (`#screen-home`):
@@ -169,23 +203,6 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
      - `Lead Source*` dropdown (pre-selected to `Website`).
      - `Remark*` (Mandatory text area field with required `*` and live `0/100` character counter).
    - **Action CTA**: Blue rounded `Save` button with mandatory validation for `Outlet Id*`, `Title*`, `First Name*`, `Phone*`, and `Remark*`.
-
----
-
-## 📅 Inline `+ Activities` Tab in Enquiry Details Screen
-
-Integrated the **`+ Activities`** tab directly inside the **Enquiry Details** screen (`#screen-enquiry-details`):
-
-1. **Native Tab Navigation**:
-   - Tapping `+ Activities` on the detail tab bar (`General` | `Product` | `History` | `+ Activities`) seamlessly displays the customer's recorded activity cards without leaving the screen.
-
-2. **Rich Activity Cards & Follow-Up Details**:
-   - **Follow-up Call Activity**: Highlights `FOLLOWUP DATE` (e.g. `24th Aug 2026, 08:14 PM`), `ASSIGNED TO` (`Swati Jain`), `STAGE` (`Negotiation`), `STATUS` (`Open`), detailed customer remarks, and one-touch **Call** and **WhatsApp** CTAs.
-   - **Home Test Drive Activity**: Displays location (`Customer Residence`), driver license verification (`Verified ✓`), assigned driver (`Rajesh Kumar`), and scheduled time (`25 Aug 2026, 11:30 AM`).
-   - **E-Brochure Activity**: Details brochure & price list dispatch history (`22 Aug 2026`).
-
-3. **`+ Log Activity` CTA**:
-   - Header action button allowing sales consultants to instantly log new follow-up notes or schedule next steps for the selected lead.
 
 ---
 
