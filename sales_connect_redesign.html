@@ -236,6 +236,258 @@
           </div>
         </section>
 
+        <!-- LEAD PIPELINE SECTION -->
+        <section class="space-y-2.5">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <h2 class="text-xs font-black text-slate-500 uppercase tracking-wider">LEAD PIPELINE</h2>
+              <span id="pipelineTotalBadge" class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">8 Stages • 28 Leads</span>
+            </div>
+            <button onclick="switchScreen('enquiry')" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer active:opacity-75">
+              <span>All Leads</span>
+              <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </button>
+          </div>
+
+          <!-- Main Pipeline Card -->
+          <div class="bg-white rounded-3xl p-4 border border-slate-200/80 shadow-xs space-y-3.5">
+            <!-- Pipeline Flow Sequence Ribbon (Interactive Horizontal Stepper) -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                <span>Pipeline Stage Progression</span>
+                <span class="text-[#007AFF] font-extrabold flex items-center gap-1">Tap stage to view leads <i class="fa-solid fa-arrow-pointer text-[9px]"></i></span>
+              </div>
+              <div class="flex items-center gap-1.5 overflow-x-auto custom-scroll -mx-1 px-1 py-1.5">
+                <!-- Step 1: New -->
+                <button onclick="openLeadPipelineStage('new')" class="group shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-blue-50/70 border border-blue-100 text-[#007AFF] active:scale-95 transition-all cursor-pointer">
+                  <span class="w-4 h-4 rounded-full bg-[#007AFF] text-white text-[9px] font-black flex items-center justify-center">1</span>
+                  <span class="text-xs font-black">New</span>
+                  <span id="pipeRibbon-new" class="text-[10px] font-extrabold bg-white/90 text-[#007AFF] px-1.5 py-0.2 rounded-md shadow-2xs border border-blue-100">6</span>
+                </button>
+                <i class="fa-solid fa-chevron-right text-[9px] text-slate-300 shrink-0"></i>
+
+                <!-- Step 2: Contacted -->
+                <button onclick="openLeadPipelineStage('contacted')" class="group shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-sky-50/70 border border-sky-100 text-sky-700 active:scale-95 transition-all cursor-pointer">
+                  <span class="w-4 h-4 rounded-full bg-sky-500 text-white text-[9px] font-black flex items-center justify-center">2</span>
+                  <span class="text-xs font-black">Contacted</span>
+                  <span id="pipeRibbon-contacted" class="text-[10px] font-extrabold bg-white/90 text-sky-700 px-1.5 py-0.2 rounded-md shadow-2xs border border-sky-100">5</span>
+                </button>
+                <i class="fa-solid fa-chevron-right text-[9px] text-slate-300 shrink-0"></i>
+
+                <!-- Step 3: Test Drive -->
+                <button onclick="openLeadPipelineStage('testdrive')" class="group shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-purple-50/70 border border-purple-100 text-purple-700 active:scale-95 transition-all cursor-pointer">
+                  <span class="w-4 h-4 rounded-full bg-purple-500 text-white text-[9px] font-black flex items-center justify-center">3</span>
+                  <span class="text-xs font-black">Test Drive</span>
+                  <span id="pipeRibbon-testdrive" class="text-[10px] font-extrabold bg-white/90 text-purple-700 px-1.5 py-0.2 rounded-md shadow-2xs border border-purple-100">4</span>
+                </button>
+                <i class="fa-solid fa-chevron-right text-[9px] text-slate-300 shrink-0"></i>
+
+                <!-- Step 4: Negotiation -->
+                <button onclick="openLeadPipelineStage('negotiation')" class="group shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-amber-50/70 border border-amber-100 text-amber-700 active:scale-95 transition-all cursor-pointer">
+                  <span class="w-4 h-4 rounded-full bg-amber-500 text-white text-[9px] font-black flex items-center justify-center">4</span>
+                  <span class="text-xs font-black">Negotiation</span>
+                  <span id="pipeRibbon-negotiation" class="text-[10px] font-extrabold bg-white/90 text-amber-700 px-1.5 py-0.2 rounded-md shadow-2xs border border-amber-100">3</span>
+                </button>
+                <i class="fa-solid fa-chevron-right text-[9px] text-slate-300 shrink-0"></i>
+
+                <!-- Step 5: Booking -->
+                <button onclick="openLeadPipelineStage('booking')" class="group shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-emerald-50/70 border border-emerald-100 text-emerald-700 active:scale-95 transition-all cursor-pointer">
+                  <span class="w-4 h-4 rounded-full bg-emerald-500 text-white text-[9px] font-black flex items-center justify-center">5</span>
+                  <span class="text-xs font-black">Booking</span>
+                  <span id="pipeRibbon-booking" class="text-[10px] font-extrabold bg-white/90 text-emerald-700 px-1.5 py-0.2 rounded-md shadow-2xs border border-emerald-100">4</span>
+                </button>
+                <i class="fa-solid fa-chevron-right text-[9px] text-slate-300 shrink-0"></i>
+
+                <!-- Step 6: Delivered -->
+                <button onclick="openLeadPipelineStage('delivered')" class="group shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-teal-50/70 border border-teal-100 text-teal-700 active:scale-95 transition-all cursor-pointer">
+                  <span class="w-4 h-4 rounded-full bg-teal-500 text-white text-[9px] font-black flex items-center justify-center">6</span>
+                  <span class="text-xs font-black">Delivered</span>
+                  <span id="pipeRibbon-delivered" class="text-[10px] font-extrabold bg-white/90 text-teal-700 px-1.5 py-0.2 rounded-md shadow-2xs border border-teal-100">3</span>
+                </button>
+                <i class="fa-solid fa-chevron-right text-[9px] text-slate-300 shrink-0"></i>
+
+                <!-- Step 7: Lost -->
+                <button onclick="openLeadPipelineStage('lost')" class="group shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-rose-50/70 border border-rose-100 text-rose-700 active:scale-95 transition-all cursor-pointer">
+                  <span class="w-4 h-4 rounded-full bg-rose-500 text-white text-[9px] font-black flex items-center justify-center">7</span>
+                  <span class="text-xs font-black">Lost</span>
+                  <span id="pipeRibbon-lost" class="text-[10px] font-extrabold bg-white/90 text-rose-700 px-1.5 py-0.2 rounded-md shadow-2xs border border-rose-100">2</span>
+                </button>
+                <i class="fa-solid fa-chevron-right text-[9px] text-slate-300 shrink-0"></i>
+
+                <!-- Step 8: Junk -->
+                <button onclick="openLeadPipelineStage('junk')" class="group shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-100/80 border border-slate-200 text-slate-700 active:scale-95 transition-all cursor-pointer">
+                  <span class="w-4 h-4 rounded-full bg-slate-500 text-white text-[9px] font-black flex items-center justify-center">8</span>
+                  <span class="text-xs font-black">Junk</span>
+                  <span id="pipeRibbon-junk" class="text-[10px] font-extrabold bg-white text-slate-700 px-1.5 py-0.2 rounded-md shadow-2xs border border-slate-200">1</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Structured 2-Column Stage Cards Grid -->
+            <div class="grid grid-cols-2 gap-2 pt-1 border-t border-slate-100">
+              <!-- Stage Card 1: New -->
+              <div onclick="openLeadPipelineStage('new')" class="bg-gradient-to-br from-blue-50/50 to-white rounded-2xl p-3 border border-blue-100 shadow-2xs active:scale-[0.98] transition-all cursor-pointer space-y-1.5 relative">
+                <div class="flex items-center justify-between">
+                  <div class="w-7 h-7 rounded-xl bg-blue-100/70 text-[#007AFF] flex items-center justify-center text-xs font-bold">
+                    <i class="fa-solid fa-sparkles text-[11px]"></i>
+                  </div>
+                  <span class="text-[9px] font-black text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200/80">Stage 1</span>
+                </div>
+                <div>
+                  <div class="flex items-baseline justify-between">
+                    <span class="text-xs font-black text-[#1E293B]">New</span>
+                    <span id="pipeCardCount-new" class="text-base font-black text-[#007AFF]">6</span>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] font-semibold text-slate-400 mt-0.5">
+                    <span>Fresh Leads</span>
+                    <span class="text-[#007AFF] font-bold">→ Contacted</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Stage Card 2: Contacted -->
+              <div onclick="openLeadPipelineStage('contacted')" class="bg-gradient-to-br from-sky-50/50 to-white rounded-2xl p-3 border border-sky-100 shadow-2xs active:scale-[0.98] transition-all cursor-pointer space-y-1.5 relative">
+                <div class="flex items-center justify-between">
+                  <div class="w-7 h-7 rounded-xl bg-sky-100/70 text-sky-600 flex items-center justify-center text-xs font-bold">
+                    <i class="fa-solid fa-phone-volume text-[11px]"></i>
+                  </div>
+                  <span class="text-[9px] font-black text-sky-700 bg-sky-50 px-2 py-0.5 rounded-full border border-sky-200/80">Stage 2</span>
+                </div>
+                <div>
+                  <div class="flex items-baseline justify-between">
+                    <span class="text-xs font-black text-[#1E293B]">Contacted</span>
+                    <span id="pipeCardCount-contacted" class="text-base font-black text-sky-600">5</span>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] font-semibold text-slate-400 mt-0.5">
+                    <span>First Touch Done</span>
+                    <span class="text-sky-600 font-bold">→ Test Drive</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Stage Card 3: Test Drive -->
+              <div onclick="openLeadPipelineStage('testdrive')" class="bg-gradient-to-br from-purple-50/50 to-white rounded-2xl p-3 border border-purple-100 shadow-2xs active:scale-[0.98] transition-all cursor-pointer space-y-1.5 relative">
+                <div class="flex items-center justify-between">
+                  <div class="w-7 h-7 rounded-xl bg-purple-100/70 text-purple-600 flex items-center justify-center text-xs font-bold">
+                    <i class="fa-solid fa-car-side text-[11px]"></i>
+                  </div>
+                  <span class="text-[9px] font-black text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-200/80">Stage 3</span>
+                </div>
+                <div>
+                  <div class="flex items-baseline justify-between">
+                    <span class="text-xs font-black text-[#1E293B]">Test Drive</span>
+                    <span id="pipeCardCount-testdrive" class="text-base font-black text-purple-600">4</span>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] font-semibold text-slate-400 mt-0.5">
+                    <span>Vehicle Demo</span>
+                    <span class="text-purple-600 font-bold">→ Negotiation</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Stage Card 4: Negotiation -->
+              <div onclick="openLeadPipelineStage('negotiation')" class="bg-gradient-to-br from-amber-50/50 to-white rounded-2xl p-3 border border-amber-100 shadow-2xs active:scale-[0.98] transition-all cursor-pointer space-y-1.5 relative">
+                <div class="flex items-center justify-between">
+                  <div class="w-7 h-7 rounded-xl bg-amber-100/70 text-amber-600 flex items-center justify-center text-xs font-bold">
+                    <i class="fa-solid fa-handshake text-[11px]"></i>
+                  </div>
+                  <span class="text-[9px] font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/80">Stage 4</span>
+                </div>
+                <div>
+                  <div class="flex items-baseline justify-between">
+                    <span class="text-xs font-black text-[#1E293B]">Negotiation</span>
+                    <span id="pipeCardCount-negotiation" class="text-base font-black text-amber-600">3</span>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] font-semibold text-slate-400 mt-0.5">
+                    <span>Price & Offers</span>
+                    <span class="text-amber-600 font-bold">→ Booking</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Stage Card 5: Booking -->
+              <div onclick="openLeadPipelineStage('booking')" class="bg-gradient-to-br from-emerald-50/50 to-white rounded-2xl p-3 border border-emerald-100 shadow-2xs active:scale-[0.98] transition-all cursor-pointer space-y-1.5 relative">
+                <div class="flex items-center justify-between">
+                  <div class="w-7 h-7 rounded-xl bg-emerald-100/70 text-emerald-600 flex items-center justify-center text-xs font-bold">
+                    <i class="fa-solid fa-file-signature text-[11px]"></i>
+                  </div>
+                  <span class="text-[9px] font-black text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/80">Stage 5</span>
+                </div>
+                <div>
+                  <div class="flex items-baseline justify-between">
+                    <span class="text-xs font-black text-[#1E293B]">Booking</span>
+                    <span id="pipeCardCount-booking" class="text-base font-black text-emerald-600">4</span>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] font-semibold text-slate-400 mt-0.5">
+                    <span>Token Paid</span>
+                    <span class="text-emerald-600 font-bold">→ Delivered</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Stage Card 6: Delivered -->
+              <div onclick="openLeadPipelineStage('delivered')" class="bg-gradient-to-br from-teal-50/50 to-white rounded-2xl p-3 border border-teal-100 shadow-2xs active:scale-[0.98] transition-all cursor-pointer space-y-1.5 relative">
+                <div class="flex items-center justify-between">
+                  <div class="w-7 h-7 rounded-xl bg-teal-100/70 text-teal-600 flex items-center justify-center text-xs font-bold">
+                    <i class="fa-solid fa-key text-[11px]"></i>
+                  </div>
+                  <span class="text-[9px] font-black text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full border border-teal-200/80">Stage 6</span>
+                </div>
+                <div>
+                  <div class="flex items-baseline justify-between">
+                    <span class="text-xs font-black text-[#1E293B]">Delivered</span>
+                    <span id="pipeCardCount-delivered" class="text-base font-black text-teal-600">3</span>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] font-semibold text-slate-400 mt-0.5">
+                    <span>Keys Handover</span>
+                    <span class="text-teal-600 font-bold">✓ Won Lead</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Stage Card 7: Lost -->
+              <div onclick="openLeadPipelineStage('lost')" class="bg-gradient-to-br from-rose-50/50 to-white rounded-2xl p-3 border border-rose-100 shadow-2xs active:scale-[0.98] transition-all cursor-pointer space-y-1.5 relative">
+                <div class="flex items-center justify-between">
+                  <div class="w-7 h-7 rounded-xl bg-rose-100/70 text-rose-600 flex items-center justify-center text-xs font-bold">
+                    <i class="fa-solid fa-user-xmark text-[11px]"></i>
+                  </div>
+                  <span class="text-[9px] font-black text-rose-700 bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200/80">Stage 7</span>
+                </div>
+                <div>
+                  <div class="flex items-baseline justify-between">
+                    <span class="text-xs font-black text-[#1E293B]">Lost</span>
+                    <span id="pipeCardCount-lost" class="text-base font-black text-rose-600">2</span>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] font-semibold text-slate-400 mt-0.5">
+                    <span>Competitor / Drop</span>
+                    <span class="text-rose-600 font-bold">✕ Dropped</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Stage Card 8: Junk -->
+              <div onclick="openLeadPipelineStage('junk')" class="bg-gradient-to-br from-slate-50/80 to-white rounded-2xl p-3 border border-slate-200 shadow-2xs active:scale-[0.98] transition-all cursor-pointer space-y-1.5 relative">
+                <div class="flex items-center justify-between">
+                  <div class="w-7 h-7 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-xs font-bold">
+                    <i class="fa-solid fa-ban text-[11px]"></i>
+                  </div>
+                  <span class="text-[9px] font-black text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200">Stage 8</span>
+                </div>
+                <div>
+                  <div class="flex items-baseline justify-between">
+                    <span class="text-xs font-black text-[#1E293B]">Junk</span>
+                    <span id="pipeCardCount-junk" class="text-base font-black text-slate-700">1</span>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] font-semibold text-slate-400 mt-0.5">
+                    <span>Spam / Invalid</span>
+                    <span class="text-slate-500 font-bold">✕ Excluded</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- TARGET & PERFORMANCE SECTION -->
         <section class="space-y-3">
           <div class="flex items-center justify-between">
@@ -613,7 +865,7 @@
             </button>
             <h1 class="text-2xl font-black text-[#1E293B] tracking-tight">Enquiries</h1>
           </div>
-          <span id="enquiryTotalBadge" class="text-xs font-bold text-[#007AFF] bg-[#EBF5FF] px-3 py-1 rounded-full border border-blue-100">Total: 6</span>
+          <span id="enquiryTotalBadge" class="text-xs font-bold text-[#007AFF] bg-[#EBF5FF] px-3 py-1 rounded-full border border-blue-100">Total: 15</span>
         </div>
 
         <!-- Search Input Bar -->
@@ -653,20 +905,154 @@
         </div>
 
 
+        <!-- Stage Filter Tabs Bar (All 8 Stages in Pipeline Order) -->
+        <div class="flex items-center gap-1.5 overflow-x-auto custom-scroll -mx-4 px-4 py-1 text-xs shrink-0">
+          <button id="enqStageBtn-all" onclick="filterEnquiryStage('all', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-[#007AFF] text-white font-extrabold whitespace-nowrap shadow-xs cursor-pointer transition-all">All (<span id="stageTabCount-all">15</span>)</button>
+          <button id="enqStageBtn-new" onclick="filterEnquiryStage('new', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">New (<span id="stageTabCount-new">2</span>)</button>
+          <button id="enqStageBtn-contacted" onclick="filterEnquiryStage('contacted', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Contacted (<span id="stageTabCount-contacted">2</span>)</button>
+          <button id="enqStageBtn-testdrive" onclick="filterEnquiryStage('testdrive', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Test Drive (<span id="stageTabCount-testdrive">2</span>)</button>
+          <button id="enqStageBtn-negotiation" onclick="filterEnquiryStage('negotiation', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Negotiation (<span id="stageTabCount-negotiation">2</span>)</button>
+          <button id="enqStageBtn-booking" onclick="filterEnquiryStage('booking', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Booking (<span id="stageTabCount-booking">2</span>)</button>
+          <button id="enqStageBtn-delivered" onclick="filterEnquiryStage('delivered', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Delivered (<span id="stageTabCount-delivered">2</span>)</button>
+          <button id="enqStageBtn-lost" onclick="filterEnquiryStage('lost', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Lost (<span id="stageTabCount-lost">2</span>)</button>
+          <button id="enqStageBtn-junk" onclick="filterEnquiryStage('junk', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Junk (<span id="stageTabCount-junk">1</span>)</button>
+        </div>
+
         <!-- Lead Cards Feed -->
         <div id="enquiryCardsContainer" class="space-y-3">
-          <!-- Card 1: Rupesh Ranjan Bhatt -->
-          <div class="enquiry-card testdrive new all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <!-- Card 1: Mohit Kumar (Stage: New) -->
+          <div class="enquiry-card stage-new new all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
-              <span class="text-xs font-bold text-slate-500">ENQ987875364 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
-              <span class="text-[10px] font-extrabold text-[#007AFF] bg-[#EBF5FF] px-2.5 py-0.5 rounded-full border border-blue-100">Test Drive Scheduled</span>
+              <span class="text-xs font-bold text-slate-500">ENQ987875440 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-cyan-700 bg-cyan-50 px-2.5 py-0.5 rounded-full border border-cyan-200/80">New Lead</span>
             </div>
-            
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-200">
-                  RB
+                <div class="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-600 font-black text-xs flex items-center justify-center shrink-0 border border-cyan-200">MK</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Mohit Kumar</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Suzuki Brezza ZXi</p>
                 </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-600 border border-amber-200/60">Hot Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">18/12/2024</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Akash Gupta</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Mohit Kumar', 'ENQ987875440')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Aarav Sharma (Stage: New) -->
+          <div class="enquiry-card stage-new new all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875451 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-cyan-700 bg-cyan-50 px-2.5 py-0.5 rounded-full border border-cyan-200/80">New Lead</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-200">AS</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Aarav Sharma</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Mahindra Thar Roxx (AX7L)</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-600 border border-blue-200/60">Warm Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">Today, 09:15 AM</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Niket Kumar</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876543210';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876543210','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Aarav Sharma', 'ENQ987875451')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3: Gurjant Singh (Stage: Contacted) -->
+          <div class="enquiry-card stage-contacted contacted all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ00006849 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200/80">Contacted</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 font-black text-xs flex items-center justify-center shrink-0 border border-sky-200">GS</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Gurjant Singh</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Hyundai Creta SX (O) Diesel</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-600 border border-amber-200/60">Hot Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">Today, 09:30 AM</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Niket Kumar</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Gurjant Singh', 'ENQ00006849')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 4: Vikram Malhotra (Stage: Contacted) -->
+          <div class="enquiry-card stage-contacted contacted all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875460 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200/80">Contacted</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 font-black text-xs flex items-center justify-center shrink-0 border border-sky-200">VM</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Vikram Malhotra</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Tata Safari Dark Edition</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-600 border border-blue-200/60">Warm Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">Yesterday</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Akash Gupta</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Vikram Malhotra', 'ENQ987875460')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 5: Rupesh Ranjan Bhatt (Stage: Test Drive) -->
+          <div class="enquiry-card stage-testdrive testdrive all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875364 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200/80">Test Drive Scheduled</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 font-black text-xs flex items-center justify-center shrink-0 border border-purple-200">RB</div>
                 <div>
                   <h3 class="text-base font-extrabold text-[#1E293B]">Rupesh Ranjan Bhatt</h3>
                   <p class="text-xs font-semibold text-slate-500 mt-0.5">Swift Dzire <span class="text-[#007AFF] font-extrabold">+4</span></p>
@@ -674,40 +1060,61 @@
               </div>
               <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-600 border border-amber-200/60">Hot Lead</span>
             </div>
-
             <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
               <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">10/12/2024</span></div>
               <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Akash Gupta</span></div>
             </div>
-
             <div class="flex items-center justify-between pt-1">
               <div class="flex items-center gap-1.5">
-                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
-                  <i class="fa-solid fa-phone text-xs"></i>
-                </button>
-                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
-                  <i class="fa-brands fa-whatsapp text-sm"></i>
-                </button>
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
               </div>
-
               <button onclick="openEnquiryDetails('Rupesh Ranjan Bhatt', 'ENQ987875364')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
                 <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
               </button>
             </div>
           </div>
 
-          <!-- Card 2: Swati Jain -->
-          <div class="enquiry-card negotiation all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <!-- Card 6: Shreya Singhania (Stage: Test Drive) -->
+          <div class="enquiry-card stage-testdrive testdrive all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
-              <span class="text-xs font-bold text-slate-500">ENQ987875399 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
-              <span class="text-[10px] font-extrabold text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200/60">In Negotiation</span>
+              <span class="text-xs font-bold text-slate-500">ENQ987875375 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200/80">Home Test Drive</span>
             </div>
-
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 font-black text-xs flex items-center justify-center shrink-0 border border-amber-200">
-                  SJ
+                <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 font-black text-xs flex items-center justify-center shrink-0 border border-purple-200">SS</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Shreya Singhania</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Suzuki Baleno Alpha</p>
                 </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-600 border border-amber-200/60">Hot Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">11/12/2024</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Niket Kumar</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919910244331';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919910244331','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Shreya Singhania', 'ENQ987875375')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 7: Swati Jain (Stage: Negotiation) -->
+          <div class="enquiry-card stage-negotiation negotiation all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875399 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200/80">In Negotiation</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 font-black text-xs flex items-center justify-center shrink-0 border border-amber-200">SJ</div>
                 <div>
                   <h3 class="text-base font-extrabold text-[#1E293B]">Swati Jain</h3>
                   <p class="text-xs font-semibold text-slate-500 mt-0.5">Suzuki Baleno (Delta)</p>
@@ -715,40 +1122,61 @@
               </div>
               <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-600 border border-blue-200/60">Warm Lead</span>
             </div>
-
             <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
               <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">12/12/2024</span></div>
               <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Niket Kumar</span></div>
             </div>
-
             <div class="flex items-center justify-between pt-1">
               <div class="flex items-center gap-1.5">
-                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
-                  <i class="fa-solid fa-phone text-xs"></i>
-                </button>
-                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
-                  <i class="fa-brands fa-whatsapp text-sm"></i>
-                </button>
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
               </div>
-
               <button onclick="openEnquiryDetails('Swati Jain', 'ENQ987875399')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
                 <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
               </button>
             </div>
           </div>
 
-          <!-- Card 3: Neha Agarwal -->
-          <div class="enquiry-card booking all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <!-- Card 8: Priya Mukherjee (Stage: Negotiation) -->
+          <div class="enquiry-card stage-negotiation negotiation all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
-              <span class="text-xs font-bold text-slate-500">ENQ987875412 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
-              <span class="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/60">Pre-booked</span>
+              <span class="text-xs font-bold text-slate-500">ENQ987875368 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200/80">In Negotiation</span>
             </div>
-
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-black text-xs flex items-center justify-center shrink-0 border border-emerald-200">
-                  NA
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 font-black text-xs flex items-center justify-center shrink-0 border border-amber-200">PM</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Priya Mukherjee</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Suzuki Gixxer SF</p>
                 </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-600 border border-amber-200/60">Hot Lead</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">13/12/2024</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Niket Kumar</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Priya Mukherjee', 'ENQ987875368')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 9: Neha Agarwal (Stage: Booking) -->
+          <div class="enquiry-card stage-booking booking all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875412 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80">Pre-booked</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-black text-xs flex items-center justify-center shrink-0 border border-emerald-200">NA</div>
                 <div>
                   <h3 class="text-base font-extrabold text-[#1E293B]">Neha Agarwal</h3>
                   <p class="text-xs font-semibold text-slate-500 mt-0.5">Suzuki Hayabusa 2024</p>
@@ -756,64 +1184,199 @@
               </div>
               <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-600 border border-emerald-200/60">Won</span>
             </div>
-
             <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
               <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">14/12/2024</span></div>
               <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Sheeba Siddiqui</span></div>
             </div>
-
             <div class="flex items-center justify-between pt-1">
               <div class="flex items-center gap-1.5">
-                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
-                  <i class="fa-solid fa-phone text-xs"></i>
-                </button>
-                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
-                  <i class="fa-brands fa-whatsapp text-sm"></i>
-                </button>
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
               </div>
-
               <button onclick="openEnquiryDetails('Neha Agarwal', 'ENQ987875412')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
                 <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
               </button>
             </div>
           </div>
 
-          <!-- Card 4: Mohit Kumar -->
-          <div class="enquiry-card new all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+          <!-- Card 10: Aarti Sharma (Stage: Booking) -->
+          <div class="enquiry-card stage-booking booking all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-100 pb-2">
-              <span class="text-xs font-bold text-slate-500">ENQ987875440 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
-              <span class="text-[10px] font-extrabold text-cyan-600 bg-cyan-50 px-2.5 py-0.5 rounded-full border border-cyan-200/60">New Lead</span>
+              <span class="text-xs font-bold text-slate-500">ENQ987875425 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80">Booking Confirmed</span>
             </div>
-
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-600 font-black text-xs flex items-center justify-center shrink-0 border border-cyan-200">
-                  MK
-                </div>
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-black text-xs flex items-center justify-center shrink-0 border border-emerald-200">AS</div>
                 <div>
-                  <h3 class="text-base font-extrabold text-[#1E293B]">Mohit Kumar</h3>
-                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Suzuki Brezza ZXi</p>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Aarti Sharma</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Hyundai Alcazar Signature</p>
                 </div>
               </div>
-              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-cyan-50 text-cyan-600 border border-cyan-200/60">New</span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-600 border border-emerald-200/60">Won</span>
             </div>
-
             <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">18/12/2024</span></div>
-              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Akash Gupta</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">15/12/2024</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Niket Kumar</span></div>
             </div>
-
             <div class="flex items-center justify-between pt-1">
               <div class="flex items-center gap-1.5">
-                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
-                  <i class="fa-solid fa-phone text-xs"></i>
-                </button>
-                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
-                  <i class="fa-brands fa-whatsapp text-sm"></i>
-                </button>
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876543210';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876543210','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
               </div>
+              <button onclick="openEnquiryDetails('Aarti Sharma', 'ENQ987875425')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
 
-              <button onclick="openEnquiryDetails('Mohit Kumar', 'ENQ987875440')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+          <!-- Card 11: Rohan Verma (Stage: Delivered) -->
+          <div class="enquiry-card stage-delivered delivered all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875430 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-200/80">Vehicle Delivered</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 font-black text-xs flex items-center justify-center shrink-0 border border-teal-200">RV</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Rohan Verma</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Mahindra XUV700 AX7</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-teal-50 text-teal-600 border border-teal-200/60">Delivered</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">DELIVERY DATE</span><span class="font-bold text-slate-800">05/12/2024</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">DELIVERED BY</span><span class="font-bold text-slate-800">Niket Kumar</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876543210';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876543210','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Rohan Verma', 'ENQ987875430')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 12: Rajesh Khanna (Stage: Delivered) -->
+          <div class="enquiry-card stage-delivered delivered all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875435 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-200/80">Vehicle Delivered</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 font-black text-xs flex items-center justify-center shrink-0 border border-teal-200">RK</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Rajesh Khanna</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Maruti Grand Vitara Hybrid</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-teal-50 text-teal-600 border border-teal-200/60">Delivered</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">DELIVERY DATE</span><span class="font-bold text-slate-800">02/12/2024</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">DELIVERED BY</span><span class="font-bold text-slate-800">Akash Gupta</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876543210';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876543210','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Rajesh Khanna', 'ENQ987875435')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 13: Suresh Patel (Stage: Lost) -->
+          <div class="enquiry-card stage-lost lost all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875470 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded-full border border-rose-200/80">Lost (Competitor)</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 font-black text-xs flex items-center justify-center shrink-0 border border-rose-200">SP</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Suresh Patel</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Toyota Urban Cruiser Hyryder</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-50 text-rose-600 border border-rose-200/60">Lost</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">28/11/2024</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Niket Kumar</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876543210';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876543210','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Suresh Patel', 'ENQ987875470')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 14: Ananya Roy (Stage: Lost) -->
+          <div class="enquiry-card stage-lost lost all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875475 || <span class="text-[#10B981] font-extrabold">Sales</span></span>
+              <span class="text-[10px] font-extrabold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded-full border border-rose-200/80">Lost (Postponed)</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 font-black text-xs flex items-center justify-center shrink-0 border border-rose-200">AR</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Ananya Roy</h3>
+                  <p class="text-xs font-semibold text-slate-500 mt-0.5">Honda Elevate ZX</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-50 text-rose-600 border border-rose-200/60">Lost</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">25/11/2024</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Sheeba Siddiqui</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5">
+                <button onclick="event.stopPropagation(); window.location.href='tel:+919876543210';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876543210','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+              </div>
+              <button onclick="openEnquiryDetails('Ananya Roy', 'ENQ987875475')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 15: Sandeep Verma (Stage: Junk) -->
+          <div class="enquiry-card stage-junk junk all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-slate-500">ENQ987875480 || <span class="text-slate-400 font-extrabold">Junk</span></span>
+              <span class="text-[10px] font-extrabold text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">Junk Lead</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-600 font-black text-xs flex items-center justify-center shrink-0 border border-slate-200">SV</div>
+                <div>
+                  <h3 class="text-base font-extrabold text-[#1E293B]">Sandeep Verma</h3>
+                  <p class="text-xs font-semibold text-slate-400 mt-0.5">Invalid Number / Unreachable</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">Junk</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">20/11/2024</span></div>
+              <div><span class="text-[9px] text-slate-400 font-bold block uppercase">STATUS</span><span class="font-bold text-slate-800">Marked Junk</span></div>
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <span class="text-[10px] font-semibold text-slate-400 italic">Excluded from active pipeline</span>
+              <button onclick="openEnquiryDetails('Sandeep Verma', 'ENQ987875480')" class="px-3.5 py-1.5 bg-slate-100 text-slate-700 rounded-xl text-xs font-extrabold shadow-2xs active:scale-95 flex items-center gap-1 cursor-pointer">
                 <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
               </button>
             </div>
@@ -4668,6 +5231,8 @@
         assignedHotVal: "3",
         assignedWarmVal: "2",
         assignedColdVal: "1",
+        pipelineBadge: "8 Stages • 9 Leads",
+        pipeCounts: { new: "3", contacted: "2", testdrive: "1", negotiation: "1", booking: "1", delivered: "1", lost: "0", junk: "0" },
         kpiLeadsVal: "3",
         kpiLeadsSub: `<i class="fa-solid fa-arrow-trend-up"></i><span>+3 new today</span>`,
         kpiTestDrivesVal: "2",
@@ -4700,6 +5265,8 @@
         assignedHotVal: "8",
         assignedWarmVal: "11",
         assignedColdVal: "5",
+        pipelineBadge: "8 Stages • 28 Leads",
+        pipeCounts: { new: "6", contacted: "5", testdrive: "4", negotiation: "3", booking: "4", delivered: "3", lost: "2", junk: "1" },
         kpiLeadsVal: "7",
         kpiLeadsSub: `<i class="fa-solid fa-arrow-trend-up"></i><span>+2 new today</span>`,
         kpiTestDrivesVal: "3",
@@ -4733,6 +5300,8 @@
         assignedHotVal: "28",
         assignedWarmVal: "38",
         assignedColdVal: "16",
+        pipelineBadge: "8 Stages • 82 Leads",
+        pipeCounts: { new: "18", contacted: "16", testdrive: "14", negotiation: "10", booking: "12", delivered: "8", lost: "3", junk: "1" },
         kpiLeadsVal: "15",
         kpiLeadsSub: `<i class="fa-solid fa-arrow-trend-up"></i><span>+3 new today</span>`,
         kpiTestDrivesVal: "4",
@@ -4790,6 +5359,20 @@
 
       const acoldVal = document.getElementById('homeAssignedColdVal');
       if (acoldVal) acoldVal.innerText = d.assignedColdVal;
+
+      // Update Pipeline Section Metrics
+      if (d.pipelineBadge) {
+        const pipeBadge = document.getElementById('pipelineTotalBadge');
+        if (pipeBadge) pipeBadge.innerText = d.pipelineBadge;
+      }
+      if (d.pipeCounts) {
+        Object.keys(d.pipeCounts).forEach(stg => {
+          const rEl = document.getElementById('pipeRibbon-' + stg);
+          if (rEl) rEl.innerText = d.pipeCounts[stg];
+          const cEl = document.getElementById('pipeCardCount-' + stg);
+          if (cEl) cEl.innerText = d.pipeCounts[stg];
+        });
+      }
 
       const head = document.getElementById('homeSectionTargetHeader');
       if (head) head.innerText = d.headerTitle;
@@ -5467,20 +6050,43 @@
       if (badge) badge.innerText = visibleCount;
     }
 
+    function openLeadPipelineStage(stageKey) {
+      // 1. Switch to enquiry screen
+      switchScreen('enquiry');
+
+      // 2. Select stage tab button
+      const targetBtn = document.getElementById('enqStageBtn-' + stageKey);
+      filterEnquiryStage(stageKey, targetBtn);
+
+      // 3. Smooth scroll to top of screen-enquiry
+      const screenEl = document.getElementById('screen-enquiry');
+      if (screenEl) {
+        screenEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function clearPipelineFilter() {
+      const allBtn = document.getElementById('enqStageBtn-all');
+      filterEnquiryStage('all', allBtn);
+      const chipsBar = document.getElementById('activeChipsBar');
+      const chipsContainer = document.getElementById('activeChipsContainer');
+      if (chipsBar) chipsBar.classList.add('hidden');
+      if (chipsContainer) chipsContainer.innerHTML = '';
+    }
+
     function filterEnquiryStage(filterType, btn) {
-      document.querySelectorAll('.enquiry-stage-pill').forEach(p => {
-        p.classList.remove('bg-[#007AFF]', 'text-white', 'font-extrabold', 'shadow-xs');
-        p.classList.add('bg-white', 'text-slate-700', 'font-bold', 'border', 'border-slate-200/50');
+      document.querySelectorAll('.enquiry-stage-tab-btn').forEach(p => {
+        p.className = 'enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all';
       });
-      if (btn) {
-        btn.classList.remove('bg-white', 'text-slate-700', 'font-bold', 'border', 'border-slate-200/50');
-        btn.classList.add('bg-[#007AFF]', 'text-white', 'font-extrabold', 'shadow-xs');
+      const activeBtn = btn || document.getElementById('enqStageBtn-' + filterType);
+      if (activeBtn) {
+        activeBtn.className = 'enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-[#007AFF] text-white font-extrabold whitespace-nowrap shadow-xs cursor-pointer transition-all';
       }
 
       const cards = document.querySelectorAll('.enquiry-card');
       let visibleCount = 0;
       cards.forEach(card => {
-        if (filterType === 'all' || card.classList.contains(filterType)) {
+        if (filterType === 'all' || card.classList.contains('stage-' + filterType) || card.classList.contains(filterType)) {
           card.classList.remove('hidden');
           visibleCount++;
         } else {
@@ -5489,7 +6095,51 @@
       });
 
       const badge = document.getElementById('enquiryTotalBadge');
-      if (badge) badge.innerText = 'Total: ' + visibleCount;
+      if (badge) {
+        if (filterType === 'all') {
+          badge.innerText = 'Total: ' + visibleCount;
+        } else {
+          const names = {
+            'new': 'New',
+            'contacted': 'Contacted',
+            'testdrive': 'Test Drive',
+            'negotiation': 'Negotiation',
+            'booking': 'Booking',
+            'delivered': 'Delivered',
+            'lost': 'Lost',
+            'junk': 'Junk'
+          };
+          badge.innerText = (names[filterType] || filterType) + ': ' + visibleCount;
+        }
+      }
+
+      // Update active chip
+      const chipsBar = document.getElementById('activeChipsBar');
+      const chipsContainer = document.getElementById('activeChipsContainer');
+      if (chipsBar && chipsContainer) {
+        if (filterType !== 'all') {
+          const names = {
+            'new': 'New',
+            'contacted': 'Contacted',
+            'testdrive': 'Test Drive',
+            'negotiation': 'Negotiation',
+            'booking': 'Booking',
+            'delivered': 'Delivered',
+            'lost': 'Lost',
+            'junk': 'Junk'
+          };
+          chipsBar.classList.remove('hidden');
+          chipsContainer.innerHTML = `
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-[#007AFF] font-bold border border-blue-200">
+              <span>Stage: ${names[filterType] || filterType}</span>
+              <button onclick="clearPipelineFilter()" class="hover:text-blue-900 cursor-pointer"><i class="fa-solid fa-xmark text-[10px]"></i></button>
+            </span>
+          `;
+        } else {
+          chipsBar.classList.add('hidden');
+          chipsContainer.innerHTML = '';
+        }
+      }
     }
 
     function searchEnquiryCards(query) {

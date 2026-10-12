@@ -1,6 +1,35 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-The **Category Tab Slider** on the **All Active Follow-Ups** screen in [`sales_connect_redesign.html`](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/sales_connect_redesign.html) has been redesigned into a unified **iOS-Style Segmented Control Slider**.
+Added the **Lead Pipeline** section (`New → Contacted → Test Drive → Negotiation → Booking → Delivered → Lost → Junk`) on the home screen with one-tap navigation to the corresponding filtered lead lists.
+
+---
+
+## 🚀 Lead Pipeline (`#screen-home` & `#screen-enquiry`)
+
+### 1. Home Screen Lead Pipeline Component
+- **Positioning**: Positioned prominently directly below the `LEADS ASSIGNED` section on the dashboard for immediate visibility.
+- **8-Stage Sequential Flow**:
+  `New → Contacted → Test Drive → Negotiation → Booking → Delivered → Lost → Junk`
+- **Interactive Progression Ribbon (Horizontal Stepper)**:
+  - Scrollable track showing all 8 numbered stages with live counts and forward chevron arrows (`→`).
+  - Active touch feedback on each stage pill.
+- **Structured 2-Column Stage Overview Grid**:
+  - 8 distinct cards featuring dedicated stage icons, stage order badges (`Stage 1` to `Stage 8`), lead metrics, and forward progress indicators (`→ Contacted`, `→ Test Drive`, `→ Negotiation`, `→ Booking`, `→ Delivered`, `✓ Won Lead`, `✕ Dropped`, `✕ Excluded`).
+  - Cohesive light gradient styling matching the clean white-card design system.
+- **Dynamic Date Filter Reactivity**:
+  - Selecting `Today`, `This Week`, or `This Month` from the top header automatically synchronizes both the total pipeline count badge and individual stage metrics (e.g. 28 leads for This Week, 9 for Today, 82 for This Month).
+
+### 2. One-Tap Stage Navigation to Corresponding Lead Lists
+- **Direct Filtering**: Tapping any stage anywhere in the pipeline calls `openLeadPipelineStage(stageKey)`.
+- **Transitions to Enquiries Screen (`#screen-enquiry`)**:
+  - Automatically switches the active view to `#screen-enquiry`.
+  - Highlights the corresponding stage pill in the newly added horizontal **Stage Filter Segmented Bar** (`All`, `New`, `Contacted`, `Test Drive`, `Negotiation`, `Booking`, `Delivered`, `Lost`, `Junk`).
+  - Filters the lead cards in real-time, displaying only leads matching the selected stage.
+  - Updates the top badge (e.g. `Contacted: 2 Leads`).
+  - Activates a removable filter chip (`Stage: Contacted ✕`) with `clearPipelineFilter()` support to reset back to all leads.
+  - Smoothly scrolls to the top of the leads list.
+- **Full 15-Lead Sample Catalog**:
+  - Added sample leads covering all 8 stages with detailed tags, dates, consultant assignments, phone/WhatsApp quick actions, and direct links to the Enquiry Details screen.
 
 ---
 
