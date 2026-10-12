@@ -51,10 +51,23 @@ Implemented the full **Activities** flow accessed directly from the **Customer P
    - Inline Form: `SHARE BROCHURE` with `Product Id*` selector (Mahindra Thar Roxx, XUV700, Scorpio-N, etc.), `phone`, `email*`, and `Cancel` / `Share` buttons.
    - Centered empty state `No brochure found.` when empty, dynamically displaying brochure shared cards with channel tags.
 
-5. **Tab 4: New Appointment**:
-   - Header: `APPOINTMENTS` with `+ Add Appointment` action.
-   - Inline Form: `NEW APPOINTMENT` with `Appointment Type*`, `Bay / Location*`, `Date*`, `Time Slot*`, `Notes`, and `Cancel` / `Save` buttons.
-   - Centered empty state `No appointments found.` when empty, dynamically displaying scheduled appointment cards.
+5. **Tab 4: New Appointment** (Exact match to reference screenshots):
+   - Header: `New Appointments` (left) | `+ Add New Appointment` (right, blue underline link).
+   - Centered empty state: `No new appointment found.` (neutral gray text, ample spacing).
+   - Inline Form: `NEW APPOINTMENT` with `✕` close button:
+     - Single Dropdown selector: `Appointment Type*` with chevron icon.
+     - Dropdown options: `Test Drive`, `Home Visit`, `Showroom Visit`.
+     - Action buttons: `Cancel` (white button with border) and `Save` (brand blue `#007AFF` button with white text).
+     - Dynamically adds confirmed appointment cards to the list upon submission.
+
+6. **Tab 5: Auto-comment** (System Activity Timeline Feed):
+   - Header: `Auto-comments` with system event count pill (`5 System Events`).
+   - Chronological audit trail of automated actions and system triggers:
+     - **Lead Assigned**: Auto-router assignment to Sales Consultant (`Komalpreet Kaur`) with initial stage set to `New`.
+     - **Enquiry Created**: Lead origination via Digital Marketing Campaign (Google Search Ads) with lead ID `ENQ00006849`.
+     - **Automated WhatsApp Sent**: Welcome greeting & digital brochure delivered to customer phone (`+91 98765 43210`) with `Delivered ✓✓` status.
+     - **Stage Changed**: Automated transition from `New` to `Contacted`.
+     - **Brochure Dispatched**: Official specification collateral sent to customer contact channels.
 
 ---
 

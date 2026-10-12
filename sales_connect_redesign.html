@@ -1184,12 +1184,13 @@
           <span id="leadActTotalBadge" class="text-xs font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">1 Activity</span>
         </div>
 
-        <!-- Horizontal Tabs Bar (Follow Up, Comment, Brochure, New Appointment) -->
+        <!-- Horizontal Tabs Bar (Follow Up, Comment, Brochure, New Appointment, Auto-comment) -->
         <div class="flex items-center border-b border-slate-200 overflow-x-auto custom-scroll -mx-4 px-4 gap-6 text-xs font-bold shrink-0">
           <button id="tabBtn-followup" onclick="switchLeadActTab('followup')" class="lead-act-tab-btn py-2 text-[#007AFF] border-b-2 border-[#007AFF] whitespace-nowrap cursor-pointer transition-all">Follow Up</button>
           <button id="tabBtn-comment" onclick="switchLeadActTab('comment')" class="lead-act-tab-btn py-2 text-slate-500 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">Comment</button>
           <button id="tabBtn-brochure" onclick="switchLeadActTab('brochure')" class="lead-act-tab-btn py-2 text-slate-500 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">Brochure</button>
           <button id="tabBtn-appointment" onclick="switchLeadActTab('appointment')" class="lead-act-tab-btn py-2 text-slate-500 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">New Appointment</button>
+          <button id="tabBtn-autocomment" onclick="switchLeadActTab('autocomment')" class="lead-act-tab-btn py-2 text-slate-500 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">Auto-comment</button>
         </div>
 
         <!-- ============================================== -->
@@ -1440,66 +1441,159 @@
         <!-- ============================================== -->
         <!-- TAB 4: NEW APPOINTMENT                         -->
         <!-- ============================================== -->
-        <div id="leadActTabContent-appointment" class="lead-act-content hidden space-y-3">
+        <div id="leadActTabContent-appointment" class="lead-act-content hidden space-y-4">
+          <!-- Subheader: New Appointments | + Add New Appointment -->
           <div class="flex items-center justify-between pt-1">
-            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider">APPOINTMENTS</h3>
-            <button onclick="toggleLeadActForm('appointment')" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 active:opacity-75 cursor-pointer">
-              <i class="fa-solid fa-plus text-[10px]"></i>
-              <span>Add Appointment</span>
+            <h3 class="text-sm font-bold text-slate-900 tracking-tight">New Appointments</h3>
+            <button onclick="toggleLeadActForm('appointment')" class="text-xs font-semibold text-[#007AFF] underline active:opacity-75 cursor-pointer">
+              + Add New Appointment
             </button>
           </div>
 
-          <!-- Inline Form: New Appointment -->
-          <div id="leadActForm-appointment" class="hidden bg-white rounded-2xl border border-slate-200/90 p-4 shadow-sm space-y-3">
+          <!-- Inline Form: New Appointment (matching reference design) -->
+          <div id="leadActForm-appointment" class="hidden bg-white rounded-2xl border border-slate-200/90 p-4 shadow-sm space-y-3 relative">
             <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-              <h3 class="text-xs font-black text-[#1E293B] uppercase tracking-wider">NEW APPOINTMENT</h3>
+              <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider">NEW APPOINTMENT</h4>
               <button onclick="toggleLeadActForm('appointment')" class="w-6 h-6 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 cursor-pointer">
                 <i class="fa-solid fa-xmark text-sm"></i>
               </button>
             </div>
 
-            <div class="grid grid-cols-2 gap-2 text-xs">
-              <div>
-                <label class="font-bold text-slate-700 block mb-1">Appointment Type*</label>
-                <select id="inputApptType" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
-                  <option selected>Showroom Visit</option>
-                  <option>Home Test Drive</option>
-                  <option>Price Negotiation</option>
-                  <option>PDI Sign-off</option>
-                </select>
-              </div>
-              <div>
-                <label class="font-bold text-slate-700 block mb-1">Bay / Location*</label>
-                <input id="inputApptBay" type="text" value="Main Showroom • Bay 1" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
+            <!-- Custom Dropdown for Appointment Type* -->
+            <div class="relative">
+              <input type="hidden" id="inputApptType" value="">
+              <button type="button" id="inputApptTypeBtn" onclick="toggleApptDropdown()" class="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-left text-xs font-semibold text-slate-400 flex items-center justify-between outline-none focus:border-[#007AFF] cursor-pointer">
+                <span id="inputApptTypeLabel">Appointment Type*</span>
+                <i id="inputApptChevron" class="fa-solid fa-chevron-down text-slate-700 text-xs transition-transform duration-200"></i>
+              </button>
+
+              <!-- Dropdown Menu -->
+              <div id="apptDropdownMenu" class="hidden absolute left-0 right-0 top-full mt-1.5 bg-white border border-slate-200 rounded-xl shadow-lg z-30 py-1.5 text-xs font-semibold text-slate-800 divide-y divide-slate-100">
+                <div onclick="selectApptType('Test Drive')" class="px-4 py-3 hover:bg-blue-50 hover:text-[#007AFF] cursor-pointer transition-colors">Test Drive</div>
+                <div onclick="selectApptType('Home Visit')" class="px-4 py-3 hover:bg-blue-50 hover:text-[#007AFF] cursor-pointer transition-colors">Home Visit</div>
+                <div onclick="selectApptType('Showroom Visit')" class="px-4 py-3 hover:bg-blue-50 hover:text-[#007AFF] cursor-pointer transition-colors">Showroom Visit</div>
               </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-2 text-xs">
-              <div>
-                <label class="font-bold text-slate-700 block mb-1">Date*</label>
-                <input id="inputApptDate" type="date" value="2026-10-18" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
-              </div>
-              <div>
-                <label class="font-bold text-slate-700 block mb-1">Time Slot*</label>
-                <input id="inputApptTime" type="time" value="11:30" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
-              </div>
-            </div>
-
-            <div class="space-y-1 text-xs">
-              <label class="font-bold text-slate-700 block">Notes</label>
-              <textarea id="inputApptNotes" rows="2" placeholder="Appointment notes..." class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] resize-none"></textarea>
-            </div>
-
-            <div class="flex items-center justify-end gap-2 pt-1">
-              <button onclick="toggleLeadActForm('appointment')" class="px-4 py-2 bg-white rounded-xl border border-slate-200 text-xs font-bold text-slate-700 active:bg-slate-100 cursor-pointer">Cancel</button>
-              <button onclick="submitLeadAppointment()" class="px-5 py-2 bg-[#007AFF] active:bg-blue-600 text-white rounded-xl text-xs font-bold shadow-xs cursor-pointer">Save</button>
+            <!-- Action Buttons: Cancel & Save -->
+            <div class="flex items-center justify-end gap-2.5 pt-2">
+              <button type="button" onclick="toggleLeadActForm('appointment')" class="px-6 py-2 bg-white rounded-xl border border-slate-300 text-xs font-medium text-slate-700 active:bg-slate-100 cursor-pointer">Cancel</button>
+              <button type="button" onclick="submitLeadAppointment()" class="px-6 py-2 bg-[#007AFF] active:bg-blue-600 text-white rounded-xl text-xs font-medium shadow-xs cursor-pointer">Save</button>
             </div>
           </div>
 
           <!-- Appointments List Container & Empty State -->
           <div id="leadApptList" class="space-y-2.5">
             <div id="leadApptEmpty" class="py-16 text-center text-xs font-semibold text-slate-400">
-              No appointments found.
+              No new appointment found.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- TAB 5: AUTO-COMMENT (System Activity Timeline) -->
+        <!-- ============================================== -->
+        <div id="leadActTabContent-autocomment" class="lead-act-content hidden space-y-3">
+          <div class="flex items-center justify-between pt-1">
+            <h3 class="text-sm font-bold text-slate-900 tracking-tight">Auto-comments</h3>
+            <span class="text-[11px] font-semibold text-slate-400 bg-slate-100 px-2.5 py-0.5 rounded-full">5 System Events</span>
+          </div>
+
+          <!-- Timeline Feed Container -->
+          <div class="space-y-2.5">
+            <!-- Event 1: Lead Assigned -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2">
+              <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full bg-blue-50 text-[#007AFF] flex items-center justify-center text-xs font-bold">
+                    <i class="fa-solid fa-user-check text-[11px]"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-800">Lead Assigned</span>
+                    <span class="text-[10px] text-slate-400 block font-medium">System Auto-Router</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-semibold text-slate-400">Today, 09:31 AM</span>
+              </div>
+              <p class="text-xs font-semibold text-slate-700 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                Lead assigned to <span class="text-[#007AFF] font-bold">Komalpreet Kaur</span> (Sales Consultant). Initial stage set to <span class="font-bold text-slate-800">New</span>.
+              </p>
+            </div>
+
+            <!-- Event 2: Digital Enquiry Received -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2">
+              <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs font-bold">
+                    <i class="fa-solid fa-bullhorn text-[11px]"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-800">Enquiry Created</span>
+                    <span class="text-[10px] text-slate-400 block font-medium">Digital Marketing Campaign</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-semibold text-slate-400">Today, 09:30 AM</span>
+              </div>
+              <p class="text-xs font-semibold text-slate-700 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                New online enquiry received for <span class="font-bold text-slate-800">Hyundai Creta SX (O) Diesel</span> via Google Search Ads. Lead ID: <span class="font-mono text-[11px] text-slate-600">ENQ00006849</span>.
+              </p>
+            </div>
+
+            <!-- Event 3: Automated WhatsApp Greeting -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2">
+              <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full bg-green-50 text-green-600 flex items-center justify-center text-xs font-bold">
+                    <i class="fa-brands fa-whatsapp text-xs"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-800">Automated WhatsApp Sent</span>
+                    <span class="text-[10px] text-slate-400 block font-medium">Auto-Engagement Bot</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-semibold text-slate-400">Today, 09:32 AM</span>
+              </div>
+              <p class="text-xs font-semibold text-slate-700 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                Welcome greeting and digital catalog link sent to customer WhatsApp (+91 98765 43210). Status: <span class="text-emerald-600 font-bold">Delivered ✓✓</span>.
+              </p>
+            </div>
+
+            <!-- Event 4: Stage Update -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2">
+              <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center text-xs font-bold">
+                    <i class="fa-solid fa-arrows-spin text-[11px]"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-800">Stage Changed</span>
+                    <span class="text-[10px] text-slate-400 block font-medium">Activity Tracker</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-semibold text-slate-400">Today, 10:15 AM</span>
+              </div>
+              <p class="text-xs font-semibold text-slate-700 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                Lead stage automatically updated from <span class="font-bold text-slate-600">New</span> to <span class="font-bold text-blue-600">Contacted</span> following first customer call.
+              </p>
+            </div>
+
+            <!-- Event 5: Brochure Dispatched -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2">
+              <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-xs font-bold">
+                    <i class="fa-solid fa-file-pdf text-[11px]"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-800">Brochure Dispatched</span>
+                    <span class="text-[10px] text-slate-400 block font-medium">Collateral Hub</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-semibold text-slate-400">Today, 11:00 AM</span>
+              </div>
+              <p class="text-xs font-semibold text-slate-700 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                Official PDF specification brochure for <span class="font-bold text-slate-800">Hyundai Creta</span> sent to customer email & WhatsApp.
+              </p>
             </div>
           </div>
         </div>
@@ -4175,7 +4269,7 @@
     }
 
     function switchLeadActTab(tabKey) {
-      const allTabs = ['followup', 'comment', 'brochure', 'appointment'];
+      const allTabs = ['followup', 'comment', 'brochure', 'appointment', 'autocomment'];
       allTabs.forEach(k => {
         const btn = document.getElementById('tabBtn-' + k);
         const content = document.getElementById('leadActTabContent-' + k);
@@ -4191,6 +4285,36 @@
           else content.classList.add('hidden');
         }
       });
+    }
+
+    function toggleApptDropdown() {
+      const menu = document.getElementById('apptDropdownMenu');
+      const chevron = document.getElementById('inputApptChevron');
+      if (menu) {
+        menu.classList.toggle('hidden');
+        if (chevron) {
+          chevron.classList.toggle('rotate-180');
+        }
+      }
+    }
+
+    function selectApptType(typeStr) {
+      const input = document.getElementById('inputApptType');
+      const label = document.getElementById('inputApptTypeLabel');
+      const btn = document.getElementById('inputApptTypeBtn');
+      const menu = document.getElementById('apptDropdownMenu');
+      const chevron = document.getElementById('inputApptChevron');
+
+      if (input) input.value = typeStr;
+      if (label) {
+        label.innerText = typeStr;
+        label.className = 'text-slate-900 font-bold';
+      }
+      if (btn) {
+        btn.classList.add('border-[#007AFF]');
+      }
+      if (menu) menu.classList.add('hidden');
+      if (chevron) chevron.classList.remove('rotate-180');
     }
 
     function toggleLeadActForm(formKey) {
@@ -4376,10 +4500,10 @@
 
     function submitLeadAppointment() {
       const typeVal = document.getElementById('inputApptType')?.value;
-      const bayVal = document.getElementById('inputApptBay')?.value;
-      const dateVal = document.getElementById('inputApptDate')?.value;
-      const timeVal = document.getElementById('inputApptTime')?.value;
-      const notesVal = document.getElementById('inputApptNotes')?.value || 'Scheduled via Activities';
+      if (!typeVal) {
+        alert('Please select an Appointment Type.');
+        return;
+      }
 
       const emptyEl = document.getElementById('leadApptEmpty');
       if (emptyEl) emptyEl.classList.add('hidden');
@@ -4389,25 +4513,35 @@
       newApptCard.innerHTML = `
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2.5">
-            <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center text-sm">
+            <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center text-sm font-bold">
               <i class="fa-solid fa-calendar-check"></i>
             </div>
             <div>
               <h4 class="text-xs font-extrabold text-[#1E293B]">${typeVal}</h4>
-              <p class="text-[10px] font-semibold text-slate-400">${bayVal}</p>
+              <p class="text-[10px] font-semibold text-slate-400">Scheduled for ${activeLeadContext.name}</p>
             </div>
           </div>
           <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">Confirmed</span>
         </div>
         <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100 text-[11px] font-semibold text-slate-700 flex items-center justify-between">
-          <span><i class="fa-regular fa-calendar text-[10px] text-[#007AFF] mr-1"></i>${dateVal}</span>
-          <span><i class="fa-regular fa-clock text-[10px] text-[#007AFF] mr-1"></i>${timeVal}</span>
+          <span><i class="fa-regular fa-calendar text-[10px] text-[#007AFF] mr-1"></i>Today</span>
+          <span><i class="fa-regular fa-clock text-[10px] text-[#007AFF] mr-1"></i>Next Slot</span>
         </div>
-        ${notesVal ? `<p class="text-[10px] font-semibold text-slate-500 pt-1 border-t border-slate-100">${notesVal}</p>` : ''}
       `;
 
       const list = document.getElementById('leadApptList');
       if (list) list.prepend(newApptCard);
+
+      // Reset dropdown input
+      const input = document.getElementById('inputApptType');
+      const label = document.getElementById('inputApptTypeLabel');
+      const btn = document.getElementById('inputApptTypeBtn');
+      if (input) input.value = '';
+      if (label) {
+        label.innerText = 'Appointment Type*';
+        label.className = 'text-slate-400 font-semibold';
+      }
+      if (btn) btn.classList.remove('border-[#007AFF]');
 
       toggleLeadActForm('appointment');
       alert('New appointment scheduled successfully!');
