@@ -1,5 +1,40 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🏷️ Unified Tag Selection Across All Tabs
+
+Standardized all tabs throughout the application to match the user's reference design (`All (24)` styled as an elevated white rounded card with bright brand blue font `#007AFF` nested within a soft neutral track):
+
+### 📸 Visual Demonstration & States
+````carousel
+![Enquiries Screen - All (24) Tabs Active](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_tabs_enquiry_all.png)
+<!-- slide -->
+![Enquiries Screen - Hot (8) Temperature Active](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_tabs_enquiry_hot.png)
+<!-- slide -->
+![Enquiries Screen - Contacted (5) Stage Active](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_tabs_enquiry_contacted.png)
+<!-- slide -->
+![Enquiry Details Screen - Unified Tabs](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_tabs_details.png)
+<!-- slide -->
+![Lead Activities Screen - Unified Tabs](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_tabs_lead_activities.png)
+````
+
+### ✨ Design System Rules Applied
+1. **Container Track**:
+   - `bg-slate-100/90 p-1 rounded-2xl border border-slate-200/70 shadow-2xs`
+   - Provides a consistent iOS-native segmented track across all tabs.
+2. **Active Tab**:
+   - `bg-white text-[#007AFF] font-black shadow-2xs rounded-xl`
+   - Replaced solid orange/solid blue/colored filled pills with the clean elevated white card and vibrant `#007AFF` blue typography.
+3. **Inactive Tabs**:
+   - `text-slate-600 hover:text-slate-900 font-bold rounded-xl`
+   - Neutral text that contrasts gently with the soft gray track.
+4. **Screens & Tab Bars Standardized**:
+   - **Enquiries Screen Temperature Tabs**: `All (24)`, `Hot (8)`, `Warm (11)`, `Cold (5)`.
+   - **Enquiries Screen Stage Tabs**: `All (24)`, `New (3)`, `Contacted (5)`, `Test Drive (4)`, `Negotiation (4)`, `Booking (3)`, `Delivered (2)`, `Lost (2)`, `Junk (1)`.
+   - **Enquiry Details Screen Navigation**: `General`, `Product`, `History`, `+ Activities`.
+   - **Lead Activities Screen Tabs**: `Follow Up`, `Comment`, `Brochure`, `New Appointment`, `Auto-comment`.
+
+---
+
 ## 📱 Bottom Sheet Slider for Assigned Leads Details (Hot, Warm, Cold Leads)
 
 Implemented a native **Bottom Sheet Slider** that slides up from the bottom of the screen when any of the 3 small cards (`Hot Leads`, `Warm Leads`, `Cold Leads`) or the Total Assigned Leads card is tapped, as requested: *"Open the details in a slider which will come from bottom all the thre small card details"*.

@@ -670,31 +670,28 @@
           <button id="enqTempBtn-all" onclick="filterByTemperature('all', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs text-center cursor-pointer transition-all">
             All (24)
           </button>
-          <button id="enqTempBtn-hot" onclick="filterByTemperature('hot', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-amber-600 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1">
-            <span>Hot</span>
-            <span class="text-[9px] px-1.5 py-0.2 rounded-full bg-amber-100 text-amber-700 font-extrabold">8</span>
+          <button id="enqTempBtn-hot" onclick="filterByTemperature('hot', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all">
+            Hot (8)
           </button>
-          <button id="enqTempBtn-warm" onclick="filterByTemperature('warm', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-blue-600 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1">
-            <span>Warm</span>
-            <span class="text-[9px] px-1.5 py-0.2 rounded-full bg-blue-100 text-blue-700 font-extrabold">11</span>
+          <button id="enqTempBtn-warm" onclick="filterByTemperature('warm', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all">
+            Warm (11)
           </button>
-          <button id="enqTempBtn-cold" onclick="filterByTemperature('cold', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-800 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1">
-            <span>Cold</span>
-            <span class="text-[9px] px-1.5 py-0.2 rounded-full bg-slate-200 text-slate-700 font-extrabold">5</span>
+          <button id="enqTempBtn-cold" onclick="filterByTemperature('cold', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all">
+            Cold (5)
           </button>
         </div>
 
         <!-- Stage Filter Tabs Bar (All 8 Stages in Pipeline Order) -->
-        <div class="flex items-center gap-1.5 overflow-x-auto custom-scroll -mx-4 px-4 py-1 text-xs shrink-0">
-          <button id="enqStageBtn-all" onclick="filterEnquiryStage('all', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-[#007AFF] text-white font-extrabold whitespace-nowrap shadow-xs cursor-pointer transition-all">All (<span id="stageTabCount-all">24</span>)</button>
-          <button id="enqStageBtn-new" onclick="filterEnquiryStage('new', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">New (<span id="stageTabCount-new">3</span>)</button>
-          <button id="enqStageBtn-contacted" onclick="filterEnquiryStage('contacted', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Contacted (<span id="stageTabCount-contacted">5</span>)</button>
-          <button id="enqStageBtn-testdrive" onclick="filterEnquiryStage('testdrive', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Test Drive (<span id="stageTabCount-testdrive">4</span>)</button>
-          <button id="enqStageBtn-negotiation" onclick="filterEnquiryStage('negotiation', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Negotiation (<span id="stageTabCount-negotiation">4</span>)</button>
-          <button id="enqStageBtn-booking" onclick="filterEnquiryStage('booking', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Booking (<span id="stageTabCount-booking">3</span>)</button>
-          <button id="enqStageBtn-delivered" onclick="filterEnquiryStage('delivered', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Delivered (<span id="stageTabCount-delivered">2</span>)</button>
-          <button id="enqStageBtn-lost" onclick="filterEnquiryStage('lost', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Lost (<span id="stageTabCount-lost">2</span>)</button>
-          <button id="enqStageBtn-junk" onclick="filterEnquiryStage('junk', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all">Junk (<span id="stageTabCount-junk">1</span>)</button>
+        <div class="flex items-center gap-1 bg-slate-100/90 p-1 rounded-2xl border border-slate-200/70 overflow-x-auto custom-scroll text-xs font-bold shrink-0">
+          <button id="enqStageBtn-all" onclick="filterEnquiryStage('all', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs whitespace-nowrap cursor-pointer transition-all">All (<span id="stageTabCount-all">24</span>)</button>
+          <button id="enqStageBtn-new" onclick="filterEnquiryStage('new', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">New (<span id="stageTabCount-new">3</span>)</button>
+          <button id="enqStageBtn-contacted" onclick="filterEnquiryStage('contacted', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Contacted (<span id="stageTabCount-contacted">5</span>)</button>
+          <button id="enqStageBtn-testdrive" onclick="filterEnquiryStage('testdrive', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Test Drive (<span id="stageTabCount-testdrive">4</span>)</button>
+          <button id="enqStageBtn-negotiation" onclick="filterEnquiryStage('negotiation', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Negotiation (<span id="stageTabCount-negotiation">4</span>)</button>
+          <button id="enqStageBtn-booking" onclick="filterEnquiryStage('booking', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Booking (<span id="stageTabCount-booking">3</span>)</button>
+          <button id="enqStageBtn-delivered" onclick="filterEnquiryStage('delivered', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Delivered (<span id="stageTabCount-delivered">2</span>)</button>
+          <button id="enqStageBtn-lost" onclick="filterEnquiryStage('lost', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Lost (<span id="stageTabCount-lost">2</span>)</button>
+          <button id="enqStageBtn-junk" onclick="filterEnquiryStage('junk', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Junk (<span id="stageTabCount-junk">1</span>)</button>
         </div>
 
         <!-- Lead Cards Feed -->
@@ -1548,11 +1545,11 @@
         </div>
 
         <!-- Detail Tabs Navigation Bar -->
-        <div class="bg-white rounded-xl border border-[#E0E8F5] p-1 shadow-sm flex items-center justify-between text-xs font-bold">
-          <button onclick="setDetailTab('general', this)" class="detail-tab-btn flex-1 py-2 text-center text-[#007AFF] border-b-2 border-[#007AFF]">General</button>
-          <button onclick="setDetailTab('product', this)" class="detail-tab-btn flex-1 py-2 text-center text-slate-500">Product</button>
-          <button onclick="setDetailTab('history', this)" class="detail-tab-btn flex-1 py-2 text-center text-slate-500">History</button>
-          <button id="detailTabCtaBtn" onclick="openLeadActivitiesScreen()" class="py-2 px-3 text-[#007AFF] flex items-center gap-1 font-bold shrink-0 cursor-pointer active:opacity-75"><i class="fa-solid fa-plus text-[10px]"></i> Activities</button>
+        <div class="bg-slate-100/90 p-1 rounded-2xl border border-slate-200/70 flex items-center text-xs font-bold gap-1 shadow-2xs">
+          <button onclick="setDetailTab('general', this)" class="detail-tab-btn flex-1 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs text-center cursor-pointer transition-all">General</button>
+          <button onclick="setDetailTab('product', this)" class="detail-tab-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all">Product</button>
+          <button onclick="setDetailTab('history', this)" class="detail-tab-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all">History</button>
+          <button id="detailTabCtaBtn" onclick="openLeadActivitiesScreen()" class="py-1.5 px-3 rounded-xl bg-blue-50 text-[#007AFF] hover:bg-blue-100/80 border border-blue-200/60 font-bold text-center flex items-center gap-1 shrink-0 cursor-pointer transition-all active:scale-95"><i class="fa-solid fa-plus text-[10px]"></i> Activities</button>
         </div>
 
         <!-- TAB CONTENT 1: GENERAL -->
@@ -1806,12 +1803,12 @@
         </div>
 
         <!-- Horizontal Tabs Bar (Follow Up, Comment, Brochure, New Appointment, Auto-comment) -->
-        <div class="flex items-center border-b border-slate-200 overflow-x-auto custom-scroll -mx-4 px-4 gap-6 text-xs font-bold shrink-0">
-          <button id="tabBtn-followup" onclick="switchLeadActTab('followup')" class="lead-act-tab-btn py-2 text-[#007AFF] border-b-2 border-[#007AFF] whitespace-nowrap cursor-pointer transition-all">Follow Up</button>
-          <button id="tabBtn-comment" onclick="switchLeadActTab('comment')" class="lead-act-tab-btn py-2 text-slate-500 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">Comment</button>
-          <button id="tabBtn-brochure" onclick="switchLeadActTab('brochure')" class="lead-act-tab-btn py-2 text-slate-500 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">Brochure</button>
-          <button id="tabBtn-appointment" onclick="switchLeadActTab('appointment')" class="lead-act-tab-btn py-2 text-slate-500 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">New Appointment</button>
-          <button id="tabBtn-autocomment" onclick="switchLeadActTab('autocomment')" class="lead-act-tab-btn py-2 text-slate-500 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">Auto-comment</button>
+        <div class="flex items-center gap-1 bg-slate-100/90 p-1 rounded-2xl border border-slate-200/70 overflow-x-auto custom-scroll text-xs font-bold shrink-0">
+          <button id="tabBtn-followup" onclick="switchLeadActTab('followup')" class="lead-act-tab-btn px-3 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs whitespace-nowrap cursor-pointer transition-all">Follow Up</button>
+          <button id="tabBtn-comment" onclick="switchLeadActTab('comment')" class="lead-act-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Comment</button>
+          <button id="tabBtn-brochure" onclick="switchLeadActTab('brochure')" class="lead-act-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Brochure</button>
+          <button id="tabBtn-appointment" onclick="switchLeadActTab('appointment')" class="lead-act-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">New Appointment</button>
+          <button id="tabBtn-autocomment" onclick="switchLeadActTab('autocomment')" class="lead-act-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Auto-comment</button>
         </div>
 
         <!-- ============================================== -->
@@ -5232,9 +5229,9 @@
         const content = document.getElementById('leadActTabContent-' + k);
         if (btn) {
           if (k === tabKey) {
-            btn.className = 'lead-act-tab-btn py-2 text-[#007AFF] border-b-2 border-[#007AFF] whitespace-nowrap cursor-pointer transition-all font-bold';
+            btn.className = 'lead-act-tab-btn px-3 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs whitespace-nowrap cursor-pointer transition-all';
           } else {
-            btn.className = 'lead-act-tab-btn py-2 text-slate-500 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all font-bold';
+            btn.className = 'lead-act-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all';
           }
         }
         if (content) {
@@ -5572,11 +5569,11 @@
 
     function setDetailTab(tabName, btn) {
       document.querySelectorAll('.detail-tab-btn').forEach(t => {
-        t.classList.remove('text-[#007AFF]', 'border-b-2', 'border-[#007AFF]');
-        t.classList.add('text-slate-500');
+        t.className = 'detail-tab-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all';
       });
-      btn.classList.remove('text-slate-500');
-      btn.classList.add('text-[#007AFF]', 'border-b-2', 'border-[#007AFF]');
+      if (btn) {
+        btn.className = 'detail-tab-btn flex-1 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs text-center cursor-pointer transition-all';
+      }
 
       document.querySelectorAll('.detail-tab-content').forEach(c => c.classList.add('hidden'));
       const target = document.getElementById('detail-tab-' + tabName);
@@ -6924,19 +6921,11 @@
     function filterByTemperature(tempKey, btn) {
       currentEnquiryTemp = tempKey || 'all';
       document.querySelectorAll('.enq-temp-filter-btn').forEach(b => {
-        b.className = 'enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1';
+        b.className = 'enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all';
       });
       const activeBtn = btn || document.getElementById('enqTempBtn-' + tempKey);
       if (activeBtn) {
-        if (tempKey === 'hot') {
-          activeBtn.className = 'enq-temp-filter-btn flex-1 py-1.5 rounded-xl bg-amber-500 text-white font-black shadow-2xs text-center cursor-pointer transition-all flex items-center justify-center gap-1';
-        } else if (tempKey === 'warm') {
-          activeBtn.className = 'enq-temp-filter-btn flex-1 py-1.5 rounded-xl bg-[#007AFF] text-white font-black shadow-2xs text-center cursor-pointer transition-all flex items-center justify-center gap-1';
-        } else if (tempKey === 'cold') {
-          activeBtn.className = 'enq-temp-filter-btn flex-1 py-1.5 rounded-xl bg-slate-700 text-white font-black shadow-2xs text-center cursor-pointer transition-all flex items-center justify-center gap-1';
-        } else {
-          activeBtn.className = 'enq-temp-filter-btn flex-1 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs text-center cursor-pointer transition-all';
-        }
+        activeBtn.className = 'enq-temp-filter-btn flex-1 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs text-center cursor-pointer transition-all';
       }
       applyCombinedEnquiryFilters();
     }
@@ -6944,11 +6933,11 @@
     function filterEnquiryStage(filterType, btn) {
       currentEnquiryStage = filterType || 'all';
       document.querySelectorAll('.enquiry-stage-tab-btn').forEach(p => {
-        p.className = 'enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-slate-700 font-bold border border-slate-200/60 whitespace-nowrap cursor-pointer transition-all';
+        p.className = 'enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all';
       });
       const activeBtn = btn || document.getElementById('enqStageBtn-' + filterType);
       if (activeBtn) {
-        activeBtn.className = 'enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-[#007AFF] text-white font-extrabold whitespace-nowrap shadow-xs cursor-pointer transition-all';
+        activeBtn.className = 'enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs whitespace-nowrap cursor-pointer transition-all';
       }
       applyCombinedEnquiryFilters();
     }
@@ -7144,6 +7133,10 @@
         const temp = params.get('temp');
         if (targetScreen === 'enquiry' && temp) {
           filterByTemperature(temp);
+        }
+        const stage = params.get('stage');
+        if (targetScreen === 'enquiry' && stage) {
+          filterEnquiryStage(stage);
         }
         const step = parseInt(params.get('step'));
         if (targetScreen === 'sales-enquiry' && step) {
