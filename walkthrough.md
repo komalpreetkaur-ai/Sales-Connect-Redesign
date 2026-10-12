@@ -73,23 +73,34 @@ Implemented the full **Activities** flow accessed directly from the **Customer P
 3. **Tab 2: Comment**:
    - Header: `COMMENTS` with `+ Add Comment` action.
    - Inline Form: `ADD COMMENT (ENQ00006849)` with `Comment*` textarea, dynamic `0/100` character counter, and `Cancel` / `Save` buttons.
-   - Centered empty state `No comments found.` when empty, dynamically displaying styled comment cards upon addition.
+   - **Pre-populated Comment Cards**:
+     - *Comment 1*: Rahul Sharma (Sales Consultant) — Field inquiry for Thar Roxx AX7L Diesel AT, financing plans, and 2018 Swift exchange evaluation.
+     - *Comment 2*: Pooja Verma (Team Lead) — Weekend prioritized test drive slot allocation and manager review notes.
+   - Dynamic Addition: Seamlessly prepends new user comments to `#leadCommentsList` and increments the total activities counter.
 
 4. **Tab 3: Brochure**:
    - Header: `BROCHURES` with `+ Add Brochure` action.
    - Inline Form: `SHARE BROCHURE` with `Product Id*` selector (Mahindra Thar Roxx, XUV700, Scorpio-N, etc.), `phone`, `email*`, and `Cancel` / `Share` buttons.
-   - Centered empty state `No brochure found.` when empty, dynamically displaying brochure shared cards with channel tags.
+   - **Pre-populated Brochure Dispatch Cards**:
+     - *Brochure 1*: **Mahindra Thar Roxx Brochure** — Sent to phone `+91 98765 89706` via WhatsApp with `Sent ✓` status and digital catalog details.
+     - *Brochure 2*: **Mahindra XUV700 Brochure** — Sent to email `gurjant.singh@gmail.com` via Email with `Sent ✓` status and spec sheet details.
+   - Dynamic Dispatch: Pre-pends newly shared brochures with live contact credentials.
 
 5. **Tab 4: New Appointment** (Exact match to reference screenshots):
    - Header: `New Appointments` (left) | `+ Add New Appointment` (right, blue underline link).
-   - Centered empty state: `No new appointment found.` (neutral gray text, ample spacing).
    - Inline Form: `NEW APPOINTMENT` with `✕` close button:
      - Single Dropdown selector: `Appointment Type*` with chevron icon.
      - Dropdown options: `Test Drive`, `Home Visit`, `Showroom Visit`.
      - Action buttons: `Cancel` (white button with border) and `Save` (brand blue `#007AFF` button with white text).
-     - Dynamically adds confirmed appointment cards to the list upon submission.
+   - **Pre-populated Appointment Cards**:
+     - *Appointment 1*: **Test Drive** (`Confirmed` badge) — Scheduled for `Tomorrow, 15 Oct` at `11:30 AM` at Dealership Showroom with executive Rahul S.
+     - *Appointment 2*: **Showroom Visit** (`Completed` badge) — Scheduled on `12 Oct 2026` at `03:00 PM` for initial consultation and demo.
+   - Dynamic Scheduling: Pre-pends newly confirmed appointments and recalculates activity counts.
 
-6. **Tab 5: Auto-comment** (System Activity Timeline Feed):
+6. **Dynamic Header Activity Counter (`#leadActTotalBadge`)**:
+   - Automatically synchronizes header badge (e.g. `7 Activities`) across Follow-Ups, Comments, Brochures, and Appointments whenever new records are created.
+
+7. **Tab 5: Auto-comment** (System Activity Timeline Feed):
    - Header: `Auto-comments` with system event count pill (`5 System Events`).
    - Chronological audit trail of automated actions and system triggers:
      - **Lead Assigned**: Auto-router assignment to Sales Consultant (`Komalpreet Kaur`) with initial stage set to `New`.
