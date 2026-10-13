@@ -1,5 +1,18 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🔍 Removed "Update" & "+ Add Filter" from Filters Modal
+
+Removed the `Update` link and `+ Add Filter` button from the top header of the Filters modal as requested:
+
+![Clean Filters Modal Header](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_filter_modal_clean.png)
+
+### ✨ Changes Applied
+1. **Removed Redundant Action Buttons**: Stripped the underlined `Update` button and the blue `+ Add Filter` pill button from the modal's top right header.
+2. **Clean Modal Chrome**: The header now displays the **FILTERS** title with dropdown indicator and a dedicated close button (`✕`), leaving the primary actions cleanly consolidated at the bottom with **Cancel** and **Apply**.
+3. **Exact Parity Maintained**: Both `index.html` and `sales_connect_redesign.html` are completely identical and synchronized.
+
+---
+
 ## 🎯 Removed "75% Achieved" Tag from Target Header
 
 Removed the `75% Achieved` pill badge from the **WEEKLY TARGET** section header on the Home Dashboard as requested:
