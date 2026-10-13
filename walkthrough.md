@@ -1,5 +1,18 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🎯 Removed Fire Icon from Target Goal Text
+
+Removed the fire emoji (`🔥`) from the **WEEKLY TARGET & KPIs** goal counter on the Home Dashboard as requested:
+
+![Clean Target Goal Text](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_no_fire_icon.png)
+
+### ✨ Changes Applied
+1. **Clean Professional Typography**: Changed `1 Unit to Goal 🔥` to `1 Unit to Goal` in clean, bold blue (`text-[#007AFF] font-extrabold`).
+2. **Preset Synchronization**: Updated the dynamic presets for `Today`, `This Week`, and `This Month` so date filtering continues to display clean text without the fire emoji.
+3. **Exact Parity Maintained**: Both `index.html` and `sales_connect_redesign.html` are completely identical and synchronized.
+
+---
+
 ## 🧹 Removed FOLLOW-UPS Section from Home Dashboard
 
 Removed the duplicate **FOLLOW-UPS** lead feed section from the bottom of the Home Dashboard as requested:
