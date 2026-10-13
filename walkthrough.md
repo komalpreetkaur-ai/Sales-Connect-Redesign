@@ -1,19 +1,21 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-## 📋 Bookings KPI Card: Matched Trend Icon & Today's Bookings
+## 🕒 Unified Clock Icons Across KPI Cards
 
-Updated the **BOOKINGS** KPI metric card on the Home Dashboard to match the icon style of the other card:
+Replaced the arrow trend icons on both **FOLLOW-UPS** and **BOOKINGS** cards with the clean, consistent clock icon matching the **TEST DRIVES** card:
 
-![Bookings KPI Card with Matched Trend Icon](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_bookings_today.png)
+![Unified Clock Icons on Home KPI Cards](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_kpi_clock.png)
 
 ### ✨ Changes Applied
-1. **Matched Icon to Follow-ups Card**: Swapped to `<i class="fa-solid fa-arrow-trend-up"></i>` with `+1 booked today`, exactly matching the trending arrow and plus-count indicator of the Follow-ups card (`📈 +3 new today`).
-2. **Harmonized KPI Card Visual Hierarchy**:
-   - **FOLLOW-UPS**: `15` (`📈 +3 new today`)
+1. **Replaced Arrow Trend Icons**: Swapped `<i class="fa-solid fa-arrow-trend-up"></i>` with `<i class="fa-regular fa-clock"></i>` on both:
+   - **FOLLOW-UPS**: `15` | `<i class="fa-regular fa-clock"></i> +3 new today` (emerald)
+   - **BOOKINGS**: `5` | `<i class="fa-regular fa-clock"></i> 1 booked today` (emerald)
+2. **Unified Visual Consistency with TEST DRIVES**:
+   - **FOLLOW-UPS**: `15` (`🕒 +3 new today`)
    - **TEST DRIVES**: `4` (`🕒 2 scheduled today`)
-   - **BOOKINGS**: `5` (`📈 +1 booked today`)
-   - **DELIVERIES**: `8` (`🔑 2 pending sign-off`)
-3. **Synchronized All Date Filter Presets**: Updated dynamic data dictionaries (`Today`, `This Week`, `This Month`) so date filter toggling seamlessly retains the styled trending indicator.
+   - **BOOKINGS**: `5` (`🕒 1 booked today`)
+   - **DELIVERIES**: `8` (`2 pending sign-off`)
+3. **Synchronized All Date Filter Presets**: Updated dynamic data presets (`Today`, `This Week`, `This Month`) in both files to maintain the clock icon across date filter changes.
 4. **Exact Parity Maintained**: Both `index.html` and `sales_connect_redesign.html` are completely identical and synchronized.
 
 ---
