@@ -203,17 +203,16 @@
           <div class="flex items-center justify-between">
             <h2 class="text-xs font-black text-slate-500 uppercase tracking-wider">LEADS ASSIGNED</h2>
             <button onclick="openEnquiryWithTemperature('all')" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer active:opacity-75">
-              <span>View All (24)</span>
+              <span>View All</span>
               <i class="fa-solid fa-chevron-right text-[10px]"></i>
             </button>
           </div>
 
           <!-- Leads Assigned Main Metric Card -->
-          <div id="homeAssignedMainCard" class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs space-y-3 transition-all">
-            <!-- Top Metric Header (Clickable to open Bottom Slider for All Leads) -->
-            <div onclick="openAssignedLeadsSlider('all')" class="flex items-center justify-between cursor-pointer group active:opacity-80 p-1 -m-1 rounded-xl transition-colors hover:bg-slate-50/70" title="Click to view all 24 assigned leads">
+          <div id="homeAssignedMainCard" onclick="openEnquiryWithTemperature('all')" class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs transition-all cursor-pointer active:scale-[0.99]" title="View all assigned leads">
+            <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-2xl bg-blue-50 text-[#007AFF] border border-blue-100 flex items-center justify-center text-lg font-black shrink-0 group-hover:scale-105 transition-transform">
+                <div class="w-11 h-11 rounded-2xl bg-blue-50 text-[#007AFF] border border-blue-100 flex items-center justify-center text-lg font-black shrink-0">
                   <i class="fa-solid fa-user-check"></i>
                 </div>
                 <div>
@@ -224,31 +223,6 @@
                   <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Leads Assigned To You</p>
                 </div>
               </div>
-              <div class="flex items-center gap-1.5 text-slate-400 group-hover:text-[#007AFF] transition-colors">
-                <span class="text-[10px] font-bold">Tap to view</span>
-                <i class="fa-solid fa-chevron-right text-xs"></i>
-              </div>
-            </div>
-
-            <!-- Leads Temperature & Category Breakdown Grid (3 Small Cards) -->
-            <div class="grid grid-cols-3 gap-2 pt-1">
-              <!-- Hot Leads Card -->
-              <button type="button" id="homeAssignedBtn-hot" onclick="openAssignedLeadsSlider('hot')" class="home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-amber-50/40" title="Open 8 Hot Leads in bottom slider">
-                <span id="homeAssignedHotVal" class="block text-base font-black text-[#007AFF]">8</span>
-                <span class="text-[9px] font-extrabold text-slate-500 uppercase tracking-wide mt-0.5">Hot Leads</span>
-              </button>
-
-              <!-- Warm Leads Card -->
-              <button type="button" id="homeAssignedBtn-warm" onclick="openAssignedLeadsSlider('warm')" class="home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-blue-50/40" title="Open 11 Warm Leads in bottom slider">
-                <span id="homeAssignedWarmVal" class="block text-base font-black text-[#007AFF]">11</span>
-                <span class="text-[9px] font-extrabold text-slate-500 uppercase tracking-wide mt-0.5">Warm Leads</span>
-              </button>
-
-              <!-- Cold Leads Card -->
-              <button type="button" id="homeAssignedBtn-cold" onclick="openAssignedLeadsSlider('cold')" class="home-temp-card bg-slate-50 border border-slate-200/60 rounded-xl p-2.5 text-center cursor-pointer transition-all active:scale-95 flex flex-col items-center justify-center hover:bg-slate-100" title="Open 5 Cold Leads in bottom slider">
-                <span id="homeAssignedColdVal" class="block text-base font-black text-slate-700">5</span>
-                <span class="text-[9px] font-extrabold text-slate-500 uppercase tracking-wide mt-0.5">Cold Leads</span>
-              </button>
             </div>
           </div>
         </section>

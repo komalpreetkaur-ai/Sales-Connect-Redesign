@@ -1,5 +1,18 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## ⚡ Streamlined Leads Assigned Card on Home Screen
+
+Cleaned up the **LEADS ASSIGNED** section on the Home Dashboard as requested:
+
+![Streamlined Leads Assigned Card](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_leads_cleaned.png)
+
+### ✨ Changes Applied
+1. **Removed Hot, Warm, and Cold Cards**: Removed the 3 small cards from inside the card, keeping the home metric card sleek, clean, and focused on total assigned leads (with priority breakdown now properly featured on the Enquiries screen).
+2. **Removed "Tap to view >" CTA**: Removed the redundant label and arrow from the right side of the card.
+3. **Cleaned Header CTA**: Simplified the section header CTA from `View All (24) >` to `View All >`.
+
+---
+
 ## 🔥 Distinct Lead Priority (Hot, Warm, Cold) Hero Stat Cards
 
 Replaced the awkward duplicate stacked filter tab bars with a dedicated, high-impact **Lead Priority Hero Cards Strip** on the Enquiries screen (`#screen-enquiry`), giving Hot, Warm, and Cold leads their own bold, unmistakable visual identity that stands out immediately:
