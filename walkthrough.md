@@ -1,5 +1,33 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🔥 Expanded Priority Actions Today & Removed "+ New Booking" Button
+
+Addressed the user requests:
+1. **Added More Priority Action Cards** under **PRIORITY ACTIONS TODAY** on the Home Dashboard.
+2. **Removed "+ New Booking" Button** from the Vehicle Bookings screen header.
+
+![Expanded Priority Actions Cards](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_priority_actions_scrolled.png)
+
+![Booking Screen without New Booking Button](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_booking_no_new_button.png)
+
+### ✨ Changes Applied
+1. **Priority Actions Today (5 High-Priority Automotive Tasks)**:
+   - **Overdue Follow-up** (Priya M. • Negotiation): 2h overdue alert with phone and WhatsApp actions.
+   - **Test Drive Confirmation** (Shreya S. • Test Drive): 10:30 AM Home Test Drive Baleno confirmation.
+   - **Advance Token Pending** (Rupesh Bhatt • Booking): ₹50,000 token clearance alert.
+   - **Delivery PDI Sign-off** (Vikram Malhotra • Delivery Ready): 4:00 PM Grand Vitara delivery & gate-pass clearance.
+   - **Loan Disbursal Action** (Amit Patel • Financing): Expiring bank sanction letter follow-up.
+   - Updated urgent badge indicator to `5 Urgent`.
+   - Card clicks navigate directly to enquiry details.
+
+2. **Cleaned Vehicle Bookings Header**:
+   - Removed `<button onclick="openCreateBookingForm()"> + New Booking </button>` from the header of `#screen-booking` as requested.
+   - Header is now clean and uncluttered with back navigation and clear section title.
+
+3. **100% Parity Maintained**: Both `index.html` and `sales_connect_redesign.html` are identical.
+
+---
+
 ## 📱 Redesigned Pipeline Stage Filter (All Options Visible at a Glance)
 
 Redesigned the **Pipeline Stage** filter selector on the Enquiries screen (`#screen-enquiry`) from a cut-off single-row horizontal drag/scroll container into a clean, balanced **3x3 all-visible dashboard matrix** with count badges:

@@ -340,15 +340,15 @@
               <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
               <span>PRIORITY ACTIONS TODAY</span>
             </h2>
-            <span id="priorityBadge" class="text-[10px] font-extrabold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">2 Urgent</span>
+            <span id="priorityBadge" class="text-[10px] font-extrabold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">5 Urgent</span>
           </div>
 
           <div class="space-y-2.5">
             <!-- Urgent Card 1 -->
-            <div id="urgentCard1" class="bg-amber-50/80 border border-amber-200 rounded-2xl p-3.5 space-y-2.5">
+            <div id="urgentCard1" onclick="openEnquiryDetails('ENQ987875440')" class="bg-amber-50/80 border border-amber-200 rounded-2xl p-3.5 space-y-2.5 cursor-pointer active:scale-[0.99] transition-transform">
               <div class="flex items-start justify-between">
                 <div class="flex items-center gap-2.5">
-                  <div class="w-8 h-8 rounded-full bg-amber-500 text-white font-black text-xs flex items-center justify-center shrink-0">
+                  <div class="w-8 h-8 rounded-full bg-amber-500 text-white font-black text-xs flex items-center justify-center shrink-0 shadow-2xs">
                     <i class="fa-solid fa-triangle-exclamation"></i>
                   </div>
                   <div>
@@ -372,10 +372,10 @@
             </div>
 
             <!-- Urgent Card 2 -->
-            <div id="urgentCard2" class="bg-rose-50/80 border border-rose-200 rounded-2xl p-3.5 space-y-2.5">
+            <div id="urgentCard2" onclick="openEnquiryDetails('ENQ987875375')" class="bg-rose-50/80 border border-rose-200 rounded-2xl p-3.5 space-y-2.5 cursor-pointer active:scale-[0.99] transition-transform">
               <div class="flex items-start justify-between">
                 <div class="flex items-center gap-2.5">
-                  <div class="w-8 h-8 rounded-full bg-rose-500 text-white font-black text-xs flex items-center justify-center shrink-0">
+                  <div class="w-8 h-8 rounded-full bg-rose-500 text-white font-black text-xs flex items-center justify-center shrink-0 shadow-2xs">
                     <i class="fa-solid fa-clock"></i>
                   </div>
                   <div>
@@ -392,6 +392,87 @@
                     <i class="fa-solid fa-phone text-xs"></i>
                   </button>
                   <button onclick="event.stopPropagation(); window.open('https://wa.me/919910244331','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Urgent Card 3: Booking Advance Clearance -->
+            <div id="urgentCard3" onclick="openEnquiryDetails('ENQ987875364')" class="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-3.5 space-y-2.5 cursor-pointer active:scale-[0.99] transition-transform">
+              <div class="flex items-start justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-emerald-500 text-white font-black text-xs flex items-center justify-center shrink-0 shadow-2xs">
+                    <i class="fa-solid fa-receipt"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xs font-extrabold text-[#1E293B]">Advance Token Pending: Rupesh Bhatt</h3>
+                    <p class="text-[10px] font-semibold text-slate-600">₹50,000 Cheque awaiting clearance • Swift ZXi</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between border-t border-emerald-200/60 pt-2.5">
+                <span class="text-[10px] font-bold text-emerald-800">Lead Stage: Booking</span>
+                <div class="flex items-center gap-1.5">
+                  <button onclick="event.stopPropagation(); window.location.href='tel:+919876543210';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+                    <i class="fa-solid fa-phone text-xs"></i>
+                  </button>
+                  <button onclick="event.stopPropagation(); window.open('https://wa.me/919876543210','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Urgent Card 4: Delivery PDI Sign-off -->
+            <div id="urgentCard4" onclick="openEnquiryDetails('ENQ987875388')" class="bg-indigo-50/80 border border-indigo-200 rounded-2xl p-3.5 space-y-2.5 cursor-pointer active:scale-[0.99] transition-transform">
+              <div class="flex items-start justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-indigo-500 text-white font-black text-xs flex items-center justify-center shrink-0 shadow-2xs">
+                    <i class="fa-solid fa-car-side"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xs font-extrabold text-[#1E293B]">Delivery Sign-off: Vikram Malhotra</h3>
+                    <p class="text-[10px] font-semibold text-slate-600">PDI Completed • Grand Vitara Alpha • 4:00 PM Today</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between border-t border-indigo-200/60 pt-2.5">
+                <span class="text-[10px] font-bold text-indigo-800">Lead Stage: Delivery Ready</span>
+                <div class="flex items-center gap-1.5">
+                  <button onclick="event.stopPropagation(); window.location.href='tel:+919876589710';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+                    <i class="fa-solid fa-phone text-xs"></i>
+                  </button>
+                  <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589710','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Urgent Card 5: Finance / Loan Approval -->
+            <div id="urgentCard5" onclick="openEnquiryDetails('ENQ987875451')" class="bg-purple-50/80 border border-purple-200 rounded-2xl p-3.5 space-y-2.5 cursor-pointer active:scale-[0.99] transition-transform">
+              <div class="flex items-start justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-purple-500 text-white font-black text-xs flex items-center justify-center shrink-0 shadow-2xs">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xs font-extrabold text-[#1E293B]">Loan Disbursal Action: Amit Patel</h3>
+                    <p class="text-[10px] font-semibold text-slate-600">HDFC Sanction Letter Expiring • Brezza ZXi+</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between border-t border-purple-200/60 pt-2.5">
+                <span class="text-[10px] font-bold text-purple-800">Lead Stage: Financing</span>
+                <div class="flex items-center gap-1.5">
+                  <button onclick="event.stopPropagation(); window.location.href='tel:+919876589722';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+                    <i class="fa-solid fa-phone text-xs"></i>
+                  </button>
+                  <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589722','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
                   </button>
                 </div>
@@ -2909,10 +2990,6 @@
               <p class="text-[10px] font-semibold text-slate-400">Track and manage customer car bookings</p>
             </div>
           </div>
-          <button onclick="openCreateBookingForm()" class="px-3 py-1.5 bg-[#007AFF] active:bg-blue-600 text-white rounded-xl text-xs font-bold shadow-sm flex items-center gap-1 shrink-0 active:scale-95 transition-transform cursor-pointer">
-            <i class="fa-solid fa-plus text-xs"></i>
-            <span>New Booking</span>
-          </button>
         </div>
 
         <!-- Combined Search Bar & Date Icon Filter -->
@@ -5604,7 +5681,7 @@
         kpiPreBookingsSub: `<i class="fa-regular fa-clock"></i><span>1 booked today</span>`,
         kpiDeliveriesVal: "1",
         kpiDeliveriesSub: "Delivered at 11 AM",
-        priorityBadge: "1 Urgent",
+        priorityBadge: "3 Urgent",
         showUrgent2: false,
         followupCount: "2",
         stagePillsHTML: `
@@ -5638,7 +5715,7 @@
         kpiPreBookingsSub: `<i class="fa-regular fa-clock"></i><span>1 booked today</span>`,
         kpiDeliveriesVal: "3",
         kpiDeliveriesSub: "1 pending sign-off",
-        priorityBadge: "2 Urgent",
+        priorityBadge: "5 Urgent",
         showUrgent2: true,
         followupCount: "4",
         stagePillsHTML: `
@@ -5673,7 +5750,7 @@
         kpiPreBookingsSub: `<i class="fa-regular fa-clock"></i><span>1 booked today</span>`,
         kpiDeliveriesVal: "8",
         kpiDeliveriesSub: "2 pending sign-off",
-        priorityBadge: "2 Urgent",
+        priorityBadge: "5 Urgent",
         showUrgent2: true,
         followupCount: "6",
         stagePillsHTML: `
