@@ -1,5 +1,19 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🧹 Removed FOLLOW-UPS Section from Home Dashboard
+
+Removed the duplicate **FOLLOW-UPS** lead feed section from the bottom of the Home Dashboard as requested:
+
+![Clean Scrolled Home Dashboard](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_scrolled_bottom.png)
+
+### ✨ Changes Applied
+1. **Removed Redundant Follow-Ups Feed**: Completely removed the bottom `<section>` (`FOLLOW-UPS 6` header, `View All` button, and the list of lead cards), eliminating redundancy with the **Priority Actions Today** section and the dedicated **Activities / Enquiries** screens.
+2. **Cleaner, Higher-Focus Home Page**: The Home dashboard now neatly concludes after **PRIORITY ACTIONS TODAY**, focusing the consultant on urgent tasks without cluttering the screen with duplicate lists.
+3. **Full Functionality Preserved**: Tapping the **FOLLOW-UPS** KPI card still seamlessly opens the dedicated full-screen Active Follow-ups view (`switchScreen('activities')`).
+4. **Exact Parity Maintained**: Both `index.html` and `sales_connect_redesign.html` are completely identical and synchronized.
+
+---
+
 ## 🕒 Unified Clock Icons Across KPI Cards
 
 Replaced the arrow trend icons on both **FOLLOW-UPS** and **BOOKINGS** cards with the clean, consistent clock icon matching the **TEST DRIVES** card:
