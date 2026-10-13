@@ -1,26 +1,27 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-## 🌿 Calm & Minimalist Pipeline Stage Selector (Refined from Loud Funnel)
+## 📱 Pipeline Stage Selector & Bottom Sheet Picker (Zero Tabs Redesign)
 
-Redesigned the Pipeline Stage filter to remove the overly loud rainbow colors, cards, and bars, replacing it with a calm, subtle **iOS-Style Segmented Matrix**:
+Redesigned the Pipeline Stage selector to completely eliminate the tabs appearance in favor of an **Executive Filter Card with an iOS Bottom Sheet Picker**:
 
-![Clean Pipeline Stages Matrix](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_grid_pipeline_stages.png)
+![Stage Selector Card (Default State)](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_stage_selector_card.png)
 
-![Filtered by Test Drive](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_grid_pipeline_stages_active_testdrive.png)
+![Stage Picker Bottom Sheet Modal](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_stage_picker_bottom_sheet.png)
 
-### ✨ Key Design Refinements
-1. **Calm & Non-Distracting Aesthetic**:
-   - Eliminated the loud rainbow progress bar, colored indicator dots, multi-tier card frames, and high-saturation badge text.
-   - Restored the calm, unified light-slate container (`bg-slate-100/90 rounded-2xl border border-slate-200/60 p-1`).
-2. **Zero Dragging / 100% Visibility**:
-   - All 9 stages (`All 24`, `New 3`, `Follow-up 5`, `Test Drive 4`, `Negotiation 4`, `Booking 3`, `Delivered 2`, `Lost 2`, `Junk 1`) are aligned in a balanced 3x3 segmented grid.
-   - Users can immediately view and tap any pipeline stage without any horizontal scroll or dragging.
-3. **Subtle Native Active State**:
-   - The active stage elevates as a crisp white pill with subtle soft shadow (`shadow-2xs`) and sharp brand blue text (`text-[#007AFF] font-black`).
-   - Inactive stages remain calm, borderless slate text (`text-slate-600 font-bold`).
-4. **Instant Card Filtering & Dynamic Badges**:
-   - Tapping an active filter toggles back to `All (24)`.
-   - Top indicator (`activeStageIndicator`) and badge (`enquiryTotalBadge`) update seamlessly.
+![Filtered State (Test Drive Active with Quick Reset)](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_stage_selector_filtered_testdrive.png)
+
+### ✨ Why This Design Completely Solves the Problem
+1. **Zero "Tabs" Look**:
+   - Replaced the bulky 3x3 block of tabs with a clean, low-profile selector card (~55px height) taking minimal vertical space.
+   - Leads below have immediate breathing room without being pushed down the screen.
+2. **Native iOS Bottom Sheet Picker (`#stagePickerModal`)**:
+   - Tapping anywhere on the selector card or on `Select ▾` slides up an elegant modal bottom sheet.
+   - Categorized into **Overview** (`All Stages • 24 Leads`), **Active Deal Journey** (`New`, `Follow-up`, `Test Drive`, `Negotiation`, `Booking`), and **Completed & Outcomes** (`Delivered`, `Close Lost`, `Junk`).
+   - Every single stage displays a dedicated icon, full descriptive subtitle, lead count badge, and active checkmark (`✓`).
+3. **One-Tap Quick Reset**:
+   - When a stage filter is active (e.g. `Test Drive`), a quick `Reset` button appears right on the card, enabling the user to reset to all leads with a single tap without reopening the modal.
+4. **Zero Dragging / Zero Cutoff**:
+   - All 9 stages are clearly legible vertically in the sheet with no awkward horizontal scrolling.
 5. **100% Parity**: Both `index.html` and `sales_connect_redesign.html` are identical.
 
 ---

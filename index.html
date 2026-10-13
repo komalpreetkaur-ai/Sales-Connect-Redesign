@@ -533,22 +533,32 @@
           </div>
         </div>
 
-        <!-- Pipeline Stage Filter (Clean, Subtle All-Visible Segmented Pills) -->
-        <div class="space-y-1.5">
-          <div class="flex items-center justify-between px-0.5">
-            <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider">Pipeline Stage</span>
-            <span id="activeStageIndicator" class="text-[10px] font-bold text-slate-400">All (24)</span>
-          </div>
-          <div class="grid grid-cols-3 gap-1 p-1 bg-slate-100/90 rounded-2xl border border-slate-200/60 text-xs">
-            <button id="enqStageBtn-all" onclick="filterEnquiryStage('all', this)" class="enquiry-stage-tab-btn py-2 px-1 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs text-center cursor-pointer transition-all active:scale-95 truncate">All (<span id="stageTabCount-all">24</span>)</button>
-            <button id="enqStageBtn-new" onclick="filterEnquiryStage('new', this)" class="enquiry-stage-tab-btn py-2 px-1 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all active:scale-95 truncate">New (<span id="stageTabCount-new">3</span>)</button>
-            <button id="enqStageBtn-contacted" onclick="filterEnquiryStage('contacted', this)" class="enquiry-stage-tab-btn py-2 px-1 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all active:scale-95 truncate">Follow-up (<span id="stageTabCount-contacted">5</span>)</button>
-            <button id="enqStageBtn-testdrive" onclick="filterEnquiryStage('testdrive', this)" class="enquiry-stage-tab-btn py-2 px-1 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all active:scale-95 truncate">Test Drive (<span id="stageTabCount-testdrive">4</span>)</button>
-            <button id="enqStageBtn-negotiation" onclick="filterEnquiryStage('negotiation', this)" class="enquiry-stage-tab-btn py-2 px-1 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all active:scale-95 truncate">Negotiation (<span id="stageTabCount-negotiation">4</span>)</button>
-            <button id="enqStageBtn-booking" onclick="filterEnquiryStage('booking', this)" class="enquiry-stage-tab-btn py-2 px-1 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all active:scale-95 truncate">Booking (<span id="stageTabCount-booking">3</span>)</button>
-            <button id="enqStageBtn-delivered" onclick="filterEnquiryStage('delivered', this)" class="enquiry-stage-tab-btn py-2 px-1 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all active:scale-95 truncate">Delivered (<span id="stageTabCount-delivered">2</span>)</button>
-            <button id="enqStageBtn-lost" onclick="filterEnquiryStage('lost', this)" class="enquiry-stage-tab-btn py-2 px-1 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all active:scale-95 truncate">Lost (<span id="stageTabCount-lost">2</span>)</button>
-            <button id="enqStageBtn-junk" onclick="filterEnquiryStage('junk', this)" class="enquiry-stage-tab-btn py-2 px-1 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all active:scale-95 truncate">Junk (<span id="stageTabCount-junk">1</span>)</button>
+        <!-- Pipeline Stage Filter (Interactive Selector Card) -->
+        <div onclick="openStagePickerModal()" class="bg-white rounded-2xl border border-slate-200/80 p-3 shadow-2xs hover:border-blue-300 transition-all cursor-pointer group active:scale-[0.99]">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3 min-w-0">
+              <div id="stageCardIconContainer" class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center text-sm font-bold shrink-0 border border-blue-100 group-hover:scale-105 transition-transform">
+                <i id="stageCardIcon" class="fa-solid fa-layer-group"></i>
+              </div>
+              <div class="truncate">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider">Pipeline Stage</span>
+                  <span id="activeStageTag" class="text-[9px] font-extrabold px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-700 border border-slate-200/60">All Leads</span>
+                </div>
+                <h3 id="stageCardTitle" class="text-xs font-black text-slate-800 leading-tight mt-0.5 truncate">All Stages (24 Leads)</h3>
+                <p id="stageCardSubtitle" class="text-[10px] font-semibold text-slate-400 truncate">Viewing all 24 dealership leads</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1.5 shrink-0 ml-2">
+              <button id="stageClearFilterBtn" type="button" onclick="event.stopPropagation(); selectPipelineStage('all');" class="hidden px-2 py-1 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg text-[10px] font-extrabold border border-rose-200/60 transition-all cursor-pointer">
+                Reset
+              </button>
+              <button type="button" onclick="event.stopPropagation(); openStagePickerModal();" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold flex items-center gap-1.5 border border-slate-200/70 shadow-2xs transition-all cursor-pointer active:scale-95">
+                <span>Select</span>
+                <i class="fa-solid fa-chevron-down text-[9px] text-slate-400"></i>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -4640,6 +4650,194 @@
     </div>
   </div>
 
+  <!-- PIPELINE STAGE PICKER BOTTOM SHEET MODAL -->
+  <div id="stagePickerModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center z-50 p-0 sm:p-4" onclick="if(event.target===this) closeStagePickerModal();">
+    <div class="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-[420px] p-5 space-y-4 shadow-2xl border border-slate-100 max-h-[85vh] flex flex-col relative animate-in slide-in-from-bottom duration-200">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div>
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-blue-50 text-[#007AFF] flex items-center justify-center text-xs">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <h3 class="text-base font-black text-slate-900 tracking-tight">Select Pipeline Stage</h3>
+          </div>
+          <p class="text-[10px] font-semibold text-slate-400 mt-0.5">Filter inquiries across 9 dealership workflow stages</p>
+        </div>
+        
+        <button type="button" onclick="closeStagePickerModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-sm cursor-pointer active:scale-95 transition-all">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Stage Options List -->
+      <div class="overflow-y-auto space-y-3 custom-scroll pr-1 flex-1">
+        <!-- Overview / Master -->
+        <div onclick="selectPipelineStage('all')" class="stage-picker-row flex items-center justify-between p-3 rounded-2xl border border-slate-200/80 hover:border-[#007AFF] hover:bg-blue-50/40 transition-all cursor-pointer group" data-stage="all">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center text-sm font-bold border border-blue-100">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div>
+              <p class="text-xs font-black text-slate-800">All Stages</p>
+              <p class="text-[10px] font-semibold text-slate-400">View entire dealership pipeline</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-extrabold text-[10px] border border-slate-200/60">24 Leads</span>
+            <i class="stage-check fa-solid fa-circle-check text-[#007AFF] text-base"></i>
+          </div>
+        </div>
+
+        <!-- Active Deal Journey -->
+        <div class="space-y-1.5">
+          <span class="text-[10px] font-black text-slate-400 uppercase tracking-wider block px-1">Active Deal Journey</span>
+          
+          <!-- New -->
+          <div onclick="selectPipelineStage('new')" class="stage-picker-row flex items-center justify-between p-2.5 rounded-2xl border border-slate-200/80 hover:border-[#007AFF] hover:bg-blue-50/40 transition-all cursor-pointer group" data-stage="new">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-xs font-bold border border-cyan-100">
+                <i class="fa-solid fa-sparkles"></i>
+              </div>
+              <div>
+                <p class="text-xs font-black text-slate-800">New Leads</p>
+                <p class="text-[10px] font-semibold text-slate-400">Fresh inquiries awaiting contact</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-cyan-50 text-cyan-700 font-extrabold text-[10px] border border-cyan-200/60">3 Leads</span>
+              <i class="stage-check fa-solid fa-circle-check text-[#007AFF] text-base hidden"></i>
+            </div>
+          </div>
+
+          <!-- Follow-up -->
+          <div onclick="selectPipelineStage('contacted')" class="stage-picker-row flex items-center justify-between p-2.5 rounded-2xl border border-slate-200/80 hover:border-[#007AFF] hover:bg-blue-50/40 transition-all cursor-pointer group" data-stage="contacted">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xs font-bold border border-amber-100">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div>
+                <p class="text-xs font-black text-slate-800">Follow-up</p>
+                <p class="text-[10px] font-semibold text-slate-400">Contact established, discussions ongoing</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 font-extrabold text-[10px] border border-amber-200/60">5 Leads</span>
+              <i class="stage-check fa-solid fa-circle-check text-[#007AFF] text-base hidden"></i>
+            </div>
+          </div>
+
+          <!-- Test Drive -->
+          <div onclick="selectPipelineStage('testdrive')" class="stage-picker-row flex items-center justify-between p-2.5 rounded-2xl border border-slate-200/80 hover:border-[#007AFF] hover:bg-blue-50/40 transition-all cursor-pointer group" data-stage="testdrive">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xs font-bold border border-purple-100">
+                <i class="fa-solid fa-car-side"></i>
+              </div>
+              <div>
+                <p class="text-xs font-black text-slate-800">Test Drive</p>
+                <p class="text-[10px] font-semibold text-slate-400">Test drive scheduled or in progress</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 font-extrabold text-[10px] border border-purple-200/60">4 Leads</span>
+              <i class="stage-check fa-solid fa-circle-check text-[#007AFF] text-base hidden"></i>
+            </div>
+          </div>
+
+          <!-- Negotiation -->
+          <div onclick="selectPipelineStage('negotiation')" class="stage-picker-row flex items-center justify-between p-2.5 rounded-2xl border border-slate-200/80 hover:border-[#007AFF] hover:bg-blue-50/40 transition-all cursor-pointer group" data-stage="negotiation">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xs font-bold border border-blue-100">
+                <i class="fa-solid fa-handshake"></i>
+              </div>
+              <div>
+                <p class="text-xs font-black text-slate-800">Negotiation</p>
+                <p class="text-[10px] font-semibold text-slate-400">Price discussion, quote & finance options</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-extrabold text-[10px] border border-blue-200/60">4 Leads</span>
+              <i class="stage-check fa-solid fa-circle-check text-[#007AFF] text-base hidden"></i>
+            </div>
+          </div>
+
+          <!-- Booking -->
+          <div onclick="selectPipelineStage('booking')" class="stage-picker-row flex items-center justify-between p-2.5 rounded-2xl border border-slate-200/80 hover:border-[#007AFF] hover:bg-blue-50/40 transition-all cursor-pointer group" data-stage="booking">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs font-bold border border-emerald-100">
+                <i class="fa-solid fa-file-signature"></i>
+              </div>
+              <div>
+                <p class="text-xs font-black text-slate-800">Booking</p>
+                <p class="text-[10px] font-semibold text-slate-400">Advance token paid, car booked</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-extrabold text-[10px] border border-emerald-200/60">3 Leads</span>
+              <i class="stage-check fa-solid fa-circle-check text-[#007AFF] text-base hidden"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed & Outcomes -->
+        <div class="space-y-1.5">
+          <span class="text-[10px] font-black text-slate-400 uppercase tracking-wider block px-1">Completed & Outcomes</span>
+          
+          <!-- Delivered -->
+          <div onclick="selectPipelineStage('delivered')" class="stage-picker-row flex items-center justify-between p-2.5 rounded-2xl border border-slate-200/80 hover:border-[#007AFF] hover:bg-blue-50/40 transition-all cursor-pointer group" data-stage="delivered">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-green-50 text-green-600 flex items-center justify-center text-xs font-bold border border-green-100">
+                <i class="fa-solid fa-key"></i>
+              </div>
+              <div>
+                <p class="text-xs font-black text-slate-800">Delivered</p>
+                <p class="text-[10px] font-semibold text-slate-400">Car handover & PDI completed</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-green-50 text-green-700 font-extrabold text-[10px] border border-green-200/60">2 Leads</span>
+              <i class="stage-check fa-solid fa-circle-check text-[#007AFF] text-base hidden"></i>
+            </div>
+          </div>
+
+          <!-- Close Lost -->
+          <div onclick="selectPipelineStage('lost')" class="stage-picker-row flex items-center justify-between p-2.5 rounded-2xl border border-slate-200/80 hover:border-[#007AFF] hover:bg-blue-50/40 transition-all cursor-pointer group" data-stage="lost">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-xs font-bold border border-rose-100">
+                <i class="fa-solid fa-xmark"></i>
+              </div>
+              <div>
+                <p class="text-xs font-black text-slate-800">Close Lost</p>
+                <p class="text-[10px] font-semibold text-slate-400">Deal closed without vehicle purchase</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 font-extrabold text-[10px] border border-rose-200/60">2 Leads</span>
+              <i class="stage-check fa-solid fa-circle-check text-[#007AFF] text-base hidden"></i>
+            </div>
+          </div>
+
+          <!-- Junk -->
+          <div onclick="selectPipelineStage('junk')" class="stage-picker-row flex items-center justify-between p-2.5 rounded-2xl border border-slate-200/80 hover:border-[#007AFF] hover:bg-blue-50/40 transition-all cursor-pointer group" data-stage="junk">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-slate-100 text-slate-500 flex items-center justify-center text-xs font-bold border border-slate-200">
+                <i class="fa-solid fa-ban"></i>
+              </div>
+              <div>
+                <p class="text-xs font-black text-slate-800">Junk / Invalid</p>
+                <p class="text-[10px] font-semibold text-slate-400">Duplicate or invalid inquiry</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px] border border-slate-200/60">1 Lead</span>
+              <i class="stage-check fa-solid fa-circle-check text-[#007AFF] text-base hidden"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- FILTERS MODAL (Matching media_1790144741718.png) -->
   <div id="filterModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center z-50 p-2 sm:p-4">
     <div class="bg-white rounded-3xl w-full max-w-[380px] p-5 space-y-4 shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto custom-scroll relative">
@@ -7015,40 +7213,97 @@
       }
     }
 
-    function filterEnquiryStage(filterType, btn) {
+    const STAGE_CONFIGS = {
+      'all': { name: 'All Stages', count: 24, icon: 'fa-layer-group', color: 'blue', desc: 'Viewing all 24 dealership leads' },
+      'new': { name: 'New Leads', count: 3, icon: 'fa-sparkles', color: 'cyan', desc: 'Fresh inquiries awaiting contact' },
+      'contacted': { name: 'Follow-up', count: 5, icon: 'fa-phone', color: 'amber', desc: 'Contact established, discussions ongoing' },
+      'testdrive': { name: 'Test Drive', count: 4, icon: 'fa-car-side', color: 'purple', desc: 'Test drive scheduled or in progress' },
+      'negotiation': { name: 'Negotiation', count: 4, icon: 'fa-handshake', color: 'blue', desc: 'Price discussion, quote & finance options' },
+      'booking': { name: 'Booking', count: 3, icon: 'fa-file-signature', color: 'emerald', desc: 'Advance token paid, car booked' },
+      'delivered': { name: 'Delivered', count: 2, icon: 'fa-key', color: 'green', desc: 'Car handover & PDI completed' },
+      'lost': { name: 'Close Lost', count: 2, icon: 'fa-xmark', color: 'rose', desc: 'Deal closed without vehicle purchase' },
+      'junk': { name: 'Junk / Invalid', count: 1, icon: 'fa-ban', color: 'slate', desc: 'Duplicate or invalid inquiry' }
+    };
+
+    function openStagePickerModal() {
+      const modal = document.getElementById('stagePickerModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeStagePickerModal() {
+      const modal = document.getElementById('stagePickerModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function selectPipelineStage(stage) {
+      filterEnquiryStage(stage);
+      closeStagePickerModal();
+    }
+
+    function filterEnquiryStage(filterType) {
       if (currentEnquiryStage === filterType && filterType !== 'all') {
         currentEnquiryStage = 'all';
       } else {
         currentEnquiryStage = filterType || 'all';
       }
 
-      // Reset all pills to inactive calm style
-      document.querySelectorAll('.enquiry-stage-tab-btn').forEach(p => {
-        p.className = 'enquiry-stage-tab-btn py-2 px-1 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all active:scale-95 truncate';
+      const cfg = STAGE_CONFIGS[currentEnquiryStage] || STAGE_CONFIGS['all'];
+
+      // Update Selector Card UI
+      const cardTitle = document.getElementById('stageCardTitle');
+      if (cardTitle) cardTitle.innerText = `${cfg.name} (${cfg.count} Leads)`;
+
+      const cardSub = document.getElementById('stageCardSubtitle');
+      if (cardSub) cardSub.innerText = cfg.desc;
+
+      const cardTag = document.getElementById('activeStageTag');
+      if (cardTag) {
+        if (currentEnquiryStage === 'all') {
+          cardTag.innerText = 'All Leads';
+          cardTag.className = 'text-[9px] font-extrabold px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-700 border border-slate-200/60';
+        } else {
+          cardTag.innerText = 'Active';
+          cardTag.className = `text-[9px] font-extrabold px-1.5 py-0.2 rounded-full bg-${cfg.color}-50 text-${cfg.color}-700 border border-${cfg.color}-200/60`;
+        }
+      }
+
+      const cardIcon = document.getElementById('stageCardIcon');
+      if (cardIcon) cardIcon.className = `fa-solid ${cfg.icon}`;
+
+      const cardIconContainer = document.getElementById('stageCardIconContainer');
+      if (cardIconContainer) {
+        cardIconContainer.className = `w-10 h-10 rounded-xl bg-${cfg.color}-50 text-${cfg.color}-600 flex items-center justify-center text-sm font-bold shrink-0 border border-${cfg.color}-100 group-hover:scale-105 transition-transform`;
+      }
+
+      const clearBtn = document.getElementById('stageClearFilterBtn');
+      if (clearBtn) {
+        if (currentEnquiryStage !== 'all') {
+          clearBtn.classList.remove('hidden');
+        } else {
+          clearBtn.classList.add('hidden');
+        }
+      }
+
+      // Update Modal rows checkmark & active highlight
+      document.querySelectorAll('.stage-picker-row').forEach(row => {
+        const rowStage = row.getAttribute('data-stage');
+        const check = row.querySelector('.stage-check');
+        if (rowStage === currentEnquiryStage) {
+          row.classList.add('border-[#007AFF]', 'bg-blue-50/50', 'ring-1', 'ring-[#007AFF]/30');
+          row.classList.remove('border-slate-200/80');
+          if (check) check.classList.remove('hidden');
+        } else {
+          row.classList.remove('border-[#007AFF]', 'bg-blue-50/50', 'ring-1', 'ring-[#007AFF]/30');
+          row.classList.add('border-slate-200/80');
+          if (check) check.classList.add('hidden');
+        }
       });
-
-      // Highlight active pill with subtle white background and brand blue text
-      const targetBtn = (currentEnquiryStage === filterType && btn) ? btn : document.getElementById('enqStageBtn-' + currentEnquiryStage);
-      if (targetBtn) {
-        targetBtn.className = 'enquiry-stage-tab-btn py-2 px-1 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs text-center cursor-pointer transition-all active:scale-95 truncate';
-      }
-
-      // Update header indicator label
-      const ind = document.getElementById('activeStageIndicator');
-      if (ind) {
-        const names = {
-          'all': 'All (24)',
-          'new': 'New (3)',
-          'contacted': 'Follow-up (5)',
-          'testdrive': 'Test Drive (4)',
-          'negotiation': 'Negotiation (4)',
-          'booking': 'Booking (3)',
-          'delivered': 'Delivered (2)',
-          'lost': 'Lost (2)',
-          'junk': 'Junk (1)'
-        };
-        ind.innerText = names[currentEnquiryStage] || 'All (24)';
-      }
 
       applyCombinedEnquiryFilters();
     }
@@ -7336,6 +7591,9 @@
       }
       if (params.get('modal') === 'filter') {
         openFilterModal();
+      }
+      if (params.get('modal') === 'stage') {
+        openStagePickerModal();
       }
       const targetScreen = params.get('screen');
       if (targetScreen) {
