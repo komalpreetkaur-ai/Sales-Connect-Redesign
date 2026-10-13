@@ -1,5 +1,31 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🔔 Complete App Notifications Flow
+
+Built an interactive **Notifications Center** screen (`#screen-notifications`) wired directly to the top app header bell icon (`<button onclick="switchScreen('notifications')">`):
+
+![Interactive Notifications Center](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_notifications_flow.png)
+
+### ✨ Features & Implementation
+1. **Direct Header Bell Integration**:
+   - Tapping the notification bell icon (with unread badge indicator) in the top header transitions immediately to the Notifications Screen from any screen in the app.
+   - The back button cleanly returns to whichever screen the user was previously viewing via `goBackFromDetails()`.
+2. **Category Filter Tabs**:
+   - `All (6)`, `Unread (3)`, `Leads (2)`, `Reminders (2)`, and `Updates (2)` with dynamic filtering and zero-state messaging.
+3. **Realistic Automotive CRM Alerts**:
+   - **New Lead Assigned**: Shows priority badge (`Hot Priority`) and deep-links directly to the lead.
+   - **Test Drive in 30 Mins**: Shows scheduled slot (`2:30 PM`) and opens the Test Drives schedule.
+   - **Follow-up Call Due**: Highlights overdue action (`Mohit Kumar`) and links to log activities.
+   - **Token Received (₹50,000)**: Verified booking alert deep-linking into booking details (`BK987875364`).
+   - **Delivery Ready**: PDI completion notice linking to the deliveries screen.
+   - **Target Progress 🎯**: Weekly goal milestone update.
+4. **Mark As Read & Deep-Linking**:
+   - Tapping any notification automatically marks it as read and jumps directly into the associated workflow.
+   - Tapping **Mark read** clears all unread badges and hides the red notification dot from the top header bell icon.
+5. **Exact Parity Maintained**: Both `index.html` and `sales_connect_redesign.html` are completely identical and synchronized.
+
+---
+
 ## 🔄 Updated Stage & Workflow to 5 Core Stages
 
 Updated the **STAGE & WORKFLOW** component on the Enquiry / Lead Details screen (`#screen-enquiry-details`) to reflect the requested 5 stages:

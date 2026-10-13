@@ -128,9 +128,9 @@
       </div>
 
       <div class="flex items-center gap-3">
-        <button onclick="switchScreen('notifications')" class="w-8 h-8 rounded-full bg-slate-100 active:bg-slate-200 flex items-center justify-center text-slate-600 relative transition-colors">
+        <button onclick="switchScreen('notifications')" class="w-8 h-8 rounded-full bg-slate-100 active:bg-slate-200 flex items-center justify-center text-slate-600 relative transition-colors cursor-pointer" title="View Notifications">
           <i class="fa-regular fa-bell text-xs"></i>
-          <span class="w-2 h-2 bg-rose-500 rounded-full absolute top-1.5 right-1.5 ring-2 ring-white"></span>
+          <span id="headerNotificationDot" class="w-2 h-2 bg-rose-500 rounded-full absolute top-1.5 right-1.5 ring-2 ring-white"></span>
         </button>
         <div onclick="switchScreen('more')" class="relative cursor-pointer active:opacity-80">
           <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" alt="Profile" class="w-9 h-9 rounded-full object-cover ring-2 ring-indigo-500/30 shadow-sm">
@@ -2486,8 +2486,213 @@
       </div>
 
       <!-- SCREEN 5: NOTIFICATIONS SCREEN -->
-      <div id="screen-notifications" class="app-screen space-y-4">
-        <h1 class="text-2xl font-extrabold text-[#1E293B]">Notifications</h1>
+      <div id="screen-notifications" class="app-screen space-y-3.5">
+        <!-- Header -->
+        <div class="flex items-center justify-between border-b border-[#E0E8F5] pb-3 pt-1">
+          <div class="flex items-center gap-3">
+            <button onclick="goBackFromDetails()" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-700 border border-slate-200 active:bg-slate-100 shadow-xs cursor-pointer">
+              <i class="fa-solid fa-arrow-left text-sm"></i>
+            </button>
+            <div>
+              <div class="flex items-center gap-2">
+                <h1 class="text-lg font-black text-[#1E293B] leading-tight">Notifications</h1>
+                <span id="notifUnreadBadge" class="text-[10px] font-extrabold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200/80">3 New</span>
+              </div>
+              <p class="text-[10px] font-semibold text-slate-400">Alerts, leads, reminders & updates</p>
+            </div>
+          </div>
+          <button onclick="markAllNotificationsRead()" class="text-xs font-bold text-[#007AFF] hover:underline flex items-center gap-1 cursor-pointer active:scale-95 transition-transform">
+            <i class="fa-solid fa-check-double text-[11px]"></i>
+            <span>Mark read</span>
+          </button>
+        </div>
+
+        <!-- Filter Tabs (All, Unread, Leads, Follow-ups, Deliveries) -->
+        <div class="flex items-center gap-1 bg-slate-100/90 p-1 rounded-2xl border border-slate-200/70 overflow-x-auto custom-scroll text-xs font-bold shrink-0">
+          <button id="notifTab-all" onclick="filterNotifications('all', this)" class="notif-tab-btn px-3 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs whitespace-nowrap cursor-pointer transition-all">All (<span id="notifCount-all">6</span>)</button>
+          <button id="notifTab-unread" onclick="filterNotifications('unread', this)" class="notif-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Unread (<span id="notifCount-unread">3</span>)</button>
+          <button id="notifTab-leads" onclick="filterNotifications('leads', this)" class="notif-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Leads (2)</button>
+          <button id="notifTab-reminders" onclick="filterNotifications('reminders', this)" class="notif-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Reminders (2)</button>
+          <button id="notifTab-system" onclick="filterNotifications('system', this)" class="notif-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Updates (2)</button>
+        </div>
+
+        <!-- Notification Cards Feed List -->
+        <div id="notificationsContainer" class="space-y-2.5">
+          <!-- Notification 1: New Lead Assigned (Unread, Leads) -->
+          <div onclick="openNotificationItem('notif-1', 'enquiry')" class="notif-card unread leads bg-white p-3.5 rounded-2xl border border-blue-200/80 shadow-xs hover:border-blue-300 transition-all cursor-pointer relative overflow-hidden group active:scale-[0.99]">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center text-sm shrink-0 border border-blue-100 mt-0.5">
+                <i class="fa-solid fa-user-plus"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="text-xs font-black text-slate-900 truncate">New Lead Assigned</h3>
+                  <span class="text-[10px] font-semibold text-slate-400 shrink-0">10m ago</span>
+                </div>
+                <p class="text-xs text-slate-600 font-medium mt-0.5 leading-snug">
+                  <span class="font-bold text-slate-900">Aarav Sharma</span> requested quotation & brochure for <span class="font-bold text-[#007AFF]">Mahindra Thar Roxx AX7L</span>.
+                </p>
+                <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-100">
+                  <span class="text-[9px] font-black uppercase tracking-wider text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/60 flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                    <span>Hot Priority</span>
+                  </span>
+                  <span class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                    <span>View Lead</span>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                  </span>
+                </div>
+              </div>
+              <span class="notif-dot w-2 h-2 rounded-full bg-[#007AFF] shrink-0 mt-1.5"></span>
+            </div>
+          </div>
+
+          <!-- Notification 2: Test Drive Reminder (Unread, Reminders) -->
+          <div onclick="openNotificationItem('notif-2', 'test-drives')" class="notif-card unread reminders bg-white p-3.5 rounded-2xl border border-purple-200/80 shadow-xs hover:border-purple-300 transition-all cursor-pointer relative overflow-hidden group active:scale-[0.99]">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-sm shrink-0 border border-purple-100 mt-0.5">
+                <i class="fa-solid fa-car"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="text-xs font-black text-slate-900 truncate">Test Drive in 30 Mins</h3>
+                  <span class="text-[10px] font-semibold text-slate-400 shrink-0">25m ago</span>
+                </div>
+                <p class="text-xs text-slate-600 font-medium mt-0.5 leading-snug">
+                  <span class="font-bold text-slate-900">Amit Roy</span> scheduled test drive for 2:30 PM today. Demo vehicle readied.
+                </p>
+                <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-100">
+                  <span class="text-[9px] font-black uppercase tracking-wider text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-200/60">
+                    Slot: 2:30 PM
+                  </span>
+                  <span class="text-xs font-extrabold text-purple-600 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                    <span>View Schedule</span>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                  </span>
+                </div>
+              </div>
+              <span class="notif-dot w-2 h-2 rounded-full bg-purple-600 shrink-0 mt-1.5"></span>
+            </div>
+          </div>
+
+          <!-- Notification 3: Follow-up Alert (Unread, Reminders) -->
+          <div onclick="openNotificationItem('notif-3', 'activities')" class="notif-card unread reminders bg-white p-3.5 rounded-2xl border border-amber-200/80 shadow-xs hover:border-amber-300 transition-all cursor-pointer relative overflow-hidden group active:scale-[0.99]">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm shrink-0 border border-amber-100 mt-0.5">
+                <i class="fa-regular fa-clock"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="text-xs font-black text-slate-900 truncate">Follow-up Call Due</h3>
+                  <span class="text-[10px] font-semibold text-slate-400 shrink-0">1h ago</span>
+                </div>
+                <p class="text-xs text-slate-600 font-medium mt-0.5 leading-snug">
+                  Price negotiation call due with <span class="font-bold text-slate-900">Mohit Kumar</span>. Bank loan pre-approved for Brezza ZXi.
+                </p>
+                <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-100">
+                  <span class="text-[9px] font-black uppercase tracking-wider text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200/60">
+                    Overdue Today
+                  </span>
+                  <span class="text-xs font-extrabold text-amber-600 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                    <span>Call & Log Activity</span>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                  </span>
+                </div>
+              </div>
+              <span class="notif-dot w-2 h-2 rounded-full bg-amber-500 shrink-0 mt-1.5"></span>
+            </div>
+          </div>
+
+          <!-- Notification 4: Booking Confirmed (Read, Leads) -->
+          <div onclick="openNotificationItem('notif-4', 'booking-details')" class="notif-card read leads bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs hover:border-slate-300 transition-all cursor-pointer relative overflow-hidden group active:scale-[0.99] opacity-90">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm shrink-0 border border-emerald-100 mt-0.5">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="text-xs font-black text-slate-900 truncate">Token Received (₹50,000)</h3>
+                  <span class="text-[10px] font-semibold text-slate-400 shrink-0">3h ago</span>
+                </div>
+                <p class="text-xs text-slate-600 font-medium mt-0.5 leading-snug">
+                  <span class="font-bold text-slate-900">Rupesh Ranjan</span> paid booking deposit for Swift Dzire. Booking ID: <span class="font-bold text-slate-800">BK987875364</span>.
+                </p>
+                <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-100">
+                  <span class="text-[9px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60">
+                    Deposit Verified
+                  </span>
+                  <span class="text-xs font-extrabold text-emerald-600 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                    <span>View Booking</span>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notification 5: Delivery Scheduled (Read, System) -->
+          <div onclick="openNotificationItem('notif-5', 'deliveries')" class="notif-card read system bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs hover:border-slate-300 transition-all cursor-pointer relative overflow-hidden group active:scale-[0.99] opacity-90">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-sm shrink-0 border border-indigo-100 mt-0.5">
+                <i class="fa-solid fa-truck-ramp-box"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="text-xs font-black text-slate-900 truncate">Delivery Vehicle Ready</h3>
+                  <span class="text-[10px] font-semibold text-slate-400 shrink-0">Yesterday</span>
+                </div>
+                <p class="text-xs text-slate-600 font-medium mt-0.5 leading-snug">
+                  PDI certification done for Aarti Sharma's delivery scheduled tomorrow at 11:00 AM.
+                </p>
+                <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-100">
+                  <span class="text-[9px] font-black uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded-full border border-indigo-200/60">
+                    PDI Cleared
+                  </span>
+                  <span class="text-xs font-extrabold text-indigo-600 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                    <span>Delivery Details</span>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notification 6: Weekly Goal Milestone (Read, System) -->
+          <div onclick="openNotificationItem('notif-6', 'home')" class="notif-card read system bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs hover:border-slate-300 transition-all cursor-pointer relative overflow-hidden group active:scale-[0.99] opacity-90">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm shrink-0 border border-amber-100 mt-0.5">
+                <i class="fa-solid fa-trophy"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2">
+                  <h3 class="text-xs font-black text-slate-900 truncate">Weekly Target Progress 🎯</h3>
+                  <span class="text-[10px] font-semibold text-slate-400 shrink-0">2d ago</span>
+                </div>
+                <p class="text-xs text-slate-600 font-medium mt-0.5 leading-snug">
+                  Great job Niket! You reached 3 of 4 units sold for this week. 1 unit away from achieving target.
+                </p>
+                <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-100">
+                  <span class="text-[9px] font-black uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/60">
+                    Weekly KPI
+                  </span>
+                  <span class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                    <span>View Target</span>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State (hidden by default) -->
+        <div id="notifEmptyState" class="hidden text-center py-12 px-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs space-y-2">
+          <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-lg mx-auto">
+            <i class="fa-regular fa-bell-slash"></i>
+          </div>
+          <h4 class="text-sm font-black text-slate-800">No Notifications</h4>
+          <p class="text-xs text-slate-500 font-medium">You're completely up to date with all tasks and alerts!</p>
+        </div>
       </div>
 
       <!-- SCREEN 6: REDESIGNED TEST DRIVES SCREEN -->
@@ -6921,6 +7126,101 @@
       }
 
       closeDateRangePickerModal();
+    }
+
+    // Notifications Screen Logic
+    let currentNotifFilter = 'all';
+
+    function filterNotifications(filterKey, btn) {
+      currentNotifFilter = filterKey;
+      document.querySelectorAll('.notif-tab-btn').forEach(b => {
+        b.className = 'notif-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all';
+      });
+      if (btn) {
+        btn.className = 'notif-tab-btn px-3 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs whitespace-nowrap cursor-pointer transition-all';
+      }
+
+      const cards = document.querySelectorAll('.notif-card');
+      let visible = 0;
+      cards.forEach(card => {
+        let match = false;
+        if (filterKey === 'all') match = true;
+        else if (filterKey === 'unread') match = card.classList.contains('unread');
+        else match = card.classList.contains(filterKey);
+
+        if (match) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      const emptyEl = document.getElementById('notifEmptyState');
+      if (emptyEl) {
+        if (visible === 0) emptyEl.classList.remove('hidden');
+        else emptyEl.classList.add('hidden');
+      }
+    }
+
+    function markAllNotificationsRead() {
+      const cards = document.querySelectorAll('.notif-card.unread');
+      cards.forEach(card => {
+        card.classList.remove('unread');
+        card.classList.add('read', 'opacity-90');
+        const dot = card.querySelector('.notif-dot');
+        if (dot) dot.remove();
+      });
+
+      const unreadBadge = document.getElementById('notifUnreadBadge');
+      if (unreadBadge) {
+        unreadBadge.innerText = '0 New';
+        unreadBadge.className = 'text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200';
+      }
+      const unreadCount = document.getElementById('notifCount-unread');
+      if (unreadCount) unreadCount.innerText = '0';
+
+      const headerDot = document.getElementById('headerNotificationDot');
+      if (headerDot) headerDot.classList.add('hidden');
+
+      if (currentNotifFilter === 'unread') {
+        filterNotifications('unread', document.getElementById('notifTab-unread'));
+      }
+    }
+
+    function openNotificationItem(notifId, targetScreen) {
+      const card = document.querySelector(`[onclick*="${notifId}"]`);
+      if (card && card.classList.contains('unread')) {
+        card.classList.remove('unread');
+        card.classList.add('read', 'opacity-90');
+        const dot = card.querySelector('.notif-dot');
+        if (dot) dot.remove();
+
+        const remainingUnread = document.querySelectorAll('.notif-card.unread').length;
+        const unreadCount = document.getElementById('notifCount-unread');
+        if (unreadCount) unreadCount.innerText = remainingUnread;
+        const unreadBadge = document.getElementById('notifUnreadBadge');
+        if (unreadBadge) {
+          if (remainingUnread > 0) {
+            unreadBadge.innerText = `${remainingUnread} New`;
+          } else {
+            unreadBadge.innerText = '0 New';
+            unreadBadge.className = 'text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200';
+            const headerDot = document.getElementById('headerNotificationDot');
+            if (headerDot) headerDot.classList.add('hidden');
+          }
+        }
+      }
+
+      if (targetScreen) {
+        if (targetScreen === 'booking-details') {
+          openBookingDetail('BK987875364');
+        } else if (targetScreen === 'enquiry') {
+          openEnquiryWithTemperature('all');
+        } else {
+          switchScreen(targetScreen);
+        }
+      }
     }
 
     // Check URL parameters for direct deep-linking & testing
