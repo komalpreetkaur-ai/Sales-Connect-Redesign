@@ -1,5 +1,18 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🎯 Removed "75% Achieved" Tag from Target Header
+
+Removed the `75% Achieved` pill badge from the **WEEKLY TARGET** section header on the Home Dashboard as requested:
+
+![Clean Weekly Target Section Header](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_no_target_badge.png)
+
+### ✨ Changes Applied
+1. **Removed Tag Pill**: Removed `<span id="homeTargetAchievedBadge">75% Achieved</span>` from the section header.
+2. **Harmonized Section Headers**: The **WEEKLY TARGET** title now cleanly mirrors the **LEADS ASSIGNED** header above it without cluttered pill tags. The progress percentage remains clearly visible in the circular indicator within the card.
+3. **Exact Parity Maintained**: Both `index.html` and `sales_connect_redesign.html` are completely identical and synchronized.
+
+---
+
 ## 🗂️ Removed Lead Priority Section from Enquiries Screen
 
 Removed the **Lead Priority** section (the `LEAD PRIORITY` header, `All Leads 24` button, and the 3 priority cards: `Hot Leads`, `Warm Leads`, `Cold Leads`) from the Enquiries screen (`#screen-enquiry`) as requested:
