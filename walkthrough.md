@@ -1,5 +1,21 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🚗 Cleaned Booking Cards (Removed Call & WhatsApp Action Buttons)
+
+Removed the Call (`fa-phone`) and WhatsApp (`fa-whatsapp`) quick-action buttons from all booking cards in the Vehicle Bookings list (`#screen-booking`):
+
+![Cleaned Booking Cards with Details Link Only](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_booking_cards_clean.png)
+
+### ✨ Improvements
+1. **Uncluttered Booking Card Footer**:
+   - The card footer now cleanly displays delivery date (`Delivery: 10 Oct 2026`) aligned to the left, and the single tap-target `Details >` aligned to the right.
+   - Eliminates redundant small icon buttons that cramped the card footer.
+2. **Consistent Customer Contact Flow**:
+   - Tapping the card or `Details >` opens the full dedicated Booking Details screen (`#screen-booking-details`) where full customer communications and actions can be performed.
+3. **100% Parity**: Both `index.html` and `sales_connect_redesign.html` remain identical.
+
+---
+
 ## 📱 Pipeline Stage Selector & Bottom Sheet Picker (Zero Tabs Redesign)
 
 Redesigned the Pipeline Stage selector to completely eliminate the tabs appearance in favor of an **Executive Filter Card with an iOS Bottom Sheet Picker**:

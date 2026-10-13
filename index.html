@@ -3061,15 +3061,7 @@
 
             <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
               <span class="text-[10px] font-semibold text-slate-500">Delivery: <strong class="text-slate-800">10 Oct 2026</strong></span>
-              <div class="flex items-center gap-1.5">
-                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
-                  <i class="fa-solid fa-phone text-xs"></i>
-                </button>
-                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
-                  <i class="fa-brands fa-whatsapp text-sm"></i>
-                </button>
-                <span onclick="event.stopPropagation(); openBookingDetails('BK987875311');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
-              </div>
+              <span onclick="event.stopPropagation(); openBookingDetails('BK987875311');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
             </div>
           </div>
 
@@ -3104,15 +3096,7 @@
 
             <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
               <span class="text-[10px] font-semibold text-slate-500">Delivery: <strong class="text-slate-800">28 Sep 2026</strong></span>
-              <div class="flex items-center gap-1.5">
-                <button onclick="event.stopPropagation(); window.location.href='tel:+919910244331';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
-                  <i class="fa-solid fa-phone text-xs"></i>
-                </button>
-                <button onclick="event.stopPropagation(); window.open('https://wa.me/919910244331','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
-                  <i class="fa-brands fa-whatsapp text-sm"></i>
-                </button>
-                <span onclick="event.stopPropagation(); openBookingDetails('BK987875364');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
-              </div>
+              <span onclick="event.stopPropagation(); openBookingDetails('BK987875364');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
             </div>
           </div>
         </div>
@@ -3155,15 +3139,7 @@
 
             <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
               <span class="text-[10px] font-semibold text-slate-500">Delivery: <strong class="text-slate-800">05 Oct 2026</strong></span>
-              <div class="flex items-center gap-1.5">
-                <button onclick="event.stopPropagation(); window.location.href='tel:+919810077665';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
-                  <i class="fa-solid fa-phone text-xs"></i>
-                </button>
-                <button onclick="event.stopPropagation(); window.open('https://wa.me/919810077665','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
-                  <i class="fa-brands fa-whatsapp text-sm"></i>
-                </button>
-                <span onclick="event.stopPropagation(); openBookingDetails('BK987875399');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
-              </div>
+              <span onclick="event.stopPropagation(); openBookingDetails('BK987875399');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
             </div>
           </div>
         </div>
@@ -5288,14 +5264,7 @@
               <i class="fa-regular fa-calendar text-[#007AFF]"></i>
               <span>Delivery: <strong class="text-slate-900 font-extrabold">${dateVal}</strong></span>
             </div>
-            <div class="flex items-center gap-2">
-              <a href="tel:${phoneVal}" class="w-7 h-7 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center">
-                <i class="fa-solid fa-phone text-xs"></i>
-              </a>
-              <a href="https://wa.me/91${phoneClean}" target="_blank" class="w-7 h-7 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
-                <i class="fa-brands fa-whatsapp text-xs"></i>
-              </a>
-            </div>
+            <span onclick="event.stopPropagation(); alert('Viewing booking details');" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer">Details <i class="fa-solid fa-chevron-right text-[10px]"></i></span>
           </div>
         `;
         container.insertBefore(newCard, container.firstChild);
@@ -7573,7 +7542,7 @@
 
       if (targetScreen) {
         if (targetScreen === 'booking-details') {
-          openBookingDetail('BK987875364');
+          openBookingDetails('BK987875364');
         } else if (targetScreen === 'enquiry') {
           openEnquiryWithTemperature('all');
         } else {
