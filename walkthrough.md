@@ -1,5 +1,29 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🔄 Updated Stage & Workflow to 5 Core Stages
+
+Updated the **STAGE & WORKFLOW** component on the Enquiry / Lead Details screen (`#screen-enquiry-details`) to reflect the requested 5 stages:
+1. **New**
+2. **Follow-up**
+3. **Test Drive**
+4. **Negotiation**
+5. **Close Lost**
+
+![Updated 5 Stages Workflow Component](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_5_stages_workflow.png)
+
+### ✨ Changes Applied
+1. **Streamlined 5-Stage Architecture**:
+   - Replaced the previous 7-stage layout with the 5 stages requested: `New`, `Follow-up`, `Test Drive`, `Negotiation`, and `Close Lost`.
+   - **Row 1 (Active Progress)**: `1. New`, `2. Follow-up`, `3. Test Drive` in a clean 3-column layout.
+   - **Next Pipeline Stages Indicator**: Divider line transitioning into closing stages.
+   - **Row 2 (Closing)**: `4. Negotiation` and `5. Close Lost` in a balanced 2-column layout.
+2. **Interactive Stepper Dynamics**:
+   - Updated `setModernStep()` function to dynamically handle the 5 stages, update the status pill (`Step 2 of 5: Follow-up`), mark prior steps as completed with blue checkmarks, and highlight active steps.
+   - Added signature red/rose accenting for `5. Close Lost`.
+3. **Exact Parity Maintained**: Both `index.html` and `sales_connect_redesign.html` are completely identical and synchronized.
+
+---
+
 ## 👤 Removed "+ Activity" Button from Lead Details Header
 
 Removed the redundant `+ Activity` button from the customer card header on the Enquiry / Lead Details screen (`#screen-enquiry-details`) as requested:

@@ -1259,35 +1259,30 @@
           </div>
         </div>
 
-        <!-- All 7 Stages Visible Workflow Grid Component -->
+        <!-- 5 Stages Workflow Grid Component -->
         <div class="bg-white rounded-2xl border border-[#E0E8F5] p-3.5 shadow-xs space-y-3">
           <div class="flex items-center justify-between">
             <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">STAGE & WORKFLOW</span>
-            <span id="stepperSubtext" class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">Step 3 of 7: Qualified</span>
+            <span id="stepperSubtext" class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">Step 2 of 5: Follow-up</span>
           </div>
           
-          <!-- 7-Stage Multi-Row Grid Container (No horizontal scrolling cutoffs) -->
+          <!-- 5-Stage Multi-Row Grid Container -->
           <div id="allStagesGridContainer" class="space-y-2">
-            <!-- Row 1: Stages 1 to 4 -->
-            <div class="grid grid-cols-4 gap-1.5">
-              <button onclick="setModernStep(this, 1)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-[10px] border border-blue-200/80 active:scale-95 transition-all text-center leading-tight space-y-1">
+            <!-- Row 1: Stages 1 to 3 -->
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setModernStep(this, 1)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-[10px] border border-blue-200/80 active:scale-95 transition-all text-center leading-tight space-y-1 cursor-pointer">
                 <i class="fa-solid fa-circle-check text-xs text-[#007AFF]"></i>
-                <span>1. New Inquiry</span>
+                <span>1. New</span>
               </button>
 
-              <button onclick="setModernStep(this, 2)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-[10px] border border-blue-200/80 active:scale-95 transition-all text-center leading-tight space-y-1">
-                <i class="fa-solid fa-circle-check text-xs text-[#007AFF]"></i>
-                <span>2. Contacted</span>
-              </button>
-
-              <button onclick="setModernStep(this, 3)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-[10px] shadow-md shadow-blue-500/20 active:scale-95 transition-all text-center leading-tight space-y-1 ring-2 ring-blue-300">
+              <button onclick="setModernStep(this, 2)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-[10px] shadow-md shadow-blue-500/20 active:scale-95 transition-all text-center leading-tight space-y-1 ring-2 ring-blue-300 cursor-pointer">
                 <span class="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span>
-                <span>3. Qualified</span>
+                <span>2. Follow-up</span>
               </button>
 
-              <button onclick="setModernStep(this, 4)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 text-slate-600 font-semibold text-[10px] border border-slate-200/70 active:scale-95 transition-all text-center leading-tight space-y-1">
-                <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-[9px] font-bold">4</span>
-                <span>4. Test Drive</span>
+              <button onclick="setModernStep(this, 3)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 text-slate-600 font-semibold text-[10px] border border-slate-200/70 active:scale-95 transition-all text-center leading-tight space-y-1 cursor-pointer">
+                <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-[9px] font-bold">3</span>
+                <span>3. Test Drive</span>
               </button>
             </div>
 
@@ -1299,21 +1294,16 @@
               <span class="h-0.5 flex-1 bg-slate-100 rounded-full"></span>
             </div>
 
-            <!-- Row 2: Stages 5 to 7 -->
-            <div class="grid grid-cols-3 gap-1.5">
-              <button onclick="setModernStep(this, 5)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 text-slate-600 font-semibold text-[10px] border border-slate-200/70 active:scale-95 transition-all text-center leading-tight space-y-1">
-                <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-[9px] font-bold">5</span>
-                <span>5. Negotiation</span>
+            <!-- Row 2: Stages 4 to 5 -->
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="setModernStep(this, 4)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 text-slate-600 font-semibold text-[10px] border border-slate-200/70 active:scale-95 transition-all text-center leading-tight space-y-1 cursor-pointer">
+                <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-[9px] font-bold">4</span>
+                <span>4. Negotiation</span>
               </button>
 
-              <button onclick="setModernStep(this, 6)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 text-slate-600 font-semibold text-[10px] border border-slate-200/70 active:scale-95 transition-all text-center leading-tight space-y-1">
-                <span class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-[9px] font-bold">6</span>
-                <span class="text-emerald-700">6. Closed-Won</span>
-              </button>
-
-              <button onclick="setModernStep(this, 7)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 text-slate-600 font-semibold text-[10px] border border-slate-200/70 active:scale-95 transition-all text-center leading-tight space-y-1">
-                <span class="w-4 h-4 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-[9px] font-bold">7</span>
-                <span class="text-rose-700">7. Closed-Lost</span>
+              <button onclick="setModernStep(this, 5)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 text-slate-600 font-semibold text-[10px] border border-slate-200/70 active:scale-95 transition-all text-center leading-tight space-y-1 cursor-pointer">
+                <span class="w-4 h-4 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-[9px] font-bold">5</span>
+                <span class="text-rose-700">5. Close Lost</span>
               </button>
             </div>
           </div>
@@ -5298,7 +5288,7 @@
 
     function setModernStep(clickedBtn, stepNum) {
       const allBtns = Array.from(document.querySelectorAll('.modern-step-btn'));
-      let targetIndex = stepNum ? (stepNum - 1) : 2;
+      let targetIndex = stepNum ? (stepNum - 1) : 1;
 
       if (!stepNum && clickedBtn) {
         const found = allBtns.indexOf(clickedBtn);
@@ -5306,32 +5296,33 @@
       }
 
       const stageTitles = [
-        "New Inquiry",
-        "Contacted",
-        "Qualified",
+        "New",
+        "Follow-up",
         "Test Drive",
         "Negotiation",
-        "Closed-Won",
-        "Closed-Lost"
+        "Close Lost"
       ];
 
       const subText = document.getElementById('stepperSubtext');
       if (subText && stageTitles[targetIndex]) {
-        subText.innerText = 'Step ' + (targetIndex + 1) + ' of 7: ' + stageTitles[targetIndex];
+        subText.innerText = 'Step ' + (targetIndex + 1) + ' of ' + stageTitles.length + ': ' + stageTitles[targetIndex];
       }
 
       allBtns.forEach((btn, idx) => {
         const numLabel = (idx + 1) + '. ' + stageTitles[idx];
 
         if (idx === targetIndex) {
-          btn.className = 'modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-[10px] shadow-md shadow-blue-500/20 active:scale-95 transition-all text-center leading-tight space-y-1 ring-2 ring-blue-300';
+          const activeBg = idx === 4
+            ? 'bg-rose-600 text-white font-extrabold text-[10px] shadow-md shadow-rose-500/20 active:scale-95 transition-all text-center leading-tight space-y-1 ring-2 ring-rose-300'
+            : 'bg-[#007AFF] text-white font-extrabold text-[10px] shadow-md shadow-blue-500/20 active:scale-95 transition-all text-center leading-tight space-y-1 ring-2 ring-blue-300';
+          btn.className = 'modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl ' + activeBg;
           btn.innerHTML = '<span class="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span><span>' + numLabel + '</span>';
         } else if (idx < targetIndex) {
           btn.className = 'modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-[10px] border border-blue-200/80 active:scale-95 transition-all text-center leading-tight space-y-1';
           btn.innerHTML = '<i class="fa-solid fa-circle-check text-xs text-[#007AFF]"></i><span>' + numLabel + '</span>';
         } else {
-          const numBg = idx === 5 ? 'bg-emerald-100 text-emerald-600' : (idx === 6 ? 'bg-rose-100 text-rose-600' : 'bg-slate-200 text-slate-500');
-          const textClr = idx === 5 ? 'text-emerald-700' : (idx === 6 ? 'text-rose-700' : 'text-slate-600');
+          const numBg = idx === 4 ? 'bg-rose-100 text-rose-600' : 'bg-slate-200 text-slate-500';
+          const textClr = idx === 4 ? 'text-rose-700' : 'text-slate-600';
           btn.className = 'modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 text-slate-600 font-semibold text-[10px] border border-slate-200/70 active:scale-95 transition-all text-center leading-tight space-y-1';
           btn.innerHTML = '<span class="w-4 h-4 rounded-full ' + numBg + ' flex items-center justify-center text-[9px] font-bold">' + (idx + 1) + '</span><span class="' + textClr + '">' + numLabel + '</span>';
         }
