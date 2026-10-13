@@ -1,5 +1,19 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🗂️ Removed Lead Priority Section from Enquiries Screen
+
+Removed the **Lead Priority** section (the `LEAD PRIORITY` header, `All Leads 24` button, and the 3 priority cards: `Hot Leads`, `Warm Leads`, `Cold Leads`) from the Enquiries screen (`#screen-enquiry`) as requested:
+
+![Clean Enquiries Screen](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiries_clean.png)
+
+### ✨ Changes Applied
+1. **Removed Lead Priority Cards**: Removed the priority cards strip and its header directly below the filter and search toolbar.
+2. **Streamlined Pipeline Navigation**: The screen now smoothly transitions from the search & filter bar directly into the **Pipeline Stage** tabs (`All`, `New`, `Contacted`, `Test Drive`, `Negotiation`, etc.) and the lead cards list.
+3. **Robust JavaScript State**: Filtering by pipeline stage, search query, and modal filters remains 100% functional without errors.
+4. **Exact Parity Maintained**: Both `index.html` and `sales_connect_redesign.html` are completely identical and synchronized.
+
+---
+
 ## 🏷️ Cleaned Section Headers (Removed "View All" & "KPIs")
 
 Cleaned up the section headers on the Home Dashboard as requested:
