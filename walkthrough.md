@@ -1,19 +1,19 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-## 📋 Bookings KPI Card: Revenue Changed to Today's Bookings
+## 📋 Bookings KPI Card: Matched Trend Icon & Today's Bookings
 
-Updated the **BOOKINGS** KPI metric card on the Home Dashboard as requested:
+Updated the **BOOKINGS** KPI metric card on the Home Dashboard to match the icon style of the other card:
 
-![Bookings KPI Card with Today's Bookings](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_bookings_today.png)
+![Bookings KPI Card with Matched Trend Icon](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_bookings_today.png)
 
 ### ✨ Changes Applied
-1. **Replaced Revenue Metric with Daily Booking Activity**: Changed the subtitle from `₹2.4L revenue` to `1 booked today` with an emerald checkmark icon (`<i class="fa-solid fa-circle-check"></i>`), providing instant visibility into today's closed deals.
+1. **Matched Icon to Follow-ups Card**: Swapped to `<i class="fa-solid fa-arrow-trend-up"></i>` with `+1 booked today`, exactly matching the trending arrow and plus-count indicator of the Follow-ups card (`📈 +3 new today`).
 2. **Harmonized KPI Card Visual Hierarchy**:
-   - **FOLLOW-UPS**: `15` (`+3 new today`)
-   - **TEST DRIVES**: `4` (`2 scheduled today`)
-   - **BOOKINGS**: `5` (`1 booked today`)
-   - **DELIVERIES**: `8` (`2 pending sign-off`)
-3. **Synchronized All Date Filter Presets**: Updated dynamic data dictionaries (`Today`, `This Week`, `This Month`) and updated `pbSub.innerHTML` so that date filter toggling seamlessly retains the styled today bookings indicator.
+   - **FOLLOW-UPS**: `15` (`📈 +3 new today`)
+   - **TEST DRIVES**: `4` (`🕒 2 scheduled today`)
+   - **BOOKINGS**: `5` (`📈 +1 booked today`)
+   - **DELIVERIES**: `8` (`🔑 2 pending sign-off`)
+3. **Synchronized All Date Filter Presets**: Updated dynamic data dictionaries (`Today`, `This Week`, `This Month`) so date filter toggling seamlessly retains the styled trending indicator.
 4. **Exact Parity Maintained**: Both `index.html` and `sales_connect_redesign.html` are completely identical and synchronized.
 
 ---
