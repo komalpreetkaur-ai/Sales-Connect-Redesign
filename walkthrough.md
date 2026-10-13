@@ -1,5 +1,18 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 👤 Removed "+ Activity" Button from Lead Details Header
+
+Removed the redundant `+ Activity` button from the customer card header on the Enquiry / Lead Details screen (`#screen-enquiry-details`) as requested:
+
+![Clean Lead Details Header](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiry_details_clean.png)
+
+### ✨ Changes Applied
+1. **Removed Redundant "+ Activity" CTA**: Removed `<button onclick="openLeadActivitiesScreen()">+ Activity</button>` from the customer summary card header.
+2. **Clean Profile Actions**: The top header now cleanly presents the customer communication actions (call, email) alongside `+ Booking`, eliminating button crowding while full activity timeline functionality remains accessible in the dedicated **Activities** tab right below.
+3. **Exact Parity Maintained**: Both `index.html` and `sales_connect_redesign.html` are completely identical and synchronized.
+
+---
+
 ## 🔍 Removed "Update" & "+ Add Filter" from Filters Modal
 
 Removed the `Update` link and `+ Add Filter` button from the top header of the Filters modal as requested:
