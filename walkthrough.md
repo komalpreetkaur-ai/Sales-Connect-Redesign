@@ -1,26 +1,27 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-## 🚀 Reimagined Executive Deal Funnel & Pipeline Stage Selector
+## 🌿 Calm & Minimalist Pipeline Stage Selector (Refined from Loud Funnel)
 
-Redesigned the Pipeline Stage selector from the previous 3x3 pill grid into an **Executive Deal Funnel Dashboard**:
+Redesigned the Pipeline Stage filter to remove the overly loud rainbow colors, cards, and bars, replacing it with a calm, subtle **iOS-Style Segmented Matrix**:
 
-![Reimagined Deal Funnel Dashboard](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_pipeline_deal_funnel.png)
+![Clean Pipeline Stages Matrix](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_grid_pipeline_stages.png)
 
-![Interactive Funnel Filter - Test Drive Active](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_pipeline_funnel_active_testdrive.png)
+![Filtered by Test Drive](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_grid_pipeline_stages_active_testdrive.png)
 
-### ✨ Why This Design is 10x Better
-1. **True Automotive Deal Funnel**:
-   - Replaced the clunky 3x3 keypad with the 5 core deal journey stages: **NEW (3)** ➔ **FOLLOW (5)** ➔ **TEST DR (4)** ➔ **NEGOT (4)** ➔ **BOOKED (3)**.
-   - Each funnel card displays a bold lead count number, dedicated stage color accent (`cyan`, `amber`, `purple`, `blue`, `emerald`), and a glowing status indicator dot.
-2. **Proportional Distribution Ratio Bar**:
-   - A sleek 6px multi-color ratio bar shows the exact distribution of active leads across every stage in the dealership at a single glance.
-3. **Clean Secondary Outcome & Master Filters**:
-   - Master **All (24)**, **Delivered (2)**, **Lost (2)**, and **Junk (1)** are neatly organized in a compact 1-row pill bar below the funnel.
-4. **Vibrant Interactive State**:
-   - When a stage is selected, it illuminates in solid brand blue (`#007AFF`) with white typography and a ring highlight, while the header badge updates dynamically (e.g. `Test Drive (4)`).
-5. **Zero Dragging / Zero Cutoff**:
-   - All 9 stages remain 100% visible on mobile with zero horizontal scroll, while consuming minimal vertical screen space.
-6. **100% Parity**: Both `index.html` and `sales_connect_redesign.html` are identical.
+### ✨ Key Design Refinements
+1. **Calm & Non-Distracting Aesthetic**:
+   - Eliminated the loud rainbow progress bar, colored indicator dots, multi-tier card frames, and high-saturation badge text.
+   - Restored the calm, unified light-slate container (`bg-slate-100/90 rounded-2xl border border-slate-200/60 p-1`).
+2. **Zero Dragging / 100% Visibility**:
+   - All 9 stages (`All 24`, `New 3`, `Follow-up 5`, `Test Drive 4`, `Negotiation 4`, `Booking 3`, `Delivered 2`, `Lost 2`, `Junk 1`) are aligned in a balanced 3x3 segmented grid.
+   - Users can immediately view and tap any pipeline stage without any horizontal scroll or dragging.
+3. **Subtle Native Active State**:
+   - The active stage elevates as a crisp white pill with subtle soft shadow (`shadow-2xs`) and sharp brand blue text (`text-[#007AFF] font-black`).
+   - Inactive stages remain calm, borderless slate text (`text-slate-600 font-bold`).
+4. **Instant Card Filtering & Dynamic Badges**:
+   - Tapping an active filter toggles back to `All (24)`.
+   - Top indicator (`activeStageIndicator`) and badge (`enquiryTotalBadge`) update seamlessly.
+5. **100% Parity**: Both `index.html` and `sales_connect_redesign.html` are identical.
 
 ---
 
