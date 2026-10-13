@@ -1,5 +1,27 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 📱 Redesigned Pipeline Stage Filter (All Options Visible at a Glance)
+
+Redesigned the **Pipeline Stage** filter selector on the Enquiries screen (`#screen-enquiry`) from a cut-off single-row horizontal drag/scroll container into a clean, balanced **3x3 all-visible dashboard matrix** with count badges:
+
+![Redesigned Pipeline Stages Matrix](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_pipeline_stages_redesign.png)
+
+![Filtered by Test Drive](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_pipeline_stage_testdrive.png)
+
+### ✨ Problem Solved & Key Improvements
+1. **Zero Hidden Options / No Dragging Required**:
+   - Previously, stages after `Test Drive (4)` (such as `Negotiation`, `Booking`, `Delivered`, `Close Lost`, and `Junk`) were hidden off-screen to the right and required horizontal scrolling/dragging that users didn't notice or find discoverable.
+   - Now, all **9 options** (`All 24`, `New 3`, `Follow-up 5`, `Test Drive 4`, `Negotiation 4`, `Booking 3`, `Delivered 2`, `Close Lost 2`, `Junk 1`) are arranged in a balanced 3x3 matrix, visible immediately without any dragging.
+2. **Distinct Active/Inactive Contrast**:
+   - The selected stage stands out prominently with bold brand blue (`#007AFF`), white text, and a crisp shadow.
+   - Inactive stages are subtle with crisp borders and gentle hover/active feedback.
+3. **Toggle & Seamless Filtering**:
+   - Tapping an active filter toggles back to `All (24)`.
+   - Card filtering and dynamic top count badge (`Total: 24`, `Test Drive: 4`, etc.) continue to update instantly.
+4. **100% Parity Maintained**: Both `index.html` and `sales_connect_redesign.html` are identical and verified with zero diff.
+
+---
+
 ## 🔔 Complete App Notifications Flow
 
 Built an interactive **Notifications Center** screen (`#screen-notifications`) wired directly to the top app header bell icon (`<button onclick="switchScreen('notifications')">`):

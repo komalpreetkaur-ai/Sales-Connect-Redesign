@@ -452,23 +452,24 @@
           </div>
         </div>
 
-        <!-- Stage Filter Tabs Bar (All 8 Stages in Pipeline Order) -->
+        <!-- Pipeline Stage Filter (All Stages Clearly Visible) -->
         <div class="space-y-1.5 pt-0.5">
           <div class="flex items-center justify-between px-0.5">
             <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider">Pipeline Stage</span>
+            <span class="text-[10px] font-bold text-slate-400">9 Stages</span>
           </div>
-          <div class="flex items-center gap-1 bg-slate-100/90 p-1 rounded-2xl border border-slate-200/70 overflow-x-auto custom-scroll text-xs font-bold shrink-0">
-          <button id="enqStageBtn-all" onclick="filterEnquiryStage('all', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs whitespace-nowrap cursor-pointer transition-all">All (<span id="stageTabCount-all">24</span>)</button>
-          <button id="enqStageBtn-new" onclick="filterEnquiryStage('new', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">New (<span id="stageTabCount-new">3</span>)</button>
-          <button id="enqStageBtn-contacted" onclick="filterEnquiryStage('contacted', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Contacted (<span id="stageTabCount-contacted">5</span>)</button>
-          <button id="enqStageBtn-testdrive" onclick="filterEnquiryStage('testdrive', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Test Drive (<span id="stageTabCount-testdrive">4</span>)</button>
-          <button id="enqStageBtn-negotiation" onclick="filterEnquiryStage('negotiation', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Negotiation (<span id="stageTabCount-negotiation">4</span>)</button>
-          <button id="enqStageBtn-booking" onclick="filterEnquiryStage('booking', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Booking (<span id="stageTabCount-booking">3</span>)</button>
-          <button id="enqStageBtn-delivered" onclick="filterEnquiryStage('delivered', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Delivered (<span id="stageTabCount-delivered">2</span>)</button>
-          <button id="enqStageBtn-lost" onclick="filterEnquiryStage('lost', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Lost (<span id="stageTabCount-lost">2</span>)</button>
-          <button id="enqStageBtn-junk" onclick="filterEnquiryStage('junk', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Junk (<span id="stageTabCount-junk">1</span>)</button>
+          <div class="grid grid-cols-3 gap-1.5 bg-slate-100/90 p-1.5 rounded-2xl border border-slate-200/70 text-xs font-bold">
+            <button id="enqStageBtn-all" onclick="filterEnquiryStage('all', this)" class="enquiry-stage-tab-btn px-2 py-1.5 rounded-xl bg-[#007AFF] text-white font-black shadow-xs border border-[#007AFF] cursor-pointer transition-all text-center truncate active:scale-95">All (<span id="stageTabCount-all">24</span>)</button>
+            <button id="enqStageBtn-new" onclick="filterEnquiryStage('new', this)" class="enquiry-stage-tab-btn px-2 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold bg-white/70 hover:bg-white border border-slate-200/60 shadow-2xs cursor-pointer transition-all text-center truncate active:scale-95">New (<span id="stageTabCount-new">3</span>)</button>
+            <button id="enqStageBtn-contacted" onclick="filterEnquiryStage('contacted', this)" class="enquiry-stage-tab-btn px-2 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold bg-white/70 hover:bg-white border border-slate-200/60 shadow-2xs cursor-pointer transition-all text-center truncate active:scale-95">Follow-up (<span id="stageTabCount-contacted">5</span>)</button>
+            <button id="enqStageBtn-testdrive" onclick="filterEnquiryStage('testdrive', this)" class="enquiry-stage-tab-btn px-2 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold bg-white/70 hover:bg-white border border-slate-200/60 shadow-2xs cursor-pointer transition-all text-center truncate active:scale-95">Test Drive (<span id="stageTabCount-testdrive">4</span>)</button>
+            <button id="enqStageBtn-negotiation" onclick="filterEnquiryStage('negotiation', this)" class="enquiry-stage-tab-btn px-2 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold bg-white/70 hover:bg-white border border-slate-200/60 shadow-2xs cursor-pointer transition-all text-center truncate active:scale-95">Negotiation (<span id="stageTabCount-negotiation">4</span>)</button>
+            <button id="enqStageBtn-booking" onclick="filterEnquiryStage('booking', this)" class="enquiry-stage-tab-btn px-2 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold bg-white/70 hover:bg-white border border-slate-200/60 shadow-2xs cursor-pointer transition-all text-center truncate active:scale-95">Booking (<span id="stageTabCount-booking">3</span>)</button>
+            <button id="enqStageBtn-delivered" onclick="filterEnquiryStage('delivered', this)" class="enquiry-stage-tab-btn px-2 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold bg-white/70 hover:bg-white border border-slate-200/60 shadow-2xs cursor-pointer transition-all text-center truncate active:scale-95">Delivered (<span id="stageTabCount-delivered">2</span>)</button>
+            <button id="enqStageBtn-lost" onclick="filterEnquiryStage('lost', this)" class="enquiry-stage-tab-btn px-2 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold bg-white/70 hover:bg-white border border-slate-200/60 shadow-2xs cursor-pointer transition-all text-center truncate active:scale-95">Close Lost (<span id="stageTabCount-lost">2</span>)</button>
+            <button id="enqStageBtn-junk" onclick="filterEnquiryStage('junk', this)" class="enquiry-stage-tab-btn px-2 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold bg-white/70 hover:bg-white border border-slate-200/60 shadow-2xs cursor-pointer transition-all text-center truncate active:scale-95">Junk (<span id="stageTabCount-junk">1</span>)</button>
+          </div>
         </div>
-      </div>
 
         <!-- Lead Cards Feed -->
         <div id="enquiryCardsContainer" class="space-y-3">
@@ -6938,13 +6939,17 @@
     }
 
     function filterEnquiryStage(filterType, btn) {
-      currentEnquiryStage = filterType || 'all';
+      if (currentEnquiryStage === filterType && filterType !== 'all') {
+        currentEnquiryStage = 'all';
+      } else {
+        currentEnquiryStage = filterType || 'all';
+      }
       document.querySelectorAll('.enquiry-stage-tab-btn').forEach(p => {
-        p.className = 'enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all';
+        p.className = 'enquiry-stage-tab-btn px-2 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold bg-white/70 hover:bg-white border border-slate-200/60 shadow-2xs cursor-pointer transition-all text-center truncate active:scale-95';
       });
-      const activeBtn = btn || document.getElementById('enqStageBtn-' + filterType);
+      const activeBtn = document.getElementById('enqStageBtn-' + currentEnquiryStage);
       if (activeBtn) {
-        activeBtn.className = 'enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs whitespace-nowrap cursor-pointer transition-all';
+        activeBtn.className = 'enquiry-stage-tab-btn px-2 py-1.5 rounded-xl bg-[#007AFF] text-white font-black shadow-xs border border-[#007AFF] cursor-pointer transition-all text-center truncate active:scale-95';
       }
       applyCombinedEnquiryFilters();
     }
@@ -6974,8 +6979,8 @@
 
         // Match Temperature / Priority
         const tempMatch = (currentEnquiryTemp === 'all') || 
-                          card.classList.contains('priority-' + currentEnquiryTemp) || 
-                          card.classList.contains(currentEnquiryTemp);
+                           card.classList.contains('priority-' + currentEnquiryTemp) || 
+                           card.classList.contains(currentEnquiryTemp);
 
         // Match Search Query
         let searchMatch = true;
@@ -7001,12 +7006,12 @@
         } else if (currentEnquiryStage !== 'all') {
           const names = {
             'new': 'New',
-            'contacted': 'Contacted',
+            'contacted': 'Follow-up',
             'testdrive': 'Test Drive',
             'negotiation': 'Negotiation',
             'booking': 'Booking',
             'delivered': 'Delivered',
-            'lost': 'Lost',
+            'lost': 'Close Lost',
             'junk': 'Junk'
           };
           label = (names[currentEnquiryStage] || currentEnquiryStage) + ': ' + visibleCount;
