@@ -200,13 +200,7 @@
 
         <!-- LEADS ASSIGNED SECTION -->
         <section class="space-y-2.5">
-          <div class="flex items-center justify-between">
-            <h2 class="text-xs font-black text-slate-500 uppercase tracking-wider">LEADS ASSIGNED</h2>
-            <button onclick="openEnquiryWithTemperature('all')" class="text-xs font-extrabold text-[#007AFF] flex items-center gap-1 cursor-pointer active:opacity-75">
-              <span>View All</span>
-              <i class="fa-solid fa-chevron-right text-[10px]"></i>
-            </button>
-          </div>
+          <h2 class="text-xs font-black text-slate-500 uppercase tracking-wider">LEADS ASSIGNED</h2>
 
           <!-- Leads Assigned Main Metric Card -->
           <div id="homeAssignedMainCard" onclick="openEnquiryWithTemperature('all')" class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs transition-all cursor-pointer active:scale-[0.99]" title="View all assigned leads">
@@ -230,7 +224,7 @@
         <!-- TARGET & PERFORMANCE SECTION -->
         <section class="space-y-3">
           <div class="flex items-center justify-between">
-            <h2 id="homeSectionTargetHeader" class="text-xs font-black text-slate-500 uppercase tracking-wider">WEEKLY TARGET & KPIs</h2>
+            <h2 id="homeSectionTargetHeader" class="text-xs font-black text-slate-500 uppercase tracking-wider">WEEKLY TARGET</h2>
             <span id="homeTargetAchievedBadge" class="text-xs font-extrabold text-[#007AFF] bg-[#EFF6FF] px-3.5 py-1 rounded-full border border-blue-100/90 shadow-2xs">75% Achieved</span>
           </div>
 
@@ -5467,7 +5461,7 @@
     // Dynamic Home Date Filter Dataset
     const homeDateData = {
       'Today': {
-        headerTitle: "TODAY'S TARGET & KPIs",
+        headerTitle: "TODAY'S TARGET",
         achievedBadge: "40% Achieved",
         targetTitle: "TODAY'S SALES GOAL",
         targetUnits: "1 of 2 Units Sold",
@@ -5501,7 +5495,7 @@
         visibleLeadIds: ['homeLeadItem1', 'homeLeadItem2']
       },
       'This Week': {
-        headerTitle: "WEEKLY TARGET & KPIs",
+        headerTitle: "WEEKLY TARGET",
         achievedBadge: "75% Achieved",
         targetTitle: "WEEKLY VEHICLE SALES TARGET",
         targetUnits: "3 of 4 Units Sold",
@@ -5536,7 +5530,7 @@
         visibleLeadIds: ['homeLeadItem1', 'homeLeadItem2', 'homeLeadItem3', 'homeLeadItem4']
       },
       'This Month': {
-        headerTitle: "MONTHLY TARGET & KPIs",
+        headerTitle: "MONTHLY TARGET",
         achievedBadge: "80% Achieved",
         targetTitle: "MARCH VEHICLE SALES TARGET",
         targetUnits: "8 of 10 Units Sold",

@@ -1,5 +1,24 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🏷️ Cleaned Section Headers (Removed "View All" & "KPIs")
+
+Cleaned up the section headers on the Home Dashboard as requested:
+1. Removed the `View All >` CTA button from the **LEADS ASSIGNED** section header.
+2. Removed `& KPIs` / `& KPIS` from the Target section header so it reads cleanly as **WEEKLY TARGET** (and adapts to **TODAY'S TARGET** / **MONTHLY TARGET** dynamically).
+
+![Clean Section Headers on Home Screen](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_clean_headers.png)
+
+### ✨ Changes Applied
+1. **Clean Leads Assigned Header**:
+   - Removed the `View All >` button next to `LEADS ASSIGNED`.
+   - The total leads card remains fully interactive and clickable (`openEnquiryWithTemperature('all')`).
+2. **Simplified Target Section Header**:
+   - Changed the static heading from `WEEKLY TARGET & KPIs` to `WEEKLY TARGET`.
+   - Updated all dynamic date switch presets (`Today` -> `TODAY'S TARGET`, `This Week` -> `WEEKLY TARGET`, `This Month` -> `MONTHLY TARGET`).
+3. **Exact Parity Maintained**: Both `index.html` and `sales_connect_redesign.html` are completely synchronized and identical.
+
+---
+
 ## 🎯 Removed Fire Icon from Target Goal Text
 
 Removed the fire emoji (`🔥`) from the **WEEKLY TARGET & KPIs** goal counter on the Home Dashboard as requested:
