@@ -1,5 +1,53 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🔥 Distinct Lead Priority (Hot, Warm, Cold) Hero Stat Cards
+
+Replaced the awkward duplicate stacked filter tab bars with a dedicated, high-impact **Lead Priority Hero Cards Strip** on the Enquiries screen (`#screen-enquiry`), giving Hot, Warm, and Cold leads their own bold, unmistakable visual identity that stands out immediately:
+
+### 📸 Visual Demonstration & Interactive States
+````carousel
+![Default State - All 24 Leads Visible](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_priority_all.png)
+<!-- slide -->
+![Hot Leads (8) Active - Glowing Amber Border & Ring](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_priority_hot.png)
+<!-- slide -->
+![Warm Leads (11) Active - Electric Blue Focus Ring](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_priority_warm.png)
+<!-- slide -->
+![Cold Leads (5) Active - Cool Slate Focus Ring](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_priority_cold.png)
+<!-- slide -->
+![Multi-Filter - Hot Leads (8) + Contacted Stage (5) = 2 Matching Leads](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_priority_hot_contacted.png)
+````
+
+### ✨ Design Highlights & Functional Improvements
+1. **Eliminated Awkward Stacked Duplicate Bars**:
+   - Instead of two identical gray segmented pill tracks sitting directly on top of each other, the screen now features two distinct, complementary tiers:
+     - **Tier 1 (Lead Priority)**: A visual KPI metric card strip with rich color palettes, large numbers, and signature status icons.
+     - **Tier 2 (Pipeline Stage)**: A dedicated horizontal workflow scrubber (`All`, `New`, `Contacted`, `Test Drive`, `Negotiation`...) with its own clear `PIPELINE STAGE` section header.
+2. **Signature Priority Themes & Micro-Indicators**:
+   - **🔥 Hot Leads (8)**:
+     - Warm amber container (`bg-amber-50/70 border-amber-200/90`).
+     - Flame icon (`fa-solid fa-fire text-amber-500`).
+     - Large bold metric `8` in rich amber-600.
+     - Subtitle `● High Urgency` with a pulsing amber indicator.
+     - **Active Selection**: Gradient fill, glowing focus ring (`ring-2 ring-amber-400/50 border-amber-500`), elevated shadow, while non-selected cards subtly ease back.
+   - **⚡ Warm Leads (11)**:
+     - Sky blue container (`bg-blue-50/70 border-blue-200/90`).
+     - Lightning bolt icon (`fa-solid fa-bolt text-[#007AFF]`).
+     - Large bold metric `11` in brand blue `#007AFF`.
+     - Subtitle `● Active Nurture`.
+     - **Active Selection**: Elevated gradient fill, glowing blue focus ring (`ring-2 ring-blue-400/50 border-[#007AFF]`).
+   - **❄️ Cold Leads (5)**:
+     - Cool slate container (`bg-slate-50 border-slate-200/90`).
+     - Snowflake icon (`fa-solid fa-snowflake text-slate-500`).
+     - Large bold metric `5` in slate-700.
+     - Subtitle `● Follow-up`.
+     - **Active Selection**: Elevated gradient fill, slate focus ring (`ring-2 ring-slate-400/50 border-slate-600`).
+3. **Interactive Toggle & Reset**:
+   - **Section Header Toggle**: `All Leads [24]` badge pill in the header allows 1-tap reset to view the entire catalog.
+   - **Self-Toggle**: Tapping any currently active card a second time toggles it back off to show `All Leads`.
+   - **Live Top Badge**: Screen header badge dynamically synchronizes (e.g. `HOT: 8`, `WARM: 11`, `COLD: 5`, or `HOT: 2` when combining with a stage filter).
+
+---
+
 ## 🏷️ Unified Tag Selection Across All Tabs
 
 Standardized all tabs throughout the application to match the user's reference design (`All (24)` styled as an elevated white rounded card with bright brand blue font `#007AFF` nested within a soft neutral track):

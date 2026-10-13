@@ -665,24 +665,81 @@
           </div>
         </div>
 
-        <!-- Temperature / Lead Priority Segmented Filter Bar -->
-        <div class="flex items-center gap-1 bg-slate-100/90 p-1 rounded-2xl border border-slate-200/70 text-xs font-bold">
-          <button id="enqTempBtn-all" onclick="filterByTemperature('all', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs text-center cursor-pointer transition-all">
-            All (24)
-          </button>
-          <button id="enqTempBtn-hot" onclick="filterByTemperature('hot', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all">
-            Hot (8)
-          </button>
-          <button id="enqTempBtn-warm" onclick="filterByTemperature('warm', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all">
-            Warm (11)
-          </button>
-          <button id="enqTempBtn-cold" onclick="filterByTemperature('cold', this)" class="enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all">
-            Cold (5)
-          </button>
+        <!-- Temperature / Lead Priority Hero Cards Section -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between px-0.5">
+            <div class="flex items-center gap-1.5">
+              <span class="w-1.5 h-3.5 bg-[#007AFF] rounded-full"></span>
+              <span class="text-[11px] font-black text-slate-700 uppercase tracking-wider">Lead Priority</span>
+            </div>
+            <!-- All Leads Toggle Pill -->
+            <button id="enqTempBtn-all" onclick="filterByTemperature('all', this)" class="enq-temp-card px-2.5 py-1 rounded-xl text-xs font-black transition-all cursor-pointer flex items-center gap-1.5 bg-blue-50 text-[#007AFF] border border-blue-200 shadow-2xs">
+              <span>All Leads</span>
+              <span class="bg-[#007AFF] text-white text-[10px] font-bold px-1.5 py-0.2 rounded-full">24</span>
+            </button>
+          </div>
+
+          <!-- 3 Interactive Priority Hero Stat Cards -->
+          <div class="grid grid-cols-3 gap-2">
+            <!-- Hot Leads Card -->
+            <button id="enqTempBtn-hot" onclick="filterByTemperature('hot', this)" class="enq-temp-card text-left bg-amber-50/70 hover:bg-amber-100/50 border border-amber-200/90 rounded-2xl p-2.5 transition-all cursor-pointer active:scale-95 flex flex-col justify-between relative overflow-hidden group shadow-2xs">
+              <div class="flex items-center justify-between w-full">
+                <div class="w-7 h-7 rounded-xl bg-amber-500/15 text-amber-600 flex items-center justify-center text-xs font-black">
+                  <i class="fa-solid fa-fire text-amber-500 text-sm"></i>
+                </div>
+                <span class="text-base font-black text-amber-600 tracking-tight">8</span>
+              </div>
+              <div class="mt-2">
+                <span class="block text-[11px] font-black text-slate-800 leading-tight">Hot Leads</span>
+                <span class="text-[9px] font-bold text-amber-600 mt-0.5 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                  <span>High Urgency</span>
+                </span>
+              </div>
+            </button>
+
+            <!-- Warm Leads Card -->
+            <button id="enqTempBtn-warm" onclick="filterByTemperature('warm', this)" class="enq-temp-card text-left bg-blue-50/70 hover:bg-blue-100/50 border border-blue-200/90 rounded-2xl p-2.5 transition-all cursor-pointer active:scale-95 flex flex-col justify-between relative overflow-hidden group shadow-2xs">
+              <div class="flex items-center justify-between w-full">
+                <div class="w-7 h-7 rounded-xl bg-blue-500/15 text-[#007AFF] flex items-center justify-center text-xs font-black">
+                  <i class="fa-solid fa-bolt text-[#007AFF] text-sm"></i>
+                </div>
+                <span class="text-base font-black text-[#007AFF] tracking-tight">11</span>
+              </div>
+              <div class="mt-2">
+                <span class="block text-[11px] font-black text-slate-800 leading-tight">Warm Leads</span>
+                <span class="text-[9px] font-bold text-[#007AFF] mt-0.5 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
+                  <span>Active Nurture</span>
+                </span>
+              </div>
+            </button>
+
+            <!-- Cold Leads Card -->
+            <button id="enqTempBtn-cold" onclick="filterByTemperature('cold', this)" class="enq-temp-card text-left bg-slate-50 hover:bg-slate-100/80 border border-slate-200/90 rounded-2xl p-2.5 transition-all cursor-pointer active:scale-95 flex flex-col justify-between relative overflow-hidden group shadow-2xs">
+              <div class="flex items-center justify-between w-full">
+                <div class="w-7 h-7 rounded-xl bg-slate-200/80 text-slate-600 flex items-center justify-center text-xs font-black">
+                  <i class="fa-solid fa-snowflake text-slate-500 text-xs"></i>
+                </div>
+                <span class="text-base font-black text-slate-700 tracking-tight">5</span>
+              </div>
+              <div class="mt-2">
+                <span class="block text-[11px] font-black text-slate-800 leading-tight">Cold Leads</span>
+                <span class="text-[9px] font-bold text-slate-500 mt-0.5 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                  <span>Follow-up</span>
+                </span>
+              </div>
+            </button>
+          </div>
         </div>
 
         <!-- Stage Filter Tabs Bar (All 8 Stages in Pipeline Order) -->
-        <div class="flex items-center gap-1 bg-slate-100/90 p-1 rounded-2xl border border-slate-200/70 overflow-x-auto custom-scroll text-xs font-bold shrink-0">
+        <div class="space-y-1.5 pt-0.5">
+          <div class="flex items-center justify-between px-0.5">
+            <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider">Pipeline Stage</span>
+          </div>
+          <div class="flex items-center gap-1 bg-slate-100/90 p-1 rounded-2xl border border-slate-200/70 overflow-x-auto custom-scroll text-xs font-bold shrink-0">
           <button id="enqStageBtn-all" onclick="filterEnquiryStage('all', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs whitespace-nowrap cursor-pointer transition-all">All (<span id="stageTabCount-all">24</span>)</button>
           <button id="enqStageBtn-new" onclick="filterEnquiryStage('new', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">New (<span id="stageTabCount-new">3</span>)</button>
           <button id="enqStageBtn-contacted" onclick="filterEnquiryStage('contacted', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Contacted (<span id="stageTabCount-contacted">5</span>)</button>
@@ -693,6 +750,7 @@
           <button id="enqStageBtn-lost" onclick="filterEnquiryStage('lost', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Lost (<span id="stageTabCount-lost">2</span>)</button>
           <button id="enqStageBtn-junk" onclick="filterEnquiryStage('junk', this)" class="enquiry-stage-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Junk (<span id="stageTabCount-junk">1</span>)</button>
         </div>
+      </div>
 
         <!-- Lead Cards Feed -->
         <div id="enquiryCardsContainer" class="space-y-3">
@@ -6918,16 +6976,56 @@
     let currentEnquiryTemp = 'all';
     let currentEnquirySearch = '';
 
-    function filterByTemperature(tempKey, btn) {
-      currentEnquiryTemp = tempKey || 'all';
-      document.querySelectorAll('.enq-temp-filter-btn').forEach(b => {
-        b.className = 'enq-temp-filter-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all';
-      });
-      const activeBtn = btn || document.getElementById('enqTempBtn-' + tempKey);
-      if (activeBtn) {
-        activeBtn.className = 'enq-temp-filter-btn flex-1 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs text-center cursor-pointer transition-all';
+    function filterByTemperature(tempKey, btn, forceSet) {
+      if (!forceSet && currentEnquiryTemp === tempKey && tempKey !== 'all') {
+        currentEnquiryTemp = 'all';
+      } else {
+        currentEnquiryTemp = tempKey || 'all';
       }
+      updateEnquiryTempUI();
       applyCombinedEnquiryFilters();
+    }
+
+    function updateEnquiryTempUI() {
+      const allBtn = document.getElementById('enqTempBtn-all');
+      const hotBtn = document.getElementById('enqTempBtn-hot');
+      const warmBtn = document.getElementById('enqTempBtn-warm');
+      const coldBtn = document.getElementById('enqTempBtn-cold');
+
+      if (allBtn) {
+        if (currentEnquiryTemp === 'all') {
+          allBtn.className = 'enq-temp-card px-2.5 py-1 rounded-xl text-xs font-black transition-all cursor-pointer flex items-center gap-1.5 bg-blue-50 text-[#007AFF] border border-blue-200 shadow-2xs';
+        } else {
+          allBtn.className = 'enq-temp-card px-2.5 py-1 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 bg-slate-100/90 text-slate-600 border border-slate-200/80 hover:text-slate-900';
+        }
+      }
+
+      if (hotBtn) {
+        if (currentEnquiryTemp === 'hot') {
+          hotBtn.className = 'enq-temp-card text-left bg-gradient-to-br from-amber-100 to-amber-50 border-2 border-amber-500 rounded-2xl p-2.5 transition-all cursor-pointer active:scale-95 flex flex-col justify-between relative overflow-hidden group shadow-md ring-2 ring-amber-400/50 scale-[1.02]';
+        } else {
+          const isAnotherActive = currentEnquiryTemp !== 'all';
+          hotBtn.className = `enq-temp-card text-left bg-amber-50/70 hover:bg-amber-100/60 border border-amber-200/90 rounded-2xl p-2.5 transition-all cursor-pointer active:scale-95 flex flex-col justify-between relative overflow-hidden group shadow-2xs ${isAnotherActive ? 'opacity-60' : 'opacity-100'}`;
+        }
+      }
+
+      if (warmBtn) {
+        if (currentEnquiryTemp === 'warm') {
+          warmBtn.className = 'enq-temp-card text-left bg-gradient-to-br from-blue-100 to-blue-50 border-2 border-[#007AFF] rounded-2xl p-2.5 transition-all cursor-pointer active:scale-95 flex flex-col justify-between relative overflow-hidden group shadow-md ring-2 ring-blue-400/50 scale-[1.02]';
+        } else {
+          const isAnotherActive = currentEnquiryTemp !== 'all';
+          warmBtn.className = `enq-temp-card text-left bg-blue-50/70 hover:bg-blue-100/60 border border-blue-200/90 rounded-2xl p-2.5 transition-all cursor-pointer active:scale-95 flex flex-col justify-between relative overflow-hidden group shadow-2xs ${isAnotherActive ? 'opacity-60' : 'opacity-100'}`;
+        }
+      }
+
+      if (coldBtn) {
+        if (currentEnquiryTemp === 'cold') {
+          coldBtn.className = 'enq-temp-card text-left bg-gradient-to-br from-slate-200/90 to-slate-100 border-2 border-slate-600 rounded-2xl p-2.5 transition-all cursor-pointer active:scale-95 flex flex-col justify-between relative overflow-hidden group shadow-md ring-2 ring-slate-400/50 scale-[1.02]';
+        } else {
+          const isAnotherActive = currentEnquiryTemp !== 'all';
+          coldBtn.className = `enq-temp-card text-left bg-slate-50 hover:bg-slate-100/80 border border-slate-200/90 rounded-2xl p-2.5 transition-all cursor-pointer active:scale-95 flex flex-col justify-between relative overflow-hidden group shadow-2xs ${isAnotherActive ? 'opacity-60' : 'opacity-100'}`;
+        }
+      }
     }
 
     function filterEnquiryStage(filterType, btn) {
@@ -7004,6 +7102,7 @@
           };
           label = (names[currentEnquiryStage] || currentEnquiryStage) + ': ' + visibleCount;
         }
+        badge.innerText = label;
       }
     }
 
