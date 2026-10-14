@@ -194,18 +194,18 @@
           <h2 class="text-xs font-black text-slate-500 uppercase tracking-wider">LEADS ASSIGNED</h2>
 
           <!-- Leads Assigned Main Metric Card -->
-          <div id="homeAssignedMainCard" onclick="openEnquiryWithTemperature('all')" class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs transition-all cursor-pointer active:scale-[0.99]" title="View all assigned leads">
+          <div id="homeAssignedMainCard" onclick="openEnquiryWithTemperature('all')" class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs transition-all cursor-pointer active:scale-[0.99]">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
                 <div class="w-11 h-11 rounded-2xl bg-blue-50 text-[#007AFF] border border-blue-100 flex items-center justify-center text-lg font-black shrink-0">
                   <i class="fa-solid fa-user-check"></i>
                 </div>
-                <div>
+                <div class="space-y-0.5">
+                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Leads Assigned To You</p>
                   <div class="flex items-center gap-2">
-                    <span id="homeAssignedLeadsVal" class="text-2xl font-black text-[#1E293B]">24</span>
+                    <span id="homeAssignedLeadsVal" class="text-2xl font-black text-[#1E293B] leading-none">24</span>
                     <span id="homeAssignedLeadsBadge" class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">+4 New Today</span>
                   </div>
-                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Leads Assigned To You</p>
                 </div>
               </div>
             </div>

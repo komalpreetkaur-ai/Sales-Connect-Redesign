@@ -1,5 +1,19 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🔀 Swapped Label and Value Positions in "Leads Assigned" Card
+
+Swapped the vertical positions of the label (`TOTAL LEADS ASSIGNED TO YOU`) and the numeric metric (`24  +4 New Today`) inside the Leads Assigned summary card:
+
+![Leads Assigned Label and Value Swapped](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_leads_card_swapped.png)
+
+### ✨ Changes Applied
+1. **Consistent Visual Hierarchy**: `TOTAL LEADS ASSIGNED TO YOU` now sits on top as the category label, and the big primary number `24` with the `+4 New Today` pill badge sits right below it.
+2. **Unified Component Rhythm**: Matches the design system used across every other dashboard card (*Weekly Target*, *Follow-ups*, *Test Drives*, *Bookings*, and *Deliveries*) where category labels lead and figures follow.
+3. **Cleaned Hover Interaction**: Removed the native browser `title` tooltip to prevent unwanted hover popups over the badge.
+4. **100% Parity Verified**: `index.html` and `sales_connect_redesign.html` maintain complete 0-diff parity.
+
+---
+
 ## 🔄 Re-Swapped Dashboard Order: Leads Assigned on Top, Weekly Target Below
 
 Updated the Home dashboard layout to position **LEADS ASSIGNED** at the top, followed by **WEEKLY TARGET** and the operational KPI cards:
