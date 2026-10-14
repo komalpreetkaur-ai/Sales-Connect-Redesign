@@ -1,5 +1,19 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🔄 Re-Swapped Dashboard Order: Leads Assigned on Top, Weekly Target Below
+
+Updated the Home dashboard layout to position **LEADS ASSIGNED** at the top, followed by **WEEKLY TARGET** and the operational KPI cards:
+
+![Leads Assigned Above Weekly Target](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_leads_then_target.png)
+
+### ✨ Changes Applied
+1. **Immediate Lead Visibility**: The **LEADS ASSIGNED** metric card (showing total assigned leads `24` with `+4 New Today`) is now placed directly below the greeting and date filter bar.
+2. **Target & Pipeline Overview**: The **WEEKLY TARGET** hero progress card (`3 of 4 Units Sold`, 75% gauge) appears immediately after, leading naturally into the four KPI status cards (*Follow-ups*, *Test Drives*, *Bookings*, *Deliveries*).
+3. **100% Dynamic Parity**: All date range filters ("Today", "This Week", "This Month") continue to update metrics across both sections dynamically.
+4. **100% Parity Verified**: `index.html` and `sales_connect_redesign.html` maintain complete 0-diff parity.
+
+---
+
 ## ➕ Removed Quick Actions Row & Added Floating "Add Enquiry" Button (FAB)
 
 Removed the static 2-card Quick Actions hub (`Add Enquiry` & `Add New Booking`) from the top of the Home dashboard, and introduced a modern Floating Action Button (`+ Add Enquiry` FAB) docked on the bottom right:
