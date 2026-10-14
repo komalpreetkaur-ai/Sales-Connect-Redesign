@@ -1,5 +1,19 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 📞 Removed "Call Customer" & "WhatsApp" Buttons from Booking Details Pages
+
+Removed the `[ 📞 Call Customer ]` and `[ 💬 WhatsApp ]` quick action buttons from the Booking Details banner card across all booking details pages (`#screen-booking-details`):
+
+![Clean Booking Details Banner](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_booking_details_clean.png)
+
+### ✨ Changes Applied
+1. **Removed Action Buttons Row**: Removed `#bdetCallBtn` ("Call Customer") and `#bdetWaBtn` ("WhatsApp") alongside their enclosing grid container from `#screen-booking-details`.
+2. **Clean Banner Presentation**: The main Booking Info banner card now cleanly showcases the Booking ID, Customer Name, Token Amount, and Token status pill without visual clutter.
+3. **Safe Script Updating**: Safely updated `openBookingDetails(bookingId)` to eliminate DOM references to the removed buttons, preventing any null pointer exceptions while retaining full functionality across all booking records.
+4. **100% Parity Verified**: `index.html` and `sales_connect_redesign.html` maintain complete 0-diff parity.
+
+---
+
 ## 🎨 Cleaned Stage Filter Accordion (Removed Background Color & Reset Text)
 
 Updated the **Stage** filter section inside the Filter Bottom Sheet Modal (`#filterModal`):
