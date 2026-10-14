@@ -1,5 +1,50 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🔐 OTP Verification Flow & Lead Generation Confirmation
+
+Implemented the complete end-to-end OTP verification and Lead Generated Confirmation experience triggered immediately upon submitting Step 4 (PII Information) of the Sales Enquiry Form (`#screen-sales-enquiry`).
+
+````carousel
+![Sales Enquiry Step 4 - Ready to Submit](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_sales_step4_view.png)
+<!-- slide -->
+![OTP Verification Modal](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_sales_otp_modal.png)
+<!-- slide -->
+![Lead Generated Confirmation Modal](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_generated_success.png)
+````
+
+### ✨ Key Features Implemented
+
+1. **Seamless Step 4 Transition**:
+   - In Step 4 (`#sales-step-4`), the SMS checkbox is selected by default and WhatsApp is easily toggleable matching the user's reference mockup (`media_1791962853003.png`).
+   - Clicking **Submit** on Step 4 calls `openSalesOtpModal()`, seamlessly bringing up the security verification flow instead of an abrupt exit.
+
+2. **Interactive OTP Verification Modal (`#salesOtpModal`)**:
+   - **Visual Presentation**: Glassmorphic dark backdrop (`bg-slate-900/60 backdrop-blur-xs`) and rounded-3xl dialog card with a blue security shield icon.
+   - **Recipient Context**: Displays the customer's phone number dynamically (e.g. `+91 98112 33445`) and transmission channel badge `(via SMS)` or `(via SMS & WhatsApp)`.
+   - **4 Discrete Digit Boxes**: Auto-advances focus to the next box upon typing a digit, supports backspace to jump to the previous box, and handles 4-digit clipboard pasting.
+   - **Instant Test OTP Helper**: Clickable `Auto-fill Test OTP: 4829` helper chip populates all 4 boxes in one tap for effortless testing.
+   - **Live Countdown Timer**: 30-second live resend countdown that switches to an active "Resend OTP" button on expiration.
+   - **Validation Feedback**: Highlights missing boxes and displays clear validation guidance if submitted incomplete.
+
+3. **Lead Generated Confirmation Modal (`#leadSuccessModal`)**:
+   - **Celebration Badge**: Mint emerald checkmark badge with circular border.
+   - **Confirmation Typography**: Clear "Lead Generated Successfully!" heading with descriptive subtitle.
+   - **Dynamic Lead Summary Card**:
+     - Lead Reference ID (e.g. `ENQ987875455`) with document icon and `Open Lead` status pill.
+     - Customer initials avatar (`VS`), full name (`Vikram Singhania`), and phone number.
+     - 4-item specification grid: Preferred Vehicle / Model (`Suzuki Hayabusa 2025`), Stage (`● New`), Category (`Sales`), and Created Timestamp (`Today, 10:45 AM`).
+     - Conditional Exchange Vehicle badge if an exchange vehicle was entered.
+   - **Primary CTA: "View in Enquiries" (`viewGeneratedLeadInEnquiries()`)**:
+     - Closes modal, navigates to `#screen-enquiry`, resets stage filter to `All`, scrolls to top, and applies a gentle highlight pulse to the newly created lead card.
+     - Automatically increments pipeline counters (`All` from 24 -> 25, `New` from 3 -> 4).
+   - **Secondary CTA: "Create Another Enquiry" (`createNewAnotherEnquiry()`)**:
+     - Closes modal, clears the form inputs, resets the wizard back to Step 1, and readies the form for a new entry.
+
+4. **100% Parity Verified**:
+   - Both `index.html` and `sales_connect_redesign.html` verified with `diff -u` returning 0.
+
+---
+
 ## 🚗 Cleaned Booking Cards (Removed Call & WhatsApp Action Buttons)
 
 Removed the Call (`fa-phone`) and WhatsApp (`fa-whatsapp`) quick-action buttons from all booking cards in the Vehicle Bookings list (`#screen-booking`):

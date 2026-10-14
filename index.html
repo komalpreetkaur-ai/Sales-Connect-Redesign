@@ -4017,12 +4017,12 @@
 
               <div class="space-y-3 pt-1">
                 <div class="flex items-center gap-2.5">
-                  <input type="checkbox" id="checkSms" class="w-4 h-4 accent-[#007AFF] rounded shrink-0">
+                  <input type="checkbox" id="checkSms" checked class="w-4 h-4 accent-[#007AFF] rounded shrink-0">
                   <label for="checkSms" class="text-xs font-medium text-slate-600 cursor-pointer">SMS</label>
                 </div>
 
                 <div class="flex items-center gap-2.5">
-                  <input type="checkbox" id="checkWhatsapp" checked class="w-4 h-4 accent-[#007AFF] rounded shrink-0">
+                  <input type="checkbox" id="checkWhatsapp" class="w-4 h-4 accent-[#007AFF] rounded shrink-0">
                   <label for="checkWhatsapp" class="text-xs font-medium text-slate-600 cursor-pointer">Do you want the same OTP over the WhatsApp as well?</label>
                 </div>
               </div>
@@ -4461,6 +4461,158 @@
       <div class="flex justify-center pt-2">
         <button onclick="confirmOtpAndNavigate()" class="bg-[#007AFF] active:bg-blue-600 text-white font-extrabold text-sm py-3 px-14 rounded-full shadow-md active:scale-95 transition-transform">
           Verify
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SALES ENQUIRY OTP VERIFICATION MODAL -->
+  <div id="salesOtpModal" onclick="if(event.target === this) closeSalesOtpModal()" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-50 p-4 transition-all">
+    <div class="bg-white rounded-3xl w-full max-w-[360px] p-6 space-y-4 shadow-2xl border border-slate-100 relative animate-in zoom-in-95 duration-200">
+      <!-- Close Button -->
+      <button type="button" onclick="closeSalesOtpModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 font-bold flex items-center justify-center text-sm absolute top-4 right-4 cursor-pointer active:scale-95 transition-transform">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Security / OTP Icon -->
+      <div class="w-14 h-14 rounded-2xl bg-blue-50 text-[#007AFF] flex items-center justify-center mx-auto border border-blue-100 shadow-xs">
+        <i class="fa-solid fa-shield-halved text-2xl"></i>
+      </div>
+
+      <!-- Header Content -->
+      <div class="text-center space-y-1">
+        <h3 class="text-lg font-black text-slate-900 tracking-tight">Enter OTP</h3>
+        <p class="text-xs text-slate-500 font-medium leading-relaxed px-1">
+          A 4-digit code has been sent to<br>
+          <span id="salesOtpPhoneDisplay" class="font-extrabold text-slate-900">+91 98112 33445</span>
+          <span id="salesOtpChannelDisplay" class="text-slate-400 font-semibold block text-[11px] mt-0.5">(via SMS)</span>
+        </p>
+      </div>
+
+      <!-- 4 PIN Boxes -->
+      <div class="flex items-center justify-center gap-3 py-1">
+        <input type="tel" maxlength="1" pattern="[0-9]*" inputmode="numeric" id="salesOtp1" oninput="handleSalesOtpInput(this, 1)" onkeydown="handleSalesOtpKeydown(event, 1)" onpaste="handleSalesOtpPaste(event)" class="sales-otp-box w-12 h-14 border-2 border-slate-200 bg-slate-50 rounded-2xl text-center text-xl font-black text-slate-800 outline-none focus:border-[#007AFF] focus:bg-white transition-all shadow-inner">
+        <input type="tel" maxlength="1" pattern="[0-9]*" inputmode="numeric" id="salesOtp2" oninput="handleSalesOtpInput(this, 2)" onkeydown="handleSalesOtpKeydown(event, 2)" onpaste="handleSalesOtpPaste(event)" class="sales-otp-box w-12 h-14 border-2 border-slate-200 bg-slate-50 rounded-2xl text-center text-xl font-black text-slate-800 outline-none focus:border-[#007AFF] focus:bg-white transition-all shadow-inner">
+        <input type="tel" maxlength="1" pattern="[0-9]*" inputmode="numeric" id="salesOtp3" oninput="handleSalesOtpInput(this, 3)" onkeydown="handleSalesOtpKeydown(event, 3)" onpaste="handleSalesOtpPaste(event)" class="sales-otp-box w-12 h-14 border-2 border-slate-200 bg-slate-50 rounded-2xl text-center text-xl font-black text-slate-800 outline-none focus:border-[#007AFF] focus:bg-white transition-all shadow-inner">
+        <input type="tel" maxlength="1" pattern="[0-9]*" inputmode="numeric" id="salesOtp4" oninput="handleSalesOtpInput(this, 4)" onkeydown="handleSalesOtpKeydown(event, 4)" onpaste="handleSalesOtpPaste(event)" class="sales-otp-box w-12 h-14 border-2 border-slate-200 bg-slate-50 rounded-2xl text-center text-xl font-black text-slate-800 outline-none focus:border-[#007AFF] focus:bg-white transition-all shadow-inner">
+      </div>
+
+      <!-- Error / validation hint container -->
+      <div id="salesOtpError" class="hidden text-center text-xs font-bold text-red-500 py-0.5">
+        Please enter the valid 4-digit OTP.
+      </div>
+
+      <!-- Quick Test OTP Helper Chip -->
+      <div class="flex justify-center">
+        <button type="button" onclick="autoFillTestOtp()" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 hover:bg-blue-100 text-[#007AFF] text-[11px] font-bold border border-blue-200/80 transition-colors cursor-pointer active:scale-95">
+          <i class="fa-solid fa-wand-magic-sparkles text-[10px]"></i>
+          <span>Auto-fill Test OTP: <strong>4829</strong></span>
+        </button>
+      </div>
+
+      <!-- Resend Timer -->
+      <div class="text-center space-y-1">
+        <p class="text-[11px] text-slate-500 font-medium">Didn't receive the OTP?</p>
+        <div id="salesOtpResendContainer">
+          <span class="text-xs font-semibold text-slate-400">Resend in <span id="salesOtpTimerText">00:30</span></span>
+        </div>
+      </div>
+
+      <!-- Bottom CTAs -->
+      <div class="space-y-2 pt-1">
+        <button type="button" onclick="verifySalesOtpAndSubmit()" class="w-full py-3.5 bg-[#007AFF] active:bg-blue-600 text-white font-extrabold text-sm rounded-full shadow-md active:scale-95 transition-all cursor-pointer flex items-center justify-center gap-2">
+          <span>Verify & Submit</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+        <button type="button" onclick="closeSalesOtpModal()" class="w-full py-2 text-slate-400 font-bold text-xs text-center hover:text-slate-600 transition-colors cursor-pointer">
+          Cancel / Back
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEAD GENERATED CONFIRMATION MODAL -->
+  <div id="leadSuccessModal" onclick="if(event.target === this) closeLeadSuccessModal()" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-50 p-4 transition-all">
+    <div class="bg-white rounded-3xl w-full max-w-[360px] p-6 space-y-4 shadow-2xl border border-slate-100 relative text-center animate-in zoom-in-95 duration-200">
+      <!-- Top Close Button -->
+      <button type="button" onclick="closeLeadSuccessModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 font-bold flex items-center justify-center text-sm absolute top-4 right-4 cursor-pointer active:scale-95 transition-transform">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Celebration Badge -->
+      <div class="w-16 h-16 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center mx-auto border-4 border-emerald-100 shadow-sm">
+        <i class="fa-solid fa-check text-2xl font-black"></i>
+      </div>
+
+      <!-- Confirmation Header -->
+      <div class="space-y-1">
+        <h3 class="text-lg font-black text-slate-900 tracking-tight">Lead Generated Successfully!</h3>
+        <p class="text-xs text-slate-500 font-medium leading-relaxed">
+          Enquiry has been created and assigned to your sales pipeline.
+        </p>
+      </div>
+
+      <!-- Lead Details Summary Card -->
+      <div class="bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 text-left space-y-2.5">
+        <!-- Top Reference ID & Status -->
+        <div class="flex items-center justify-between border-b border-slate-200/70 pb-2">
+          <div class="flex items-center gap-1.5 text-xs text-slate-700 font-extrabold">
+            <i class="fa-solid fa-file-invoice text-[#007AFF]"></i>
+            <span id="successLeadRefId">ENQ987875455</span>
+          </div>
+          <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-50 text-[#007AFF] border border-blue-100">Open Lead</span>
+        </div>
+
+        <!-- Customer Info -->
+        <div class="flex items-center gap-2.5">
+          <div id="successLeadAvatar" class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-200">VS</div>
+          <div class="min-w-0 flex-1">
+            <h4 id="successLeadName" class="text-sm font-extrabold text-slate-900 truncate">Vikram Singhania</h4>
+            <p id="successLeadPhone" class="text-xs text-slate-500 font-semibold truncate">+91 98112 33445</p>
+          </div>
+        </div>
+
+        <!-- Details Grid -->
+        <div class="grid grid-cols-2 gap-2 text-xs bg-white p-2.5 rounded-xl border border-slate-200/60">
+          <div>
+            <span class="text-[9px] text-slate-400 font-bold block uppercase tracking-wider">VEHICLE</span>
+            <span id="successLeadModel" class="font-extrabold text-slate-800 text-[11px] truncate block">Suzuki Hayabusa 2025</span>
+          </div>
+          <div>
+            <span class="text-[9px] text-slate-400 font-bold block uppercase tracking-wider">STAGE</span>
+            <span class="font-extrabold text-emerald-600 text-[11px] flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span>New</span>
+            </span>
+          </div>
+          <div>
+            <span class="text-[9px] text-slate-400 font-bold block uppercase tracking-wider">CATEGORY</span>
+            <span id="successLeadCategory" class="font-extrabold text-slate-800 text-[11px] truncate block">Sales</span>
+          </div>
+          <div>
+            <span class="text-[9px] text-slate-400 font-bold block uppercase tracking-wider">CREATED ON</span>
+            <span id="successLeadDate" class="font-extrabold text-slate-800 text-[11px]">Today, 10:45 AM</span>
+          </div>
+        </div>
+
+        <!-- Exchange Vehicle Summary (Shown if buyerType === 'Exchange') -->
+        <div id="successLeadExchangeContainer" class="hidden">
+          <div class="flex items-center gap-1.5 text-[10px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1.5 rounded-xl border border-amber-200">
+            <i class="fa-solid fa-repeat text-[9px]"></i>
+            <span id="successLeadExchangeText">Exchange: Maruti Suzuki Swift (DL8C1234)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="space-y-2 pt-1">
+        <button type="button" onclick="viewGeneratedLeadInEnquiries()" class="w-full py-3.5 bg-[#007AFF] active:bg-blue-600 text-white font-extrabold text-sm rounded-full shadow-md active:scale-95 transition-all cursor-pointer flex items-center justify-center gap-2">
+          <i class="fa-solid fa-list-check text-xs"></i>
+          <span>View in Enquiries</span>
+        </button>
+        <button type="button" onclick="createNewAnotherEnquiry()" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 active:bg-slate-200 text-slate-700 font-extrabold text-xs rounded-full transition-all cursor-pointer flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-plus text-[10px]"></i>
+          <span>Create Another Enquiry</span>
         </button>
       </div>
     </div>
@@ -6325,7 +6477,7 @@
         currentSalesStep--;
         updateSalesStepUI();
       } else if (direction === 1 && currentSalesStep === 4) {
-        submitSalesEnquiryForm();
+        openSalesOtpModal();
       }
     }
 
@@ -6386,60 +6538,404 @@
       if (viewport) viewport.scrollTop = 0;
     }
 
-    function submitSalesEnquiryForm() {
-      const firstName = document.getElementById('fieldFirstName')?.value || 'Vikram';
-      const lastName = document.getElementById('fieldLastName')?.value || 'Singhania';
+    // Global reference for last generated lead and OTP timer
+    let lastGeneratedLead = null;
+    let salesOtpTimerInterval = null;
+
+    function openSalesOtpModal() {
+      const firstName = document.getElementById('fieldFirstName')?.value?.trim() || 'Vikram';
+      const lastName = document.getElementById('fieldLastName')?.value?.trim() || 'Singhania';
       const fullName = `${firstName} ${lastName}`.trim();
-      const phone = document.getElementById('fieldPhone')?.value || '+91 98112 33445';
+      const phone = document.getElementById('fieldPhone')?.value?.trim() || '+91 98112 33445';
+      const smsChecked = document.getElementById('checkSms')?.checked ?? true;
+      const waChecked = document.getElementById('checkWhatsapp')?.checked ?? false;
+
+      const phoneDisplay = document.getElementById('salesOtpPhoneDisplay');
+      if (phoneDisplay) phoneDisplay.innerText = phone;
+
+      const channelDisplay = document.getElementById('salesOtpChannelDisplay');
+      if (channelDisplay) {
+        if (smsChecked && waChecked) {
+          channelDisplay.innerText = '(via SMS & WhatsApp)';
+        } else if (waChecked) {
+          channelDisplay.innerText = '(via WhatsApp)';
+        } else {
+          channelDisplay.innerText = '(via SMS)';
+        }
+      }
+
+      // Reset digit boxes
+      ['salesOtp1', 'salesOtp2', 'salesOtp3', 'salesOtp4'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.value = '';
+          el.classList.remove('border-red-400', 'bg-red-50', 'border-[#007AFF]', 'bg-blue-50/50');
+        }
+      });
+
+      const errEl = document.getElementById('salesOtpError');
+      if (errEl) errEl.classList.add('hidden');
+
+      // Start 30s resend timer
+      startSalesOtpTimer(30);
+
+      const modal = document.getElementById('salesOtpModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+          const first = document.getElementById('salesOtp1');
+          if (first) first.focus();
+        }, 120);
+      }
+    }
+
+    function closeSalesOtpModal() {
+      const modal = document.getElementById('salesOtpModal');
+      if (modal) modal.classList.add('hidden');
+      if (salesOtpTimerInterval) clearInterval(salesOtpTimerInterval);
+    }
+
+    function startSalesOtpTimer(seconds) {
+      if (salesOtpTimerInterval) clearInterval(salesOtpTimerInterval);
+      let remaining = seconds;
+      const container = document.getElementById('salesOtpResendContainer');
+      if (container) {
+        container.innerHTML = `<span class="text-xs font-semibold text-slate-400">Resend in <span id="salesOtpTimerText">00:${remaining < 10 ? '0' : ''}${remaining}</span></span>`;
+      }
+      salesOtpTimerInterval = setInterval(() => {
+        remaining--;
+        const timerText = document.getElementById('salesOtpTimerText');
+        if (timerText) {
+          timerText.innerText = `00:${remaining < 10 ? '0' : ''}${remaining}`;
+        }
+        if (remaining <= 0) {
+          clearInterval(salesOtpTimerInterval);
+          if (container) {
+            container.innerHTML = `<button type="button" onclick="resendSalesOtp()" class="text-xs font-extrabold text-[#007AFF] hover:underline cursor-pointer">Resend OTP</button>`;
+          }
+        }
+      }, 1000);
+    }
+
+    function resendSalesOtp() {
+      startSalesOtpTimer(30);
+      ['salesOtp1', 'salesOtp2', 'salesOtp3', 'salesOtp4'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.value = '';
+          el.classList.remove('border-red-400', 'bg-red-50', 'border-[#007AFF]', 'bg-blue-50/50');
+        }
+      });
+      const first = document.getElementById('salesOtp1');
+      if (first) first.focus();
+      const errEl = document.getElementById('salesOtpError');
+      if (errEl) {
+        errEl.innerText = "A new verification OTP has been sent!";
+        errEl.className = "text-center text-xs font-bold text-emerald-600 py-0.5 animate-in fade-in";
+        errEl.classList.remove('hidden');
+        setTimeout(() => {
+          errEl.classList.add('hidden');
+          errEl.className = "hidden text-center text-xs font-bold text-red-500 py-0.5";
+        }, 3000);
+      }
+    }
+
+    function handleSalesOtpInput(el, index) {
+      el.value = el.value.replace(/[^0-9]/g, '');
+      const errEl = document.getElementById('salesOtpError');
+      if (errEl) errEl.classList.add('hidden');
+      if (el.value.length >= 1 && index < 4) {
+        const next = document.getElementById('salesOtp' + (index + 1));
+        if (next) next.focus();
+      }
+    }
+
+    function handleSalesOtpKeydown(e, index) {
+      const el = document.getElementById('salesOtp' + index);
+      if (e.key === 'Backspace') {
+        if ((!el || el.value === '') && index > 1) {
+          const prev = document.getElementById('salesOtp' + (index - 1));
+          if (prev) {
+            prev.focus();
+            prev.value = '';
+          }
+        }
+      } else if (e.key === 'Enter') {
+        verifySalesOtpAndSubmit();
+      }
+    }
+
+    function handleSalesOtpPaste(e) {
+      e.preventDefault();
+      const clipText = (e.clipboardData || window.clipboardData).getData('text').trim().replace(/[^0-9]/g, '');
+      if (clipText.length > 0) {
+        for (let i = 1; i <= 4; i++) {
+          const box = document.getElementById('salesOtp' + i);
+          if (box) box.value = clipText[i - 1] || '';
+        }
+        const targetIndex = Math.min(clipText.length, 4);
+        const focusEl = document.getElementById('salesOtp' + targetIndex);
+        if (focusEl) focusEl.focus();
+      }
+    }
+
+    function autoFillTestOtp() {
+      const testCode = "4829";
+      for (let i = 1; i <= 4; i++) {
+        const box = document.getElementById('salesOtp' + i);
+        if (box) {
+          box.value = testCode[i - 1];
+          box.classList.remove('border-red-400', 'bg-red-50');
+          box.classList.add('border-[#007AFF]', 'bg-blue-50/50');
+        }
+      }
+      const fourth = document.getElementById('salesOtp4');
+      if (fourth) fourth.focus();
+      const errEl = document.getElementById('salesOtpError');
+      if (errEl) errEl.classList.add('hidden');
+    }
+
+    function verifySalesOtpAndSubmit() {
+      const d1 = document.getElementById('salesOtp1')?.value;
+      const d2 = document.getElementById('salesOtp2')?.value;
+      const d3 = document.getElementById('salesOtp3')?.value;
+      const d4 = document.getElementById('salesOtp4')?.value;
+
+      if (!d1 || !d2 || !d3 || !d4) {
+        const errEl = document.getElementById('salesOtpError');
+        if (errEl) {
+          errEl.innerText = "Please enter all 4 digits of the OTP.";
+          errEl.classList.remove('hidden');
+        }
+        ['salesOtp1', 'salesOtp2', 'salesOtp3', 'salesOtp4'].forEach(id => {
+          const box = document.getElementById(id);
+          if (box && !box.value) {
+            box.classList.add('border-red-400', 'bg-red-50');
+          }
+        });
+        return;
+      }
+
+      closeSalesOtpModal();
+      generateLeadFromForm();
+    }
+
+    function generateLeadFromForm() {
+      const firstName = document.getElementById('fieldFirstName')?.value?.trim() || 'Vikram';
+      const lastName = document.getElementById('fieldLastName')?.value?.trim() || 'Singhania';
+      const fullName = `${firstName} ${lastName}`.trim();
+      const phone = document.getElementById('fieldPhone')?.value?.trim() || '+91 98112 33445';
       const model = document.getElementById('fieldModel')?.value || 'Suzuki Hayabusa 2025';
+      const category = selectedCategory || 'Sales';
       const buyerType = document.querySelector('input[name="buyerTypeRadio"]:checked')?.value || 'First Time';
       const exchangeMfg = document.getElementById('exchangeManufacturer')?.value || '';
       const exchangeModel = document.getElementById('exchangeModel')?.value || '';
       const exchangeReg = document.getElementById('exchangeRegNumber')?.value || '';
-      const exchangeTag = (buyerType === 'Exchange' && (exchangeMfg || exchangeModel))
-        ? `<div class="mt-1.5 flex items-center gap-1.5 text-[10px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-xl border border-amber-200 w-fit">
-             <i class="fa-solid fa-repeat text-[9px]"></i> Exchange: ${exchangeMfg} ${exchangeModel} ${exchangeReg ? '(' + exchangeReg + ')' : ''}
-           </div>`
-        : '';
 
-      const listContainer = document.querySelector('#screen-enquiry .space-y-3');
+      const leadRefId = 'ENQ98787' + Math.floor(5455 + Math.random() * 40);
+      const initials = (firstName.charAt(0) + (lastName.charAt(0) || firstName.charAt(1) || 'S')).toUpperCase();
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const todayFormatted = `Today, ${timeStr}`;
+
+      lastGeneratedLead = {
+        id: leadRefId,
+        fullName: fullName,
+        phone: phone,
+        model: model,
+        category: category,
+        buyerType: buyerType,
+        exchangeMfg: exchangeMfg,
+        exchangeModel: exchangeModel,
+        exchangeReg: exchangeReg,
+        date: todayFormatted
+      };
+
+      // Create card in #enquiryCardsContainer
+      const listContainer = document.getElementById('enquiryCardsContainer') || document.querySelector('#screen-enquiry .space-y-3');
       if (listContainer) {
         const newCard = document.createElement('div');
-        newCard.className = "enquiry-card all new bg-white rounded-2xl border border-[#E0E8F5] p-3.5 shadow-xs space-y-3 active:scale-[0.99] transition-transform cursor-pointer";
-        newCard.onclick = function() { openEnquiryDetails(fullName, model, 'New', '24/09/2026', '30/09/2026', phone); };
+        newCard.id = `enqCard-${leadRefId}`;
+        newCard.className = "enquiry-card stage-new new priority-hot hot all bg-white rounded-2xl border border-[#E0E8F5] shadow-xs p-3.5 space-y-3 transition-all";
+
+        const exchangeTagHtml = (buyerType === 'Exchange' && (exchangeMfg || exchangeModel))
+          ? `<div class="mt-1 flex items-center gap-1.5 text-[10px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-xl border border-amber-200 w-fit">
+               <i class="fa-solid fa-repeat text-[9px]"></i> Exchange: ${exchangeMfg} ${exchangeModel} ${exchangeReg ? '(' + exchangeReg + ')' : ''}
+             </div>`
+          : '';
+
         newCard.innerHTML = `
-          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-            <div class="flex items-center gap-1.5 text-xs text-slate-500 font-bold">
-              <i class="fa-solid fa-user-tag text-slate-400"></i>
-              <span>ENQ00000${Math.floor(6698 + Math.random() * 50)} || <span class="text-emerald-600 font-extrabold">${selectedCategory}</span></span>
+          <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+            <span class="text-xs font-bold text-slate-500">${leadRefId} || <span class="text-[#10B981] font-extrabold">${category}</span></span>
+            <span class="text-[10px] font-extrabold text-cyan-700 bg-cyan-50 px-2.5 py-0.5 rounded-full border border-cyan-200/80">New Lead</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-200">${initials}</div>
+              <div>
+                <h3 class="text-base font-extrabold text-[#1E293B]">${fullName}</h3>
+                <p class="text-xs font-semibold text-slate-500 mt-0.5">${model}</p>
+              </div>
             </div>
-            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-50 text-[#007AFF] border border-blue-100">Open</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-600 border border-amber-200/60">Hot Lead</span>
           </div>
-          <div>
-            <h3 class="text-sm font-extrabold text-slate-900">${fullName}</h3>
-            <p class="text-xs text-slate-500 font-medium">${phone}</p>
+          <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+            <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATION DATE</span><span class="font-bold text-slate-800">${todayFormatted}</span></div>
+            <div><span class="text-[9px] text-slate-400 font-bold block uppercase">ASSIGNED TO</span><span class="font-bold text-slate-800">Niket Kumar</span></div>
           </div>
-          <div class="grid grid-cols-2 gap-2 text-xs border-t border-slate-100 pt-2">
-            <div><span class="text-[9px] text-slate-400 font-bold block uppercase">PREFERRED PRODUCT</span><span class="font-bold text-slate-800">${model}</span></div>
-            <div><span class="text-[9px] text-slate-400 font-bold block uppercase">STAGE</span><span class="font-bold text-slate-800">New</span></div>
-            <div><span class="text-[9px] text-slate-400 font-bold block uppercase">CREATED ON</span><span class="font-bold text-slate-800">24/09/2026</span></div>
-            <div><span class="text-[9px] text-slate-400 font-bold block uppercase">FOLLOWUP DATE</span><span class="font-bold text-slate-800">30/09/2026</span></div>
-          </div>
-          ${exchangeTag}
-          <div class="pt-1 flex items-center justify-between border-t border-slate-100 text-xs font-bold text-[#007AFF]">
-            <span>View Details</span>
-            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          ${exchangeTagHtml}
+          <div class="flex items-center justify-between pt-1">
+            <div class="flex items-center gap-1.5">
+              <button onclick="event.stopPropagation(); window.location.href='tel:${phone}';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-solid fa-phone text-xs"></i></button>
+              <button onclick="event.stopPropagation(); window.open('https://wa.me/${phone.replace(/[^0-9]/g,'')}','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+            </div>
+            <button onclick="openEnquiryDetails('${fullName}', '${leadRefId}')" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+              <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </button>
           </div>
         `;
         listContainer.prepend(newCard);
       }
 
-      if (buyerType === 'Exchange' && exchangeMfg) {
-        alert(`✅ ${selectedCategory} Enquiry created successfully for ${fullName} with Exchange Vehicle (${exchangeMfg} ${exchangeModel || ''})!`);
-      } else {
-        alert(`✅ ${selectedCategory} Enquiry created successfully for ${fullName}!`);
+      // Update counter badges
+      const allBadge = document.querySelector('#enqStageChip-all .chip-badge');
+      if (allBadge) {
+        const cur = parseInt(allBadge.innerText) || 24;
+        allBadge.innerText = cur + 1;
       }
+      const newBadge = document.querySelector('#enqStageChip-new .chip-badge');
+      if (newBadge) {
+        const cur = parseInt(newBadge.innerText) || 3;
+        newBadge.innerText = cur + 1;
+      }
+
+      // Populate Lead Success Confirmation Modal
+      const refEl = document.getElementById('successLeadRefId');
+      if (refEl) refEl.innerText = leadRefId;
+
+      const nameEl = document.getElementById('successLeadName');
+      if (nameEl) nameEl.innerText = fullName;
+
+      const phoneEl = document.getElementById('successLeadPhone');
+      if (phoneEl) phoneEl.innerText = phone;
+
+      const avatarEl = document.getElementById('successLeadAvatar');
+      if (avatarEl) avatarEl.innerText = initials;
+
+      const modelEl = document.getElementById('successLeadModel');
+      if (modelEl) modelEl.innerText = model;
+
+      const catEl = document.getElementById('successLeadCategory');
+      if (catEl) catEl.innerText = category;
+
+      const dateEl = document.getElementById('successLeadDate');
+      if (dateEl) dateEl.innerText = todayFormatted;
+
+      const exchContainer = document.getElementById('successLeadExchangeContainer');
+      const exchText = document.getElementById('successLeadExchangeText');
+      if (exchContainer && exchText) {
+        if (buyerType === 'Exchange' && (exchangeMfg || exchangeModel)) {
+          exchText.innerText = `Exchange: ${exchangeMfg} ${exchangeModel} ${exchangeReg ? '(' + exchangeReg + ')' : ''}`;
+          exchContainer.classList.remove('hidden');
+        } else {
+          exchContainer.classList.add('hidden');
+        }
+      }
+
+      // Show confirmation modal
+      const successModal = document.getElementById('leadSuccessModal');
+      if (successModal) successModal.classList.remove('hidden');
+    }
+
+    function closeLeadSuccessModal() {
+      const modal = document.getElementById('leadSuccessModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function viewGeneratedLeadInEnquiries() {
+      closeLeadSuccessModal();
       switchScreen('enquiry');
+      filterEnquiryStage('all');
+      
+      const viewport = document.getElementById('mobile-viewport');
+      if (viewport) viewport.scrollTop = 0;
+
+      if (lastGeneratedLead?.id) {
+        const card = document.getElementById(`enqCard-${lastGeneratedLead.id}`);
+        if (card) {
+          card.classList.add('ring-2', 'ring-[#007AFF]', 'bg-blue-50/20');
+          setTimeout(() => {
+            card.classList.remove('ring-2', 'ring-[#007AFF]', 'bg-blue-50/20');
+          }, 3000);
+        }
+      }
+    }
+
+    function createNewAnotherEnquiry() {
+      closeLeadSuccessModal();
+      
+      // Reset input fields
+      const fieldIds = ['fieldFirstName', 'fieldMiddleName', 'fieldLastName', 'fieldEmail', 'fieldPhone', 'fieldAddress', 'fieldRemark'];
+      fieldIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+
+      selectBuyerType('First Time');
+      const mfgEl = document.getElementById('exchangeManufacturer');
+      if (mfgEl) mfgEl.value = '';
+      const modEl = document.getElementById('exchangeModel');
+      if (modEl) modEl.value = '';
+      const regEl = document.getElementById('exchangeRegNumber');
+      if (regEl) regEl.value = '';
+
+      currentSalesStep = 1;
+      updateSalesStepUI();
+      const viewport = document.getElementById('mobile-viewport');
+      if (viewport) viewport.scrollTop = 0;
+    }
+
+    function showTestLeadSuccessModal() {
+      lastGeneratedLead = {
+        id: "ENQ987875455",
+        fullName: "Vikram Singhania",
+        phone: "+91 98112 33445",
+        model: "Suzuki Hayabusa 2025",
+        category: "Sales",
+        buyerType: "First Time",
+        date: "Today, 10:45 AM"
+      };
+
+      const refEl = document.getElementById('successLeadRefId');
+      if (refEl) refEl.innerText = "ENQ987875455";
+
+      const nameEl = document.getElementById('successLeadName');
+      if (nameEl) nameEl.innerText = "Vikram Singhania";
+
+      const phoneEl = document.getElementById('successLeadPhone');
+      if (phoneEl) phoneEl.innerText = "+91 98112 33445";
+
+      const avatarEl = document.getElementById('successLeadAvatar');
+      if (avatarEl) avatarEl.innerText = "VS";
+
+      const modelEl = document.getElementById('successLeadModel');
+      if (modelEl) modelEl.innerText = "Suzuki Hayabusa 2025";
+
+      const catEl = document.getElementById('successLeadCategory');
+      if (catEl) catEl.innerText = "Sales";
+
+      const dateEl = document.getElementById('successLeadDate');
+      if (dateEl) dateEl.innerText = "Today, 10:45 AM";
+
+      const exchContainer = document.getElementById('successLeadExchangeContainer');
+      if (exchContainer) exchContainer.classList.add('hidden');
+
+      const modal = document.getElementById('leadSuccessModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function submitSalesEnquiryForm() {
+      openSalesOtpModal();
     }
 
     // Signature Modal Canvas Logic
@@ -7443,6 +7939,18 @@
       if (params.get('modal') === 'stage') {
         openStagePickerModal();
       }
+      if (params.get('modal') === 'otp') {
+        switchScreen('sales-enquiry');
+        currentSalesStep = 4;
+        updateSalesStepUI();
+        openSalesOtpModal();
+      }
+      if (params.get('modal') === 'lead_success' || params.get('modal') === 'success') {
+        switchScreen('sales-enquiry');
+        currentSalesStep = 4;
+        updateSalesStepUI();
+        showTestLeadSuccessModal();
+      }
       const targetScreen = params.get('screen');
       if (targetScreen) {
         switchScreen(targetScreen);
@@ -7484,6 +7992,11 @@
           updateSalesStepUI();
           if (params.get('exchange') === 'true' || params.get('exchange') === '1') {
             selectBuyerType('Exchange');
+          }
+          if (params.get('modal') === 'otp') {
+            openSalesOtpModal();
+          } else if (params.get('modal') === 'lead_success' || params.get('modal') === 'success') {
+            showTestLeadSuccessModal();
           }
           if (params.get('scroll') === 'bottom') {
             setTimeout(() => {
