@@ -70,6 +70,13 @@
     .stepper-container::-webkit-scrollbar {
       display: none;
     }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
     .chevron-step {
       position: relative;
       background: #FFFFFF;
@@ -533,52 +540,57 @@
           </div>
         </div>
 
-        <!-- Quick Pipeline Stage Filter -->
+        <!-- Pipeline Stage Drag Filter -->
         <div class="space-y-1.5 pt-0.5">
           <div class="flex items-center justify-between px-0.5">
             <span class="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-              <i class="fa-solid fa-filter text-[#007AFF] text-[10px]"></i>
-              <span>QUICK FILTER</span>
+              <i class="fa-solid fa-arrows-left-right text-[#007AFF] text-[10px]"></i>
+              <span>DRAG FILTER</span>
             </span>
             <span id="activeStageIndicator" class="text-[10px] font-bold text-slate-500">All (24 Leads)</span>
           </div>
-          <div class="flex flex-wrap gap-1.5">
-            <button id="enqStageChip-all" onclick="filterEnquiryStage('all')" data-stage="all" class="stage-quick-chip px-3 py-1.5 rounded-full text-xs font-black bg-[#007AFF] text-white border border-[#007AFF] shadow-xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
-              <span>All</span>
-              <span class="chip-badge px-1.5 py-0.2 rounded-full bg-white/20 text-white font-black text-[10px]">24</span>
-            </button>
-            <button id="enqStageChip-new" onclick="filterEnquiryStage('new')" data-stage="new" class="stage-quick-chip px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
-              <span>New</span>
-              <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">3</span>
-            </button>
-            <button id="enqStageChip-contacted" onclick="filterEnquiryStage('contacted')" data-stage="contacted" class="stage-quick-chip px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
-              <span>Follow-up</span>
-              <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">5</span>
-            </button>
-            <button id="enqStageChip-testdrive" onclick="filterEnquiryStage('testdrive')" data-stage="testdrive" class="stage-quick-chip px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
-              <span>Test Drive</span>
-              <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">4</span>
-            </button>
-            <button id="enqStageChip-negotiation" onclick="filterEnquiryStage('negotiation')" data-stage="negotiation" class="stage-quick-chip px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
-              <span>Negotiation</span>
-              <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">4</span>
-            </button>
-            <button id="enqStageChip-booking" onclick="filterEnquiryStage('booking')" data-stage="booking" class="stage-quick-chip px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
-              <span>Booking</span>
-              <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">3</span>
-            </button>
-            <button id="enqStageChip-delivered" onclick="filterEnquiryStage('delivered')" data-stage="delivered" class="stage-quick-chip px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
-              <span>Delivered</span>
-              <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">2</span>
-            </button>
-            <button id="enqStageChip-lost" onclick="filterEnquiryStage('lost')" data-stage="lost" class="stage-quick-chip px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
-              <span>Close Lost</span>
-              <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">2</span>
-            </button>
-            <button id="enqStageChip-junk" onclick="filterEnquiryStage('junk')" data-stage="junk" class="stage-quick-chip px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
-              <span>Junk</span>
-              <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">1</span>
-            </button>
+          <div class="relative -mx-0.5">
+            <div id="enquiryDragFilterTrack" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-1 select-none cursor-grab active:cursor-grabbing" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
+              <button id="enqStageChip-all" onclick="filterEnquiryStage('all')" data-stage="all" class="stage-quick-chip shrink-0 whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-black bg-[#007AFF] text-white border border-[#007AFF] shadow-xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
+                <span>All</span>
+                <span class="chip-badge px-1.5 py-0.2 rounded-full bg-white/20 text-white font-black text-[10px]">24</span>
+              </button>
+              <button id="enqStageChip-new" onclick="filterEnquiryStage('new')" data-stage="new" class="stage-quick-chip shrink-0 whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
+                <span>New</span>
+                <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">3</span>
+              </button>
+              <button id="enqStageChip-contacted" onclick="filterEnquiryStage('contacted')" data-stage="contacted" class="stage-quick-chip shrink-0 whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
+                <span>Follow-up</span>
+                <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">5</span>
+              </button>
+              <button id="enqStageChip-testdrive" onclick="filterEnquiryStage('testdrive')" data-stage="testdrive" class="stage-quick-chip shrink-0 whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
+                <span>Test Drive</span>
+                <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">4</span>
+              </button>
+              <button id="enqStageChip-negotiation" onclick="filterEnquiryStage('negotiation')" data-stage="negotiation" class="stage-quick-chip shrink-0 whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
+                <span>Negotiation</span>
+                <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">4</span>
+              </button>
+              <button id="enqStageChip-booking" onclick="filterEnquiryStage('booking')" data-stage="booking" class="stage-quick-chip shrink-0 whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
+                <span>Booking</span>
+                <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">3</span>
+              </button>
+              <button id="enqStageChip-delivered" onclick="filterEnquiryStage('delivered')" data-stage="delivered" class="stage-quick-chip shrink-0 whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
+                <span>Delivered</span>
+                <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">2</span>
+              </button>
+              <button id="enqStageChip-lost" onclick="filterEnquiryStage('lost')" data-stage="lost" class="stage-quick-chip shrink-0 whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
+                <span>Close Lost</span>
+                <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">2</span>
+              </button>
+              <button id="enqStageChip-junk" onclick="filterEnquiryStage('junk')" data-stage="junk" class="stage-quick-chip shrink-0 whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all">
+                <span>Junk</span>
+                <span class="chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]">1</span>
+              </button>
+            </div>
+            <!-- Soft gradient fades indicating horizontal drag overflow -->
+            <div id="dragFilterLeftFade" class="pointer-events-none absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-slate-50 to-transparent opacity-0 transition-opacity"></div>
+            <div id="dragFilterRightFade" class="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-slate-50 to-transparent transition-opacity"></div>
           </div>
         </div>
 
@@ -4833,6 +4845,10 @@
         const label = activeNavBtn.querySelector('span');
         if(label) label.classList.replace('font-medium', 'font-bold');
       }
+
+      if (screenName === 'enquiry') {
+        setTimeout(updateDragFilterIndicators, 60);
+      }
     }
 
     function goBackFromDetails() {
@@ -7056,10 +7072,13 @@
         const stage = chip.getAttribute('data-stage');
         const badge = chip.querySelector('.chip-badge');
         if (stage === currentEnquiryStage) {
-          chip.className = 'stage-quick-chip px-3 py-1.5 rounded-full text-xs font-black bg-[#007AFF] text-white border border-[#007AFF] shadow-xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all';
+          chip.className = 'stage-quick-chip shrink-0 whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-black bg-[#007AFF] text-white border border-[#007AFF] shadow-xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all';
           if (badge) badge.className = 'chip-badge px-1.5 py-0.2 rounded-full bg-white/20 text-white font-black text-[10px]';
+          try {
+            chip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          } catch(e) {}
         } else {
-          chip.className = 'stage-quick-chip px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all';
+          chip.className = 'stage-quick-chip shrink-0 whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 shadow-2xs flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all';
           if (badge) badge.className = 'chip-badge px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600 font-extrabold text-[10px]';
         }
       });
@@ -7071,6 +7090,68 @@
       }
 
       applyCombinedEnquiryFilters();
+      setTimeout(updateDragFilterIndicators, 200);
+    }
+
+    function initDragFilter() {
+      const track = document.getElementById('enquiryDragFilterTrack');
+      if (!track) return;
+      let isDown = false;
+      let startX = 0;
+      let scrollLeft = 0;
+      let hasDragged = false;
+
+      track.addEventListener('mousedown', (e) => {
+        isDown = true;
+        hasDragged = false;
+        startX = e.pageX - track.offsetLeft;
+        scrollLeft = track.scrollLeft;
+      });
+
+      track.addEventListener('mouseleave', () => {
+        isDown = false;
+      });
+
+      track.addEventListener('mouseup', () => {
+        isDown = false;
+        setTimeout(() => { hasDragged = false; }, 60);
+      });
+
+      track.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        const x = e.pageX - track.offsetLeft;
+        const walk = (x - startX) * 1.4;
+        if (Math.abs(walk) > 4) {
+          hasDragged = true;
+          e.preventDefault();
+        }
+        track.scrollLeft = scrollLeft - walk;
+        updateDragFilterIndicators();
+      });
+
+      track.addEventListener('click', (e) => {
+        if (hasDragged) {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+      }, true);
+
+      track.addEventListener('scroll', updateDragFilterIndicators, { passive: true });
+      updateDragFilterIndicators();
+    }
+
+    function updateDragFilterIndicators() {
+      const track = document.getElementById('enquiryDragFilterTrack');
+      const leftFade = document.getElementById('dragFilterLeftFade');
+      const rightFade = document.getElementById('dragFilterRightFade');
+      if (!track) return;
+      if (leftFade) {
+        leftFade.style.opacity = track.scrollLeft > 6 ? '1' : '0';
+      }
+      if (rightFade) {
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        rightFade.style.opacity = (track.scrollLeft < maxScroll - 6) ? '1' : '0';
+      }
     }
 
     function searchEnquiryCards(query) {
@@ -7349,6 +7430,7 @@
 
     // Check URL parameters for direct deep-linking & testing
     window.addEventListener('load', function() {
+      initDragFilter();
       const params = new URLSearchParams(window.location.search);
       const homeFilter = params.get('home_filter');
       if (homeFilter) {
@@ -7382,6 +7464,14 @@
         const stage = params.get('stage');
         if (targetScreen === 'enquiry' && stage) {
           filterEnquiryStage(stage);
+        }
+        const dragScroll = params.get('drag_scroll');
+        if (targetScreen === 'enquiry' && dragScroll) {
+          const track = document.getElementById('enquiryDragFilterTrack');
+          if (track) {
+            track.scrollLeft = parseInt(dragScroll);
+            updateDragFilterIndicators();
+          }
         }
         const step = parseInt(params.get('step'));
         if (targetScreen === 'sales-enquiry' && step) {
