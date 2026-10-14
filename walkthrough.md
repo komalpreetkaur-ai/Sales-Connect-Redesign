@@ -1,5 +1,18 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🎨 Cleaned Stage Filter Accordion (Removed Background Color & Reset Text)
+
+Updated the **Stage** filter section inside the Filter Bottom Sheet Modal (`#filterModal`):
+
+![Cleaned Stage Filter Section](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_stage_filter_clean.png)
+
+### ✨ Changes Applied
+1. **Removed Custom Tinted Background**: Changed the container from `bg-[#F5F9FF]` to clean `bg-white`, perfectly blending with the other filter accordion cards.
+2. **Removed "Reset" Text**: Eliminated the redundant inline Reset button from the Stage section header, leaving a clean chevron toggle icon on the right.
+3. **100% Parity Verified**: `index.html` and `sales_connect_redesign.html` verified with 0 diff.
+
+---
+
 ## 🚫 Clean Text-Only Cancel & Submit Booking Buttons
 
 Removed the `fa-xmark` (`x`) and `fa-check` (`✓`) icons from the **Cancel** and **Submit Booking** action buttons on the New Vehicle Booking screen (`#screen-booking-create`):
