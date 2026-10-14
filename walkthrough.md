@@ -750,6 +750,42 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
 
 ---
 
+## ⚡ Quick Filter Chips for Pipeline Stages (`#screen-enquiry`)
+
+- **Replaced Dropdown Card & Modal Bottom Sheet**: Eliminated the dropdown card selector and bottom-sheet modal in favor of an authentic **Quick Filter** interface.
+- **Instant 1-Tap Access**: All 9 pipeline stages are now rendered as clean, standalone pill chips (`stage-quick-chip`) in a compact multi-row wrap layout (`flex flex-wrap gap-1.5`):
+  - `All (24)`
+  - `New (3)`
+  - `Follow-up (5)`
+  - `Test Drive (4)`
+  - `Negotiation (4)`
+  - `Booking (3)`
+  - `Delivered (2)`
+  - `Close Lost (2)`
+  - `Junk (1)`
+- **Dynamic Active / Inactive States**:
+  - **Active State**: Solid brand blue (`bg-[#007AFF] text-white border-[#007AFF] shadow-xs font-extrabold`) with a translucent counter badge (`bg-white/20`).
+  - **Inactive State**: Clean white chip (`bg-white text-slate-700 border-slate-200/90 shadow-2xs font-bold`) with a soft slate counter badge (`bg-slate-100 text-slate-500`).
+- **Zero Scrolling Hurdles**: All 9 filter options are visible at a glance without having to scroll horizontally or open dropdown menus.
+- **Real-Time Stage Counter Indicator**: Header displays `#activeStageIndicator` updating dynamically with the selected stage and count.
+
+![Quick Filter Chips Default State](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_quick_filter_enquiries.png)
+
+![Quick Filter Chips Filtered by Test Drive](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_quick_filter_enquiry_filtered.png)
+
+---
+
+## 🔘 Unified `View Details >` Solid Blue Button on Booking Cards (`#screen-booking`)
+
+- **Replaced Plain Text Link**: Removed the plain text `Details >` label on booking cards and replaced it with the exact solid brand blue `View Details >` button style used on Lead Cards:
+  - Container styling: `px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer`.
+  - Icon: Chevron right (`<i class="fa-solid fa-chevron-right text-[10px]"></i>`).
+- **Complete Visual Consistency**: All 3 static booking cards (`BK987875311`, `BK987875364`, `BK987875399`) and all dynamically generated booking cards now share the exact same high-contrast CTA button as lead cards on the Enquiries screen.
+
+![Booking Cards with Solid Blue View Details Button](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_booking_view_details_button.png)
+
+---
+
 ## 🌐 Live Prototype Link
 
 - **Local HTML File**: [sales_connect_redesign.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/sales_connect_redesign.html)
