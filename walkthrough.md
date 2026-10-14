@@ -780,6 +780,23 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
 
 ---
 
+## 🗂️ Updated Stage Filter Section in Filter Bottom Sheet Modal (`#filterModal`)
+
+- **Standardized Section Heading**: Renamed the filter section header from `Stage/ status` to clean `Stage`.
+- **Refined Stage Options**: Replaced the previous nested sub-statuses with 5 direct, actionable stage checkboxes:
+  - `New`
+  - `Follow-up`
+  - `Test Drive`
+  - `Negotiation`
+  - `Close Lost`
+- **Section Reset & Filter Application**:
+  - Clicking the dedicated `Reset` button in the Stage header clears all checked options in the Stage section.
+  - Tapping `Apply` filters the lead cards on `#screen-enquiry` according to the selected stages and syncs the filter chips / badges.
+
+![Updated Stage Filter in Modal](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_stage_filter_modal.png)
+
+---
+
 ## 🌐 Live Prototype Link
 
 - **Local HTML File**: [sales_connect_redesign.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/sales_connect_redesign.html)

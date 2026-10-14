@@ -4694,49 +4694,41 @@
         <!-- Group Content -->
         <div id="defaultGroup-content" class="space-y-2.5">
           
-          <!-- Accordion 1: Stage/ status (Expanded) -->
+          <!-- Accordion 1: Stage (Expanded) -->
           <div class="border border-slate-200/90 rounded-2xl p-3.5 bg-[#F5F9FF] space-y-3">
             <div class="flex items-center justify-between cursor-pointer" onclick="toggleFilterAccordion('stageStatus')">
               <div class="flex items-center gap-2">
-                <span class="text-xs font-extrabold text-slate-900">Stage/ status</span>
+                <span class="text-xs font-extrabold text-slate-900">Stage</span>
                 <span id="stageStatus-badge" class="hidden w-5 h-5 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center">0</span>
               </div>
               <div class="flex items-center gap-3">
-                <button type="button" onclick="event.stopPropagation();" class="text-xs font-semibold text-slate-500">Reset</button>
+                <button type="button" onclick="event.stopPropagation(); resetStageFilterSection()" class="text-xs font-semibold text-slate-500 hover:text-slate-700">Reset</button>
                 <i id="stageStatus-icon" class="fa-solid fa-chevron-up text-xs text-slate-600"></i>
               </div>
             </div>
 
             <!-- Checkboxes List -->
             <div id="stageStatus-content" class="space-y-2.5 text-xs pt-1">
-              <label class="flex items-center gap-2 font-bold text-slate-800 cursor-pointer">
-                <input type="checkbox" class="w-4 h-4 accent-[#007AFF] rounded filter-cb" data-label="Stage: New">
+              <label class="flex items-center gap-2 font-medium text-slate-800 cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 accent-[#007AFF] rounded filter-cb" data-label="Stage: New" value="new">
                 <span>New</span>
               </label>
-
-              <!-- Nested Checkboxes -->
-              <div class="pl-6 space-y-2 text-xs">
-                <label class="flex items-center gap-2 font-medium text-slate-700 cursor-pointer">
-                  <input type="checkbox" class="w-4 h-4 accent-[#007AFF] rounded filter-cb" data-label="Contact Attempted">
-                  <span>Contact Attempted</span>
-                </label>
-                <label class="flex items-center gap-2 font-medium text-slate-700 cursor-pointer">
-                  <input type="checkbox" class="w-4 h-4 accent-[#007AFF] rounded filter-cb" data-label="Waiting for Response">
-                  <span>Waiting for Response</span>
-                </label>
-                <label class="flex items-center gap-2 font-medium text-slate-700 cursor-pointer">
-                  <input type="checkbox" class="w-4 h-4 accent-[#007AFF] rounded filter-cb" data-label="No Response">
-                  <span>No Response</span>
-                </label>
-                <label class="flex items-center gap-2 font-medium text-slate-700 cursor-pointer">
-                  <input type="checkbox" class="w-4 h-4 accent-[#007AFF] rounded filter-cb" data-label="Contacted">
-                  <span>Contacted</span>
-                </label>
-                <label class="flex items-center gap-2 font-medium text-slate-700 cursor-pointer">
-                  <input type="checkbox" class="w-4 h-4 accent-[#007AFF] rounded filter-cb" data-label="Quotation">
-                  <span>Quotation</span>
-                </label>
-              </div>
+              <label class="flex items-center gap-2 font-medium text-slate-800 cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 accent-[#007AFF] rounded filter-cb" data-label="Stage: Follow-up" value="contacted">
+                <span>Follow-up</span>
+              </label>
+              <label class="flex items-center gap-2 font-medium text-slate-800 cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 accent-[#007AFF] rounded filter-cb" data-label="Stage: Test Drive" value="testdrive">
+                <span>Test Drive</span>
+              </label>
+              <label class="flex items-center gap-2 font-medium text-slate-800 cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 accent-[#007AFF] rounded filter-cb" data-label="Stage: Negotiation" value="negotiation">
+                <span>Negotiation</span>
+              </label>
+              <label class="flex items-center gap-2 font-medium text-slate-800 cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 accent-[#007AFF] rounded filter-cb" data-label="Stage: Close Lost" value="lost">
+                <span>Close Lost</span>
+              </label>
             </div>
           </div>
 
@@ -6560,6 +6552,11 @@
       }
     }
 
+    function resetStageFilterSection() {
+      document.querySelectorAll('#stageStatus-content input[type="checkbox"]').forEach(cb => cb.checked = false);
+      applyFilters();
+    }
+
     function resetAllFilters() {
       document.querySelectorAll('#filterModal input[type="checkbox"]').forEach(cb => cb.checked = false);
       if (typeof filterByTemperature === 'function') filterByTemperature('all');
@@ -6595,6 +6592,13 @@
           container.innerHTML = '';
           chipsBar.classList.add('hidden');
         }
+      }
+
+      const stageChecks = Array.from(document.querySelectorAll('#stageStatus-content input.filter-cb:checked')).map(cb => cb.value);
+      if (stageChecks.length === 1) {
+        filterEnquiryStage(stageChecks[0]);
+      } else {
+        applyCombinedEnquiryFilters();
       }
 
       closeFilterModal();
@@ -7160,13 +7164,19 @@
 
     function applyCombinedEnquiryFilters() {
       const cards = document.querySelectorAll('.enquiry-card');
+      const stageChecks = Array.from(document.querySelectorAll('#stageStatus-content input.filter-cb:checked')).map(cb => cb.value);
       let visibleCount = 0;
 
       cards.forEach(card => {
         // Match Stage
-        const stageMatch = (currentEnquiryStage === 'all') || 
-                           card.classList.contains('stage-' + currentEnquiryStage) || 
-                           card.classList.contains(currentEnquiryStage);
+        let stageMatch = false;
+        if (stageChecks.length > 0) {
+          stageMatch = stageChecks.some(s => card.classList.contains('stage-' + s) || card.classList.contains(s));
+        } else {
+          stageMatch = (currentEnquiryStage === 'all') || 
+                       card.classList.contains('stage-' + currentEnquiryStage) || 
+                       card.classList.contains(currentEnquiryStage);
+        }
 
         // Match Temperature / Priority
         const tempMatch = (currentEnquiryTemp === 'all') || 
