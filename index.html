@@ -146,7 +146,7 @@
     </header>
 
     <!-- Main Scrollable Content Region -->
-    <main class="flex-1 overflow-y-auto custom-scroll pb-28 space-y-3 px-4 pt-2">
+    <main id="mobile-viewport" class="flex-1 overflow-y-auto custom-scroll pb-28 space-y-3 px-4 pt-2">
 
       <!-- ========================================== -->
       <!-- SCREEN 1: REDESIGNED HOME SCREEN           -->
@@ -4948,6 +4948,42 @@
   <script>
     let lastActiveScreen = 'home';
 
+    function resetScrollToTop(targetScreenEl) {
+      const mainEl = document.getElementById('mobile-viewport') || document.querySelector('main');
+      if (mainEl) {
+        mainEl.scrollTop = 0;
+        if (typeof mainEl.scrollTo === 'function') {
+          mainEl.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        }
+      }
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+      if (targetScreenEl) {
+        targetScreenEl.scrollTop = 0;
+      }
+      requestAnimationFrame(() => {
+        if (mainEl) {
+          mainEl.scrollTop = 0;
+          if (typeof mainEl.scrollTo === 'function') {
+            mainEl.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          }
+        }
+        window.scrollTo(0, 0);
+        if (targetScreenEl) targetScreenEl.scrollTop = 0;
+      });
+      setTimeout(() => {
+        if (mainEl) {
+          mainEl.scrollTop = 0;
+          if (typeof mainEl.scrollTo === 'function') {
+            mainEl.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          }
+        }
+        window.scrollTo(0, 0);
+        if (targetScreenEl) targetScreenEl.scrollTop = 0;
+      }, 30);
+    }
+
     function switchScreen(screenName) {
       const currentActive = document.querySelector('.app-screen.active');
       if (currentActive && currentActive.id) {
@@ -4960,6 +4996,9 @@
       document.querySelectorAll('.app-screen').forEach(s => s.classList.remove('active'));
       const targetScreen = document.getElementById('screen-' + screenName);
       if(targetScreen) targetScreen.classList.add('active');
+
+      // Always start from the top of the screen when landing on any page
+      resetScrollToTop(targetScreen);
 
       document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('text-[#2563EB]');
@@ -5443,6 +5482,7 @@
           else content.classList.add('hidden');
         }
       });
+      resetScrollToTop();
     }
 
     function toggleApptDropdown() {
@@ -5720,6 +5760,7 @@
       if (btn) {
         btn.className = 'act-tab-btn px-3.5 py-2 rounded-xl bg-white text-[#007AFF] font-extrabold text-xs shrink-0 shadow-xs border border-slate-200/60 transition-all cursor-pointer flex items-center gap-1.5';
       }
+      resetScrollToTop();
     }
 
     function setStepperStep(clickedStep) {
@@ -6534,8 +6575,7 @@
         }
       }
 
-      const viewport = document.getElementById('mobile-viewport');
-      if (viewport) viewport.scrollTop = 0;
+      resetScrollToTop();
     }
 
     // Global reference for last generated lead and OTP timer
@@ -6856,9 +6896,7 @@
       closeLeadSuccessModal();
       switchScreen('enquiry');
       filterEnquiryStage('all');
-      
-      const viewport = document.getElementById('mobile-viewport');
-      if (viewport) viewport.scrollTop = 0;
+      resetScrollToTop();
 
       if (lastGeneratedLead?.id) {
         const card = document.getElementById(`enqCard-${lastGeneratedLead.id}`);
@@ -6891,8 +6929,7 @@
 
       currentSalesStep = 1;
       updateSalesStepUI();
-      const viewport = document.getElementById('mobile-viewport');
-      if (viewport) viewport.scrollTop = 0;
+      resetScrollToTop();
     }
 
     function showTestLeadSuccessModal() {

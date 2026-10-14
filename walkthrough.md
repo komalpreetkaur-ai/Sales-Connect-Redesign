@@ -1,5 +1,26 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## ⬆️ Automatic Top-of-Screen Scroll Reset on Page Landing
+
+Resolved the page navigation scroll behavior so that whenever a user lands on any screen or switches tabs, the view **always starts from the top of the screen (`scrollTop = 0`)**:
+
+![Landing at Top of Vehicle Bookings](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_screen_booking_top.png)
+
+### ✨ Technical Enhancements
+1. **Added `id="mobile-viewport"` to Primary Scroll Region**:
+   - Explicitly assigned `id="mobile-viewport"` to the main scrollable `<main>` element, ensuring all internal element queries (`document.getElementById('mobile-viewport')`) resolve directly to the primary viewport.
+2. **Robust Multi-Layer `resetScrollToTop()` Mechanism**:
+   - Immediately sets `scrollTop = 0` on the viewport container, `window`, `document.body`, and `document.documentElement`.
+   - Uses `mainEl.scrollTo({ top: 0, left: 0, behavior: 'instant' })` to avoid laggy animation jumps.
+   - Re-asserts in `requestAnimationFrame` and a subsequent 30ms tick to guarantee no layout shifts or asynchronous DOM repaints retain stale scroll offsets.
+3. **Universally Integrated Across Navigation**:
+   - Triggers on all screen switches (`switchScreen`): bottom navigation tabs, card clicks (Enquiry Details, Booking Details), header profile/notifications, and back buttons.
+   - Triggers on wizard step transitions (`navigateSalesStep` / `updateSalesStepUI`).
+   - Triggers on horizontal activity tabs switching (`switchLeadActTab`, `switchActivityTab`).
+4. **100% Parity Verified**: `index.html` and `sales_connect_redesign.html` remain in complete zero-diff parity.
+
+---
+
 ## 🔐 OTP Verification Flow & Lead Generation Confirmation
 
 Implemented the complete end-to-end OTP verification and Lead Generated Confirmation experience triggered immediately upon submitting Step 4 (PII Information) of the Sales Enquiry Form (`#screen-sales-enquiry`).
