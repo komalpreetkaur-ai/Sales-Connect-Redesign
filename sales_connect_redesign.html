@@ -1682,12 +1682,12 @@
           <span id="leadActTotalBadge" class="text-xs font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">7 Activities</span>
         </div>
 
-        <!-- Horizontal Tabs Bar (Follow Up, Comment, Brochure, New Appointment, Auto-comment) -->
+        <!-- Horizontal Tabs Bar (Follow Up, Comment, Brochure, Appointment, Auto-comment) -->
         <div class="flex items-center gap-1 bg-slate-100/90 p-1 rounded-2xl border border-slate-200/70 overflow-x-auto custom-scroll text-xs font-bold shrink-0">
           <button id="tabBtn-followup" onclick="switchLeadActTab('followup')" class="lead-act-tab-btn px-3 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs whitespace-nowrap cursor-pointer transition-all">Follow Up</button>
           <button id="tabBtn-comment" onclick="switchLeadActTab('comment')" class="lead-act-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Comment</button>
           <button id="tabBtn-brochure" onclick="switchLeadActTab('brochure')" class="lead-act-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Brochure</button>
-          <button id="tabBtn-appointment" onclick="switchLeadActTab('appointment')" class="lead-act-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">New Appointment</button>
+          <button id="tabBtn-appointment" onclick="switchLeadActTab('appointment')" class="lead-act-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Appointment</button>
           <button id="tabBtn-autocomment" onclick="switchLeadActTab('autocomment')" class="lead-act-tab-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold whitespace-nowrap cursor-pointer transition-all">Auto-comment</button>
         </div>
 
@@ -2027,21 +2027,21 @@
         </div>
 
         <!-- ============================================== -->
-        <!-- TAB 4: NEW APPOINTMENT                         -->
+        <!-- TAB 4: APPOINTMENT                         -->
         <!-- ============================================== -->
         <div id="leadActTabContent-appointment" class="lead-act-content hidden space-y-4">
-          <!-- Subheader: New Appointments | + Add New Appointment -->
+          <!-- Subheader: Appointments | + Add Appointment -->
           <div class="flex items-center justify-between pt-1">
-            <h3 class="text-sm font-bold text-slate-900 tracking-tight">New Appointments</h3>
+            <h3 class="text-sm font-bold text-slate-900 tracking-tight">Appointments</h3>
             <button onclick="toggleLeadActForm('appointment')" class="text-xs font-semibold text-[#007AFF] underline active:opacity-75 cursor-pointer">
-              + Add New Appointment
+              + Add Appointment
             </button>
           </div>
 
-          <!-- Inline Form: New Appointment (matching reference design) -->
+          <!-- Inline Form: Appointment (matching reference design) -->
           <div id="leadActForm-appointment" class="hidden bg-white rounded-2xl border border-slate-200/90 p-4 shadow-sm space-y-3 relative">
             <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-              <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider">NEW APPOINTMENT</h4>
+              <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider">APPOINTMENT</h4>
               <button onclick="toggleLeadActForm('appointment')" class="w-6 h-6 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 cursor-pointer">
                 <i class="fa-solid fa-xmark text-sm"></i>
               </button>
@@ -2073,7 +2073,7 @@
           <!-- Appointments List Container & Empty State -->
           <div id="leadApptList" class="space-y-2.5">
             <div id="leadApptEmpty" class="hidden py-16 text-center text-xs font-semibold text-slate-400">
-              No new appointment found.
+              No appointments found.
             </div>
 
             <!-- Pre-populated Appointment 1 -->
@@ -2576,10 +2576,10 @@
           </div>
         </div>
 
-        <!-- SUB TAB 5: NEW APPOINTMENT -->
+        <!-- SUB TAB 5: APPOINTMENT -->
         <div id="act-tab-appointment" class="activity-tab-content space-y-3">
           <div class="bg-white rounded-2xl border border-[#E0E8F5] p-4 shadow-sm text-xs space-y-2">
-            <h3 class="font-extrabold uppercase text-[#1E293B]">ADD NEW APPOINTMENT</h3>
+            <h3 class="font-extrabold uppercase text-[#1E293B]">ADD APPOINTMENT</h3>
             <input type="text" value="Dec 15, 2022 | 13:50 PM" class="w-full p-2.5 border border-slate-200 rounded-xl">
           </div>
         </div>
@@ -5554,7 +5554,7 @@
 
       updateLeadActTotalBadge();
       toggleLeadActForm('appointment');
-      alert('New appointment scheduled successfully!');
+      alert('Appointment scheduled successfully!');
     }
 
     function switchActivityTab(tabId, btn) {
@@ -7473,6 +7473,10 @@
             track.scrollLeft = parseInt(dragScroll);
             updateDragFilterIndicators();
           }
+        }
+        const actTab = params.get('act_tab');
+        if (targetScreen === 'lead-activities' && actTab) {
+          switchLeadActTab(actTab);
         }
         const step = parseInt(params.get('step'));
         if (targetScreen === 'sales-enquiry' && step) {

@@ -797,6 +797,19 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
 
 ---
 
+## 📅 Standardized `Appointment` Tab in Lead Activities (`#screen-lead-activities`)
+
+- **Renamed Tab**: Updated the horizontal activity tab title from `New Appointment` to clean **`Appointment`**, matching the concise noun convention used by peer tabs (`Follow Up`, `Comment`, `Brochure`, `Appointment`, `Auto-comment`).
+- **Unified Section Headings & CTAs**:
+  - Section title standardized to **`Appointments`**.
+  - Action button updated to **`+ Add Appointment`**.
+  - Form heading updated to **`APPOINTMENT`**.
+  - Empty state updated to `No appointments found.`.
+
+![Appointment Tab in Activities](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_appointment_active.png)
+
+---
+
 ## 🌐 Live Prototype Link
 
 - **Local HTML File**: [sales_connect_redesign.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/sales_connect_redesign.html)
