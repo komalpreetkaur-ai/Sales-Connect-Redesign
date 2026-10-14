@@ -1,15 +1,15 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-## 🔀 Swapped Label and Value Positions in "Leads Assigned" Card
+## 🧹 Removed "LEADS ASSIGNED" & "WEEKLY TARGET" Section Headings
 
-Swapped the vertical positions of the label (`TOTAL LEADS ASSIGNED TO YOU`) and the numeric metric (`24  +4 New Today`) inside the Leads Assigned summary card:
+Removed the redundant uppercase section headings from the Home dashboard for a cleaner, unified presentation:
 
-![Leads Assigned Label and Value Swapped](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_leads_card_swapped.png)
+![Clean Dashboard Without Section Headings](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_no_section_headings.png)
 
 ### ✨ Changes Applied
-1. **Consistent Visual Hierarchy**: `TOTAL LEADS ASSIGNED TO YOU` now sits on top as the category label, and the big primary number `24` with the `+4 New Today` pill badge sits right below it.
-2. **Unified Component Rhythm**: Matches the design system used across every other dashboard card (*Weekly Target*, *Follow-ups*, *Test Drives*, *Bookings*, and *Deliveries*) where category labels lead and figures follow.
-3. **Cleaned Hover Interaction**: Removed the native browser `title` tooltip to prevent unwanted hover popups over the badge.
+1. **Removed External Headings**: Removed the separate `<h2 ...>LEADS ASSIGNED</h2>` and `<h2 ...>WEEKLY TARGET</h2>` labels.
+2. **Self-Descriptive Card Content**: Each card already internally displays its own context-rich titles ("Total Leads Assigned To You" and "WEEKLY VEHICLE SALES TARGET"), eliminating redundancy.
+3. **Streamlined Card Stacking**: The cards now stack with balanced, compact spacing directly under the top greeting header.
 4. **100% Parity Verified**: `index.html` and `sales_connect_redesign.html` maintain complete 0-diff parity.
 
 ---
