@@ -752,21 +752,20 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
 
 ## 🎚️ Drag Filter Track for Pipeline Stages (`#screen-enquiry`)
 
-- **Transition to Drag Filter Design**: Replaced the multi-row wrapped chips layout with a streamlined single-line horizontal **Drag Filter** track:
-  - Header: `DRAG FILTER` label with `<i class="fa-solid fa-arrows-left-right text-[#007AFF]"></i>` and live stage count indicator.
-  - Track: Clean horizontal drag row (`#enquiryDragFilterTrack`) with hidden scrollbar (`.no-scrollbar`), supporting native mobile touch-pan gestures as well as smooth desktop mouse drag-and-scroll.
-  - Peek & Fade Affordance: Dual gradient edge fades (`#dragFilterLeftFade` and `#dragFilterRightFade`) that dynamically adjust opacity as the user scrolls, providing a visual cue for additional off-screen stages.
+- **Transition to Clean Drag Filter Design**: Replaced the multi-row wrapped chips layout with a streamlined single-line horizontal **Drag Filter** track:
+  - **Removed Redundant Header**: Completely eliminated the "↔ DRAG FILTER All (24 Leads)" header text above the track for maximum cleanliness, vertical breathing room, and a pure native app feel.
+  - **Single Track Layout**: Clean horizontal drag row (`#enquiryDragFilterTrack`) with hidden scrollbar (`.no-scrollbar`), supporting native mobile touch-pan gestures as well as smooth desktop mouse drag-and-scroll.
+  - **Peek & Fade Affordance**: Dual gradient edge fades (`#dragFilterLeftFade` and `#dragFilterRightFade`) that dynamically adjust opacity as the user scrolls, providing a visual cue for additional off-screen stages.
 - **Complete 9-Stage Coverage**:
   - `All (24)`, `New (3)`, `Follow-up (5)`, `Test Drive (4)`, `Negotiation (4)`, `Booking (3)`, `Delivered (2)`, `Close Lost (2)`, `Junk (1)`
 - **Auto-Centering & Filter Interaction**:
   - Tapping any chip immediately filters the leads list, highlights the active chip in solid brand blue (`#007AFF`), and auto-centers the active chip in the drag view via `chip.scrollIntoView({ behavior: 'smooth', inline: 'center' })`.
+  - The top badge right next to "Enquiries" dynamically updates (e.g., `Total: 24` or `Test Drive: 4`).
   - Drag threshold detection prevents accidental filter selection while swiping/dragging.
 
-![Drag Filter Default State](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_drag_filter_default.png)
+![Clean Drag Filter Default State](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_drag_filter_clean_default.png)
 
-![Drag Filter Scrolled Track](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_drag_filter_scrolled.png)
-
-![Drag Filter Active Test Drive Filter](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_drag_filter_testdrive.png)
+![Clean Drag Filter Active Test Drive Filter](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_drag_filter_clean_testdrive.png)
 
 ---
 
