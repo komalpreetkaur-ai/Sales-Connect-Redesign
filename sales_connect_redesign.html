@@ -205,31 +205,8 @@
           </button>
         </div>
 
-        <!-- LEADS ASSIGNED SECTION -->
+        <!-- TARGET SECTION -->
         <section class="space-y-2.5">
-          <h2 class="text-xs font-black text-slate-500 uppercase tracking-wider">LEADS ASSIGNED</h2>
-
-          <!-- Leads Assigned Main Metric Card -->
-          <div id="homeAssignedMainCard" onclick="openEnquiryWithTemperature('all')" class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs transition-all cursor-pointer active:scale-[0.99]" title="View all assigned leads">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-2xl bg-blue-50 text-[#007AFF] border border-blue-100 flex items-center justify-center text-lg font-black shrink-0">
-                  <i class="fa-solid fa-user-check"></i>
-                </div>
-                <div>
-                  <div class="flex items-center gap-2">
-                    <span id="homeAssignedLeadsVal" class="text-2xl font-black text-[#1E293B]">24</span>
-                    <span id="homeAssignedLeadsBadge" class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">+4 New Today</span>
-                  </div>
-                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Leads Assigned To You</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- TARGET & PERFORMANCE SECTION -->
-        <section class="space-y-3">
           <h2 id="homeSectionTargetHeader" class="text-xs font-black text-slate-500 uppercase tracking-wider">WEEKLY TARGET</h2>
 
           <!-- Target Progress Hero Card (Light & Distinct Accent) -->
@@ -267,6 +244,29 @@
               <div class="flex items-center justify-between text-xs font-bold text-slate-600 pt-0.5">
                 <span id="homeTargetTotalUnitsText">Target: 4 Units</span>
                 <span id="homeTargetGoalText" class="text-[#007AFF] font-extrabold flex items-center gap-1">1 Unit to Goal</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- LEADS ASSIGNED SECTION -->
+        <section class="space-y-2.5">
+          <h2 class="text-xs font-black text-slate-500 uppercase tracking-wider">LEADS ASSIGNED</h2>
+
+          <!-- Leads Assigned Main Metric Card -->
+          <div id="homeAssignedMainCard" onclick="openEnquiryWithTemperature('all')" class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs transition-all cursor-pointer active:scale-[0.99]" title="View all assigned leads">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-blue-50 text-[#007AFF] border border-blue-100 flex items-center justify-center text-lg font-black shrink-0">
+                  <i class="fa-solid fa-user-check"></i>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span id="homeAssignedLeadsVal" class="text-2xl font-black text-[#1E293B]">24</span>
+                    <span id="homeAssignedLeadsBadge" class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">+4 New Today</span>
+                  </div>
+                  <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Leads Assigned To You</p>
+                </div>
               </div>
             </div>
           </div>

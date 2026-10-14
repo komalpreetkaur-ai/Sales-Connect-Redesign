@@ -1,5 +1,19 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🔄 Swapped Weekly Target and Leads Assigned Sections on Home Dashboard
+
+Swapped the **WEEKLY TARGET** and **LEADS ASSIGNED** cards on the Home dashboard (`#screen-home`):
+
+![Swapped Weekly Target and Leads Assigned](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_swapped_target_leads.png)
+
+### ✨ Changes Applied
+1. **Prioritized Sales Target**: The **WEEKLY TARGET** progress card (with units sold, circular SVG progress ring, and target-to-goal progress bar) now appears immediately beneath the Quick Action shortcuts.
+2. **Streamlined Leads & KPI Pipeline**: The **LEADS ASSIGNED** card (Total Leads Assigned: 24) now seamlessly leads directly into the four pipeline breakdown cards (Follow-ups, Test Drives, Bookings, Deliveries).
+3. **100% Dynamic Parity**: All date range filters ("Today", "This Week", "This Month") continue to update metrics across both sections dynamically.
+4. **100% Parity Verified**: `index.html` and `sales_connect_redesign.html` maintain complete 0-diff parity.
+
+---
+
 ## 📞 Removed "Call Customer" & "WhatsApp" Buttons from Booking Details Pages
 
 Removed the `[ 📞 Call Customer ]` and `[ 💬 WhatsApp ]` quick action buttons from the Booking Details banner card across all booking details pages (`#screen-booking-details`):
