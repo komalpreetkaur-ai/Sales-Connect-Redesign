@@ -1,5 +1,18 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🚫 Clean Text-Only Cancel & Submit Booking Buttons
+
+Removed the `fa-xmark` (`x`) and `fa-check` (`✓`) icons from the **Cancel** and **Submit Booking** action buttons on the New Vehicle Booking screen (`#screen-booking-create`):
+
+![Text-Only Cancel & Submit Booking Buttons](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_booking_buttons_no_icons.png)
+
+### ✨ Changes Applied
+1. **Removed Icons**: Eliminated `<i class="fa-solid fa-xmark">` from the Cancel button and `<i class="fa-solid fa-check">` from the Submit Booking button.
+2. **Centered Text-Only Layout**: Both buttons now display clean, balanced typography (`Cancel` and `Submit Booking`) without redundant icon clutter.
+3. **100% Parity Verified**: `index.html` and `sales_connect_redesign.html` maintain complete 0-diff parity.
+
+---
+
 ## ⬆️ Automatic Top-of-Screen Scroll Reset on Page Landing
 
 Resolved the page navigation scroll behavior so that whenever a user lands on any screen or switches tabs, the view **always starts from the top of the screen (`scrollTop = 0`)**:
