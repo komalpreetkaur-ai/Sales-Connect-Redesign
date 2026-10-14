@@ -1,5 +1,20 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## ➕ Removed Quick Actions Row & Added Floating "Add Enquiry" Button (FAB)
+
+Removed the static 2-card Quick Actions hub (`Add Enquiry` & `Add New Booking`) from the top of the Home dashboard, and introduced a modern Floating Action Button (`+ Add Enquiry` FAB) docked on the bottom right:
+
+![Floating Add Enquiry Button on Home Screen](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_fab_centered.png)
+
+### ✨ Changes Applied
+1. **Removed Static Quick Actions Row**: Removed the top `[ + Add Enquiry ]` and `[ 📝 Add New Booking ]` card container from `#screen-home`, clearing vertical clutter and allowing **WEEKLY TARGET** and **LEADS ASSIGNED** to immediately lead the dashboard view.
+2. **Modern Floating Action Button (FAB)**: Created `#fabAddEnquiry` positioned at `bottom-20 right-4` directly above the bottom navigation bar. Features brand gradient blue styling, subtle white plus badge, bold typography, and tap elevation feedback.
+3. **One-Tap Category Modal**: Tapping the FAB triggers `openAddEnquiryModal()`, displaying the smooth bottom-sheet modal to select between **Sales Enquiry** (4-step form), **Service Enquiry**, or **Other Enquiry**.
+4. **Context-Aware Visibility**: The FAB displays on main dashboard browsing screens (`Home` and `Enquiry`) and automatically hides on enquiry forms, details screens, and booking workflows to preserve clean form layouts.
+5. **100% Parity Verified**: `index.html` and `sales_connect_redesign.html` maintain complete 0-diff parity.
+
+---
+
 ## 🔄 Swapped Weekly Target and Leads Assigned Sections on Home Dashboard
 
 Swapped the **WEEKLY TARGET** and **LEADS ASSIGNED** cards on the Home dashboard (`#screen-home`):
