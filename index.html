@@ -4563,21 +4563,21 @@
     </div>
   </div>
 
-  <!-- LEAD REMARKS & ACTION HISTORY BOTTOM SHEET MODAL -->
+  <!-- LEAD COMMENTS & ACTION HISTORY BOTTOM SHEET MODAL -->
   <div id="leadHistoryModal" onclick="if(event.target === this) closeLeadHistoryModal()" style="display: none;" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center z-50 p-0 sm:p-4 transition-all">
-    <div class="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-[430px] p-5 space-y-4 shadow-2xl border border-slate-100 max-h-[88vh] overflow-y-auto custom-scroll relative animate-in slide-in-from-bottom-6 duration-300">
+    <div class="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-[430px] p-5 space-y-3.5 shadow-2xl border border-slate-100 max-h-[88vh] overflow-y-auto custom-scroll relative animate-in slide-in-from-bottom-6 duration-300">
       <!-- Drag handle -->
-      <div class="w-10 h-1 bg-slate-200 rounded-full mx-auto sm:hidden -mt-1 mb-2"></div>
+      <div class="w-10 h-1 bg-slate-200 rounded-full mx-auto sm:hidden -mt-1 mb-1"></div>
 
       <!-- Modal Header -->
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
         <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center font-black text-sm border border-blue-100">
-            <i class="fa-solid fa-clock-rotate-left"></i>
+          <div id="leadModalHeaderIconWrapper" class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center font-black text-sm border border-blue-100">
+            <i id="leadModalHeaderIcon" class="fa-solid fa-comments"></i>
           </div>
           <div>
-            <h2 class="text-sm font-black text-[#1E293B]">Lead Remarks & History</h2>
-            <p class="text-[10px] text-slate-500 font-medium">Activity timeline & notes for this lead</p>
+            <h2 id="leadModalHeaderTitle" class="text-sm font-black text-[#1E293B]">Lead Comments & Notes</h2>
+            <p id="leadModalHeaderSubtitle" class="text-[10px] text-slate-500 font-medium">Post notes and see all comments for this lead</p>
           </div>
         </div>
         <button type="button" onclick="closeLeadHistoryModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-400 hover:text-slate-600 flex items-center justify-center active:scale-95 transition-transform cursor-pointer">
@@ -4604,34 +4604,60 @@
         </span>
       </div>
 
-      <!-- Add Remark Form -->
-      <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200/70 space-y-2">
-        <label class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider block">Add Follow-Up Note</label>
-        <div class="flex items-center gap-2">
-          <input type="text" id="historyModalInput" placeholder="Add follow-up notes / remarks..." onkeydown="if(event.key==='Enter'){event.preventDefault();addLeadHistoryModalComment();}" class="flex-1 bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:bg-white transition-all shadow-2xs">
-          <button type="button" onclick="addLeadHistoryModalComment()" class="px-3.5 py-2 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-xs flex items-center gap-1.5 shrink-0 active:scale-95 transition-transform cursor-pointer">
-            <i class="fa-solid fa-paper-plane text-[10px]"></i>
-            <span>Post</span>
-          </button>
+      <!-- Segment Tabs Switcher: Comments vs Action History -->
+      <div class="flex items-center p-1 bg-slate-100 rounded-xl">
+        <button id="leadModalTabComments" type="button" onclick="switchLeadModalView('comments')" class="flex-1 py-1.5 text-xs font-black rounded-lg bg-[#007AFF] text-white shadow-2xs transition-all cursor-pointer flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-comments text-xs"></i>
+          <span>Comments (<span id="modalCommentsCountBadge">0</span>)</span>
+        </button>
+        <button id="leadModalTabHistory" type="button" onclick="switchLeadModalView('history')" class="flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all cursor-pointer flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-clock-rotate-left text-xs"></i>
+          <span>Action History (<span id="modalHistoryCountBadge">0</span>)</span>
+        </button>
+      </div>
+
+      <!-- VIEW 1: COMMENTS ONLY VIEW -->
+      <div id="leadModalViewComments" class="space-y-3">
+        <!-- Add Remark Form -->
+        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200/70 space-y-2">
+          <label class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider block">Post a Follow-Up Comment</label>
+          <div class="flex items-center gap-2">
+            <input type="text" id="leadModalCommentInput" placeholder="Add follow-up notes / remarks..." onkeydown="if(event.key==='Enter'){event.preventDefault();addLeadModalComment();}" class="flex-1 bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:bg-white transition-all shadow-2xs">
+            <button type="button" onclick="addLeadModalComment()" class="px-3.5 py-2 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-xs flex items-center gap-1.5 shrink-0 active:scale-95 transition-transform cursor-pointer">
+              <i class="fa-solid fa-paper-plane text-[10px]"></i>
+              <span>Post</span>
+            </button>
+          </div>
+          <!-- Quick suggestion chips -->
+          <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 text-[10px]">
+            <span class="text-slate-400 font-bold shrink-0">Quick:</span>
+            <button type="button" onclick="quickFillModalComment('Called - Customer asked to call back tomorrow morning');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Call tomorrow</button>
+            <button type="button" onclick="quickFillModalComment('Discussing quotation with family');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Family discussion</button>
+            <button type="button" onclick="quickFillModalComment('Waiting for loan approval from bank');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Loan approval</button>
+            <button type="button" onclick="quickFillModalComment('Comparing with rival brand discount');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Price compare</button>
+          </div>
         </div>
-        <!-- Quick suggestion chips -->
-        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 text-[10px]">
-          <span class="text-slate-400 font-bold shrink-0">Quick:</span>
-          <button type="button" onclick="quickFillModalComment('Called - Customer asked to call back tomorrow morning');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Call tomorrow</button>
-          <button type="button" onclick="quickFillModalComment('Discussing quotation with family');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Family discussion</button>
-          <button type="button" onclick="quickFillModalComment('Waiting for loan approval from bank');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Loan approval</button>
-          <button type="button" onclick="quickFillModalComment('Comparing with rival brand discount');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Price compare</button>
+
+        <!-- All Comments on this Lead Section -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">All Comments on this Lead (<span id="commentsListHeaderCount">0</span>)</span>
+            <span class="text-[9.5px] font-bold text-slate-400">Comments only</span>
+          </div>
+          <div id="leadModalCommentsList" class="space-y-2 pt-1 border-t border-slate-100 max-h-[300px] overflow-y-auto custom-scroll">
+            <!-- Populated dynamically with ONLY comments on this lead -->
+          </div>
         </div>
       </div>
 
-      <!-- Action History Timeline Section -->
-      <div class="space-y-2">
+      <!-- VIEW 2: ACTION HISTORY ONLY VIEW -->
+      <div id="leadModalViewHistory" class="hidden space-y-2">
         <div class="flex items-center justify-between">
-          <span class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">Activity Timeline (<span id="historyModalTimelineCount">0</span>)</span>
-          <span class="text-[9.5px] font-bold text-slate-400">Chronological</span>
+          <span class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">Lead Action History (<span id="historyTimelineHeaderCount">0</span>)</span>
+          <span class="text-[9.5px] font-bold text-slate-400">Chronological history only</span>
         </div>
-        <div id="historyModalTimelineList" class="space-y-2 pt-1 border-t border-slate-100">
-          <!-- Populated dynamically -->
+        <div id="leadModalHistoryTimelineList" class="space-y-2 pt-1 border-t border-slate-100 max-h-[420px] overflow-y-auto custom-scroll">
+          <!-- Populated dynamically with ONLY action history of the lead -->
         </div>
       </div>
 
@@ -6209,9 +6235,12 @@
         isToday: true,
         priority: 'Hot',
         status: 'Follow-up',
+        comments: [
+          { id: 'c1', user: 'Akash G.', time: 'Today, 11:20 AM', text: 'Customer mentioned discussing quotation with wife tonight before booking.' },
+          { id: 'c2', user: 'Akash G.', time: '28 Oct, 2:30 PM', text: 'Showroom visit planned with family for upcoming weekend.' }
+        ],
         history: [
-          { type: 'call', title: 'Outgoing Call Completed', desc: 'Customer interested in Brezza ZXi, requested loan EMI breakdown.', time: 'Today, 11:15 AM', user: 'Akash G.' },
-          { type: 'comment', title: 'Follow-up Note Added', desc: 'Showroom visit planned with family for upcoming weekend.', time: '28 Oct, 2:30 PM', user: 'Akash G.' },
+          { type: 'call', title: 'Outgoing Call Completed', desc: 'Called customer at +919876589706. Discussed Brezza ZXi features & loan EMI breakdown.', time: 'Today, 11:15 AM', user: 'Akash G.' },
           { type: 'created', title: 'Lead Created', desc: 'Walk-in enquiry logged at Central Dealership Showroom.', time: '27 Oct, 11:00 AM', user: 'System' }
         ]
       },
@@ -6225,8 +6254,11 @@
         isToday: true,
         priority: 'Hot',
         status: 'Follow-up',
+        comments: [
+          { id: 'c3', user: 'Komalpreet K.', time: 'Today, 10:20 AM', text: 'Wants quotation with exchange bonus evaluation on her old 2019 scooter.' }
+        ],
         history: [
-          { type: 'call', title: 'Outgoing Call Completed', desc: 'Spoke for 4 mins. Customer wants quotation with exchange bonus on old bike.', time: 'Today, 10:15 AM', user: 'Komalpreet K.' },
+          { type: 'call', title: 'Outgoing Call Completed', desc: 'Spoke for 4 mins. Explained festive cashback and exchange offer.', time: 'Today, 10:15 AM', user: 'Komalpreet K.' },
           { type: 'brochure', title: 'Brochure Shared', desc: 'Shared Gixxer SF 2026 specs & on-road pricing sheet on WhatsApp.', time: '29 Oct, 5:00 PM', user: 'Komalpreet K.' },
           { type: 'created', title: 'Lead Created', desc: 'Digital portal lead captured from Website.', time: '28 Oct, 1:20 PM', user: 'System' }
         ]
@@ -6241,8 +6273,11 @@
         isToday: true,
         priority: 'Hot',
         status: 'Follow-up',
+        comments: [
+          { id: 'c4', user: 'Niket K.', time: 'Yesterday, 6:00 PM', text: 'Customer is actively comparing Creta with Seltos GTX. Highlighted panoramic sunroof and higher resale value.' },
+          { id: 'c5', user: 'Niket K.', time: '28 Oct, 11:50 AM', text: 'Requested zero dep insurance quote and corporate discount eligibility.' }
+        ],
         history: [
-          { type: 'comment', title: 'Follow-up Note Added', desc: 'Comparing with Seltos GTX. Highlighted panoramic sunroof & mileage advantage.', time: 'Yesterday, 6:00 PM', user: 'Niket K.' },
           { type: 'call', title: 'Outgoing Call Completed', desc: 'Customer requested on-road price quote with zero dep insurance.', time: '28 Oct, 11:45 AM', user: 'Niket K.' },
           { type: 'created', title: 'Lead Created', desc: 'Referral from existing Creta owner.', time: '26 Oct, 10:30 AM', user: 'System' }
         ]
@@ -6257,8 +6292,10 @@
         isToday: false,
         priority: 'Warm',
         status: 'Follow-up',
+        comments: [
+          { id: 'c6', user: 'Akash G.', time: '29 Oct, 1:10 PM', text: 'Customer is waiting for festive corporate discount announcement before final token payment.' }
+        ],
         history: [
-          { type: 'comment', title: 'Follow-up Note Added', desc: 'Customer waiting for festive corporate discount announcement.', time: '29 Oct, 1:10 PM', user: 'Akash G.' },
           { type: 'call', title: 'Outgoing Call Completed', desc: 'Follow-up call completed, customer interested in automatic transmission variant.', time: '27 Oct, 4:00 PM', user: 'Akash G.' },
           { type: 'created', title: 'Lead Created', desc: 'Website enquiry via Arena configurator.', time: '25 Oct, 09:15 AM', user: 'System' }
         ]
@@ -6273,8 +6310,10 @@
         isToday: false,
         priority: 'Hot',
         status: 'Follow-up',
+        comments: [
+          { id: 'c7', user: 'Komalpreet K.', time: '28 Oct, 3:45 PM', text: 'Family discussion ongoing regarding color choice (Stealth Black vs Deep Forest).' }
+        ],
         history: [
-          { type: 'comment', title: 'Follow-up Note Added', desc: 'Family discussion ongoing regarding color choice (Stealth Black vs Deep Forest).', time: '28 Oct, 3:45 PM', user: 'Komalpreet K.' },
           { type: 'call', title: 'Outgoing Call Completed', desc: 'Brief call. Customer confirmed budget is approved by financing bank.', time: '26 Oct, 12:30 PM', user: 'Komalpreet K.' },
           { type: 'created', title: 'Lead Created', desc: 'Showroom walk-in enquiry.', time: '24 Oct, 04:00 PM', user: 'System' }
         ]
@@ -6289,8 +6328,10 @@
         isToday: false,
         priority: 'Warm',
         status: 'Follow-up',
+        comments: [
+          { id: 'c8', user: 'Niket K.', time: '29 Oct, 11:00 AM', text: 'Evaluating Strong Hybrid vs AWD variant fuel efficiency numbers.' }
+        ],
         history: [
-          { type: 'comment', title: 'Follow-up Note Added', desc: 'Evaluating Strong Hybrid vs AWD variant specifications.', time: '29 Oct, 11:00 AM', user: 'Niket K.' },
           { type: 'call', title: 'Outgoing Call Completed', desc: 'Detailed discussion on mileage and real-world hybrid range in city traffic.', time: '27 Oct, 5:30 PM', user: 'Niket K.' },
           { type: 'created', title: 'Lead Created', desc: 'Corporate fleet lead from Gurgaon IT Park.', time: '25 Oct, 2:15 PM', user: 'System' }
         ]
@@ -6379,11 +6420,15 @@
     // Generates individual follow-up lead card HTML: clean, compact, breathable
     function renderFollowUpCardHTML(lead) {
       const isHot = lead.priority === 'Hot';
-      const latestItem = lead.history && lead.history.length > 0 ? lead.history[0] : null;
       let latestSnippet = 'No recent activity logged';
-      if (latestItem) {
-        latestSnippet = `${latestItem.title}: ${latestItem.desc}`;
+      if (lead.comments && lead.comments.length > 0) {
+        latestSnippet = `Note: "${lead.comments[0].text}"`;
+      } else if (lead.history && lead.history.length > 0) {
+        latestSnippet = `${lead.history[0].title}: ${lead.history[0].desc}`;
       }
+
+      const commentCount = lead.comments ? lead.comments.length : 0;
+      const historyCount = lead.history ? lead.history.length : 0;
 
       return `
         <div id="followup-card-${lead.id}" class="act-lead-card ${lead.isToday ? 'today' : 'upcoming'} all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-2.5 transition-all hover:border-blue-200">
@@ -6427,18 +6472,18 @@
 
           <!-- Clean Footer: Latest Activity Snippet & Action History / Remarks Trigger -->
           <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-            <div onclick="openLeadHistoryModal('${lead.id}');" class="flex items-center gap-1.5 min-w-0 pr-2 text-slate-500 cursor-pointer group hover:text-[#007AFF] transition-colors">
+            <div onclick="openLeadCommentsModal('${lead.id}');" class="flex items-center gap-1.5 min-w-0 pr-2 text-slate-500 cursor-pointer group hover:text-[#007AFF] transition-colors">
               <i class="fa-regular fa-comment-dots text-slate-400 text-xs shrink-0 group-hover:text-[#007AFF] transition-colors"></i>
               <span id="leadSnippet-${lead.id}" class="text-[10.5px] truncate">${latestSnippet}</span>
             </div>
             <div class="flex items-center gap-1 shrink-0">
-              <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('${lead.id}', true);" class="px-2 py-0.8 bg-blue-50 hover:bg-blue-100 text-[#007AFF] rounded-lg text-[10.5px] font-bold flex items-center gap-1 transition-colors cursor-pointer active:scale-95">
+              <button type="button" onclick="event.stopPropagation(); openLeadCommentsModal('${lead.id}');" class="px-2 py-0.8 bg-blue-50 hover:bg-blue-100 text-[#007AFF] rounded-lg text-[10.5px] font-bold flex items-center gap-1 transition-colors cursor-pointer active:scale-95">
                 <i class="fa-solid fa-plus text-[9px]"></i>
                 <span>Note</span>
               </button>
-              <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('${lead.id}', false);" class="px-2 py-0.8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[10.5px] font-bold flex items-center gap-1 transition-colors cursor-pointer active:scale-95">
+              <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('${lead.id}');" class="px-2 py-0.8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[10.5px] font-bold flex items-center gap-1 transition-colors cursor-pointer active:scale-95">
                 <i class="fa-solid fa-clock-rotate-left text-slate-500 text-[9px]"></i>
-                <span>History (<span id="historyCount-${lead.id}">${lead.history.length}</span>)</span>
+                <span>History (<span id="historyCount-${lead.id}">${historyCount}</span>)</span>
               </button>
             </div>
           </div>
@@ -6446,10 +6491,44 @@
       `;
     }
 
-    // Generates the timeline nodes for a lead's action history
+    // Renders the list of comments posted on a lead (comments ONLY)
+    function renderLeadCommentsList(lead) {
+      if (!lead.comments || lead.comments.length === 0) {
+        return `
+          <div class="p-6 text-center bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+            <i class="fa-regular fa-comment-dots text-slate-300 text-2xl mb-1.5 block"></i>
+            <p class="text-xs font-bold text-slate-700">No comments posted yet</p>
+            <p class="text-[10.5px] text-slate-400 mt-0.5">Use the field above to add the first follow-up note for ${lead.name}.</p>
+          </div>
+        `;
+      }
+
+      return lead.comments.map(c => `
+        <div class="bg-white p-3 rounded-2xl border border-slate-200/90 shadow-2xs space-y-1.5">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-blue-100 text-[#007AFF] font-black text-[9.5px] flex items-center justify-center">
+                ${c.user ? c.user.split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase() : 'EX'}
+              </span>
+              <span class="text-xs font-black text-slate-800">${c.user || 'Executive'}</span>
+            </div>
+            <span class="text-[9.5px] font-bold text-slate-400">${c.time}</span>
+          </div>
+          <p class="text-xs text-slate-700 font-medium leading-relaxed bg-slate-50/80 p-2.5 rounded-xl border border-slate-100">
+            ${c.text}
+          </p>
+          <div class="flex items-center justify-between text-[9px] text-slate-400 font-semibold px-0.5">
+            <span class="text-[#007AFF] flex items-center gap-1"><i class="fa-solid fa-check text-[8px]"></i> Recorded Note</span>
+            <span>Lead: ${lead.id}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Generates the timeline nodes for a lead's action history (ONLY actions on the lead)
     function renderLeadHistoryTimeline(lead) {
       if (!lead.history || lead.history.length === 0) {
-        return '<p class="text-[10px] text-slate-400 italic py-1 text-center">No actions recorded yet.</p>';
+        return '<p class="text-[10px] text-slate-400 italic py-2 text-center">No action history recorded yet.</p>';
       }
 
       return lead.history.map((item, idx) => {
@@ -6461,9 +6540,6 @@
         } else if (item.type === 'whatsapp') {
           iconHtml = '<i class="fa-brands fa-whatsapp text-emerald-600"></i>';
           iconBg = 'bg-emerald-50 border-emerald-200';
-        } else if (item.type === 'comment') {
-          iconHtml = '<i class="fa-solid fa-comment-dots text-purple-600"></i>';
-          iconBg = 'bg-purple-50 border-purple-200';
         } else if (item.type === 'testdrive') {
           iconHtml = '<i class="fa-solid fa-car-side text-amber-600"></i>';
           iconBg = 'bg-amber-50 border-amber-200';
@@ -6473,6 +6549,9 @@
         } else if (item.type === 'created') {
           iconHtml = '<i class="fa-solid fa-sparkles text-indigo-600"></i>';
           iconBg = 'bg-indigo-50 border-indigo-200';
+        } else if (item.type === 'status') {
+          iconHtml = '<i class="fa-solid fa-arrows-rotate text-purple-600"></i>';
+          iconBg = 'bg-purple-50 border-purple-200';
         }
 
         const isLast = idx === lead.history.length - 1;
@@ -6491,7 +6570,7 @@
               <p class="text-[10.5px] text-slate-600 font-medium leading-relaxed">${item.desc}</p>
               <div class="flex items-center justify-between pt-1 mt-1 border-t border-slate-100 text-[9px] text-slate-400 font-semibold">
                 <span>By ${item.user || 'Executive'}</span>
-                <span class="text-[#007AFF]">Logged ✓</span>
+                <span class="text-[#007AFF]">Action Logged ✓</span>
               </div>
             </div>
           </div>
@@ -6499,30 +6578,17 @@
       }).join('');
     }
 
-    // Lead History & Remarks Modal Controls
+    // Lead History & Remarks Modal State & Controls
     let activeHistoryLead = null;
 
-    function openLeadHistoryModal(leadId, focusInput = false) {
+    // Opens the modal directly showing Comments and option to post a note
+    function openLeadCommentsModal(leadId) {
       const lead = followUpLeadsData.find(l => l.id === leadId);
       if (!lead) return;
 
       activeHistoryLead = lead;
-
-      const avatar = document.getElementById('historyModalLeadAvatar');
-      const name = document.getElementById('historyModalLeadName');
-      const phone = document.getElementById('historyModalLeadPhone');
-      const model = document.getElementById('historyModalLeadModel');
-      const countLabel = document.getElementById('historyModalTimelineCount');
-      const timelineContainer = document.getElementById('historyModalTimelineList');
-      const input = document.getElementById('historyModalInput');
-
-      if (avatar) avatar.innerText = lead.initials;
-      if (name) name.innerText = lead.name;
-      if (phone) phone.innerText = lead.phone;
-      if (model) model.innerText = lead.model;
-      if (countLabel) countLabel.innerText = lead.history.length;
-      if (timelineContainer) timelineContainer.innerHTML = renderLeadHistoryTimeline(lead);
-      if (input) input.value = '';
+      syncLeadModalContext(lead);
+      switchLeadModalView('comments');
 
       const modal = document.getElementById('leadHistoryModal');
       if (modal) {
@@ -6530,11 +6596,98 @@
         modal.classList.remove('hidden');
       }
 
-      if (focusInput && input) {
+      const input = document.getElementById('leadModalCommentInput');
+      if (input) {
         setTimeout(() => input.focus(), 150);
       }
     }
 
+    // Opens the modal directly showing ONLY Action History of the lead
+    function openLeadHistoryModal(leadId) {
+      const lead = followUpLeadsData.find(l => l.id === leadId);
+      if (!lead) return;
+
+      activeHistoryLead = lead;
+      syncLeadModalContext(lead);
+      switchLeadModalView('history');
+
+      const modal = document.getElementById('leadHistoryModal');
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.remove('hidden');
+      }
+    }
+
+    // Synchronizes customer header and counters inside the modal
+    function syncLeadModalContext(lead) {
+      const avatar = document.getElementById('historyModalLeadAvatar');
+      const name = document.getElementById('historyModalLeadName');
+      const phone = document.getElementById('historyModalLeadPhone');
+      const model = document.getElementById('historyModalLeadModel');
+      const commentsBadge = document.getElementById('modalCommentsCountBadge');
+      const historyBadge = document.getElementById('modalHistoryCountBadge');
+      const commentsListCount = document.getElementById('commentsListHeaderCount');
+      const historyListCount = document.getElementById('historyTimelineHeaderCount');
+
+      const commentCount = lead.comments ? lead.comments.length : 0;
+      const historyCount = lead.history ? lead.history.length : 0;
+
+      if (avatar) avatar.innerText = lead.initials;
+      if (name) name.innerText = lead.name;
+      if (phone) phone.innerText = lead.phone;
+      if (model) model.innerText = lead.model;
+
+      if (commentsBadge) commentsBadge.innerText = commentCount;
+      if (historyBadge) historyBadge.innerText = historyCount;
+      if (commentsListCount) commentsListCount.innerText = commentCount;
+      if (historyListCount) historyListCount.innerText = historyCount;
+
+      const commentsContainer = document.getElementById('leadModalCommentsList');
+      if (commentsContainer) commentsContainer.innerHTML = renderLeadCommentsList(lead);
+
+      const timelineContainer = document.getElementById('leadModalHistoryTimelineList');
+      if (timelineContainer) timelineContainer.innerHTML = renderLeadHistoryTimeline(lead);
+
+      const input = document.getElementById('leadModalCommentInput');
+      if (input) input.value = '';
+    }
+
+    // Toggles between Comments View and Action History View inside the modal
+    function switchLeadModalView(view) {
+      const viewComments = document.getElementById('leadModalViewComments');
+      const viewHistory = document.getElementById('leadModalViewHistory');
+      const tabComments = document.getElementById('leadModalTabComments');
+      const tabHistory = document.getElementById('leadModalTabHistory');
+      const title = document.getElementById('leadModalHeaderTitle');
+      const subtitle = document.getElementById('leadModalHeaderSubtitle');
+      const icon = document.getElementById('leadModalHeaderIcon');
+
+      const leadName = activeHistoryLead ? activeHistoryLead.name : 'this lead';
+
+      if (view === 'comments') {
+        if (viewComments) viewComments.classList.remove('hidden');
+        if (viewHistory) viewHistory.classList.add('hidden');
+
+        if (tabComments) tabComments.className = 'flex-1 py-1.5 text-xs font-black rounded-lg bg-[#007AFF] text-white shadow-2xs transition-all cursor-pointer flex items-center justify-center gap-1.5';
+        if (tabHistory) tabHistory.className = 'flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all cursor-pointer flex items-center justify-center gap-1.5';
+
+        if (title) title.innerText = 'Lead Comments & Notes';
+        if (subtitle) subtitle.innerText = `Post notes and see all comments for ${leadName}`;
+        if (icon) icon.className = 'fa-solid fa-comments';
+      } else {
+        if (viewComments) viewComments.classList.add('hidden');
+        if (viewHistory) viewHistory.classList.remove('hidden');
+
+        if (tabComments) tabComments.className = 'flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all cursor-pointer flex items-center justify-center gap-1.5';
+        if (tabHistory) tabHistory.className = 'flex-1 py-1.5 text-xs font-black rounded-lg bg-[#007AFF] text-white shadow-2xs transition-all cursor-pointer flex items-center justify-center gap-1.5';
+
+        if (title) title.innerText = 'Lead Action History';
+        if (subtitle) subtitle.innerText = `Chronological audit trail of actions for ${leadName}`;
+        if (icon) icon.className = 'fa-solid fa-clock-rotate-left';
+      }
+    }
+
+    // Closes the modal
     function closeLeadHistoryModal() {
       const modal = document.getElementById('leadHistoryModal');
       if (modal) {
@@ -6544,17 +6697,19 @@
       activeHistoryLead = null;
     }
 
+    // Quick-fills a predefined template into the comment input
     function quickFillModalComment(text) {
-      const input = document.getElementById('historyModalInput');
+      const input = document.getElementById('leadModalCommentInput');
       if (input) {
         input.value = text;
         input.focus();
       }
     }
 
-    function addLeadHistoryModalComment() {
+    // Posts a new comment to the lead's comments list
+    function addLeadModalComment() {
       if (!activeHistoryLead) return;
-      const input = document.getElementById('historyModalInput');
+      const input = document.getElementById('leadModalCommentInput');
       if (!input) return;
       const text = input.value.trim();
       if (!text) {
@@ -6563,52 +6718,56 @@
       }
 
       const lead = activeHistoryLead;
-      lead.history.unshift({
-        type: 'comment',
-        title: 'Follow-up Note Added',
-        desc: text,
+      if (!lead.comments) lead.comments = [];
+
+      lead.comments.unshift({
+        id: 'c_' + Date.now(),
+        user: 'You',
         time: 'Just now',
-        user: 'You'
+        text: text
       });
 
-      // Update timeline inside modal
-      const timelineContainer = document.getElementById('historyModalTimelineList');
-      const countLabel = document.getElementById('historyModalTimelineCount');
-      if (timelineContainer) timelineContainer.innerHTML = renderLeadHistoryTimeline(lead);
-      if (countLabel) countLabel.innerText = lead.history.length;
+      // Update comments list in modal
+      const commentsContainer = document.getElementById('leadModalCommentsList');
+      if (commentsContainer) commentsContainer.innerHTML = renderLeadCommentsList(lead);
 
-      // Update card on feed
-      const cardCount = document.getElementById('historyCount-' + lead.id);
+      // Update badges
+      const commentsBadge = document.getElementById('modalCommentsCountBadge');
+      const commentsListCount = document.getElementById('commentsListHeaderCount');
+      if (commentsBadge) commentsBadge.innerText = lead.comments.length;
+      if (commentsListCount) commentsListCount.innerText = lead.comments.length;
+
+      // Update card snippet on feed
       const cardSnippet = document.getElementById('leadSnippet-' + lead.id);
-      if (cardCount) cardCount.innerText = lead.history.length;
-      if (cardSnippet) cardSnippet.innerText = `Note: ${text}`;
+      if (cardSnippet) cardSnippet.innerText = `Note: "${text}"`;
 
       input.value = '';
-      showAppToast(`Note recorded for ${lead.name}`, 'success');
+      showAppToast(`Comment recorded for ${lead.name}`, 'success');
     }
 
-    // Backward compatibility helper
+    // Backward compatibility helpers
     function toggleLeadHistory(leadId) {
-      openLeadHistoryModal(leadId, false);
+      openLeadHistoryModal(leadId);
     }
 
     function addLeadComment(leadId) {
-      openLeadHistoryModal(leadId, true);
+      openLeadCommentsModal(leadId);
     }
 
     function quickFillComment(leadId, text) {
-      openLeadHistoryModal(leadId, true);
+      openLeadCommentsModal(leadId);
       quickFillModalComment(text);
     }
 
-    // Triggers an outgoing call action and logs it to history
+    // Triggers an outgoing call action and logs it to action history
     function triggerLeadCall(leadId, phone) {
       const lead = followUpLeadsData.find(l => l.id === leadId);
       if (lead) {
+        if (!lead.history) lead.history = [];
         lead.history.unshift({
           type: 'call',
           title: 'Outgoing Call Initiated',
-          desc: `Phone call placed to customer ${phone}`,
+          desc: `Phone call placed to customer at ${phone}`,
           time: 'Just now',
           user: 'You'
         });
@@ -6623,10 +6782,11 @@
       }, 300);
     }
 
-    // Triggers a WhatsApp chat action and logs it to history
+    // Triggers a WhatsApp chat action and logs it to action history
     function triggerLeadWhatsApp(leadId, phone) {
       const lead = followUpLeadsData.find(l => l.id === leadId);
       if (lead) {
+        if (!lead.history) lead.history = [];
         lead.history.unshift({
           type: 'whatsapp',
           title: 'WhatsApp Message Sent',
@@ -6808,6 +6968,7 @@
       lead.status = 'Test Drive';
 
       // Log action to lead history
+      if (!lead.history) lead.history = [];
       lead.history.unshift({
         type: 'testdrive',
         title: 'Test Drive Scheduled',
@@ -6815,6 +6976,16 @@
         time: 'Just now',
         user: 'You'
       });
+
+      if (notesVal) {
+        if (!lead.comments) lead.comments = [];
+        lead.comments.unshift({
+          id: 'c_' + Date.now(),
+          user: 'You',
+          time: 'Just now',
+          text: `Test drive booking remarks: ${notesVal}`
+        });
+      }
 
       // Remove from active follow-up list
       const idx = followUpLeadsData.findIndex(l => l.id === lead.id);
@@ -8652,9 +8823,21 @@
               openTestDriveBookingModal(params.get('lead') || 'ENQ987875369');
             }, 100);
           }
+          if (params.get('comments_lead')) {
+            setTimeout(() => {
+              openLeadCommentsModal(params.get('comments_lead'));
+              if (params.get('demo_comment')) {
+                setTimeout(() => {
+                  const input = document.getElementById('leadModalCommentInput');
+                  if (input) input.value = params.get('demo_comment');
+                  addLeadModalComment();
+                }, 200);
+              }
+            }, 150);
+          }
           if (params.get('history_lead')) {
             setTimeout(() => {
-              toggleLeadHistory(params.get('history_lead'));
+              openLeadHistoryModal(params.get('history_lead'));
             }, 150);
           }
           if (params.get('demo_move_lead')) {

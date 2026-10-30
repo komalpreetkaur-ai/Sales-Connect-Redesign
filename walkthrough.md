@@ -1,5 +1,30 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 💬 Dedicated "+ Note" (Comments Only) vs. "History" (Action Audit Trail Only)
+
+Separated follow-up comments and lead history into distinct views based on user requirements:
+1. **Clicking `+ Note`**:
+   - Opens the **Lead Comments & Notes** view.
+   - Shows the option to post a follow-up comment (with text input, `[ Post ]` button, and 4 quick chips: `Call tomorrow`, `Family discussion`, `Loan approval`, `Price compare`).
+   - Displays a feed of **all previous comments on this lead ONLY** (excluding system history/calls).
+2. **Clicking `History`**:
+   - Opens the **Lead Action History** view.
+   - Shows **ONLY the chronological history of the lead** (calls placed, WhatsApp messages sent, test drives scheduled, brochure shared, lead created).
+   - Clean audit trail without any comment input box.
+3. **Seamless Segmented Switcher**:
+   - Includes top tabs (`Comments (<count>)` vs `Action History (<count>)`) allowing 1-tap switching between the two views without closing the sheet.
+
+---
+
+### 📸 Visual Evidence
+
+| 1. "+ Note" Clicked (Comments Only + Post Input) | 2. "History" Clicked (Action Audit Trail Only) | 3. After Posting New Comment |
+| :---: | :---: | :---: |
+| ![Lead Comments View](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_comments_view.png) | ![Lead History View](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_history_view.png) | ![Comment Posted](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_comment_posted.png) |
+| *Option to post note + list of previous comments on this lead ONLY.* | *Timeline of calls, WhatsApp & creation ONLY (no comment input).* | *Instant update to comment feed, count badge & card snippet.* |
+
+---
+
 ## 🪶 Decluttered Follow-Up Cards & Dedicated Remarks/History Bottom Sheet
 
 Resolved card visual clutter and density based on user feedback:
