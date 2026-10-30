@@ -1,79 +1,85 @@
-# OTP Verification Flow & Lead Generation Confirmation
+# Implementation Plan - Follow-Up Cards, Test Drive Booking Flow (Swiggy/Zomato Slot Style), Comments & Action History
 
-Implement an end-to-end OTP verification modal and subsequent "Lead Generated Successfully" confirmation dialog upon submitting Step 4 (PII Information) of the Sales Enquiry Form.
-
-## Background & Context
-
-In the Sales Enquiry Form (`#screen-sales-enquiry`), Step 4/4 presents Terms & Conditions and OTP Verification channels (SMS / WhatsApp). When the user clicks the **Submit** button (`#salesBtnNext`), the application should not dismiss silently or show a generic browser alert. Instead, it must launch a seamless OTP entry modal where the 4-digit verification code is entered, followed by an official Lead Generated confirmation view detailing the registered lead, reference ID, and clear next-action CTAs ("View in Enquiries" and "Create Another Enquiry").
+Implement a dedicated, streamlined experience for Follow-Up leads when accessed from the Home screen KPI card. Show exclusively leads whose status is "Follow-up", provide a frictionless 3-tap flow on each card to schedule a Test Drive using a Swiggy / Zomato dining slot reservation style UI (date carousel + morning/afternoon/evening time slots), allow inline comment additions with fast suggestion chips, and display a rich, real-time Action History timeline for each lead.
 
 ---
 
-## User Review Required
+## 1. Problem Statement & User Requirements
 
-> [!IMPORTANT]
-> - **OTP Auto-fill & Test Helper**: A test chip `Auto-fill Test OTP: 4829` will be included in the modal so testers and users can instantly populate all 4 digit boxes with one tap. Any 4-digit code (e.g., 4829, 1234, 0000) will be accepted for verification.
-> - **Lead Reference ID**: Follows the Sales Connect standard format (e.g., `ENQ987875455`), dynamically linked to the newly generated lead.
-> - **Feed Prepending**: Verifying the OTP prepends the new lead card directly to the top of `#screen-enquiry` (`#enquiryCardsContainer`), increments the "All" counter (24 -> 25) and "New" counter (3 -> 4), and applies a pulse highlight when navigating to it.
+1. **Only Follow-up Status Leads on Screen**:
+   - When tapping the "FOLLOW-UPS" card on the Home screen (`openFollowUpsScreen()`), show *only* cards whose status is "Follow-up".
+   - Replace mixed-stage cards (Negotiation, Qualified, Test Drive, Booking Planned) with true follow-up leads.
+   - Screen header and badge counts accurately represent active follow-up leads.
 
----
+2. **Streamlined Flow on Each Card to Move to Test Drive State**:
+   - Each card features a clear, accessible CTA button: **"Test Drive"** (with car icon).
+   - Frictionless, complete in very few steps (low friction).
+   - Clicking the CTA opens a popup / sheet modal inspired by **Swiggy Dineout / Zomato Dining Slot Reservation**:
+     - **Horizontal Date Strip**: Scrollable cards with Weekday (TODAY, TOMORROW, SAT...), Date number, and Month.
+     - **Categorized Time Slot Grid**:
+       - ☀️ Morning Slots (10:00 AM, 10:30 AM, 11:00 AM, 11:30 AM)
+       - 🌤️ Afternoon Slots (12:30 PM, 01:30 PM, 02:30 PM, 03:30 PM)
+       - 🌙 Evening Slots (04:30 PM, 05:30 PM, 06:30 PM, 07:15 PM)
+     - **Drive Location Preference**: `Dealership Showroom` vs `Customer Doorstep`.
+     - **Optional Request Notes**: Short text input.
+     - **Sticky Action Footer**: Live slot summary badge + "Confirm & Move to Test Drive" button.
+   - Upon confirmation:
+     - Lead status updates from `Follow-up` to `Test Drive`.
+     - Card is removed from the Follow-up list with smooth transition.
+     - New test drive entry is added to `#screen-test-drives`.
+     - An entry is logged into the lead's Action History timeline.
+     - Toast notification informs the user of successful scheduling.
+     - Counter badges update across screens.
 
-## Proposed Changes
-
- Grouped by layer:
-
-### Sales Enquiry Step 4 & Modals Markup
-
-#### [MODIFY] [index.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/index.html)
-#### [MODIFY] [sales_connect_redesign.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/sales_connect_redesign.html)
-
-1. **Step 4 Form Defaults & Integration**:
-   - Ensure `checkSms` is checked by default and `checkWhatsapp` is available for selection matching `media_1791962853003.png`.
-   - Update `navigateSalesStep(1)` on Step 4 to invoke `openSalesOtpModal()` instead of directly saving.
-
-2. **OTP Verification Modal (`#salesOtpModal`)**:
-   - Centered backdrop with glassmorphic blur (`fixed inset-0 bg-slate-900/60 backdrop-blur-xs`).
-   - Clean iOS-inspired card (`bg-white rounded-3xl max-w-[360px] p-6 space-y-4 shadow-2xl`).
-   - Icon badge: Shield / Key security icon in blue tint.
-   - Dynamic recipient phone display (`#salesOtpPhoneDisplay`) and delivery channels (`via SMS & WhatsApp` or `via SMS`).
-   - 4 discrete digit inputs (`#salesOtp1`, `#salesOtp2`, `#salesOtp3`, `#salesOtp4`):
-     - Auto-advance to next input on digit keystroke.
-     - Auto-retreat to previous input on backspace.
-     - 4-digit clipboard paste support.
-   - One-tap helper chip: `Auto-fill Test OTP: 4829`.
-   - 30-second live resend countdown timer with clickable "Resend OTP" button on expiration.
-   - Primary Action: `Verify & Submit` button; Secondary Action: `Cancel / Back`.
-
-3. **Lead Generated Confirmation Modal (`#leadSuccessModal`)**:
-   - Celebratory emerald checkmark badge icon (`bg-emerald-50 text-emerald-500 border-4 border-emerald-100`).
-   - Heading: "Lead Generated Successfully!"
-   - Subtitle: "Enquiry has been created and assigned to your sales pipeline."
-   - Lead Summary Card:
-     - Reference ID: e.g., `ENQ987875455` with "Open Lead" badge.
-     - Customer avatar, name, and phone number.
-     - Grid specs: Preferred Vehicle / Model, Stage (`New`), Category (`Sales`), Created Timestamp.
-     - Conditional Exchange Vehicle badge if an exchange vehicle was entered in Step 3.
-   - Action CTAs:
-     - `View in Enquiries`: Closes modal, switches screen to `#screen-enquiry`, scrolls to top, and highlights the newly prepended lead card.
-     - `Create Another Enquiry`: Closes modal, resets sales enquiry form fields, resets step wizard back to Step 1, and stays on `#screen-sales-enquiry`.
-
-4. **Testing Deep Links**:
-   - `?screen=sales-enquiry&step=4&modal=otp` -> Opens Step 4 with OTP Modal active.
-   - `?screen=sales-enquiry&step=4&modal=lead_success` -> Opens Step 4 with Lead Success Modal active.
+3. **Comments & Action History for Leads Not Ready to Move**:
+   - On each follow-up card:
+     - **Quick Comment Input**: Input field + "Post" button.
+     - **Quick Suggestion Chips**: 1-tap tag chips (`Call tomorrow`, `Family discussion`, `Loan approval`, `Price compare`) to instantly populate the comment field.
+     - **Real-Time Action History**:
+       - Interactive accordion (`Action History (X) ▾`) showing the complete chronological log of events:
+         - Calls, Follow-ups, Comments, Brochures, Test Drives, and Lead Creation.
+         - Colored icon nodes, event title, detailed description, author, and timestamp.
+       - Posting a new comment immediately appends it to the lead's history and updates the count badge in real time.
 
 ---
 
-## Verification Plan
+## 2. Proposed Implementation Steps
 
-### Automated / Headless Chrome Verification
-1. Run headless Chrome captures with `BypassSandbox: true` (macOS headless Chrome requires unsandboxed execution):
-   - `screenshot_sales_otp_modal.png` via `http://localhost:9847/?screen=sales-enquiry&step=4&modal=otp`
-   - `screenshot_lead_generated_success.png` via `http://localhost:9847/?screen=sales-enquiry&step=4&modal=lead_success`
-2. Test end-to-end interactive flow via headless node/browser script or query verification.
-3. Verify 100% parity: `diff -u index.html sales_connect_redesign.html` returns 0.
+### Layer 1: Data Model & JavaScript Engine
+- Define `followUpLeadsData`:
+  - An array of realistic, complete follow-up leads (Rahul K., Priya M., Gurjant Singh, Kumari T., Harsh M., Vikram Sengupta), all having `status: 'Follow-up'`.
+  - Rich initial action histories for each lead with calls, notes, brochures, and creation timestamps.
+- Implement rendering and management functions:
+  - `renderFollowUpScreen()`: Populates `#todayFollowupsCardsContainer` and `#otherFollowupsCardsContainer` dynamically from `followUpLeadsData`.
+  - `openTestDriveBookingModal(leadId)`: Launches the Swiggy/Zomato style slot picker for the selected lead.
+  - `selectTestDriveDate(dateStr, el)`: Selects active date in the horizontal date carousel.
+  - `selectTestDriveSlot(slotStr, el)`: Selects active time slot in the categorized grid.
+  - `selectTestDriveLocation(locStr, el)`: Toggles between Dealership and Doorstep.
+  - `confirmTestDriveBooking()`: Moves lead to Test Drive state, updates Test Drive screen, adds history item, shows toast, and updates counters.
+  - `addLeadComment(leadId)`: Saves inline comment to lead's history, refreshes timeline, and shows confirmation toast.
+  - `quickFillComment(leadId, text)`: Populates input with pre-set template.
+  - `toggleLeadHistory(leadId)`: Smoothly expands/collapses the action history accordion.
+  - `showAppToast(message, type)`: Displays a sleek floating toast notification.
 
-### Manual Verification
-- Navigate from Step 1 through Step 4 of the Sales Enquiry Form.
-- Click **Submit** on Step 4 and confirm `#salesOtpModal` appears with customer's phone number.
-- Tap **Auto-fill Test OTP: 4829** and click **Verify & Submit**.
-- Confirm `#leadSuccessModal` displays the generated reference ID and customer details.
-- Tap **View in Enquiries** and verify navigation to `#screen-enquiry` with the new lead card highlighted at the top.
+### Layer 2: Markup Updates in `index.html` and `sales_connect_redesign.html`
+- Update `#screen-activities`:
+  - Clean title: "Follow-Up Leads", subtitle: "Manage leads currently in follow-up status", and dynamic badge.
+  - Search input and Date Filter seamlessly integrated with `searchActivityFollowups()` and `filterFollowupDateRange()`.
+  - Structured card containers `#todayFollowupsCardsContainer` and `#otherFollowupsCardsContainer`.
+- Add `#testDriveBookingModal`:
+  - Swiggy / Zomato Dining Slot reservation style popup dialog with backdrop blur.
+  - Horizontal day cards carousel.
+  - Morning, Afternoon, Evening slot buttons.
+  - Dealership vs Doorstep toggle.
+  - Slot summary bar and confirmation button.
+- Add `#appToastNotification` floating container.
+
+### Layer 3: Parity & Verification
+- Verify 100% parity: `diff index.html sales_connect_redesign.html` returns 0.
+- Use headless Chrome to capture screenshots and verify:
+  1. Home screen tapping "FOLLOW-UPS" card opening `#screen-activities`.
+  2. Follow-up screen showing only cards with `Status: Follow-up`.
+  3. Swiggy / Zomato Dining Slot Booking Modal open with interactive date and time slots.
+  4. Card with expanded Action History and newly posted comment.
+  5. Test Drive screen after scheduling a test drive.
+- Commit and push to `origin/main`.

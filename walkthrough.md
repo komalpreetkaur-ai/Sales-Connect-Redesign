@@ -1,5 +1,71 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🚗 Dedicated Follow-Up Leads Pipeline, Swiggy/Zomato Test Drive Booking & Action History
+
+Implemented an end-to-end follow-up workflow adhering strictly to user requirements:
+1. **Strict Follow-up Status Filtering**: Tapping the **FOLLOW-UPS** card on the Home screen now opens a clean screen displaying **only leads currently in the "Follow-up" status** (no mixed-stage leads).
+2. **Low-Friction Test Drive Booking Flow**: Each follow-up card features a prominent **Test Drive** CTA button that opens a fast, low-friction booking popup.
+3. **Swiggy / Zomato Dining Slot-Style UI**: The Test Drive booking modal features a 7-day horizontal date selector strip (Today, Tomorrow, Sat, Sun...), 3-tier categorized time slot chips (Morning, Afternoon, Evening), dealership vs. customer doorstep toggle, live slot summary, and a 1-tap confirmation.
+4. **State Transition & Real-Time Pipeline Shift**: Confirming moves the lead to the "Test Drive" state, schedules the vehicle, removes the lead from the active follow-up list, updates dashboard KPI counters, and displays a floating toast confirmation.
+5. **Inline Comments & Action History Timeline**: If the lead is not ready to move, executives can add notes directly with 1-tap suggestion chips (`Call tomorrow`, `Family discussion`, `Loan approval`, `Price compare`), and expand a chronological action history timeline showing all logged calls, WhatsApp chats, comments, brochures, and status transitions.
+
+---
+
+### 📸 Visual Evidence
+
+#### 1. Follow-Up Screen (Strictly Follow-up Status Only)
+![Follow-Up Leads Screen](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_followup_screen.png)
+
+- Every card strictly displays `Status: • Follow-up`.
+- Clear urgency tags (`Due Today`, `Due Tomorrow`, `Hot`).
+- Quick-action buttons: Call, WhatsApp, and primary `[ Test Drive ]` CTA.
+- Integrated comment input box with quick-suggestion pills.
+
+#### 2. Swiggy / Zomato Dining Slot-Style Test Drive Modal
+![Swiggy / Zomato Style Test Drive Booking Modal](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_swiggy_zomato_testdrive_modal.png)
+
+- **Lead Context Banner**: Shows customer initials, name, phone, model (`Suzuki Brezza ZXi`), and stage transition pill (`Follow-up ➔ Test Drive`).
+- **Step 1 - 7-Day Date Strip**: Horizontal scrollable date pills (Today 30 Oct, Tomorrow 31 Oct, Sat 01 Nov...) modeled after restaurant reservation interfaces.
+- **Step 2 - Categorized Time Slots**: Segmented into ☀️ Morning (10:00 AM – 12:00 PM), 🌤️ Afternoon (12:00 PM – 04:00 PM), and 🌙 Evening (04:00 PM – 07:30 PM).
+- **Step 3 - Location Toggle**: Dealership Visit vs. Customer Doorstep.
+- **Live Summary**: Live updating slot badge (`Today, 30 Oct @ 11:30 AM (Dealership Visit)`) and 1-tap `[ Confirm & Move to Test Drive ]` CTA.
+
+#### 3. Lead Action History & Inline Comment Addition
+![Expanded Action History Timeline](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_comment_history.png)
+
+- **Quick Comment Chips**: 1-tap pre-fill for common responses (`Call tomorrow`, `Family discussion`, `Loan approval`, `Price compare`).
+- **Interactive Action History Drawer**: Tapping `Action History (3)` expands a vertical timeline with distinct colored icon badges for Calls (Blue), WhatsApp (Emerald), Notes/Comments (Purple), and Creation (Indigo), logging executive name and timestamps.
+
+#### 4. Instant State Transition (Removed from Follow-Ups & Moved to Test Drives)
+| Follow-Up List After Move | Test Drives Pipeline Showing Moved Lead |
+| :---: | :---: |
+| ![Follow-ups List Decremented with Toast](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_followup_after_moved.png) | ![Test Drive Screen with Scheduled Lead](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_test_drives_after_move.png) |
+| *Counter drops to 5, Rahul K. removed, toast confirms pipeline shift.* | *Rahul K. appears scheduled at top of Today's Test Drives.* |
+
+---
+
+### 🛠️ Key Implementation Details
+
+1. **Follow-Up Data Store (`followUpLeadsData`)**:
+   - Stored in `index.html` and `sales_connect_redesign.html`.
+   - Seeded with 6 active leads all strictly having `status: 'Follow-up'`.
+   - Each lead maintains an immutable `history` array with timestamps, authors, action types, and notes.
+
+2. **Swiggy / Zomato Slot Booking Modal (`#testDriveBookingModal`)**:
+   - Styled with Tailwind CSS and responsive flexbox.
+   - Dynamic 7-day strip generation with real-time selection state.
+   - Categorized morning/afternoon/evening slots with instant visual feedback.
+
+3. **Lead History & Comment Engine**:
+   - `addLeadComment(leadId)`: Appends new note to lead history, re-renders timeline dynamically, updates comment count badge, and clears the input.
+   - `toggleLeadHistory(leadId)`: Smooth toggle showing/hiding history timeline.
+   - `triggerLeadCall()` & `triggerLeadWhatsApp()`: Automatically record activity in the lead's action history timeline.
+
+4. **100% File Parity**:
+   - Verified 0-diff parity between `index.html` and `sales_connect_redesign.html`.
+
+---
+
 ## 🧹 Removed "LEADS ASSIGNED" & "WEEKLY TARGET" Section Headings
 
 Removed the redundant uppercase section headings from the Home dashboard for a cleaner, unified presentation:
