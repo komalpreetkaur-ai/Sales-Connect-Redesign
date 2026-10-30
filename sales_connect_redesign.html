@@ -4563,6 +4563,87 @@
     </div>
   </div>
 
+  <!-- LEAD REMARKS & ACTION HISTORY BOTTOM SHEET MODAL -->
+  <div id="leadHistoryModal" onclick="if(event.target === this) closeLeadHistoryModal()" style="display: none;" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center z-50 p-0 sm:p-4 transition-all">
+    <div class="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-[430px] p-5 space-y-4 shadow-2xl border border-slate-100 max-h-[88vh] overflow-y-auto custom-scroll relative animate-in slide-in-from-bottom-6 duration-300">
+      <!-- Drag handle -->
+      <div class="w-10 h-1 bg-slate-200 rounded-full mx-auto sm:hidden -mt-1 mb-2"></div>
+
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center font-black text-sm border border-blue-100">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+          </div>
+          <div>
+            <h2 class="text-sm font-black text-[#1E293B]">Lead Remarks & History</h2>
+            <p class="text-[10px] text-slate-500 font-medium">Activity timeline & notes for this lead</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeLeadHistoryModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-400 hover:text-slate-600 flex items-center justify-center active:scale-95 transition-transform cursor-pointer">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Customer Summary Banner -->
+      <div class="bg-blue-50/60 p-3 rounded-2xl border border-blue-100/80 flex items-center justify-between">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div id="historyModalLeadAvatar" class="w-9 h-9 rounded-xl bg-[#007AFF] text-white font-black text-xs flex items-center justify-center shrink-0 shadow-2xs">
+            RK
+          </div>
+          <div class="truncate">
+            <div class="flex items-center gap-1.5">
+              <h3 id="historyModalLeadName" class="text-xs font-black text-slate-900 truncate">Rahul K.</h3>
+              <span id="historyModalLeadPhone" class="text-[10px] font-bold text-slate-500 truncate">+919876589706</span>
+            </div>
+            <p id="historyModalLeadModel" class="text-[10.5px] font-semibold text-[#007AFF] mt-0.5 truncate">Suzuki Brezza ZXi (Petrol MT)</p>
+          </div>
+        </div>
+        <span class="text-[10px] font-extrabold text-[#007AFF] bg-white px-2 py-0.8 rounded-md border border-blue-200 shadow-2xs shrink-0">
+          • Follow-up
+        </span>
+      </div>
+
+      <!-- Add Remark Form -->
+      <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200/70 space-y-2">
+        <label class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider block">Add Follow-Up Note</label>
+        <div class="flex items-center gap-2">
+          <input type="text" id="historyModalInput" placeholder="Add follow-up notes / remarks..." onkeydown="if(event.key==='Enter'){event.preventDefault();addLeadHistoryModalComment();}" class="flex-1 bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:bg-white transition-all shadow-2xs">
+          <button type="button" onclick="addLeadHistoryModalComment()" class="px-3.5 py-2 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-xs flex items-center gap-1.5 shrink-0 active:scale-95 transition-transform cursor-pointer">
+            <i class="fa-solid fa-paper-plane text-[10px]"></i>
+            <span>Post</span>
+          </button>
+        </div>
+        <!-- Quick suggestion chips -->
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 text-[10px]">
+          <span class="text-slate-400 font-bold shrink-0">Quick:</span>
+          <button type="button" onclick="quickFillModalComment('Called - Customer asked to call back tomorrow morning');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Call tomorrow</button>
+          <button type="button" onclick="quickFillModalComment('Discussing quotation with family');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Family discussion</button>
+          <button type="button" onclick="quickFillModalComment('Waiting for loan approval from bank');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Loan approval</button>
+          <button type="button" onclick="quickFillModalComment('Comparing with rival brand discount');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Price compare</button>
+        </div>
+      </div>
+
+      <!-- Action History Timeline Section -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">Activity Timeline (<span id="historyModalTimelineCount">0</span>)</span>
+          <span class="text-[9.5px] font-bold text-slate-400">Chronological</span>
+        </div>
+        <div id="historyModalTimelineList" class="space-y-2 pt-1 border-t border-slate-100">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="pt-2 border-t border-slate-100">
+        <button type="button" onclick="closeLeadHistoryModal()" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs active:scale-95 transition-transform cursor-pointer">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- APP FLOATING TOAST NOTIFICATION -->
   <div id="appToastNotification" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[110] bg-slate-900/95 backdrop-blur-md text-white px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-semibold border border-white/10 transition-all duration-300 max-w-[90%] pointer-events-none">
     <span id="appToastIcon" class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] shrink-0"><i class="fa-solid fa-check"></i></span>
@@ -6124,7 +6205,7 @@
         initials: 'RK',
         phone: '+919876589706',
         model: 'Suzuki Brezza ZXi (Petrol MT)',
-        dueText: 'DUE TODAY • 11:30 AM',
+        dueText: 'Today • 11:30 AM',
         isToday: true,
         priority: 'Hot',
         status: 'Follow-up',
@@ -6140,7 +6221,7 @@
         initials: 'PM',
         phone: '+919876589706',
         model: 'Suzuki Gixxer SF (Metallic Blue)',
-        dueText: 'DUE TODAY • 03:00 PM',
+        dueText: 'Today • 03:00 PM',
         isToday: true,
         priority: 'Hot',
         status: 'Follow-up',
@@ -6156,7 +6237,7 @@
         initials: 'GS',
         phone: '+919876543210',
         model: 'Hyundai Creta SX (O) Diesel',
-        dueText: 'DUE TODAY • 05:30 PM',
+        dueText: 'Today • 05:30 PM',
         isToday: true,
         priority: 'Hot',
         status: 'Follow-up',
@@ -6172,7 +6253,7 @@
         initials: 'KT',
         phone: '+919876589706',
         model: 'Suzuki Baleno Alpha (Pearl White)',
-        dueText: 'DUE TOMORROW • 11:00 AM',
+        dueText: 'Tomorrow • 11:00 AM',
         isToday: false,
         priority: 'Warm',
         status: 'Follow-up',
@@ -6188,7 +6269,7 @@
         initials: 'HM',
         phone: '+919876589706',
         model: 'Mahindra Thar Roxx AX7 L',
-        dueText: 'DUE 01 NOV • 02:00 PM',
+        dueText: '01 Nov • 02:00 PM',
         isToday: false,
         priority: 'Hot',
         status: 'Follow-up',
@@ -6204,7 +6285,7 @@
         initials: 'VS',
         phone: '+919810077665',
         model: 'Suzuki Grand Vitara Alpha AWD',
-        dueText: 'DUE 02 NOV • 12:30 PM',
+        dueText: '02 Nov • 12:30 PM',
         isToday: false,
         priority: 'Warm',
         status: 'Follow-up',
@@ -6295,15 +6376,21 @@
       otherContainer.innerHTML = otherLeads.map(lead => renderFollowUpCardHTML(lead)).join('');
     }
 
-    // Generates individual follow-up lead card HTML with status, Test Drive CTA, quick comment input, tags & action history
+    // Generates individual follow-up lead card HTML: clean, compact, breathable
     function renderFollowUpCardHTML(lead) {
       const isHot = lead.priority === 'Hot';
+      const latestItem = lead.history && lead.history.length > 0 ? lead.history[0] : null;
+      let latestSnippet = 'No recent activity logged';
+      if (latestItem) {
+        latestSnippet = `${latestItem.title}: ${latestItem.desc}`;
+      }
+
       return `
-        <div id="followup-card-${lead.id}" class="act-lead-card ${lead.isToday ? 'today' : 'upcoming'} all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 transition-all hover:border-blue-200">
-          <!-- Card Header & Info -->
+        <div id="followup-card-${lead.id}" class="act-lead-card ${lead.isToday ? 'today' : 'upcoming'} all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-2.5 transition-all hover:border-blue-200">
+          <!-- Card Header & Customer Info -->
           <div class="flex items-center justify-between cursor-pointer" onclick="openEnquiryDetails('${lead.name}', '${lead.id}')">
-            <div class="flex items-center gap-3 min-w-0">
-              <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-100">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-100">
                 ${lead.initials}
               </div>
               <div class="truncate">
@@ -6314,18 +6401,15 @@
                 <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">${lead.model} • ${lead.id}</p>
               </div>
             </div>
-            <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-1 rounded-full shrink-0 border border-blue-100 uppercase tracking-tight">${lead.dueText}</span>
+            <span class="text-[9.5px] font-extrabold text-[#007AFF] bg-blue-50 px-2 py-0.8 rounded-full shrink-0 border border-blue-100 uppercase tracking-tight">${lead.dueText}</span>
           </div>
 
-          <!-- Status & Actions Row -->
-          <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-            <div class="flex items-center gap-1.5">
-              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Status:</span>
-              <span class="text-[10px] font-black text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded-md border border-blue-100 flex items-center gap-1">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
-                Follow-up
-              </span>
-            </div>
+          <!-- Status & Primary Actions Row -->
+          <div class="flex items-center justify-between pt-1 border-t border-slate-100/80">
+            <span class="text-[10px] font-black text-[#007AFF] bg-blue-50 px-2 py-0.8 rounded-md border border-blue-100 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
+              Follow-up
+            </span>
             <div class="flex items-center gap-1.5">
               <button onclick="event.stopPropagation(); triggerLeadCall('${lead.id}', '${lead.phone}');" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90 cursor-pointer transition-transform">
                 <i class="fa-solid fa-phone text-xs"></i>
@@ -6341,43 +6425,21 @@
             </div>
           </div>
 
-          <!-- Add Comment & Action History Section -->
-          <div class="bg-slate-50/80 p-2.5 rounded-xl border border-slate-200/70 space-y-2">
-            <!-- Inline Comment Input -->
-            <div class="flex items-center gap-2">
-              <input type="text" id="commentInput-${lead.id}" placeholder="Add follow-up notes / remarks..." onkeydown="if(event.key==='Enter'){event.preventDefault();addLeadComment('${lead.id}');}" class="flex-1 bg-white border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] transition-all">
-              <button type="button" onclick="event.stopPropagation(); addLeadComment('${lead.id}');" class="px-3 py-1.5 bg-[#007AFF] active:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-2xs flex items-center gap-1 shrink-0 active:scale-95 transition-transform cursor-pointer">
-                <i class="fa-solid fa-paper-plane text-[9px]"></i>
-                <span>Post</span>
-              </button>
+          <!-- Clean Footer: Latest Activity Snippet & Action History / Remarks Trigger -->
+          <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+            <div onclick="openLeadHistoryModal('${lead.id}');" class="flex items-center gap-1.5 min-w-0 pr-2 text-slate-500 cursor-pointer group hover:text-[#007AFF] transition-colors">
+              <i class="fa-regular fa-comment-dots text-slate-400 text-xs shrink-0 group-hover:text-[#007AFF] transition-colors"></i>
+              <span id="leadSnippet-${lead.id}" class="text-[10.5px] truncate">${latestSnippet}</span>
             </div>
-
-            <!-- Fast Suggestion Tag Chips for 1-Tap Comment Fill -->
-            <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 text-[9.5px]">
-              <span class="text-slate-400 font-bold shrink-0">Quick:</span>
-              <button type="button" onclick="event.stopPropagation(); quickFillComment('${lead.id}', 'Called - Customer asked to call back tomorrow morning');" class="px-2 py-0.5 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors">Call tomorrow</button>
-              <button type="button" onclick="event.stopPropagation(); quickFillComment('${lead.id}', 'Discussing quotation with family');" class="px-2 py-0.5 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors">Family discussion</button>
-              <button type="button" onclick="event.stopPropagation(); quickFillComment('${lead.id}', 'Waiting for loan approval from bank');" class="px-2 py-0.5 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors">Loan approval</button>
-              <button type="button" onclick="event.stopPropagation(); quickFillComment('${lead.id}', 'Comparing with rival brand discount');" class="px-2 py-0.5 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors">Price compare</button>
-            </div>
-
-            <!-- Action History Accordion Toggle -->
-            <div class="pt-1 border-t border-slate-200/60">
-              <button type="button" onclick="event.stopPropagation(); toggleLeadHistory('${lead.id}');" class="w-full flex items-center justify-between text-[11px] font-bold text-slate-600 hover:text-slate-900 py-0.5 cursor-pointer">
-                <span class="flex items-center gap-1.5">
-                  <i class="fa-solid fa-clock-rotate-left text-[#007AFF] text-xs"></i>
-                  <span>Action History (<span id="historyCount-${lead.id}">${lead.history.length}</span>)</span>
-                </span>
-                <span class="flex items-center gap-1 text-[10px] text-slate-400">
-                  <span id="historyToggleText-${lead.id}">View</span>
-                  <i id="historyToggleIcon-${lead.id}" class="fa-solid fa-chevron-down text-[9px] transition-transform"></i>
-                </span>
+            <div class="flex items-center gap-1 shrink-0">
+              <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('${lead.id}', true);" class="px-2 py-0.8 bg-blue-50 hover:bg-blue-100 text-[#007AFF] rounded-lg text-[10.5px] font-bold flex items-center gap-1 transition-colors cursor-pointer active:scale-95">
+                <i class="fa-solid fa-plus text-[9px]"></i>
+                <span>Note</span>
               </button>
-
-              <!-- History Timeline Drawer -->
-              <div id="historyTimeline-${lead.id}" class="hidden mt-2 pt-2 border-t border-slate-200/60 space-y-2 text-xs">
-                ${renderLeadHistoryTimeline(lead)}
-              </div>
+              <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('${lead.id}', false);" class="px-2 py-0.8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[10.5px] font-bold flex items-center gap-1 transition-colors cursor-pointer active:scale-95">
+                <i class="fa-solid fa-clock-rotate-left text-slate-500 text-[9px]"></i>
+                <span>History (<span id="historyCount-${lead.id}">${lead.history.length}</span>)</span>
+              </button>
             </div>
           </div>
         </div>
@@ -6387,7 +6449,7 @@
     // Generates the timeline nodes for a lead's action history
     function renderLeadHistoryTimeline(lead) {
       if (!lead.history || lead.history.length === 0) {
-        return '<p class="text-[10px] text-slate-400 italic py-1">No actions recorded yet.</p>';
+        return '<p class="text-[10px] text-slate-400 italic py-1 text-center">No actions recorded yet.</p>';
       }
 
       return lead.history.map((item, idx) => {
@@ -6437,72 +6499,106 @@
       }).join('');
     }
 
-    // Adds a comment to a follow-up lead, updates its history timeline and displays a confirmation toast
-    function addLeadComment(leadId) {
-      const input = document.getElementById('commentInput-' + leadId);
-      if (!input) return;
-      const val = input.value.trim();
-      if (!val) {
-        showAppToast('Please enter a comment or note', 'warning');
-        return;
-      }
+    // Lead History & Remarks Modal Controls
+    let activeHistoryLead = null;
 
+    function openLeadHistoryModal(leadId, focusInput = false) {
       const lead = followUpLeadsData.find(l => l.id === leadId);
       if (!lead) return;
 
-      // Add to top of lead history
-      lead.history.unshift({
-        type: 'comment',
-        title: 'Follow-up Note Added',
-        desc: val,
-        time: 'Just now',
-        user: 'You'
-      });
+      activeHistoryLead = lead;
 
-      // Update history drawer
-      const timelineContainer = document.getElementById('historyTimeline-' + leadId);
-      const countLabel = document.getElementById('historyCount-' + leadId);
-      const toggleText = document.getElementById('historyToggleText-' + leadId);
-      const toggleIcon = document.getElementById('historyToggleIcon-' + leadId);
+      const avatar = document.getElementById('historyModalLeadAvatar');
+      const name = document.getElementById('historyModalLeadName');
+      const phone = document.getElementById('historyModalLeadPhone');
+      const model = document.getElementById('historyModalLeadModel');
+      const countLabel = document.getElementById('historyModalTimelineCount');
+      const timelineContainer = document.getElementById('historyModalTimelineList');
+      const input = document.getElementById('historyModalInput');
 
-      if (timelineContainer) {
-        timelineContainer.innerHTML = renderLeadHistoryTimeline(lead);
-        timelineContainer.classList.remove('hidden'); // auto-expand to show new comment
-      }
+      if (avatar) avatar.innerText = lead.initials;
+      if (name) name.innerText = lead.name;
+      if (phone) phone.innerText = lead.phone;
+      if (model) model.innerText = lead.model;
       if (countLabel) countLabel.innerText = lead.history.length;
-      if (toggleText) toggleText.innerText = 'Hide';
-      if (toggleIcon) toggleIcon.style.transform = 'rotate(180deg)';
+      if (timelineContainer) timelineContainer.innerHTML = renderLeadHistoryTimeline(lead);
+      if (input) input.value = '';
 
-      input.value = '';
-      showAppToast(`Note added to ${lead.name}'s history!`, 'success');
+      const modal = document.getElementById('leadHistoryModal');
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.remove('hidden');
+      }
+
+      if (focusInput && input) {
+        setTimeout(() => input.focus(), 150);
+      }
     }
 
-    // Quick-fills a predefined comment template into the lead's comment input
-    function quickFillComment(leadId, text) {
-      const input = document.getElementById('commentInput-' + leadId);
+    function closeLeadHistoryModal() {
+      const modal = document.getElementById('leadHistoryModal');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.add('hidden');
+      }
+      activeHistoryLead = null;
+    }
+
+    function quickFillModalComment(text) {
+      const input = document.getElementById('historyModalInput');
       if (input) {
         input.value = text;
         input.focus();
       }
     }
 
-    // Toggles the visibility of a lead's action history accordion
-    function toggleLeadHistory(leadId) {
-      const drawer = document.getElementById('historyTimeline-' + leadId);
-      const toggleText = document.getElementById('historyToggleText-' + leadId);
-      const toggleIcon = document.getElementById('historyToggleIcon-' + leadId);
-      if (!drawer) return;
-
-      const isHidden = drawer.classList.contains('hidden');
-      if (isHidden) {
-        drawer.classList.remove('hidden');
-        if (toggleText) toggleText.innerText = 'Hide';
-        if (toggleIcon) toggleIcon.style.transform = 'rotate(180deg)';
-      } else {
-        drawer.classList.add('hidden');
-        if (toggleText) toggleText.innerText = 'View';
-        if (toggleIcon) toggleIcon.style.transform = 'rotate(0deg)';
+    function addLeadHistoryModalComment() {
+      if (!activeHistoryLead) return;
+      const input = document.getElementById('historyModalInput');
+      if (!input) return;
+      const text = input.value.trim();
+      if (!text) {
+        showAppToast('Please enter a note or comment', 'warning');
+        return;
       }
+
+      const lead = activeHistoryLead;
+      lead.history.unshift({
+        type: 'comment',
+        title: 'Follow-up Note Added',
+        desc: text,
+        time: 'Just now',
+        user: 'You'
+      });
+
+      // Update timeline inside modal
+      const timelineContainer = document.getElementById('historyModalTimelineList');
+      const countLabel = document.getElementById('historyModalTimelineCount');
+      if (timelineContainer) timelineContainer.innerHTML = renderLeadHistoryTimeline(lead);
+      if (countLabel) countLabel.innerText = lead.history.length;
+
+      // Update card on feed
+      const cardCount = document.getElementById('historyCount-' + lead.id);
+      const cardSnippet = document.getElementById('leadSnippet-' + lead.id);
+      if (cardCount) cardCount.innerText = lead.history.length;
+      if (cardSnippet) cardSnippet.innerText = `Note: ${text}`;
+
+      input.value = '';
+      showAppToast(`Note recorded for ${lead.name}`, 'success');
+    }
+
+    // Backward compatibility helper
+    function toggleLeadHistory(leadId) {
+      openLeadHistoryModal(leadId, false);
+    }
+
+    function addLeadComment(leadId) {
+      openLeadHistoryModal(leadId, true);
+    }
+
+    function quickFillComment(leadId, text) {
+      openLeadHistoryModal(leadId, true);
+      quickFillModalComment(text);
     }
 
     // Triggers an outgoing call action and logs it to history
@@ -6516,10 +6612,10 @@
           time: 'Just now',
           user: 'You'
         });
-        const timelineContainer = document.getElementById('historyTimeline-' + leadId);
-        const countLabel = document.getElementById('historyCount-' + leadId);
-        if (timelineContainer) timelineContainer.innerHTML = renderLeadHistoryTimeline(lead);
-        if (countLabel) countLabel.innerText = lead.history.length;
+        const cardCount = document.getElementById('historyCount-' + leadId);
+        const cardSnippet = document.getElementById('leadSnippet-' + leadId);
+        if (cardCount) cardCount.innerText = lead.history.length;
+        if (cardSnippet) cardSnippet.innerText = `Called customer at ${phone}`;
       }
       showAppToast(`Dialing ${phone}...`, 'info');
       setTimeout(() => {
@@ -6538,10 +6634,10 @@
           time: 'Just now',
           user: 'You'
         });
-        const timelineContainer = document.getElementById('historyTimeline-' + leadId);
-        const countLabel = document.getElementById('historyCount-' + leadId);
-        if (timelineContainer) timelineContainer.innerHTML = renderLeadHistoryTimeline(lead);
-        if (countLabel) countLabel.innerText = lead.history.length;
+        const cardCount = document.getElementById('historyCount-' + leadId);
+        const cardSnippet = document.getElementById('leadSnippet-' + leadId);
+        if (cardCount) cardCount.innerText = lead.history.length;
+        if (cardSnippet) cardSnippet.innerText = `WhatsApp chat opened for ${phone}`;
       }
       showAppToast(`Opening WhatsApp for ${phone}...`, 'info');
       const cleanPhone = phone.replace(/[^0-9]/g, '');

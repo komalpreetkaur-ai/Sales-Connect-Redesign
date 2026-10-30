@@ -1,5 +1,28 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🪶 Decluttered Follow-Up Cards & Dedicated Remarks/History Bottom Sheet
+
+Resolved card visual clutter and density based on user feedback:
+- **Removed Bulky Inline Form**: Removed the permanently expanded comment input field, the Post button, the quick chips, and the inline accordion from the default card face.
+- **Ultra-Compact & Breathable Cards**: Card height reduced from ~320px to ~125px (60% height reduction), allowing 3–4 follow-up leads to be comfortably viewed on screen at once.
+- **Clean Action Bar**: Cleaned up the status row by removing redundant `STATUS:` label noise; kept only the elegant `• Follow-up` pill alongside the Call, WhatsApp, and `Test Drive` CTA buttons.
+- **Smart 1-Line Footer**: Added a subtle footer row showing the latest recorded action or comment snippet (e.g. `💬 Outgoing Call Completed: Customer requested...`), paired with two compact buttons: `[ + Note ]` and `[ 🕒 History (3) ]`.
+- **Dedicated Bottom Sheet Modal (`#leadHistoryModal`)**: Tapping `+ Note` or `History (3)` (or anywhere on the footer snippet) slides up a modern bottom sheet modal containing:
+  1. Customer summary banner (`Rahul K. • Brezza ZXi`)
+  2. "Add Follow-Up Note" input with 1-tap quick pills (`Call tomorrow`, `Family discussion`, `Loan approval`, `Price compare`)
+  3. Chronological Activity Timeline displaying all past calls, WhatsApp chats, notes, and milestones with colored icon badges and timestamps.
+
+---
+
+### 📸 Visual Evidence (Clean vs. Modal)
+
+| Decluttered Feed View (3+ Cards at a Glance) | Dedicated Remarks & History Bottom Sheet |
+| :---: | :---: |
+| ![Clean Follow-up Cards](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_followup_clean.png) | ![Lead Remarks & History Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_history_modal.png) |
+| *Breathable cards with latest remark snippet and compact `+ Note` & `History` buttons.* | *Focused bottom sheet for adding notes and exploring the full activity timeline.* |
+
+---
+
 ## 🚗 Dedicated Follow-Up Leads Pipeline, Swiggy/Zomato Test Drive Booking & Action History
 
 Implemented an end-to-end follow-up workflow adhering strictly to user requirements:
