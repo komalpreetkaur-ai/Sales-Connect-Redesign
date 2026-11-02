@@ -1,5 +1,31 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 📂 Collapsible Follow-Up Sections (`Today` Open by Default)
+
+Made both follow-up sections collapsible with interactive header toggles:
+
+1. **`TODAY'S FOLLOW-UPS` (Open by Default)**:
+   - Starts **expanded** upon landing on the Follow-ups screen.
+   - Header shows pulsing indicator, section title, count badge (`3 Due Today`), and downward chevron indicator `[ ⌵ ]`.
+   - Tapping anywhere on the header row collapses the section to a clean 1-line bar, rotating the chevron indicator to `[ > ]`.
+
+2. **`UPCOMING & OTHER FOLLOW-UPS` (Collapsible, Closed by Default)**:
+   - Starts **collapsed** by default to maintain immediate focus on today's urgent tasks.
+   - Shows total count badge (`3 Leads`) and forward chevron indicator `[ > ]`.
+   - Tapping the header expands the section to reveal all upcoming and scheduled leads, with chevron rotating downward `[ ⌵ ]`.
+   - **Smart Search Auto-Expand**: Typing in the search bar automatically expands the upcoming section if matching results are found within it.
+
+---
+
+### 📸 Visual Evidence (Collapsible Sections)
+
+| 1. Default View (Today Open, Other Closed) | 2. Both Sections Collapsed | 3. Other Follow-Ups Expanded |
+| :---: | :---: | :---: |
+| ![Default View (Today Open)](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_collapsible_default.png) | ![Both Collapsed](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_collapsible_both_collapsed.png) | ![Other Expanded](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_collapsible_other_expanded.png) |
+| *Today's leads open by default with down chevron; Upcoming collapsed with count badge & right chevron.* | *Clean compact view when both headers are collapsed; badges retain live lead counts.* | *Upcoming & Other section expanded to inspect leads scheduled for tomorrow and later.* |
+
+---
+
 ## 🎯 Clean CTA Row & Time/Comms Swapped Layout
 
 Updated the follow-up card according to the latest requirements:
