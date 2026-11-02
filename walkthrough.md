@@ -1,31 +1,31 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-## 🎯 3-Tier Follow-Up Card Structure
+## 🎯 Refined 3-Tier Follow-Up Card Structure
 
-Restructured the follow-up lead cards into a clean 3-tier visual hierarchy:
+Updated follow-up lead cards based on user feedback:
 
-1. **Top Row (Customer Identity)**:
-   - Full-width customer identity: Avatar badge, Customer Name, Priority badge (`Hot`/`Warm`), and Car Model with Lead ID (`Suzuki Gixxer SF • ENQ...`).
-   - Completely un-truncated with full breathing room.
+1. **Top Row (Clean Customer Identity)**:
+   - Avatar badge (`RK`, `PM`, `GS`), Customer Name, and Car Model with Lead ID (`Suzuki Brezza ZXi (Petrol MT) • ENQ987875369`).
+   - **Removed `Hot` and `Warm` priority tags** for a cleaner, decluttered customer title.
 
-2. **Middle Row (Direct Contact & Due Time Together)**:
-   - **Left**: `[ 📞 ]` Call and `[ 💬 ]` WhatsApp circular quick-action buttons.
-   - **Right**: Due time badge (`• TODAY • 11:30 AM`).
+2. **Middle Row (Due Time Left, Comms Right)**:
+   - **Left**: Due time badge (`• TODAY • 11:30 AM`).
+   - **Right**: `[ 📞 ]` Call and `[ 💬 ]` WhatsApp circular quick-action buttons.
 
 3. **Bottom Row (Action CTAs)**:
-   - Three full-width action buttons:
-     - `[ 🚗 Test Drive ]` primary CTA -> opens Swiggy/Zomato style slot booking bottom sheet.
-     - `[ + Add Comment ]` secondary CTA -> opens dedicated Comments & Notes modal (comments only).
-     - `[ 🕒 History (X) ]` tertiary CTA -> opens dedicated Action History modal (chronological audit trail only).
+   - Three balanced action buttons spanning full card width:
+     - `[ 🚗 Test Drive ]` -> Swiggy/Zomato style slot picker bottom sheet.
+     - `[ + Add Comment ]` -> Dedicated Comments & Notes modal (comments only).
+     - `[ 🕒 History (X) ]` -> Dedicated Action History modal (chronological audit trail only).
 
 ---
 
-### 📸 Visual Evidence (Restructured 3-Tier Card Feed)
+### 📸 Visual Evidence (Swapped Comms & No Hot/Warm Tags)
 
-| 1. Perfected 3-Tier Card Structure | 2. Dedicated "+ Add Comment" Modal | 3. Dedicated "History" Modal |
+| 1. Swapped Comms & Clean Header | 2. Dedicated "+ Add Comment" Modal | 3. Dedicated "History" Modal |
 | :---: | :---: | :---: |
-| ![Perfected 3-Tier Card Structure](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_followup_perfect_hierarchy.png) | ![Lead Comments Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_comments_modal_latest.png) | ![Lead Action History Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_history_modal_latest.png) |
-| *Top: Customer info. Middle: Comms + Due time. Bottom: Test Drive, Add Comment, History.* | *Dedicated comments modal with post input & past notes only (no tab switcher, no status badge).* | *Dedicated action audit trail with chronological history only (no tab switcher, no status badge).* |
+| ![Swapped Comms & Clean Header](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_swapped_comms_and_no_tags.png) | ![Lead Comments Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_comments_modal_latest.png) | ![Lead Action History Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_history_modal_latest.png) |
+| *Due time on left, Call/WhatsApp on right; Hot/Warm tags removed.* | *Dedicated comments modal with post input & past notes only (no tab switcher, no status badge).* | *Dedicated action audit trail with chronological history only (no tab switcher, no status badge).* |
 
 ---
 
