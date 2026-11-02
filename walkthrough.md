@@ -1,33 +1,34 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-## 🎯 Priority-Driven Follow-Up Card Redesign
+## 🎯 Clean CTA Row & Time/Comms Swapped Layout
 
-Redesigned the card actions to strictly reflect the operational hierarchy:
+Updated the follow-up card according to the latest requirements:
 
-1. **Priority 1: Primary Conversion CTA (`Test Drive`)**:
-   - Elevated to a **full-width primary hero button**: `[ 🚗 Test Drive → ]`.
-   - Distinct `#007AFF` solid accent with bold typography and directional affordance for immediate 1-tap test drive booking via the Swiggy/Zomato style slot picker.
+1. **Middle Row (Swapped Comms & Time Tag)**:
+   - **Left**: Due Time badge (`• TODAY • 11:30 AM`).
+   - **Right**: Circular Phone call `[ 📞 ]` and WhatsApp `[ 💬 ]` action buttons.
+   - Clean, balanced separation between urgency information and immediate communication actions.
 
-2. **Priority 2: Secondary Supporting Row (`Add Comment` & `History`)**:
-   - Nested directly beneath the primary CTA as an even 50/50 dual utility bar:
-     - **`[ + Add Comment ]`** (Left half): Opens dedicated Comments & Notes modal (comments only, no tabs).
-     - **`[ 🕒 History (X) ]`** (Right half): Opens dedicated Action History audit trail (chronological log only, no tabs).
-   - Designed in soft, subtle secondary styling (`bg-slate-50 border border-slate-200`) so they never compete visually with the primary Test Drive conversion goal.
+2. **Bottom Row Action CTAs (Strict Order, Zero Icons)**:
+   - Formatted in a single, balanced 3-button horizontal row (`flex-1` distribution):
+     - **1st (Left): `History (X)`** - Neutral border styling (`bg-slate-100 text-slate-700`), opens the dedicated Action History modal. **No clock/history icon.**
+     - **2nd (Center): `Add Comment`** - Soft blue styling (`bg-blue-50 text-[#007AFF] border-blue-200`), opens the dedicated Comments modal. **No plus icon.**
+     - **3rd (Right): `Test Drive`** - Primary solid accent (`bg-[#007AFF] text-white`), opens the test drive booking slot picker. **No car or arrow icon.**
+   - All three CTAs are pure, readable text without icon clutter.
 
 3. **Card Structure Overview**:
    - **Header**: Avatar + Customer Name + Car Model / Lead ID (Hot/Warm tags removed for clean look).
-   - **Status & Comms Row**: Due time badge (`• TODAY • 11:30 AM`) on the left, circular `[ 📞 ]` and `[ 💬 ]` on the right.
-   - **Priority 1 CTA**: Full-width `[ 🚗 Test Drive → ]`.
-   - **Priority 2 Utility Bar**: `[ + Add Comment ]` and `[ 🕒 History (X) ]`.
+   - **Middle Row**: Due time badge on left, circular Call & WhatsApp on right.
+   - **Bottom Row**: `[ History (X) ]` `[ Add Comment ]` `[ Test Drive ]` (text-only).
 
 ---
 
-### 📸 Visual Evidence (Priority-Driven Button Redesign)
+### 📸 Visual Evidence (Text-Only Clean CTA Row: History | Add Comment | Test Drive)
 
-| 1. Priority-Driven Card Feed | 2. Dedicated "+ Add Comment" Modal | 3. Dedicated "History" Modal |
+| 1. Clean 3-CTA Row (No Icons) | 2. Dedicated "+ Add Comment" Modal | 3. Dedicated "History" Modal |
 | :---: | :---: | :---: |
-| ![Priority-Driven Card Feed](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_priority_redesign.png) | ![Lead Comments Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_comments_modal_latest.png) | ![Lead Action History Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_history_modal_latest.png) |
-| *Test Drive as full-width hero CTA (Priority 1); Add Comment & History below as secondary pair (Priority 2).* | *Dedicated comments modal with post input & past notes only (no tab switcher, no status badge).* | *Dedicated action audit trail with chronological history only (no tab switcher, no status badge).* |
+| ![Clean 3-CTA Row](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_cta_history_comment_testdrive.png) | ![Lead Comments Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_comments_modal_latest.png) | ![Lead Action History Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_history_modal_latest.png) |
+| *Middle row: Time on left, Call/WhatsApp on right. Bottom row: History (2), Add Comment, Test Drive (text-only, no icons).* | *Dedicated comments modal with post input & past notes only (no tab switcher, no status badge).* | *Dedicated action audit trail with chronological history only (no tab switcher, no status badge).* |
 
 ---
 
