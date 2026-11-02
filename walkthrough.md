@@ -16,10 +16,10 @@ Streamlined follow-up lead cards based on user requirements:
 
 ### 📸 Visual Evidence (Unified Action Bar & Clean Feed)
 
-| 1. Clean Follow-up Feed | 2. Dedicated "+ Comment" Modal | 3. Dedicated "History" Modal |
-| :---: | :---: | :---: |
-| ![Clean Follow-up Feed](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_followup_clean_feed.png) | ![Lead Comments Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_comments_separated.png) | ![Lead Action History Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_history_separated.png) |
-| *Unified 1-row action bar: Call, WhatsApp + Test Drive, Comment, History (No status pill, no snippet).* | *Standalone Comments modal with post input & past notes only (no tab switcher).* | *Standalone Action History modal with chronological audit trail only (no tab switcher).* |
+| 1. Home Screen Direct Quick Banner | 2. Clean Follow-up Feed | 3. Dedicated "+ Add Comment" Modal | 4. Dedicated "History" Modal |
+| :---: | :---: | :---: | :---: |
+| ![Home Screen with Banner](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_with_banner.png) | ![Clean Follow-up Feed](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_followup_screen_latest.png) | ![Lead Comments Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_comments_modal_latest.png) | ![Lead Action History Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_history_modal_latest.png) |
+| *Home screen banner & highlighted FOLLOW-UPS card.* | *Clean 1-row action bar: Call, WhatsApp + Test Drive, Add Comment, History (No pills, no note snippet).* | *Standalone Comments modal with post input & past notes only (no tab switcher, no follow-up badge).* | *Standalone Action History modal with chronological audit trail only (no tab switcher, no follow-up badge).* |
 
 ---
 
