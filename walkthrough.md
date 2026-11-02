@@ -1,10 +1,33 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-## 💬 Clean Separation: "+ Comment" (Comments Only) vs. "History" (Action History Only)
+## 🎯 Unified Action Bar & Minimalist Follow-up Card Face
+
+Streamlined follow-up lead cards based on user requirements:
+1. **Removed Redundant Elements**:
+   - Removed the `• Follow-up` status pill (every lead on this screen is already strictly in follow-up status).
+   - Removed the truncated `💬 Note: "Customer mentione..."` snippet row.
+2. **Unified Action Bar**:
+   - Brought the primary **`Test Drive`** CTA together with **`+ Comment`** and **`History (<count>)`** buttons into a single horizontal action row.
+   - Quick communication icons (`[ 📞 ]` Call and `[ 💬 ]` WhatsApp) sit on the left, while stage & management CTAs (`[ 🚗 Test Drive ]`, `[ + Comment ]`, `[ 🕒 History ]`) sit on the right.
+3. **Ultra-Compact Height (~95px)**:
+   - Eliminates card density and clutter, allowing sales executives to review 4+ leads on screen simultaneously without vertical crowding.
+
+---
+
+### 📸 Visual Evidence (Unified Action Bar & Clean Feed)
+
+| 1. Clean Follow-up Feed | 2. Dedicated "+ Comment" Modal | 3. Dedicated "History" Modal |
+| :---: | :---: | :---: |
+| ![Clean Follow-up Feed](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_followup_clean_feed.png) | ![Lead Comments Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_comments_separated.png) | ![Lead Action History Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_history_separated.png) |
+| *Unified 1-row action bar: Call, WhatsApp + Test Drive, Comment, History (No status pill, no snippet).* | *Standalone Comments modal with post input & past notes only (no tab switcher).* | *Standalone Action History modal with chronological audit trail only (no tab switcher).* |
+
+---
+
+## 💬 Dedicated "+ Comment" (Comments Only) vs. "History" (Action History Only)
 
 Decoupled the Comments and Action History interfaces into two completely separate, independent bottom-sheet modals with zero tab-switching clutter:
 
-1. **Comment CTA (`+ Comment` / Note Snippet)**:
+1. **Comment CTA (`+ Comment`)**:
    - Triggers the dedicated **Lead Comments & Notes** modal (`#leadCommentsModal`).
    - Contains **ONLY**:
      - Customer summary card (Avatar, Name, Phone, Car Model, Follow-up badge).
@@ -20,20 +43,6 @@ Decoupled the Comments and Action History interfaces into two completely separat
      - Chronological action timeline detailing all customer interactions (Outgoing calls, WhatsApp chats, Test drives scheduled, Lead creation).
      - Colored icon badges for each action type with executive attribution and `Action Logged ✓` audit stamp.
    - **NO tab switcher bar**, **NO comment input field** (pure audit trail).
-
-3. **Decluttered Follow-up Card Face**:
-   - Compact ~125px card height.
-   - Left side: 1-line latest comment snippet with click-to-open comments.
-   - Right side: distinct `+ Comment` pill button and `History (<count>)` pill button.
-
----
-
-### 📸 Visual Evidence (Completely Independent Modals)
-
-| 1. "+ Comment" CTA Clicked | 2. "History" CTA Clicked | 3. Clean Follow-up Cards Feed |
-| :---: | :---: | :---: |
-| ![Lead Comments Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_comments_separated.png) | ![Lead Action History Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_history_separated.png) | ![Clean Follow-up Feed](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_followup_clean_feed.png) |
-| *Dedicated comments modal with post input & past comments only (No tab bar).* | *Dedicated action audit trail with calls & events only (No tab bar, No comment input).* | *Clear card footer with `+ Comment` CTA and `History (2)` CTA.* |
 
 ---
 
