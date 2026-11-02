@@ -1188,13 +1188,14 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
 
 ## 👤 Lead Profile Details Screen & UI Refinements (`#screen-lead-profile`)
 
-- **Fixed Floating Sticky Overlap**: Removed the redundant `sticky bottom-16` floating action bar (`[ 📞 ] [ 💬 ] [ 🚗 Add Test Drive → ]`) that was overlapping and obstructing the in-page Test Drive booking card.
-- **Clean Customer Identity Card**: Removed the `Call Customer` and `WhatsApp` button row from the customer identity header card, giving a much cleaner, streamlined card showing avatar initials, customer name, phone number, scheduled follow-up tag, and priority pill.
-- **Unobstructed In-Page Test Drive Card**: The prominent in-page `[ 🚗 Add / Book Test Drive → ]` action card now sits cleanly in the document flow with zero visual collisions.
+- **Call & WhatsApp Action Icons in White Space**: Placed circular Call (`[ 📞 ]`) and WhatsApp (`[ 💬 ]`) action icon buttons directly in the top customer card's open white space on the right, providing fast one-tap communication without bulky full-width buttons.
+- **Removed "Recommended" Tag**: Cleaned up the Test Drive Booking card by removing the redundant "Recommended" pill badge from the header.
+- **Updated Test Drive CTA**: Updated the primary action button copy to **`Move to Test Drive`** (`[ 🚗 Move to Test Drive → ]`), clearly signaling the workflow progression.
+- **Fixed Floating Sticky Overlap**: Removed the redundant `sticky bottom-16` floating action bar to eliminate screen collisions.
 - **Comments & Remarks with Live Composer**: Includes quick chips (`+ Call tomorrow`, `+ Family discussion`, `+ Loan approved`), text input, and chronological list of notes.
 - **Action History Timeline**: Chronological audit trail showing call completions, status changes, and creation events.
 
-![Clean Lead Profile View](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_profile_clean.png)
+![Clean Lead Profile View with Comms Icons & Move to Test Drive](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_profile_icons_and_move_td.png)
 
 ![Scrolled Lead Profile View](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_profile_scrolled_clean.png)
 
