@@ -1,27 +1,39 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-## 💬 Dedicated "+ Note" (Comments Only) vs. "History" (Action Audit Trail Only)
+## 💬 Clean Separation: "+ Comment" (Comments Only) vs. "History" (Action History Only)
 
-Separated follow-up comments and lead history into distinct views based on user requirements:
-1. **Clicking `+ Note`**:
-   - Opens the **Lead Comments & Notes** view.
-   - Shows the option to post a follow-up comment (with text input, `[ Post ]` button, and 4 quick chips: `Call tomorrow`, `Family discussion`, `Loan approval`, `Price compare`).
-   - Displays a feed of **all previous comments on this lead ONLY** (excluding system history/calls).
-2. **Clicking `History`**:
-   - Opens the **Lead Action History** view.
-   - Shows **ONLY the chronological history of the lead** (calls placed, WhatsApp messages sent, test drives scheduled, brochure shared, lead created).
-   - Clean audit trail without any comment input box.
-3. **Seamless Segmented Switcher**:
-   - Includes top tabs (`Comments (<count>)` vs `Action History (<count>)`) allowing 1-tap switching between the two views without closing the sheet.
+Decoupled the Comments and Action History interfaces into two completely separate, independent bottom-sheet modals with zero tab-switching clutter:
+
+1. **Comment CTA (`+ Comment` / Note Snippet)**:
+   - Triggers the dedicated **Lead Comments & Notes** modal (`#leadCommentsModal`).
+   - Contains **ONLY**:
+     - Customer summary card (Avatar, Name, Phone, Car Model, Follow-up badge).
+     - Comment submission form: text input with placeholder `Add follow-up notes / remarks...` and `[ Post ]` button.
+     - 4 Quick-fill template chips: `Call tomorrow`, `Family discussion`, `Loan approval`, `Price compare`.
+     - Chronological list of all comments recorded for this lead with timestamps and author badges.
+   - **NO tab switcher bar** (purely focused on comments and notes).
+
+2. **History CTA (`History (<count>)`)**:
+   - Triggers the dedicated **Lead Action History** modal (`#leadHistoryModal`).
+   - Contains **ONLY**:
+     - Customer summary card (Avatar, Name, Phone, Car Model, Follow-up badge).
+     - Chronological action timeline detailing all customer interactions (Outgoing calls, WhatsApp chats, Test drives scheduled, Lead creation).
+     - Colored icon badges for each action type with executive attribution and `Action Logged ✓` audit stamp.
+   - **NO tab switcher bar**, **NO comment input field** (pure audit trail).
+
+3. **Decluttered Follow-up Card Face**:
+   - Compact ~125px card height.
+   - Left side: 1-line latest comment snippet with click-to-open comments.
+   - Right side: distinct `+ Comment` pill button and `History (<count>)` pill button.
 
 ---
 
-### 📸 Visual Evidence
+### 📸 Visual Evidence (Completely Independent Modals)
 
-| 1. "+ Note" Clicked (Comments Only + Post Input) | 2. "History" Clicked (Action Audit Trail Only) | 3. After Posting New Comment |
+| 1. "+ Comment" CTA Clicked | 2. "History" CTA Clicked | 3. Clean Follow-up Cards Feed |
 | :---: | :---: | :---: |
-| ![Lead Comments View](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_comments_view.png) | ![Lead History View](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_history_view.png) | ![Comment Posted](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_comment_posted.png) |
-| *Option to post note + list of previous comments on this lead ONLY.* | *Timeline of calls, WhatsApp & creation ONLY (no comment input).* | *Instant update to comment feed, count badge & card snippet.* |
+| ![Lead Comments Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_comments_separated.png) | ![Lead Action History Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_history_separated.png) | ![Clean Follow-up Feed](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_followup_clean_feed.png) |
+| *Dedicated comments modal with post input & past comments only (No tab bar).* | *Dedicated action audit trail with calls & events only (No tab bar, No comment input).* | *Clear card footer with `+ Comment` CTA and `History (2)` CTA.* |
 
 ---
 

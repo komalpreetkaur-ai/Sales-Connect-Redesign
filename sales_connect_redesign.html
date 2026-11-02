@@ -4563,7 +4563,88 @@
     </div>
   </div>
 
-  <!-- LEAD COMMENTS & ACTION HISTORY BOTTOM SHEET MODAL -->
+  <!-- DEDICATED LEAD COMMENTS & REMARKS MODAL (Triggered by Comment CTA) -->
+  <div id="leadCommentsModal" onclick="if(event.target === this) closeLeadCommentsModal()" style="display: none;" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center z-50 p-0 sm:p-4 transition-all">
+    <div class="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-[430px] p-5 space-y-3.5 shadow-2xl border border-slate-100 max-h-[88vh] overflow-y-auto custom-scroll relative animate-in slide-in-from-bottom-6 duration-300">
+      <!-- Drag handle -->
+      <div class="w-10 h-1 bg-slate-200 rounded-full mx-auto sm:hidden -mt-1 mb-1"></div>
+
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center font-black text-sm border border-blue-100">
+            <i class="fa-solid fa-comments text-[#007AFF]"></i>
+          </div>
+          <div>
+            <h2 class="text-sm font-black text-[#1E293B]">Lead Comments & Notes</h2>
+            <p id="commentsModalSubtitle" class="text-[10px] text-slate-500 font-medium">Post notes and see all comments for this lead</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeLeadCommentsModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-400 hover:text-slate-600 flex items-center justify-center active:scale-95 transition-transform cursor-pointer">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Customer Summary Banner -->
+      <div class="bg-blue-50/60 p-3 rounded-2xl border border-blue-100/80 flex items-center justify-between">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div id="commentsModalLeadAvatar" class="w-9 h-9 rounded-xl bg-[#007AFF] text-white font-black text-xs flex items-center justify-center shrink-0 shadow-2xs">
+            RK
+          </div>
+          <div class="truncate">
+            <div class="flex items-center gap-1.5">
+              <h3 id="commentsModalLeadName" class="text-xs font-black text-slate-900 truncate">Rahul K.</h3>
+              <span id="commentsModalLeadPhone" class="text-[10px] font-bold text-slate-500 truncate">+919876589706</span>
+            </div>
+            <p id="commentsModalLeadModel" class="text-[10.5px] font-semibold text-[#007AFF] mt-0.5 truncate">Suzuki Brezza ZXi (Petrol MT)</p>
+          </div>
+        </div>
+        <span class="text-[10px] font-extrabold text-[#007AFF] bg-white px-2 py-0.8 rounded-md border border-blue-200 shadow-2xs shrink-0">
+          • Follow-up
+        </span>
+      </div>
+
+      <!-- Add Remark Form -->
+      <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200/70 space-y-2">
+        <label class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider block">Post a Follow-Up Comment</label>
+        <div class="flex items-center gap-2">
+          <input type="text" id="leadCommentsModalInput" placeholder="Add follow-up notes / remarks..." onkeydown="if(event.key==='Enter'){event.preventDefault();addLeadCommentsModalPost();}" class="flex-1 bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:bg-white transition-all shadow-2xs">
+          <button type="button" onclick="addLeadCommentsModalPost()" class="px-3.5 py-2 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-xs flex items-center gap-1.5 shrink-0 active:scale-95 transition-transform cursor-pointer">
+            <i class="fa-solid fa-paper-plane text-[10px]"></i>
+            <span>Post</span>
+          </button>
+        </div>
+        <!-- Quick suggestion chips -->
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 text-[10px]">
+          <span class="text-slate-400 font-bold shrink-0">Quick:</span>
+          <button type="button" onclick="quickFillCommentsModal('Called - Customer asked to call back tomorrow morning');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Call tomorrow</button>
+          <button type="button" onclick="quickFillCommentsModal('Discussing quotation with family');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Family discussion</button>
+          <button type="button" onclick="quickFillCommentsModal('Waiting for loan approval from bank');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Loan approval</button>
+          <button type="button" onclick="quickFillCommentsModal('Comparing with rival brand discount');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Price compare</button>
+        </div>
+      </div>
+
+      <!-- All Comments on this Lead Section -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">All Comments on this Lead (<span id="commentsModalListCount">0</span>)</span>
+          <span class="text-[9.5px] font-bold text-slate-400">Comments only</span>
+        </div>
+        <div id="leadCommentsModalList" class="space-y-2 pt-1 border-t border-slate-100 max-h-[300px] overflow-y-auto custom-scroll">
+          <!-- Populated dynamically with ONLY comments on this lead -->
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="pt-2 border-t border-slate-100">
+        <button type="button" onclick="closeLeadCommentsModal()" class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs active:scale-95 transition-transform cursor-pointer">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEDICATED LEAD ACTION HISTORY MODAL (Triggered by History CTA) -->
   <div id="leadHistoryModal" onclick="if(event.target === this) closeLeadHistoryModal()" style="display: none;" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center z-50 p-0 sm:p-4 transition-all">
     <div class="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-[430px] p-5 space-y-3.5 shadow-2xl border border-slate-100 max-h-[88vh] overflow-y-auto custom-scroll relative animate-in slide-in-from-bottom-6 duration-300">
       <!-- Drag handle -->
@@ -4572,12 +4653,12 @@
       <!-- Modal Header -->
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
         <div class="flex items-center gap-2.5">
-          <div id="leadModalHeaderIconWrapper" class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center font-black text-sm border border-blue-100">
-            <i id="leadModalHeaderIcon" class="fa-solid fa-comments"></i>
+          <div class="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center font-black text-sm border border-slate-200">
+            <i class="fa-solid fa-clock-rotate-left"></i>
           </div>
           <div>
-            <h2 id="leadModalHeaderTitle" class="text-sm font-black text-[#1E293B]">Lead Comments & Notes</h2>
-            <p id="leadModalHeaderSubtitle" class="text-[10px] text-slate-500 font-medium">Post notes and see all comments for this lead</p>
+            <h2 class="text-sm font-black text-[#1E293B]">Lead Action History</h2>
+            <p id="historyModalSubtitle" class="text-[10px] text-slate-500 font-medium">Chronological audit trail of actions for this lead</p>
           </div>
         </div>
         <button type="button" onclick="closeLeadHistoryModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-400 hover:text-slate-600 flex items-center justify-center active:scale-95 transition-transform cursor-pointer">
@@ -4604,59 +4685,13 @@
         </span>
       </div>
 
-      <!-- Segment Tabs Switcher: Comments vs Action History -->
-      <div class="flex items-center p-1 bg-slate-100 rounded-xl">
-        <button id="leadModalTabComments" type="button" onclick="switchLeadModalView('comments')" class="flex-1 py-1.5 text-xs font-black rounded-lg bg-[#007AFF] text-white shadow-2xs transition-all cursor-pointer flex items-center justify-center gap-1.5">
-          <i class="fa-solid fa-comments text-xs"></i>
-          <span>Comments (<span id="modalCommentsCountBadge">0</span>)</span>
-        </button>
-        <button id="leadModalTabHistory" type="button" onclick="switchLeadModalView('history')" class="flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all cursor-pointer flex items-center justify-center gap-1.5">
-          <i class="fa-solid fa-clock-rotate-left text-xs"></i>
-          <span>Action History (<span id="modalHistoryCountBadge">0</span>)</span>
-        </button>
-      </div>
-
-      <!-- VIEW 1: COMMENTS ONLY VIEW -->
-      <div id="leadModalViewComments" class="space-y-3">
-        <!-- Add Remark Form -->
-        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200/70 space-y-2">
-          <label class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider block">Post a Follow-Up Comment</label>
-          <div class="flex items-center gap-2">
-            <input type="text" id="leadModalCommentInput" placeholder="Add follow-up notes / remarks..." onkeydown="if(event.key==='Enter'){event.preventDefault();addLeadModalComment();}" class="flex-1 bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:bg-white transition-all shadow-2xs">
-            <button type="button" onclick="addLeadModalComment()" class="px-3.5 py-2 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-xs flex items-center gap-1.5 shrink-0 active:scale-95 transition-transform cursor-pointer">
-              <i class="fa-solid fa-paper-plane text-[10px]"></i>
-              <span>Post</span>
-            </button>
-          </div>
-          <!-- Quick suggestion chips -->
-          <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 text-[10px]">
-            <span class="text-slate-400 font-bold shrink-0">Quick:</span>
-            <button type="button" onclick="quickFillModalComment('Called - Customer asked to call back tomorrow morning');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Call tomorrow</button>
-            <button type="button" onclick="quickFillModalComment('Discussing quotation with family');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Family discussion</button>
-            <button type="button" onclick="quickFillModalComment('Waiting for loan approval from bank');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Loan approval</button>
-            <button type="button" onclick="quickFillModalComment('Comparing with rival brand discount');" class="px-2 py-0.8 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 shrink-0 font-semibold cursor-pointer transition-colors shadow-2xs">Price compare</button>
-          </div>
-        </div>
-
-        <!-- All Comments on this Lead Section -->
-        <div class="space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">All Comments on this Lead (<span id="commentsListHeaderCount">0</span>)</span>
-            <span class="text-[9.5px] font-bold text-slate-400">Comments only</span>
-          </div>
-          <div id="leadModalCommentsList" class="space-y-2 pt-1 border-t border-slate-100 max-h-[300px] overflow-y-auto custom-scroll">
-            <!-- Populated dynamically with ONLY comments on this lead -->
-          </div>
-        </div>
-      </div>
-
-      <!-- VIEW 2: ACTION HISTORY ONLY VIEW -->
-      <div id="leadModalViewHistory" class="hidden space-y-2">
+      <!-- Action History Timeline Section -->
+      <div class="space-y-2">
         <div class="flex items-center justify-between">
           <span class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">Lead Action History (<span id="historyTimelineHeaderCount">0</span>)</span>
           <span class="text-[9.5px] font-bold text-slate-400">Chronological history only</span>
         </div>
-        <div id="leadModalHistoryTimelineList" class="space-y-2 pt-1 border-t border-slate-100 max-h-[420px] overflow-y-auto custom-scroll">
+        <div id="leadHistoryModalTimelineList" class="space-y-2 pt-1 border-t border-slate-100 max-h-[420px] overflow-y-auto custom-scroll">
           <!-- Populated dynamically with ONLY action history of the lead -->
         </div>
       </div>
@@ -6472,16 +6507,16 @@
 
           <!-- Clean Footer: Latest Activity Snippet & Action History / Remarks Trigger -->
           <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
-            <div onclick="openLeadCommentsModal('${lead.id}');" class="flex items-center gap-1.5 min-w-0 pr-2 text-slate-500 cursor-pointer group hover:text-[#007AFF] transition-colors">
+            <div onclick="openLeadCommentsModal('${lead.id}');" class="flex items-center gap-1.5 min-w-0 pr-2 text-slate-500 cursor-pointer group hover:text-[#007AFF] transition-colors" title="View comments">
               <i class="fa-regular fa-comment-dots text-slate-400 text-xs shrink-0 group-hover:text-[#007AFF] transition-colors"></i>
               <span id="leadSnippet-${lead.id}" class="text-[10.5px] truncate">${latestSnippet}</span>
             </div>
             <div class="flex items-center gap-1 shrink-0">
-              <button type="button" onclick="event.stopPropagation(); openLeadCommentsModal('${lead.id}');" class="px-2 py-0.8 bg-blue-50 hover:bg-blue-100 text-[#007AFF] rounded-lg text-[10.5px] font-bold flex items-center gap-1 transition-colors cursor-pointer active:scale-95">
+              <button type="button" onclick="event.stopPropagation(); openLeadCommentsModal('${lead.id}');" class="px-2 py-0.8 bg-blue-50 hover:bg-blue-100 text-[#007AFF] rounded-lg text-[10.5px] font-bold flex items-center gap-1 transition-colors cursor-pointer active:scale-95" title="View & add comments">
                 <i class="fa-solid fa-plus text-[9px]"></i>
-                <span>Note</span>
+                <span>Comment</span>
               </button>
-              <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('${lead.id}');" class="px-2 py-0.8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[10.5px] font-bold flex items-center gap-1 transition-colors cursor-pointer active:scale-95">
+              <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('${lead.id}');" class="px-2 py-0.8 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[10.5px] font-bold flex items-center gap-1 transition-colors cursor-pointer active:scale-95" title="View chronological action history">
                 <i class="fa-solid fa-clock-rotate-left text-slate-500 text-[9px]"></i>
                 <span>History (<span id="historyCount-${lead.id}">${historyCount}</span>)</span>
               </button>
@@ -6578,138 +6613,69 @@
       }).join('');
     }
 
-    // Lead History & Remarks Modal State & Controls
+    // Active Lead references for separate modals
+    let activeCommentsLead = null;
     let activeHistoryLead = null;
 
-    // Opens the modal directly showing Comments and option to post a note
+    // Opens dedicated Comments & Notes Modal (Comments ONLY, NO tab bar)
     function openLeadCommentsModal(leadId) {
       const lead = followUpLeadsData.find(l => l.id === leadId);
       if (!lead) return;
 
-      activeHistoryLead = lead;
-      syncLeadModalContext(lead);
-      switchLeadModalView('comments');
+      activeCommentsLead = lead;
 
-      const modal = document.getElementById('leadHistoryModal');
-      if (modal) {
-        modal.style.display = 'flex';
-        modal.classList.remove('hidden');
-      }
-
-      const input = document.getElementById('leadModalCommentInput');
-      if (input) {
-        setTimeout(() => input.focus(), 150);
-      }
-    }
-
-    // Opens the modal directly showing ONLY Action History of the lead
-    function openLeadHistoryModal(leadId) {
-      const lead = followUpLeadsData.find(l => l.id === leadId);
-      if (!lead) return;
-
-      activeHistoryLead = lead;
-      syncLeadModalContext(lead);
-      switchLeadModalView('history');
-
-      const modal = document.getElementById('leadHistoryModal');
-      if (modal) {
-        modal.style.display = 'flex';
-        modal.classList.remove('hidden');
-      }
-    }
-
-    // Synchronizes customer header and counters inside the modal
-    function syncLeadModalContext(lead) {
-      const avatar = document.getElementById('historyModalLeadAvatar');
-      const name = document.getElementById('historyModalLeadName');
-      const phone = document.getElementById('historyModalLeadPhone');
-      const model = document.getElementById('historyModalLeadModel');
-      const commentsBadge = document.getElementById('modalCommentsCountBadge');
-      const historyBadge = document.getElementById('modalHistoryCountBadge');
-      const commentsListCount = document.getElementById('commentsListHeaderCount');
-      const historyListCount = document.getElementById('historyTimelineHeaderCount');
-
-      const commentCount = lead.comments ? lead.comments.length : 0;
-      const historyCount = lead.history ? lead.history.length : 0;
+      const avatar = document.getElementById('commentsModalLeadAvatar');
+      const name = document.getElementById('commentsModalLeadName');
+      const phone = document.getElementById('commentsModalLeadPhone');
+      const model = document.getElementById('commentsModalLeadModel');
+      const subtitle = document.getElementById('commentsModalSubtitle');
+      const count = document.getElementById('commentsModalListCount');
+      const list = document.getElementById('leadCommentsModalList');
+      const input = document.getElementById('leadCommentsModalInput');
 
       if (avatar) avatar.innerText = lead.initials;
       if (name) name.innerText = lead.name;
       if (phone) phone.innerText = lead.phone;
       if (model) model.innerText = lead.model;
-
-      if (commentsBadge) commentsBadge.innerText = commentCount;
-      if (historyBadge) historyBadge.innerText = historyCount;
-      if (commentsListCount) commentsListCount.innerText = commentCount;
-      if (historyListCount) historyListCount.innerText = historyCount;
-
-      const commentsContainer = document.getElementById('leadModalCommentsList');
-      if (commentsContainer) commentsContainer.innerHTML = renderLeadCommentsList(lead);
-
-      const timelineContainer = document.getElementById('leadModalHistoryTimelineList');
-      if (timelineContainer) timelineContainer.innerHTML = renderLeadHistoryTimeline(lead);
-
-      const input = document.getElementById('leadModalCommentInput');
+      if (subtitle) subtitle.innerText = `Post notes and see all comments for ${lead.name}`;
+      if (count) count.innerText = lead.comments ? lead.comments.length : 0;
+      if (list) list.innerHTML = renderLeadCommentsList(lead);
       if (input) input.value = '';
-    }
 
-    // Toggles between Comments View and Action History View inside the modal
-    function switchLeadModalView(view) {
-      const viewComments = document.getElementById('leadModalViewComments');
-      const viewHistory = document.getElementById('leadModalViewHistory');
-      const tabComments = document.getElementById('leadModalTabComments');
-      const tabHistory = document.getElementById('leadModalTabHistory');
-      const title = document.getElementById('leadModalHeaderTitle');
-      const subtitle = document.getElementById('leadModalHeaderSubtitle');
-      const icon = document.getElementById('leadModalHeaderIcon');
+      const modal = document.getElementById('leadCommentsModal');
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.remove('hidden');
+      }
 
-      const leadName = activeHistoryLead ? activeHistoryLead.name : 'this lead';
-
-      if (view === 'comments') {
-        if (viewComments) viewComments.classList.remove('hidden');
-        if (viewHistory) viewHistory.classList.add('hidden');
-
-        if (tabComments) tabComments.className = 'flex-1 py-1.5 text-xs font-black rounded-lg bg-[#007AFF] text-white shadow-2xs transition-all cursor-pointer flex items-center justify-center gap-1.5';
-        if (tabHistory) tabHistory.className = 'flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all cursor-pointer flex items-center justify-center gap-1.5';
-
-        if (title) title.innerText = 'Lead Comments & Notes';
-        if (subtitle) subtitle.innerText = `Post notes and see all comments for ${leadName}`;
-        if (icon) icon.className = 'fa-solid fa-comments';
-      } else {
-        if (viewComments) viewComments.classList.add('hidden');
-        if (viewHistory) viewHistory.classList.remove('hidden');
-
-        if (tabComments) tabComments.className = 'flex-1 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all cursor-pointer flex items-center justify-center gap-1.5';
-        if (tabHistory) tabHistory.className = 'flex-1 py-1.5 text-xs font-black rounded-lg bg-[#007AFF] text-white shadow-2xs transition-all cursor-pointer flex items-center justify-center gap-1.5';
-
-        if (title) title.innerText = 'Lead Action History';
-        if (subtitle) subtitle.innerText = `Chronological audit trail of actions for ${leadName}`;
-        if (icon) icon.className = 'fa-solid fa-clock-rotate-left';
+      if (input) {
+        setTimeout(() => input.focus(), 150);
       }
     }
 
-    // Closes the modal
-    function closeLeadHistoryModal() {
-      const modal = document.getElementById('leadHistoryModal');
+    // Closes dedicated Comments Modal
+    function closeLeadCommentsModal() {
+      const modal = document.getElementById('leadCommentsModal');
       if (modal) {
         modal.style.display = 'none';
         modal.classList.add('hidden');
       }
-      activeHistoryLead = null;
+      activeCommentsLead = null;
     }
 
-    // Quick-fills a predefined template into the comment input
-    function quickFillModalComment(text) {
-      const input = document.getElementById('leadModalCommentInput');
+    // Quick-fills a predefined template into the comments modal input
+    function quickFillCommentsModal(text) {
+      const input = document.getElementById('leadCommentsModalInput');
       if (input) {
         input.value = text;
         input.focus();
       }
     }
 
-    // Posts a new comment to the lead's comments list
-    function addLeadModalComment() {
-      if (!activeHistoryLead) return;
-      const input = document.getElementById('leadModalCommentInput');
+    // Posts a new comment to the lead's comments list from dedicated Comments Modal
+    function addLeadCommentsModalPost() {
+      if (!activeCommentsLead) return;
+      const input = document.getElementById('leadCommentsModalInput');
       if (!input) return;
       const text = input.value.trim();
       if (!text) {
@@ -6717,7 +6683,7 @@
         return;
       }
 
-      const lead = activeHistoryLead;
+      const lead = activeCommentsLead;
       if (!lead.comments) lead.comments = [];
 
       lead.comments.unshift({
@@ -6728,14 +6694,12 @@
       });
 
       // Update comments list in modal
-      const commentsContainer = document.getElementById('leadModalCommentsList');
-      if (commentsContainer) commentsContainer.innerHTML = renderLeadCommentsList(lead);
+      const list = document.getElementById('leadCommentsModalList');
+      if (list) list.innerHTML = renderLeadCommentsList(lead);
 
-      // Update badges
-      const commentsBadge = document.getElementById('modalCommentsCountBadge');
-      const commentsListCount = document.getElementById('commentsListHeaderCount');
-      if (commentsBadge) commentsBadge.innerText = lead.comments.length;
-      if (commentsListCount) commentsListCount.innerText = lead.comments.length;
+      // Update count in modal header
+      const count = document.getElementById('commentsModalListCount');
+      if (count) count.innerText = lead.comments.length;
 
       // Update card snippet on feed
       const cardSnippet = document.getElementById('leadSnippet-' + lead.id);
@@ -6743,6 +6707,54 @@
 
       input.value = '';
       showAppToast(`Comment recorded for ${lead.name}`, 'success');
+    }
+
+    // Opens dedicated Action History Modal (History ONLY, NO tab bar, NO comment input)
+    function openLeadHistoryModal(leadId) {
+      const lead = followUpLeadsData.find(l => l.id === leadId);
+      if (!lead) return;
+
+      activeHistoryLead = lead;
+
+      const avatar = document.getElementById('historyModalLeadAvatar');
+      const name = document.getElementById('historyModalLeadName');
+      const phone = document.getElementById('historyModalLeadPhone');
+      const model = document.getElementById('historyModalLeadModel');
+      const subtitle = document.getElementById('historyModalSubtitle');
+      const count = document.getElementById('historyTimelineHeaderCount');
+      const timeline = document.getElementById('leadHistoryModalTimelineList');
+
+      if (avatar) avatar.innerText = lead.initials;
+      if (name) name.innerText = lead.name;
+      if (phone) phone.innerText = lead.phone;
+      if (model) model.innerText = lead.model;
+      if (subtitle) subtitle.innerText = `Chronological audit trail of actions for ${lead.name}`;
+      if (count) count.innerText = lead.history ? lead.history.length : 0;
+      if (timeline) timeline.innerHTML = renderLeadHistoryTimeline(lead);
+
+      const modal = document.getElementById('leadHistoryModal');
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.remove('hidden');
+      }
+    }
+
+    // Closes dedicated Action History Modal
+    function closeLeadHistoryModal() {
+      const modal = document.getElementById('leadHistoryModal');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.add('hidden');
+      }
+      activeHistoryLead = null;
+    }
+
+    // Backwards-compatibility aliases
+    function quickFillModalComment(text) {
+      quickFillCommentsModal(text);
+    }
+    function addLeadModalComment() {
+      addLeadCommentsModalPost();
     }
 
     // Backward compatibility helpers
@@ -8783,7 +8795,10 @@
     }
 
     // Check URL parameters for direct deep-linking & testing
-    window.addEventListener('load', function() {
+    let deepLinksHandled = false;
+    function handleUrlDeepLinks() {
+      if (deepLinksHandled) return;
+      deepLinksHandled = true;
       initDragFilter();
       const params = new URLSearchParams(window.location.search);
       const homeFilter = params.get('home_filter');
@@ -8819,26 +8834,18 @@
         } else if (targetScreen === 'activities' || targetScreen === 'followups') {
           openFollowUpsScreen();
           if (params.get('modal') === 'testdrive') {
-            setTimeout(() => {
-              openTestDriveBookingModal(params.get('lead') || 'ENQ987875369');
-            }, 100);
+            openTestDriveBookingModal(params.get('lead') || 'ENQ987875369');
           }
           if (params.get('comments_lead')) {
-            setTimeout(() => {
-              openLeadCommentsModal(params.get('comments_lead'));
-              if (params.get('demo_comment')) {
-                setTimeout(() => {
-                  const input = document.getElementById('leadModalCommentInput');
-                  if (input) input.value = params.get('demo_comment');
-                  addLeadModalComment();
-                }, 200);
-              }
-            }, 150);
+            openLeadCommentsModal(params.get('comments_lead'));
+            if (params.get('demo_comment')) {
+              const input = document.getElementById('leadCommentsModalInput') || document.getElementById('leadModalCommentInput');
+              if (input) input.value = params.get('demo_comment');
+              addLeadCommentsModalPost();
+            }
           }
           if (params.get('history_lead')) {
-            setTimeout(() => {
-              openLeadHistoryModal(params.get('history_lead'));
-            }, 150);
+            openLeadHistoryModal(params.get('history_lead'));
           }
           if (params.get('demo_move_lead')) {
             setTimeout(() => {
@@ -8908,7 +8915,10 @@
           }
         }
       }
-    });
+    }
+    handleUrlDeepLinks();
+    window.addEventListener('DOMContentLoaded', handleUrlDeepLinks);
+    window.addEventListener('load', handleUrlDeepLinks);
   </script>
 </body>
 </html>
