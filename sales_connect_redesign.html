@@ -2350,6 +2350,193 @@
         </div>
       </div>
 
+      <!-- ========================================== -->
+      <!-- SCREEN: SEPARATE FOLLOW-UP LEAD DETAILS    -->
+      <!-- ========================================== -->
+      <div id="screen-lead-profile" class="app-screen space-y-3.5 pb-24">
+        <!-- Top App Bar -->
+        <div class="flex items-center justify-between border-b border-[#E0E8F5] pb-2.5 pt-1">
+          <div class="flex items-center gap-2.5">
+            <button onclick="goBackFromLeadProfile()" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-700 border border-slate-200 active:bg-slate-100 shadow-xs cursor-pointer transition-transform active:scale-95" title="Back to Follow-ups">
+              <i class="fa-solid fa-arrow-left text-sm"></i>
+            </button>
+            <div>
+              <div class="flex items-center gap-2">
+                <h1 class="text-base font-black text-[#1E293B] leading-tight">Lead Details</h1>
+                <span id="profileStatusBadge" class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF] animate-pulse"></span>
+                  <span id="profileStatusBadgeText">Follow-up</span>
+                </span>
+              </div>
+              <p id="profileLeadSubtitle" class="text-[10px] font-semibold text-slate-500">ENQ987875369 • Due Today 11:30 AM</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button onclick="showAppToast('Customer profile link copied', 'info')" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-600 border border-slate-200 hover:bg-slate-50 active:scale-95 cursor-pointer shadow-xs" title="Share Lead">
+              <i class="fa-solid fa-arrow-up-from-bracket text-xs"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 1. Customer Identity & Quick Comms Card -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-3">
+          <div class="flex items-start justify-between">
+            <div class="flex items-center gap-3">
+              <div id="profileLeadAvatar" class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#007AFF] to-blue-600 text-white font-black text-sm flex items-center justify-center shadow-xs shrink-0">
+                RK
+              </div>
+              <div>
+                <h2 id="profileLeadName" class="text-base font-black text-[#1E293B] leading-tight">Rahul K.</h2>
+                <p id="profileLeadPhone" class="text-xs font-semibold text-slate-500 mt-0.5">+91 98765 89706</p>
+                <div class="flex items-center gap-1.5 mt-1">
+                  <span id="profileDueTag" class="text-[9.5px] font-extrabold text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200 uppercase tracking-tight flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
+                    <span id="profileDueTagText">Today • 11:30 AM</span>
+                  </span>
+                  <span id="profilePriorityTag" class="text-[9.5px] font-extrabold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">Hot Priority</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="grid grid-cols-2 gap-2 pt-1 border-t border-slate-100">
+            <button id="profileCallBtn" onclick="triggerLeadCall(activeProfileLead?.id, activeProfileLead?.phone)" class="py-2 px-3 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200 rounded-xl text-xs font-bold flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer">
+              <i class="fa-solid fa-phone text-xs"></i>
+              <span>Call Customer</span>
+            </button>
+            <button id="profileWhatsAppBtn" onclick="triggerLeadWhatsApp(activeProfileLead?.id, activeProfileLead?.phone)" class="py-2 px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 rounded-xl text-xs font-bold flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer">
+              <i class="fa-brands fa-whatsapp text-sm text-emerald-600"></i>
+              <span>WhatsApp</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Customer & Vehicle Information Card -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+            <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+              <i class="fa-solid fa-car text-[#007AFF] text-xs"></i>
+              <span>Vehicle & Customer Details</span>
+            </h3>
+            <span id="profileLeadIdBadge" class="text-[10px] font-mono font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">ENQ987875369</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-y-2.5 gap-x-3 text-xs">
+            <div>
+              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Interested Model</span>
+              <span id="profileLeadCarModel" class="font-extrabold text-slate-800 text-xs block mt-0.5">Suzuki Brezza ZXi (Petrol MT)</span>
+            </div>
+            <div>
+              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Estimated Budget</span>
+              <span id="profileLeadBudget" class="font-extrabold text-slate-800 text-xs block mt-0.5">₹ 11.50 Lakhs</span>
+            </div>
+            <div>
+              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Payment / Finance</span>
+              <span id="profileLeadPayment" class="font-semibold text-slate-700 block mt-0.5">Bank Loan (80% EMI)</span>
+            </div>
+            <div>
+              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Exchange Vehicle</span>
+              <span id="profileLeadExchange" class="font-semibold text-slate-700 block mt-0.5">Yes (Old Swift 2018)</span>
+            </div>
+            <div>
+              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Lead Source</span>
+              <span id="profileLeadSource" class="font-semibold text-slate-700 block mt-0.5">Showroom Walk-in</span>
+            </div>
+            <div>
+              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Assigned Executive</span>
+              <span id="profileLeadExecutive" class="font-bold text-[#007AFF] block mt-0.5">Akash G. (You)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Test Drive Banner CTA -->
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-200/90 p-3.5 shadow-2xs space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-lg bg-[#007AFF] text-white flex items-center justify-center text-xs">
+                <i class="fa-solid fa-car-side"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-black text-slate-800">Test Drive Booking</h4>
+                <p class="text-[10px] font-semibold text-slate-500">Pick preferred date & vehicle demo slot</p>
+              </div>
+            </div>
+            <span class="text-[9.5px] font-bold text-[#007AFF] bg-white px-2 py-0.5 rounded-full border border-blue-200">Recommended</span>
+          </div>
+          <button id="profilePageTestDriveBtn" onclick="openTestDriveBookingModal(activeProfileLead?.id)" class="w-full py-2.5 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-black flex items-center justify-center gap-2 shadow-xs active:scale-[0.99] transition-all cursor-pointer">
+            <i class="fa-solid fa-car-side text-xs"></i>
+            <span>Add / Book Test Drive</span>
+            <i class="fa-solid fa-arrow-right text-[10px] opacity-75"></i>
+          </button>
+        </div>
+
+        <!-- 4. Comments & Remarks Section (With Live Inline Composer) -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+            <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+              <i class="fa-regular fa-comment-dots text-[#007AFF] text-xs"></i>
+              <span>Comments & Remarks</span>
+            </h3>
+            <span id="profileCommentsCountBadge" class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200">2 Notes</span>
+          </div>
+
+          <!-- Inline Comment Composer -->
+          <div class="space-y-2 bg-slate-50/80 p-2.5 rounded-xl border border-slate-200/80">
+            <textarea id="profileCommentInput" rows="2" placeholder="Add follow-up notes, customer objections, or next step..." class="w-full text-xs p-2 rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-[#007AFF]/30 focus:border-[#007AFF] resize-none"></textarea>
+            
+            <div class="flex items-center justify-between flex-wrap gap-1.5 pt-0.5">
+              <!-- Quick Chips -->
+              <div class="flex items-center gap-1 flex-wrap">
+                <button type="button" onclick="fillProfileCommentChip('Call tomorrow morning')" class="text-[9.5px] font-bold px-2 py-0.5 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 cursor-pointer transition-colors">+ Call tomorrow</button>
+                <button type="button" onclick="fillProfileCommentChip('Family discussion tonight')" class="text-[9.5px] font-bold px-2 py-0.5 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 cursor-pointer transition-colors">+ Family discussion</button>
+                <button type="button" onclick="fillProfileCommentChip('Loan approved by bank')" class="text-[9.5px] font-bold px-2 py-0.5 rounded-full bg-white hover:bg-blue-50 text-slate-600 hover:text-[#007AFF] border border-slate-200 cursor-pointer transition-colors">+ Loan approved</button>
+              </div>
+              <button type="button" onclick="addProfileLeadComment()" class="px-3 py-1.5 bg-[#007AFF] hover:bg-blue-600 text-white rounded-lg text-xs font-bold shadow-2xs active:scale-95 cursor-pointer flex items-center gap-1 transition-all">
+                <i class="fa-solid fa-paper-plane text-[9px]"></i>
+                <span>Post</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Chronological List of Comments -->
+          <div id="profileCommentsList" class="space-y-2 pt-1">
+            <!-- Dynamic comments injected here -->
+          </div>
+        </div>
+
+        <!-- 5. Action History Section -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+            <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+              <i class="fa-solid fa-clock-rotate-left text-slate-500 text-xs"></i>
+              <span>Lead Action History</span>
+            </h3>
+            <span id="profileHistoryCountBadge" class="text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200">2 Events</span>
+          </div>
+
+          <!-- Chronological Timeline -->
+          <div id="profileHistoryTimeline" class="space-y-3 relative pl-6 border-l-2 border-slate-200 ml-2 pt-1 pb-1">
+            <!-- Dynamic history items injected here -->
+          </div>
+        </div>
+
+        <!-- Floating Sticky Bottom Bar for Quick Test Drive Booking -->
+        <div class="sticky bottom-16 left-0 right-0 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl p-2.5 shadow-xl flex items-center gap-2 z-40">
+          <button onclick="triggerLeadCall(activeProfileLead?.id, activeProfileLead?.phone)" class="w-10 h-10 rounded-xl bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/90 flex items-center justify-center shrink-0 active:scale-95 transition-transform" title="Call">
+            <i class="fa-solid fa-phone text-xs"></i>
+          </button>
+          <button onclick="triggerLeadWhatsApp(activeProfileLead?.id, activeProfileLead?.phone)" class="w-10 h-10 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200/90 flex items-center justify-center shrink-0 active:scale-95 transition-transform" title="WhatsApp">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+          </button>
+          <button onclick="openTestDriveBookingModal(activeProfileLead?.id)" class="flex-1 py-2.5 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-black flex items-center justify-center gap-2 shadow-xs active:scale-[0.99] transition-all cursor-pointer">
+            <i class="fa-solid fa-car-side text-xs"></i>
+            <span>Add Test Drive</span>
+            <i class="fa-solid fa-arrow-right text-[10px] opacity-75"></i>
+          </button>
+        </div>
+      </div>
+
       <!-- SCREEN 5: NOTIFICATIONS SCREEN -->
       <div id="screen-notifications" class="app-screen space-y-3.5">
         <!-- Header -->
@@ -5025,7 +5212,7 @@
       const currentActive = document.querySelector('.app-screen.active');
       if (currentActive && currentActive.id) {
         const currentId = currentActive.id.replace('screen-', '');
-        if (currentId !== 'enquiry-details' && currentId !== 'activities' && currentId !== 'sales-enquiry' && currentId !== 'service-enquiry' && currentId !== 'other-enquiry' && currentId !== 'booking-details') {
+        if (currentId !== 'enquiry-details' && currentId !== 'activities' && currentId !== 'lead-profile' && currentId !== 'sales-enquiry' && currentId !== 'service-enquiry' && currentId !== 'other-enquiry' && currentId !== 'booking-details') {
           lastActiveScreen = currentId;
         }
       }
@@ -5046,7 +5233,7 @@
         if(label) label.classList.replace('font-bold', 'font-medium');
       });
 
-      const navKey = (screenName === 'enquiry-details' || screenName === 'activities' || screenName === 'sales-enquiry' || screenName === 'service-enquiry' || screenName === 'other-enquiry') ? 'enquiry' : ((screenName === 'booking-create' || screenName === 'booking-details') ? 'booking' : screenName);
+      const navKey = (screenName === 'enquiry-details' || screenName === 'activities' || screenName === 'lead-profile' || screenName === 'sales-enquiry' || screenName === 'service-enquiry' || screenName === 'other-enquiry') ? 'enquiry' : ((screenName === 'booking-create' || screenName === 'booking-details') ? 'booking' : screenName);
       const activeNavBtn = document.getElementById('nav-' + navKey);
       if(activeNavBtn) {
         activeNavBtn.classList.remove('text-[#94A3B8]');
@@ -6543,9 +6730,9 @@
       const historyCount = lead.history ? lead.history.length : 0;
 
       return `
-        <div id="followup-card-${lead.id}" class="act-lead-card ${lead.isToday ? 'today' : 'upcoming'} all bg-white p-3 rounded-2xl border border-slate-200/90 shadow-xs space-y-2.5 transition-all hover:border-blue-200">
+        <div id="followup-card-${lead.id}" onclick="openFollowUpLeadDetails('${lead.id}')" class="act-lead-card ${lead.isToday ? 'today' : 'upcoming'} all bg-white p-3 rounded-2xl border border-slate-200/90 shadow-xs space-y-2.5 transition-all hover:border-blue-200 cursor-pointer active:scale-[0.995]" title="Click to view full customer details & notes">
           <!-- Card Header (Customer Identity & Details) -->
-          <div class="flex items-center justify-between cursor-pointer" onclick="openEnquiryDetails('${lead.name}', '${lead.id}')">
+          <div class="flex items-center justify-between">
             <div class="flex items-center gap-2.5 min-w-0 flex-1">
               <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-100">
                 ${lead.initials}
@@ -6820,6 +7007,203 @@
         modal.classList.add('hidden');
       }
       activeHistoryLead = null;
+    }
+
+    // ==========================================
+    // SEPARATE LEAD PROFILE SCREEN CONTROLLER
+    // ==========================================
+    let activeProfileLead = null;
+
+    function openFollowUpLeadDetails(leadId) {
+      const lead = followUpLeadsData.find(l => l.id === leadId);
+      if (!lead) return;
+
+      activeProfileLead = lead;
+      renderFollowUpLeadProfileScreen(lead);
+      switchScreen('lead-profile');
+    }
+
+    function goBackFromLeadProfile() {
+      switchScreen('activities');
+      renderFollowUpScreen();
+    }
+
+    function renderFollowUpLeadProfileScreen(lead) {
+      if (!lead) return;
+
+      // Header info
+      const subtitle = document.getElementById('profileLeadSubtitle');
+      const statusText = document.getElementById('profileStatusBadgeText');
+      if (subtitle) subtitle.innerText = `${lead.id} • ${lead.dueText}`;
+      if (statusText) statusText.innerText = lead.status;
+
+      // Identity Card
+      const avatar = document.getElementById('profileLeadAvatar');
+      const name = document.getElementById('profileLeadName');
+      const phone = document.getElementById('profileLeadPhone');
+      const dueTag = document.getElementById('profileDueTagText');
+      const priorityTag = document.getElementById('profilePriorityTag');
+
+      if (avatar) avatar.innerText = lead.initials;
+      if (name) name.innerText = lead.name;
+      if (phone) phone.innerText = lead.phone;
+      if (dueTag) dueTag.innerText = lead.dueText;
+      if (priorityTag) {
+        priorityTag.innerText = `${lead.priority || 'Hot'} Priority`;
+        if (lead.priority === 'Hot') {
+          priorityTag.className = 'text-[9.5px] font-extrabold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200';
+        } else {
+          priorityTag.className = 'text-[9.5px] font-extrabold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200';
+        }
+      }
+
+      // Details Card
+      const leadIdBadge = document.getElementById('profileLeadIdBadge');
+      const carModel = document.getElementById('profileLeadCarModel');
+      const budget = document.getElementById('profileLeadBudget');
+      const payment = document.getElementById('profileLeadPayment');
+      const exchange = document.getElementById('profileLeadExchange');
+      const source = document.getElementById('profileLeadSource');
+      const executive = document.getElementById('profileLeadExecutive');
+
+      if (leadIdBadge) leadIdBadge.innerText = lead.id;
+      if (carModel) carModel.innerText = lead.model;
+      if (budget) {
+        if (lead.model.includes('Creta') || lead.model.includes('Thar') || lead.model.includes('Vitara')) {
+          budget.innerText = '₹ 15.50 - 18.00 Lakhs';
+        } else if (lead.model.includes('Gixxer')) {
+          budget.innerText = '₹ 1.45 Lakhs';
+        } else {
+          budget.innerText = '₹ 9.50 - 11.50 Lakhs';
+        }
+      }
+      if (payment) payment.innerText = 'Bank Finance / 80% Loan';
+      if (exchange) exchange.innerText = lead.isToday ? 'Evaluated (Bonus ₹25,000)' : 'Not Required';
+      if (source) source.innerText = lead.isToday ? 'Showroom Walk-in' : 'Website Enquiry';
+      if (executive) executive.innerText = 'Akash G. (You)';
+
+      // Render Comments and History
+      renderProfileCommentsAndHistory(lead);
+    }
+
+    function renderProfileCommentsAndHistory(lead) {
+      if (!lead) return;
+
+      // 1. Comments
+      const commentsCount = document.getElementById('profileCommentsCountBadge');
+      const commentsList = document.getElementById('profileCommentsList');
+      const comments = lead.comments || [];
+
+      if (commentsCount) commentsCount.innerText = `${comments.length} Note${comments.length === 1 ? '' : 's'}`;
+
+      if (commentsList) {
+        if (comments.length === 0) {
+          commentsList.innerHTML = `
+            <div class="py-4 text-center text-slate-400 text-xs">
+              <i class="fa-regular fa-comment text-slate-300 text-lg mb-1 block"></i>
+              No comments posted yet. Add a note below!
+            </div>
+          `;
+        } else {
+          commentsList.innerHTML = comments.map(c => `
+            <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1 transition-all">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-5 h-5 rounded-full bg-blue-100 text-[#007AFF] text-[9.5px] font-black flex items-center justify-center shrink-0">
+                    ${c.user ? c.user.split(' ').map(n=>n[0]).join('') : 'U'}
+                  </span>
+                  <span class="text-xs font-bold text-slate-800">${c.user}</span>
+                </div>
+                <span class="text-[9.5px] font-semibold text-slate-400">${c.time}</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-snug pl-6">${c.text}</p>
+            </div>
+          `).join('');
+        }
+      }
+
+      // 2. History Timeline
+      const historyCount = document.getElementById('profileHistoryCountBadge');
+      const historyTimeline = document.getElementById('profileHistoryTimeline');
+      const history = lead.history || [];
+
+      if (historyCount) historyCount.innerText = `${history.length} Event${history.length === 1 ? '' : 's'}`;
+
+      if (historyTimeline) {
+        if (history.length === 0) {
+          historyTimeline.innerHTML = `
+            <div class="py-3 text-slate-400 text-xs">No historical actions logged yet.</div>
+          `;
+        } else {
+          historyTimeline.innerHTML = history.map((item, idx) => {
+            let iconClass = 'fa-solid fa-phone text-blue-600 bg-blue-50 border-blue-200';
+            if (item.type === 'call') iconClass = 'fa-solid fa-phone text-blue-600 bg-blue-100 border-blue-200';
+            else if (item.type === 'whatsapp') iconClass = 'fa-brands fa-whatsapp text-emerald-600 bg-emerald-100 border-emerald-200';
+            else if (item.type === 'brochure') iconClass = 'fa-solid fa-file-pdf text-purple-600 bg-purple-100 border-purple-200';
+            else if (item.type === 'comment') iconClass = 'fa-solid fa-message text-indigo-600 bg-indigo-100 border-indigo-200';
+            else if (item.type === 'testdrive') iconClass = 'fa-solid fa-car-side text-[#007AFF] bg-blue-100 border-blue-300';
+            else iconClass = 'fa-solid fa-user-check text-slate-600 bg-slate-100 border-slate-200';
+
+            return `
+              <div class="relative pl-6 pb-3.5 last:pb-0">
+                <div class="absolute -left-2.5 top-0.5 w-5 h-5 rounded-full border ${iconClass} flex items-center justify-center text-[9px] shadow-2xs"></div>
+                <div class="space-y-0.5">
+                  <div class="flex items-center justify-between">
+                    <h4 class="text-xs font-bold text-slate-800 leading-tight">${item.title}</h4>
+                    <span class="text-[9.5px] font-semibold text-slate-400">${item.time}</span>
+                  </div>
+                  <p class="text-[11px] text-slate-600 leading-snug">${item.desc}</p>
+                  <span class="text-[9px] font-semibold text-slate-400">By ${item.user || 'System'}</span>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+    }
+
+    function addProfileLeadComment() {
+      if (!activeProfileLead) return;
+
+      const input = document.getElementById('profileCommentInput');
+      const text = input ? input.value.trim() : '';
+
+      if (!text) {
+        showAppToast('Please enter a remark or comment first', 'error');
+        return;
+      }
+
+      if (!activeProfileLead.comments) activeProfileLead.comments = [];
+      const newComment = {
+        id: 'c_' + Date.now(),
+        user: 'Akash G.',
+        time: 'Just now',
+        text: text
+      };
+      activeProfileLead.comments.unshift(newComment);
+
+      if (!activeProfileLead.history) activeProfileLead.history = [];
+      activeProfileLead.history.unshift({
+        type: 'comment',
+        title: 'Remark Added',
+        desc: text,
+        time: 'Just now',
+        user: 'Akash G.'
+      });
+
+      if (input) input.value = '';
+
+      renderProfileCommentsAndHistory(activeProfileLead);
+      renderFollowUpScreen();
+      showAppToast(`Note saved for ${activeProfileLead.name}`, 'success');
+    }
+
+    function fillProfileCommentChip(text) {
+      const input = document.getElementById('profileCommentInput');
+      if (input) {
+        input.value = text;
+        input.focus();
+      }
     }
 
     // Backwards-compatibility aliases
@@ -8857,7 +9241,10 @@
       }
 
       if (targetScreen) {
-        if (targetScreen === 'booking-details') {
+        if (targetScreen === 'lead-profile' || targetScreen === 'lead-details') {
+          const lId = params.get('lead') || params.get('id') || 'ENQ987875369';
+          openFollowUpLeadDetails(lId);
+        } else if (targetScreen === 'booking-details') {
           openBookingDetails('BK987875364');
         } else if (targetScreen === 'enquiry') {
           openEnquiryWithTemperature('all');
@@ -8905,7 +9292,10 @@
       try { savedScreen = sessionStorage.getItem('activeScreen'); } catch (e) {}
       const targetScreen = params.get('screen') || (hash === 'activities' || hash === 'followups' ? 'activities' : null) || (savedScreen === 'activities' ? 'activities' : null);
       if (targetScreen) {
-        if (targetScreen === 'booking-details') {
+        if (targetScreen === 'lead-profile' || targetScreen === 'lead-details') {
+          const lId = params.get('lead') || params.get('id') || 'ENQ987875369';
+          openFollowUpLeadDetails(lId);
+        } else if (targetScreen === 'booking-details') {
           openBookingDetails(params.get('id') || 'BK987875311');
         } else if (targetScreen === 'activities' || targetScreen === 'followups') {
           openFollowUpsScreen();
@@ -8927,6 +9317,10 @@
           if (params.get('expand_other') === '1' || params.get('expand') === 'other') {
             isOtherFollowupsOpen = true;
             applyFollowupSectionsCollapseState();
+          }
+          if (params.get('lead_profile') || params.get('lead_details')) {
+            const lId = params.get('lead_profile') || params.get('lead_details') || 'ENQ987875369';
+            openFollowUpLeadDetails(lId);
           }
           if (params.get('history_lead')) {
             openLeadHistoryModal(params.get('history_lead'));
