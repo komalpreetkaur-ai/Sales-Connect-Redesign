@@ -1186,9 +1186,24 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
 
 ---
 
+## 👤 Lead Profile Details Screen & UI Refinements (`#screen-lead-profile`)
+
+- **Fixed Floating Sticky Overlap**: Removed the redundant `sticky bottom-16` floating action bar (`[ 📞 ] [ 💬 ] [ 🚗 Add Test Drive → ]`) that was overlapping and obstructing the in-page Test Drive booking card.
+- **Clean Customer Identity Card**: Removed the `Call Customer` and `WhatsApp` button row from the customer identity header card, giving a much cleaner, streamlined card showing avatar initials, customer name, phone number, scheduled follow-up tag, and priority pill.
+- **Unobstructed In-Page Test Drive Card**: The prominent in-page `[ 🚗 Add / Book Test Drive → ]` action card now sits cleanly in the document flow with zero visual collisions.
+- **Comments & Remarks with Live Composer**: Includes quick chips (`+ Call tomorrow`, `+ Family discussion`, `+ Loan approved`), text input, and chronological list of notes.
+- **Action History Timeline**: Chronological audit trail showing call completions, status changes, and creation events.
+
+![Clean Lead Profile View](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_profile_clean.png)
+
+![Scrolled Lead Profile View](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_profile_scrolled_clean.png)
+
+---
+
 ## 🌐 Live Prototype Link
 
 - **Local HTML File**: [sales_connect_redesign.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/sales_connect_redesign.html)
 - **Live Local Server**: [http://localhost:9847/sales_connect_redesign.html](http://localhost:9847/sales_connect_redesign.html)
+
 
 
