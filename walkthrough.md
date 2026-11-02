@@ -1,5 +1,48 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 👤 Dedicated Separate Lead Details & Profile Page
+
+Decoupled the follow-up cards from the generic enquiry details screen. Clicking on any follow-up card now opens a **dedicated Customer & Lead Profile Screen** (`#screen-lead-profile`):
+
+1. **Top Bar & Back Navigation**:
+   - Back button (`[ ← ]`) navigates directly back to the Follow-Up Leads screen (`activities`).
+   - Displays customer name, status badge (`• Follow-up`), and due time (`ENQ987875369 • Today • 11:30 AM`).
+
+2. **Customer Identity & Comms Card**:
+   - Customer avatar with initials (`RK`), Full Name (`Rahul K.`), phone number, due tag, and priority pill.
+   - Quick one-tap communication buttons: **`[ 📞 Call Customer ]`** and **`[ 💬 WhatsApp ]`**.
+
+3. **Complete Vehicle & Customer Details**:
+   - **Interested Model**: `Suzuki Brezza ZXi (Petrol MT)`
+   - **Estimated Budget**: `₹ 9.50 - 11.50 Lakhs`
+   - **Payment / Finance**: `Bank Finance / 80% Loan`
+   - **Exchange Vehicle**: `Evaluated (Bonus ₹25,000)`
+   - **Lead Source**: `Showroom Walk-in`
+   - **Assigned Executive**: `Akash G. (You)`
+
+4. **Comments & Remarks (List + Live Inline Composer)**:
+   - Full chronological list of all customer remarks and notes with author and timestamp badges.
+   - Built-in remark composer with quick template chips (`+ Call tomorrow`, `+ Family discussion`, `+ Loan approved`) and a **`[ Post ]`** action.
+
+5. **Action History Audit Trail**:
+   - Chronological timeline tracking all events (Outgoing Calls, WhatsApp messages, Brochure sharing, Lead creation).
+
+6. **Prominent Test Drive CTA**:
+   - In-page highlighted **Test Drive Booking card** (`[ 🚗 Add / Book Test Drive → ]`).
+   - Sticky floating quick bar with **`[ 🚗 Add Test Drive → ]`** alongside direct call and WhatsApp shortcuts.
+   - Directly launches the Swiggy/Zomato style slot booking flow.
+
+---
+
+### 📸 Visual Evidence (Dedicated Lead Profile Page)
+
+| 1. Customer & Vehicle Details | 2. Comments & Action History | 3. Floating Quick Action Bar |
+| :---: | :---: | :---: |
+| ![Lead Profile Header](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_profile_screen.png) | ![Comments & History](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_profile_scrolled.png) | ![Floating Test Drive CTA](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_profile_screen.png) |
+| *Complete customer overview, car specifications, budget, finance, and one-tap communication.* | *Live notes composer with template chips and chronological action timeline.* | *Sticky bottom bar with direct Call, WhatsApp, and Add Test Drive CTA.* |
+
+---
+
 ## 📂 Collapsible Follow-Up Sections (`Today` Open by Default)
 
 Made both follow-up sections collapsible with interactive header toggles:
