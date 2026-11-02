@@ -2398,18 +2398,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Quick Action Buttons -->
-          <div class="grid grid-cols-2 gap-2 pt-1 border-t border-slate-100">
-            <button id="profileCallBtn" onclick="triggerLeadCall(activeProfileLead?.id, activeProfileLead?.phone)" class="py-2 px-3 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200 rounded-xl text-xs font-bold flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer">
-              <i class="fa-solid fa-phone text-xs"></i>
-              <span>Call Customer</span>
-            </button>
-            <button id="profileWhatsAppBtn" onclick="triggerLeadWhatsApp(activeProfileLead?.id, activeProfileLead?.phone)" class="py-2 px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 rounded-xl text-xs font-bold flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer">
-              <i class="fa-brands fa-whatsapp text-sm text-emerald-600"></i>
-              <span>WhatsApp</span>
-            </button>
-          </div>
         </div>
 
         <!-- 2. Customer & Vehicle Information Card -->
@@ -2521,20 +2509,7 @@
           </div>
         </div>
 
-        <!-- Floating Sticky Bottom Bar for Quick Test Drive Booking -->
-        <div class="sticky bottom-16 left-0 right-0 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl p-2.5 shadow-xl flex items-center gap-2 z-40">
-          <button onclick="triggerLeadCall(activeProfileLead?.id, activeProfileLead?.phone)" class="w-10 h-10 rounded-xl bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/90 flex items-center justify-center shrink-0 active:scale-95 transition-transform" title="Call">
-            <i class="fa-solid fa-phone text-xs"></i>
-          </button>
-          <button onclick="triggerLeadWhatsApp(activeProfileLead?.id, activeProfileLead?.phone)" class="w-10 h-10 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200/90 flex items-center justify-center shrink-0 active:scale-95 transition-transform" title="WhatsApp">
-            <i class="fa-brands fa-whatsapp text-sm"></i>
-          </button>
-          <button onclick="openTestDriveBookingModal(activeProfileLead?.id)" class="flex-1 py-2.5 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-black flex items-center justify-center gap-2 shadow-xs active:scale-[0.99] transition-all cursor-pointer">
-            <i class="fa-solid fa-car-side text-xs"></i>
-            <span>Add Test Drive</span>
-            <i class="fa-solid fa-arrow-right text-[10px] opacity-75"></i>
-          </button>
-        </div>
+
       </div>
 
       <!-- SCREEN 5: NOTIFICATIONS SCREEN -->
