@@ -2362,11 +2362,8 @@
             </button>
             <div>
               <div class="flex items-center gap-2">
-                <h1 class="text-base font-black text-[#1E293B] leading-tight">Lead Details</h1>
-                <span id="profileStatusBadge" class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200 flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF] animate-pulse"></span>
-                  <span id="profileStatusBadgeText">Follow-up</span>
-                </span>
+                <h1 class="text-base font-black text-[#1E293B] leading-tight">Follow up</h1>
+                <span id="profileStatusBadge" class="hidden"><span id="profileStatusBadgeText">Follow-up</span></span>
               </div>
               <p id="profileLeadSubtitle" class="text-[10px] font-semibold text-slate-500">ENQ987875369 • Due Today 11:30 AM</p>
             </div>
@@ -2379,7 +2376,7 @@
         </div>
 
         <!-- 1. Customer Identity & Quick Comms Card -->
-        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-3">
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
               <div id="profileLeadAvatar" class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#007AFF] to-blue-600 text-white font-black text-sm flex items-center justify-center shadow-xs shrink-0">
@@ -2388,13 +2385,6 @@
               <div>
                 <h2 id="profileLeadName" class="text-base font-black text-[#1E293B] leading-tight">Rahul K.</h2>
                 <p id="profileLeadPhone" class="text-xs font-semibold text-slate-500 mt-0.5">+91 98765 89706</p>
-                <div class="flex items-center gap-1.5 mt-1">
-                  <span id="profileDueTag" class="text-[9.5px] font-extrabold text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200 uppercase tracking-tight flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
-                    <span id="profileDueTagText">Today • 11:30 AM</span>
-                  </span>
-                  <span id="profilePriorityTag" class="text-[9.5px] font-extrabold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">Hot Priority</span>
-                </div>
               </div>
             </div>
 
