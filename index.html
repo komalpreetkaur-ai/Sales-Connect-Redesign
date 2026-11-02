@@ -6520,20 +6520,26 @@
             </div>
           </div>
 
-          <!-- Actions Row: Test Drive CTA with Add Comment & History Button -->
-          <div class="flex items-center gap-2 pt-2 border-t border-slate-100/90">
-            <button onclick="event.stopPropagation(); openTestDriveBookingModal('${lead.id}');" class="flex-1 py-2 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-2xs active:scale-[0.98] transition-all cursor-pointer">
+          <!-- Actions: Redesigned based on Priority -->
+          <div class="pt-2 border-t border-slate-100/90 space-y-2">
+            <!-- Priority 1: Primary Action (Test Drive) -->
+            <button onclick="event.stopPropagation(); openTestDriveBookingModal('${lead.id}');" class="w-full py-2.5 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-black flex items-center justify-center gap-2 shadow-xs active:scale-[0.99] transition-all cursor-pointer">
               <i class="fa-solid fa-car-side text-xs"></i>
               <span>Test Drive</span>
+              <i class="fa-solid fa-arrow-right text-[10px] opacity-75"></i>
             </button>
-            <button type="button" onclick="event.stopPropagation(); openLeadCommentsModal('${lead.id}');" class="flex-1 py-2 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/80 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer active:scale-[0.98]" title="Add or view comments">
-              <i class="fa-solid fa-plus text-[9px]"></i>
-              <span>Add Comment</span>
-            </button>
-            <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('${lead.id}');" class="flex-1 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/80 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer active:scale-[0.98]" title="View chronological action history">
-              <i class="fa-solid fa-clock-rotate-left text-slate-500 text-[10px]"></i>
-              <span>History (<span id="historyCount-${lead.id}">${historyCount}</span>)</span>
-            </button>
+
+            <!-- Priority 2: Secondary Actions (Add Comment & History) -->
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="event.stopPropagation(); openLeadCommentsModal('${lead.id}');" class="flex-1 py-2 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-[#007AFF] border border-slate-200/80 rounded-xl text-[11.5px] font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer active:scale-95" title="Add or view comments">
+                <i class="fa-solid fa-plus text-[9px] text-[#007AFF]"></i>
+                <span>Add Comment</span>
+              </button>
+              <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('${lead.id}');" class="flex-1 py-2 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200/80 rounded-xl text-[11.5px] font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer active:scale-95" title="View chronological action history">
+                <i class="fa-solid fa-clock-rotate-left text-slate-500 text-[9.5px]"></i>
+                <span>History (<span id="historyCount-${lead.id}">${historyCount}</span>)</span>
+              </button>
+            </div>
           </div>
         </div>
       `;
