@@ -2312,30 +2312,40 @@
             <p class="text-[10px] text-slate-400">All matching leads have been addressed or scheduled for test drives.</p>
           </div>
 
-          <!-- SECTION 1: TODAY'S FOLLOW-UPS (SHOWN FIRST!) -->
+          <!-- SECTION 1: TODAY'S FOLLOW-UPS (COLLAPSIBLE - OPEN BY DEFAULT) -->
           <div id="todayFollowupsSection" class="space-y-2.5 pt-1">
-            <div class="flex items-center justify-between">
+            <div onclick="toggleTodayFollowups()" class="flex items-center justify-between cursor-pointer select-none py-1 active:opacity-75 transition-all group" title="Click to collapse / expand Today's Follow-ups">
               <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-[#007AFF] animate-pulse"></span>
                 <span>TODAY'S FOLLOW-UPS</span>
               </h3>
-              <span id="todayFollowupsBadge" class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">3 Due Today</span>
+              <div class="flex items-center gap-2">
+                <span id="todayFollowupsBadge" class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">3 Due Today</span>
+                <div class="w-6 h-6 rounded-full bg-slate-100 group-hover:bg-blue-50 flex items-center justify-center text-slate-500 group-hover:text-[#007AFF] transition-colors">
+                  <i id="todayFollowupsChevron" class="fa-solid fa-chevron-down text-[10px]"></i>
+                </div>
+              </div>
             </div>
-            <!-- Dynamic container for today's cards -->
+            <!-- Dynamic container for today's cards (Open by default) -->
             <div id="todayFollowupsCardsContainer" class="space-y-2.5"></div>
           </div>
 
-          <!-- SECTION 2: ALL OTHER FOLLOW-UPS (SHOWN SECOND!) -->
+          <!-- SECTION 2: ALL OTHER FOLLOW-UPS (COLLAPSIBLE - CLOSED BY DEFAULT) -->
           <div id="otherFollowupsSection" class="space-y-2.5 pt-3 border-t border-slate-200/80">
-            <div class="flex items-center justify-between">
+            <div onclick="toggleOtherFollowups()" class="flex items-center justify-between cursor-pointer select-none py-1 active:opacity-75 transition-all group" title="Click to collapse / expand Upcoming & Other Follow-ups">
               <h3 class="text-xs font-black text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-[#007AFF]"></span>
                 <span>UPCOMING & OTHER FOLLOW-UPS</span>
               </h3>
-              <span id="otherFollowupsBadge" class="text-[10px] font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">3 Leads</span>
+              <div class="flex items-center gap-2">
+                <span id="otherFollowupsBadge" class="text-[10px] font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">3 Leads</span>
+                <div class="w-6 h-6 rounded-full bg-slate-100 group-hover:bg-blue-50 flex items-center justify-center text-slate-500 group-hover:text-[#007AFF] transition-colors">
+                  <i id="otherFollowupsChevron" class="fa-solid fa-chevron-right text-[10px]"></i>
+                </div>
+              </div>
             </div>
-            <!-- Dynamic container for other cards -->
-            <div id="otherFollowupsCardsContainer" class="space-y-2.5"></div>
+            <!-- Dynamic container for other cards (Closed by default) -->
+            <div id="otherFollowupsCardsContainer" class="space-y-2.5 hidden"></div>
           </div>
         </div>
       </div>
@@ -6408,6 +6418,46 @@
     let activeTdSlot = '11:30 AM';
     let activeTdLocation = 'Dealership Visit';
 
+    // Collapsible section state: TODAY'S FOLLOW-UPS is open by default, UPCOMING & OTHER is closed by default
+    let isTodayFollowupsOpen = true;
+    let isOtherFollowupsOpen = false;
+
+    function toggleTodayFollowups() {
+      isTodayFollowupsOpen = !isTodayFollowupsOpen;
+      applyFollowupSectionsCollapseState();
+    }
+
+    function toggleOtherFollowups() {
+      isOtherFollowupsOpen = !isOtherFollowupsOpen;
+      applyFollowupSectionsCollapseState();
+    }
+
+    function applyFollowupSectionsCollapseState() {
+      const todayContainer = document.getElementById('todayFollowupsCardsContainer');
+      const todayChevron = document.getElementById('todayFollowupsChevron');
+      if (todayContainer && todayChevron) {
+        if (isTodayFollowupsOpen) {
+          todayContainer.classList.remove('hidden');
+          todayChevron.className = 'fa-solid fa-chevron-down text-[10px]';
+        } else {
+          todayContainer.classList.add('hidden');
+          todayChevron.className = 'fa-solid fa-chevron-right text-[10px]';
+        }
+      }
+
+      const otherContainer = document.getElementById('otherFollowupsCardsContainer');
+      const otherChevron = document.getElementById('otherFollowupsChevron');
+      if (otherContainer && otherChevron) {
+        if (isOtherFollowupsOpen) {
+          otherContainer.classList.remove('hidden');
+          otherChevron.className = 'fa-solid fa-chevron-down text-[10px]';
+        } else {
+          otherContainer.classList.add('hidden');
+          otherChevron.className = 'fa-solid fa-chevron-right text-[10px]';
+        }
+      }
+    }
+
     // Renders the Follow-Up Leads Screen ensuring ONLY cards with status "Follow-up" are shown
     function renderFollowUpScreen() {
       const todayContainer = document.getElementById('todayFollowupsCardsContainer');
@@ -6477,6 +6527,14 @@
       // Render cards
       todayContainer.innerHTML = todayLeads.map(lead => renderFollowUpCardHTML(lead)).join('');
       otherContainer.innerHTML = otherLeads.map(lead => renderFollowUpCardHTML(lead)).join('');
+
+      // Auto-expand OTHER section if a search query matches leads inside it
+      if (q && otherLeads.length > 0) {
+        isOtherFollowupsOpen = true;
+      }
+
+      // Apply current collapsed/expanded states
+      applyFollowupSectionsCollapseState();
     }
 
     // Generates individual follow-up lead card HTML: clean, compact, breathable
@@ -8861,6 +8919,14 @@
               if (input) input.value = params.get('demo_comment');
               addLeadCommentsModalPost();
             }
+          }
+          if (params.get('collapse_today') === '1' || params.get('collapse') === 'today') {
+            isTodayFollowupsOpen = false;
+            applyFollowupSectionsCollapseState();
+          }
+          if (params.get('expand_other') === '1' || params.get('expand') === 'other') {
+            isOtherFollowupsOpen = true;
+            applyFollowupSectionsCollapseState();
           }
           if (params.get('history_lead')) {
             openLeadHistoryModal(params.get('history_lead'));
