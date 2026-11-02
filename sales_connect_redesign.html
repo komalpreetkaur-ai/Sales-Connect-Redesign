@@ -6486,28 +6486,28 @@
       const historyCount = lead.history ? lead.history.length : 0;
 
       return `
-        <div id="followup-card-${lead.id}" class="act-lead-card ${lead.isToday ? 'today' : 'upcoming'} all bg-white p-3 rounded-2xl border border-slate-200/90 shadow-xs space-y-2.5 transition-all hover:border-blue-200">
-          <!-- Card Header & Customer Info -->
-          <div class="flex items-center justify-between cursor-pointer" onclick="openEnquiryDetails('${lead.name}', '${lead.id}')">
-            <div class="flex items-center gap-2.5 min-w-0">
-              <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-100">
-                ${lead.initials}
-              </div>
-              <div class="truncate">
-                <div class="flex items-center gap-1.5">
-                  <h3 class="text-xs font-black text-[#1E293B] truncate">${lead.name}</h3>
-                  <span class="text-[9.5px] font-extrabold px-1.5 py-0.2 rounded ${isHot ? 'bg-amber-50 text-amber-700 border border-amber-200/60' : 'bg-blue-50 text-[#007AFF] border border-blue-200/60'} shrink-0">${lead.priority}</span>
-                </div>
-                <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">${lead.model} • ${lead.id}</p>
-              </div>
+        <div id="followup-card-${lead.id}" class="act-lead-card ${lead.isToday ? 'today' : 'upcoming'} all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-2.5 transition-all hover:border-blue-200">
+          <!-- Card Header & Customer Info (Image 3) -->
+          <div class="flex items-center gap-2.5 min-w-0 cursor-pointer" onclick="openEnquiryDetails('${lead.name}', '${lead.id}')">
+            <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-100">
+              ${lead.initials}
             </div>
-            <span class="text-[9.5px] font-extrabold text-[#007AFF] bg-blue-50 px-2 py-0.8 rounded-full shrink-0 border border-blue-100 uppercase tracking-tight">${lead.dueText}</span>
+            <div class="truncate flex-1">
+              <div class="flex items-center gap-1.5">
+                <h3 class="text-xs font-black text-[#1E293B] truncate">${lead.name}</h3>
+                <span class="text-[9.5px] font-extrabold px-1.5 py-0.2 rounded ${isHot ? 'bg-amber-50 text-amber-700 border border-amber-200/60' : 'bg-blue-50 text-[#007AFF] border border-blue-200/60'} shrink-0">${lead.priority}</span>
+              </div>
+              <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">${lead.model} • ${lead.id}</p>
+            </div>
           </div>
 
-          <!-- Actions Row: Call, WhatsApp + Test Drive, Add Comment, History -->
-          <div class="flex items-center justify-between pt-2 border-t border-slate-100/90 gap-1">
-            <!-- Left: Call & WhatsApp Quick Comms -->
-            <div class="flex items-center gap-1 shrink-0">
+          <!-- Sub-Row: Due Time Badge (Image 2) & Quick Call/WhatsApp (Image 1) brought together below Customer Info -->
+          <div class="flex items-center justify-between pt-0.5">
+            <span class="text-[9.5px] font-extrabold text-[#007AFF] bg-blue-50 px-2 py-0.8 rounded-full border border-blue-100 uppercase tracking-tight flex items-center gap-1 shrink-0">
+              <i class="fa-regular fa-clock text-[8.5px]"></i>
+              ${lead.dueText}
+            </span>
+            <div class="flex items-center gap-1.5 shrink-0">
               <button onclick="event.stopPropagation(); triggerLeadCall('${lead.id}', '${lead.phone}');" title="Call" class="w-7.5 h-7.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/80 flex items-center justify-center active:scale-90 cursor-pointer transition-transform">
                 <i class="fa-solid fa-phone text-[11px]"></i>
               </button>
@@ -6515,22 +6515,22 @@
                 <i class="fa-brands fa-whatsapp text-xs"></i>
               </button>
             </div>
+          </div>
 
-            <!-- Right: Test Drive CTA with Add Comment & History Button -->
-            <div class="flex items-center gap-1 shrink-0">
-              <button onclick="event.stopPropagation(); openTestDriveBookingModal('${lead.id}');" class="px-2.5 py-1.5 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-lg text-[11px] font-bold flex items-center gap-1 shadow-2xs active:scale-95 transition-all cursor-pointer">
-                <i class="fa-solid fa-car-side text-[10px]"></i>
-                <span>Test Drive</span>
-              </button>
-              <button type="button" onclick="event.stopPropagation(); openLeadCommentsModal('${lead.id}');" class="px-2 py-1.5 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/70 rounded-lg text-[11px] font-bold flex items-center gap-1 transition-colors cursor-pointer active:scale-95" title="Add or view comments">
-                <i class="fa-solid fa-plus text-[8.5px]"></i>
-                <span>Add Comment</span>
-              </button>
-              <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('${lead.id}');" class="px-2 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/70 rounded-lg text-[11px] font-bold flex items-center gap-1 transition-colors cursor-pointer active:scale-95" title="View chronological action history">
-                <i class="fa-solid fa-clock-rotate-left text-slate-500 text-[8.5px]"></i>
-                <span>History (<span id="historyCount-${lead.id}">${historyCount}</span>)</span>
-              </button>
-            </div>
+          <!-- Bottom Actions Row: Test Drive CTA + Add Comment + History Button -->
+          <div class="flex items-center gap-2 pt-2 border-t border-slate-100/90">
+            <button onclick="event.stopPropagation(); openTestDriveBookingModal('${lead.id}');" class="flex-1 py-1.5 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-lg text-[11px] font-bold flex items-center justify-center gap-1 shadow-2xs active:scale-95 transition-all cursor-pointer">
+              <i class="fa-solid fa-car-side text-[10px]"></i>
+              <span>Test Drive</span>
+            </button>
+            <button type="button" onclick="event.stopPropagation(); openLeadCommentsModal('${lead.id}');" class="flex-1 py-1.5 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/70 rounded-lg text-[11px] font-bold flex items-center justify-center gap-1 transition-colors cursor-pointer active:scale-95" title="Add or view comments">
+              <i class="fa-solid fa-plus text-[8.5px]"></i>
+              <span>Add Comment</span>
+            </button>
+            <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('${lead.id}');" class="flex-1 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/70 rounded-lg text-[11px] font-bold flex items-center justify-center gap-1 transition-colors cursor-pointer active:scale-95" title="View chronological action history">
+              <i class="fa-solid fa-clock-rotate-left text-slate-500 text-[8.5px]"></i>
+              <span>History (<span id="historyCount-${lead.id}">${historyCount}</span>)</span>
+            </button>
           </div>
         </div>
       `;
