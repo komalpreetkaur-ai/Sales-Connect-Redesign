@@ -1,31 +1,33 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-## 🎯 Refined 3-Tier Follow-Up Card Structure
+## 🎯 Priority-Driven Follow-Up Card Redesign
 
-Updated follow-up lead cards based on user feedback:
+Redesigned the card actions to strictly reflect the operational hierarchy:
 
-1. **Top Row (Clean Customer Identity)**:
-   - Avatar badge (`RK`, `PM`, `GS`), Customer Name, and Car Model with Lead ID (`Suzuki Brezza ZXi (Petrol MT) • ENQ987875369`).
-   - **Removed `Hot` and `Warm` priority tags** for a cleaner, decluttered customer title.
+1. **Priority 1: Primary Conversion CTA (`Test Drive`)**:
+   - Elevated to a **full-width primary hero button**: `[ 🚗 Test Drive → ]`.
+   - Distinct `#007AFF` solid accent with bold typography and directional affordance for immediate 1-tap test drive booking via the Swiggy/Zomato style slot picker.
 
-2. **Middle Row (Due Time Left, Comms Right)**:
-   - **Left**: Due time badge (`• TODAY • 11:30 AM`).
-   - **Right**: `[ 📞 ]` Call and `[ 💬 ]` WhatsApp circular quick-action buttons.
+2. **Priority 2: Secondary Supporting Row (`Add Comment` & `History`)**:
+   - Nested directly beneath the primary CTA as an even 50/50 dual utility bar:
+     - **`[ + Add Comment ]`** (Left half): Opens dedicated Comments & Notes modal (comments only, no tabs).
+     - **`[ 🕒 History (X) ]`** (Right half): Opens dedicated Action History audit trail (chronological log only, no tabs).
+   - Designed in soft, subtle secondary styling (`bg-slate-50 border border-slate-200`) so they never compete visually with the primary Test Drive conversion goal.
 
-3. **Bottom Row (Action CTAs)**:
-   - Three balanced action buttons spanning full card width:
-     - `[ 🚗 Test Drive ]` -> Swiggy/Zomato style slot picker bottom sheet.
-     - `[ + Add Comment ]` -> Dedicated Comments & Notes modal (comments only).
-     - `[ 🕒 History (X) ]` -> Dedicated Action History modal (chronological audit trail only).
+3. **Card Structure Overview**:
+   - **Header**: Avatar + Customer Name + Car Model / Lead ID (Hot/Warm tags removed for clean look).
+   - **Status & Comms Row**: Due time badge (`• TODAY • 11:30 AM`) on the left, circular `[ 📞 ]` and `[ 💬 ]` on the right.
+   - **Priority 1 CTA**: Full-width `[ 🚗 Test Drive → ]`.
+   - **Priority 2 Utility Bar**: `[ + Add Comment ]` and `[ 🕒 History (X) ]`.
 
 ---
 
-### 📸 Visual Evidence (Swapped Comms & No Hot/Warm Tags)
+### 📸 Visual Evidence (Priority-Driven Button Redesign)
 
-| 1. Swapped Comms & Clean Header | 2. Dedicated "+ Add Comment" Modal | 3. Dedicated "History" Modal |
+| 1. Priority-Driven Card Feed | 2. Dedicated "+ Add Comment" Modal | 3. Dedicated "History" Modal |
 | :---: | :---: | :---: |
-| ![Swapped Comms & Clean Header](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_swapped_comms_and_no_tags.png) | ![Lead Comments Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_comments_modal_latest.png) | ![Lead Action History Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_history_modal_latest.png) |
-| *Due time on left, Call/WhatsApp on right; Hot/Warm tags removed.* | *Dedicated comments modal with post input & past notes only (no tab switcher, no status badge).* | *Dedicated action audit trail with chronological history only (no tab switcher, no status badge).* |
+| ![Priority-Driven Card Feed](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_priority_redesign.png) | ![Lead Comments Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_comments_modal_latest.png) | ![Lead Action History Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_history_modal_latest.png) |
+| *Test Drive as full-width hero CTA (Priority 1); Add Comment & History below as secondary pair (Priority 2).* | *Dedicated comments modal with post input & past notes only (no tab switcher, no status badge).* | *Dedicated action audit trail with chronological history only (no tab switcher, no status badge).* |
 
 ---
 
