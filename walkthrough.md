@@ -1188,16 +1188,21 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
 
 ## 👤 Lead Profile Details Screen & UI Refinements (`#screen-lead-profile`)
 
+- **Collapsible Comments & Remarks**: The entire `Comments & Remarks` section can now be toggled collapsed/expanded by tapping anywhere on its header. Features an interactive right/down chevron, count pill badge (`2 Notes`), inline text composer, quick chips, and chronological comment list.
+- **Collapsible Lead Action History**: The `Lead Action History` section can now be toggled collapsed/expanded independently by tapping its header. Features a count badge (`2 Events`), dynamic chevron indicator, and full chronological timeline audit trail.
+- **Smart Auto-Expansion**: Posting a new comment automatically expands `Comments & Remarks` if it was collapsed, ensuring the user immediately sees their freshly saved remark.
 - **Call & WhatsApp Action Icons in White Space**: Placed circular Call (`[ 📞 ]`) and WhatsApp (`[ 💬 ]`) action icon buttons directly in the top customer card's open white space on the right, providing fast one-tap communication without bulky full-width buttons.
 - **Removed "Recommended" Tag**: Cleaned up the Test Drive Booking card by removing the redundant "Recommended" pill badge from the header.
 - **Updated Test Drive CTA**: Updated the primary action button copy to **`Move to Test Drive`** (`[ 🚗 Move to Test Drive → ]`), clearly signaling the workflow progression.
 - **Fixed Floating Sticky Overlap**: Removed the redundant `sticky bottom-16` floating action bar to eliminate screen collisions.
-- **Comments & Remarks with Live Composer**: Includes quick chips (`+ Call tomorrow`, `+ Family discussion`, `+ Loan approved`), text input, and chronological list of notes.
-- **Action History Timeline**: Chronological audit trail showing call completions, status changes, and creation events.
 
-![Clean Lead Profile View with Comms Icons & Move to Test Drive](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_profile_icons_and_move_td.png)
+| Both Sections Expanded | Both Sections Collapsed |
+| :---: | :---: |
+| ![Lead Profile Default Expanded](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_profile_collapsible_default.png) | ![Lead Profile Both Collapsed](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_profile_both_collapsed.png) |
 
-![Scrolled Lead Profile View](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_profile_scrolled_clean.png)
+| Comments Collapsed, History Expanded |
+| :---: |
+| ![Lead Profile Comments Collapsed](/Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_profile_comments_collapsed.png) |
 
 ---
 
