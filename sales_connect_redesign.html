@@ -6481,13 +6481,12 @@
 
     // Generates individual follow-up lead card HTML: clean, compact, breathable
     function renderFollowUpCardHTML(lead) {
-      const isHot = lead.priority === 'Hot';
       const commentCount = lead.comments ? lead.comments.length : 0;
       const historyCount = lead.history ? lead.history.length : 0;
 
       return `
         <div id="followup-card-${lead.id}" class="act-lead-card ${lead.isToday ? 'today' : 'upcoming'} all bg-white p-3 rounded-2xl border border-slate-200/90 shadow-xs space-y-2.5 transition-all hover:border-blue-200">
-          <!-- Card Header (3rd Image: Customer Identity & Details) -->
+          <!-- Card Header (Customer Identity & Details) -->
           <div class="flex items-center justify-between cursor-pointer" onclick="openEnquiryDetails('${lead.name}', '${lead.id}')">
             <div class="flex items-center gap-2.5 min-w-0 flex-1">
               <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-100">
@@ -6496,16 +6495,21 @@
               <div class="truncate flex-1 min-w-0">
                 <div class="flex items-center gap-1.5">
                   <h3 class="text-xs font-black text-[#1E293B] truncate">${lead.name}</h3>
-                  <span class="text-[9.5px] font-extrabold px-1.5 py-0.2 rounded ${isHot ? 'bg-amber-50 text-amber-700 border border-amber-200/60' : 'bg-blue-50 text-[#007AFF] border border-blue-200/60'} shrink-0">${lead.priority}</span>
                 </div>
                 <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">${lead.model} • ${lead.id}</p>
               </div>
             </div>
           </div>
 
-          <!-- Middle Row (1st & 2nd Images Together: Quick Comms + Due Time) -->
+          <!-- Middle Row: Due Time Badge (Left) & Quick Comms (Right) -->
           <div class="flex items-center justify-between pt-0.5">
-            <!-- 1st: Call & WhatsApp Circular Comms -->
+            <!-- Due Time Badge (Left) -->
+            <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50/90 px-3 py-1 rounded-full shrink-0 border border-blue-200/80 uppercase tracking-tight shadow-2xs flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
+              <span>${lead.dueText}</span>
+            </span>
+
+            <!-- Call & WhatsApp Circular Comms (Right) -->
             <div class="flex items-center gap-2 shrink-0">
               <button onclick="event.stopPropagation(); triggerLeadCall('${lead.id}', '${lead.phone}');" title="Call" class="w-8 h-8 rounded-full bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/90 flex items-center justify-center active:scale-90 cursor-pointer transition-transform shadow-2xs">
                 <i class="fa-solid fa-phone text-xs"></i>
@@ -6514,12 +6518,6 @@
                 <i class="fa-brands fa-whatsapp text-sm"></i>
               </button>
             </div>
-
-            <!-- 2nd: Due Time Badge -->
-            <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50/90 px-3 py-1 rounded-full shrink-0 border border-blue-200/80 uppercase tracking-tight shadow-2xs flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
-              <span>${lead.dueText}</span>
-            </span>
           </div>
 
           <!-- Actions Row: Test Drive CTA with Add Comment & History Button -->
