@@ -1,25 +1,31 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-## 🎯 Unified Action Bar & Minimalist Follow-up Card Face
+## 🎯 3-Tier Follow-Up Card Structure
 
-Streamlined follow-up lead cards based on user requirements:
-1. **Removed Redundant Elements**:
-   - Removed the `• Follow-up` status pill (every lead on this screen is already strictly in follow-up status).
-   - Removed the truncated `💬 Note: "Customer mentione..."` snippet row.
-2. **Unified Action Bar**:
-   - Brought the primary **`Test Drive`** CTA together with **`+ Comment`** and **`History (<count>)`** buttons into a single horizontal action row.
-   - Quick communication icons (`[ 📞 ]` Call and `[ 💬 ]` WhatsApp) sit on the left, while stage & management CTAs (`[ 🚗 Test Drive ]`, `[ + Comment ]`, `[ 🕒 History ]`) sit on the right.
-3. **Ultra-Compact Height (~95px)**:
-   - Eliminates card density and clutter, allowing sales executives to review 4+ leads on screen simultaneously without vertical crowding.
+Restructured the follow-up lead cards into a clean 3-tier visual hierarchy:
+
+1. **Top Row (Customer Identity)**:
+   - Full-width customer identity: Avatar badge, Customer Name, Priority badge (`Hot`/`Warm`), and Car Model with Lead ID (`Suzuki Gixxer SF • ENQ...`).
+   - Completely un-truncated with full breathing room.
+
+2. **Middle Row (Direct Contact & Due Time Together)**:
+   - **Left**: `[ 📞 ]` Call and `[ 💬 ]` WhatsApp circular quick-action buttons.
+   - **Right**: Due time badge (`• TODAY • 11:30 AM`).
+
+3. **Bottom Row (Action CTAs)**:
+   - Three full-width action buttons:
+     - `[ 🚗 Test Drive ]` primary CTA -> opens Swiggy/Zomato style slot booking bottom sheet.
+     - `[ + Add Comment ]` secondary CTA -> opens dedicated Comments & Notes modal (comments only).
+     - `[ 🕒 History (X) ]` tertiary CTA -> opens dedicated Action History modal (chronological audit trail only).
 
 ---
 
-### 📸 Visual Evidence (Unified Action Bar & Clean Feed)
+### 📸 Visual Evidence (Restructured 3-Tier Card Feed)
 
-| 1. Home Screen Direct Quick Banner | 2. Clean Follow-up Feed | 3. Dedicated "+ Add Comment" Modal | 4. Dedicated "History" Modal |
-| :---: | :---: | :---: | :---: |
-| ![Home Screen with Banner](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_with_banner.png) | ![Clean Follow-up Feed](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_followup_screen_latest.png) | ![Lead Comments Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_comments_modal_latest.png) | ![Lead Action History Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_history_modal_latest.png) |
-| *Home screen banner & highlighted FOLLOW-UPS card.* | *Clean 1-row action bar: Call, WhatsApp + Test Drive, Add Comment, History (No pills, no note snippet).* | *Standalone Comments modal with post input & past notes only (no tab switcher, no follow-up badge).* | *Standalone Action History modal with chronological audit trail only (no tab switcher, no follow-up badge).* |
+| 1. Perfected 3-Tier Card Structure | 2. Dedicated "+ Add Comment" Modal | 3. Dedicated "History" Modal |
+| :---: | :---: | :---: |
+| ![Perfected 3-Tier Card Structure](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_followup_perfect_hierarchy.png) | ![Lead Comments Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_comments_modal_latest.png) | ![Lead Action History Separated Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_history_modal_latest.png) |
+| *Top: Customer info. Middle: Comms + Due time. Bottom: Test Drive, Add Comment, History.* | *Dedicated comments modal with post input & past notes only (no tab switcher, no status badge).* | *Dedicated action audit trail with chronological history only (no tab switcher, no status badge).* |
 
 ---
 
