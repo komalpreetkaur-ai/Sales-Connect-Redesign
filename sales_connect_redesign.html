@@ -151,7 +151,7 @@
       <!-- ========================================== -->
       <!-- SCREEN 1: REDESIGNED HOME SCREEN           -->
       <!-- ========================================== -->
-      <div id="screen-home" class="app-screen active space-y-4">
+      <div id="screen-home" class="app-screen space-y-4">
         
         <!-- Top Profile Greeting & Quick Actions Header -->
         <div class="flex items-center justify-between">
@@ -219,7 +219,7 @@
 
             <div class="relative z-10 flex items-center justify-between">
               <div>
-                <span id="homeTargetTitle" class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block">WEEKLY VEHICLE SALES TARGET</span>
+                <span id="homeTargetTitle" class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block">MONTHLY VEHICLE SALES TARGET</span>
                 <div id="homeTargetUnits" class="text-2xl font-black tracking-tight text-[#0F172A] mt-0.5">3 of 4 Units Sold</div>
               </div>
               
@@ -251,41 +251,21 @@
             </div>
           </div>
 
-          <!-- Quick Access Banner for Redesigned Follow-Up Leads -->
-          <div onclick="openFollowUpsScreen()" class="bg-gradient-to-r from-[#007AFF] to-blue-700 text-white p-3 rounded-2xl shadow-sm flex items-center justify-between cursor-pointer active:scale-[0.98] transition-transform">
-            <div class="flex items-center gap-2.5">
-              <div class="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center text-white text-xs shrink-0">
-                <i class="fa-solid fa-car-side"></i>
-              </div>
-              <div class="min-w-0">
-                <h4 class="text-xs font-black truncate">Follow-Up Leads Redesign</h4>
-                <p class="text-[10px] text-blue-100 font-medium truncate">Test Drive CTA • Add Comment • Action History</p>
-              </div>
-            </div>
-            <span class="text-[10.5px] font-extrabold bg-white text-[#007AFF] px-2.5 py-1 rounded-xl shadow-2xs flex items-center gap-1 shrink-0">
-              <span>Open (6)</span>
-              <i class="fa-solid fa-arrow-right text-[9px]"></i>
-            </span>
-          </div>
-
           <!-- 4 KPI Grid Cards -->
           <div class="grid grid-cols-2 gap-2.5">
             <!-- 1. FOLLOW-UPS Card -->
-            <div onclick="openFollowUpsScreen()" class="bg-blue-50/40 p-3.5 rounded-2xl border-2 border-[#007AFF] shadow-xs space-y-2 cursor-pointer active:scale-[0.98] transition-transform relative overflow-hidden group">
+            <div onclick="openFollowUpsScreen()" class="bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2 cursor-pointer active:scale-[0.98] transition-transform">
               <div class="flex items-center justify-between">
-                <span class="text-[10px] font-bold text-[#007AFF] uppercase tracking-wider flex items-center gap-1">
-                  <span>FOLLOW-UPS</span>
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
-                </span>
-                <div class="w-7 h-7 rounded-lg bg-[#007AFF] text-white flex items-center justify-center text-xs font-bold shadow-2xs">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">FOLLOW-UPS</span>
+                <div class="w-7 h-7 rounded-lg bg-blue-50 text-[#007AFF] flex items-center justify-center text-xs font-bold">
                   <i class="fa-regular fa-folder-open"></i>
                 </div>
               </div>
               <div>
                 <div id="kpiLeadsVal" class="text-2xl font-black text-[#1E293B]">6</div>
-                <div id="kpiLeadsSub" class="text-[10px] font-bold text-[#007AFF] flex items-center gap-1 mt-0.5">
-                  <i class="fa-solid fa-arrow-right text-[8.5px]"></i>
-                  <span>Tap to view redesigned leads</span>
+                <div id="kpiLeadsSub" class="text-[10px] font-bold text-blue-600 flex items-center gap-1 mt-0.5">
+                  <i class="fa-regular fa-clock"></i>
+                  <span>3 due today</span>
                 </div>
               </div>
             </div>
@@ -347,46 +327,10 @@
               <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
               <span>PRIORITY ACTIONS TODAY</span>
             </h2>
-            <span id="priorityBadge" class="text-[10px] font-extrabold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">5 Urgent</span>
+            <span id="priorityBadge" class="text-[10px] font-extrabold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">4 Urgent</span>
           </div>
 
           <div class="space-y-2.5">
-            <!-- Urgent Card 1 -->
-            <div id="urgentCard1" onclick="openFollowUpsScreen()" class="bg-amber-50/80 border border-amber-200 rounded-2xl p-3.5 space-y-2.5 cursor-pointer active:scale-[0.99] transition-transform">
-              <div class="flex items-start justify-between">
-                <div class="flex items-center gap-2.5">
-                  <div class="w-8 h-8 rounded-full bg-amber-500 text-white font-black text-xs flex items-center justify-center shrink-0 shadow-2xs">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                  </div>
-                  <div>
-                    <h3 class="text-xs font-extrabold text-[#1E293B]">Overdue Follow-up: Priya M.</h3>
-                    <p class="text-[10px] font-semibold text-slate-600">Interested in Suzuki Gixxer SF • Due 2h ago</p>
-                  </div>
-                </div>
-                <span class="text-[9.5px] font-bold text-[#007AFF] bg-white px-2 py-0.5 rounded-full border border-blue-200">View All Follow-ups →</span>
-              </div>
-
-              <div class="flex items-center justify-between border-t border-amber-200/60 pt-2.5">
-                <div class="flex items-center gap-1.5">
-                  <button onclick="event.stopPropagation(); triggerLeadCall('ENQ987875440', '+919876589706');" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90 cursor-pointer">
-                    <i class="fa-solid fa-phone text-xs"></i>
-                  </button>
-                  <button onclick="event.stopPropagation(); triggerLeadWhatsApp('ENQ987875440', '+919876589706');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center active:scale-90 cursor-pointer">
-                    <i class="fa-brands fa-whatsapp text-sm"></i>
-                  </button>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <button onclick="event.stopPropagation(); openTestDriveBookingModal('ENQ987875440');" class="px-2.5 py-1.5 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-lg text-xs font-bold flex items-center gap-1 shadow-2xs active:scale-95 transition-all cursor-pointer">
-                    <i class="fa-solid fa-car-side text-[10px]"></i>
-                    <span>Test Drive</span>
-                  </button>
-                  <button onclick="event.stopPropagation(); openLeadCommentsModal('ENQ987875440');" class="px-2 py-1.5 bg-blue-50 text-[#007AFF] border border-blue-200 rounded-lg text-xs font-bold active:scale-95 transition-all cursor-pointer">
-                    <span>+ Comment</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
             <!-- Urgent Card 2 -->
             <div id="urgentCard2" onclick="openEnquiryDetails('ENQ987875375')" class="bg-rose-50/80 border border-rose-200 rounded-2xl p-3.5 space-y-2.5 cursor-pointer active:scale-[0.99] transition-transform">
               <div class="flex items-start justify-between">
@@ -2353,7 +2297,7 @@
       <!-- ========================================== -->
       <!-- SCREEN: SEPARATE FOLLOW-UP LEAD DETAILS    -->
       <!-- ========================================== -->
-      <div id="screen-lead-profile" class="app-screen space-y-3.5 pb-24">
+      <div id="screen-lead-profile" class="app-screen active space-y-3.5 pb-24">
         <!-- Top App Bar -->
         <div class="flex items-center justify-between border-b border-[#E0E8F5] pb-2.5 pt-1">
           <div class="flex items-center gap-2.5">
@@ -2449,7 +2393,7 @@
               <p class="text-[10px] font-semibold text-slate-500">Pick preferred date & vehicle demo slot</p>
             </div>
           </div>
-          <button id="profilePageTestDriveBtn" onclick="openTestDriveBookingModal(activeProfileLead?.id)" class="w-full py-2.5 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-black flex items-center justify-center gap-2 shadow-xs active:scale-[0.99] transition-all cursor-pointer">
+          <button id="profilePageTestDriveBtn" onclick="openTestDriveBookingModal(activeProfileLead ? activeProfileLead.id : 'ENQ987875369')" class="w-full py-2.5 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-black flex items-center justify-center gap-2 shadow-xs active:scale-[0.99] transition-all cursor-pointer">
             <i class="fa-solid fa-car-side text-xs"></i>
             <span>Move to Test Drive</span>
             <i class="fa-solid fa-arrow-right text-[10px] opacity-75"></i>
@@ -2464,15 +2408,14 @@
               <span>Comments & Remarks</span>
             </h3>
             <div class="flex items-center gap-2">
-              <span id="profileCommentsCountBadge" class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200">2 Notes</span>
               <div class="w-6 h-6 rounded-full bg-slate-100 group-hover:bg-blue-50 flex items-center justify-center text-slate-500 group-hover:text-[#007AFF] transition-colors">
-                <i id="profileCommentsChevron" class="fa-solid fa-chevron-down text-[10px]"></i>
+                <i id="profileCommentsChevron" class="fa-solid fa-chevron-right text-[10px]"></i>
               </div>
             </div>
           </div>
 
           <!-- Collapsible Comments Content -->
-          <div id="profileCommentsContent" class="space-y-3 pt-1 border-t border-slate-100">
+          <div id="profileCommentsContent" class="space-y-3 pt-1 border-t border-slate-100 hidden">
             <!-- Inline Comment Composer -->
             <div class="space-y-2 bg-slate-50/80 p-2.5 rounded-xl border border-slate-200/80">
               <textarea id="profileCommentInput" rows="2" placeholder="Add follow-up notes, customer objections, or next step..." class="w-full text-xs p-2 rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-[#007AFF]/30 focus:border-[#007AFF] resize-none"></textarea>
@@ -2506,15 +2449,14 @@
               <span>Lead Action History</span>
             </h3>
             <div class="flex items-center gap-2">
-              <span id="profileHistoryCountBadge" class="text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200">2 Events</span>
               <div class="w-6 h-6 rounded-full bg-slate-100 group-hover:bg-blue-50 flex items-center justify-center text-slate-500 group-hover:text-[#007AFF] transition-colors">
-                <i id="profileHistoryChevron" class="fa-solid fa-chevron-down text-[10px]"></i>
+                <i id="profileHistoryChevron" class="fa-solid fa-chevron-right text-[10px]"></i>
               </div>
             </div>
           </div>
 
           <!-- Collapsible History Content -->
-          <div id="profileHistoryContent" class="pt-1 border-t border-slate-100">
+          <div id="profileHistoryContent" class="pt-1 border-t border-slate-100 hidden">
             <!-- Chronological Timeline -->
             <div id="profileHistoryTimeline" class="space-y-3 relative pl-6 border-l-2 border-slate-200 ml-2 pt-2 pb-1">
               <!-- Dynamic history items injected here -->
@@ -2780,86 +2722,102 @@
           </div>
 
           <!-- Card 1 (Today): Amit Roy -->
-          <div class="td-card today all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+          <div onclick="openFollowUpLeadDetails('ENQ987875369')" class="td-card today all bg-white p-3 rounded-2xl border border-slate-200/90 shadow-xs space-y-2.5 transition-all hover:border-blue-200 cursor-pointer active:scale-[0.995]" title="Click to view full customer details & notes">
+            <!-- Card Header (Customer Identity & Details) -->
             <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3 min-w-0">
-                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-100">
+              <div class="flex items-center gap-2.5 min-w-0 flex-1">
+                <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-100">
                   AR
                 </div>
-                <div class="truncate">
+                <div class="truncate flex-1 min-w-0">
                   <div class="flex items-center gap-1.5">
-                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Amit Roy</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200/60 shrink-0">Today • 2:30 PM</span>
+                    <h3 class="text-xs font-black text-[#1E293B] truncate">Amit Roy</h3>
                   </div>
-                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">MAHINDRA THAR ROXX AX7 L • TD98781</p>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">Mahindra Thar Roxx AX7 L • TD98781</p>
                 </div>
               </div>
-              <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-1 rounded-full shrink-0 border border-blue-100">SCHEDULED</span>
             </div>
 
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-car-side text-[#007AFF] text-xs"></i>
-                <span class="font-extrabold text-slate-800">Thar Roxx (Diesel AT)</span>
-              </div>
-              <span class="text-[10px] font-extrabold text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">DL Verified ✓</span>
-            </div>
+            <!-- Middle Row: Due Time Badge (Left) & Quick Comms (Right) -->
+            <div class="flex items-center justify-between pt-0.5">
+              <!-- Due Time Badge (Left) -->
+              <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50/90 px-3 py-1 rounded-full shrink-0 border border-blue-200/80 uppercase tracking-tight shadow-2xs flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
+                <span>TODAY • 2:30 PM</span>
+              </span>
 
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Executive: <strong class="text-slate-800">Komalpreet K.</strong></span>
-              <div class="flex items-center gap-1.5">
-                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589701';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+              <!-- Call & WhatsApp Circular Comms (Right) -->
+              <div class="flex items-center gap-2 shrink-0">
+                <button onclick="event.stopPropagation(); triggerLeadCall('ENQ987875369', '+919876589701');" title="Call" class="w-8 h-8 rounded-full bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/90 flex items-center justify-center active:scale-90 cursor-pointer transition-transform shadow-2xs">
                   <i class="fa-solid fa-phone text-xs"></i>
                 </button>
-                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589701','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+                <button onclick="event.stopPropagation(); triggerLeadWhatsApp('ENQ987875369', '+919876589701');" title="WhatsApp" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200/90 flex items-center justify-center active:scale-90 cursor-pointer transition-transform shadow-2xs">
                   <i class="fa-brands fa-whatsapp text-sm"></i>
                 </button>
-                <button onclick="event.stopPropagation(); alert('Starting Test Drive for Amit Roy...');" class="px-2.5 py-1 bg-[#007AFF] text-white rounded-lg text-xs font-bold flex items-center gap-1 shadow-xs active:scale-95">
-                  <i class="fa-solid fa-key text-[10px]"></i><span>Start Drive</span>
-                </button>
               </div>
+            </div>
+
+            <!-- Below CTAs: History, Add Comment, Start Drive (No Icons) -->
+            <div class="flex items-center gap-2 pt-2 border-t border-slate-100/90">
+              <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('ENQ987875369');" class="flex-1 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/80 rounded-xl text-xs font-bold transition-colors cursor-pointer active:scale-95 text-center" title="View chronological action history">
+                History (2)
+              </button>
+              <button type="button" onclick="event.stopPropagation(); openLeadCommentsModal('ENQ987875369');" class="flex-1 py-2 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/80 rounded-xl text-xs font-bold transition-colors cursor-pointer active:scale-95 text-center" title="Add or view comments">
+                Add Comment
+              </button>
+              <button onclick="event.stopPropagation(); showAppToast('Starting Test Drive for Amit Roy...', 'info');" class="flex-1 py-2 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-2xs active:scale-95 transition-all cursor-pointer text-center">
+                Start Drive
+              </button>
             </div>
           </div>
 
           <!-- Card 2 (Today): Neha Gupta -->
-          <div class="td-card today all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+          <div onclick="openFollowUpLeadDetails('ENQ987875440')" class="td-card today all bg-white p-3 rounded-2xl border border-slate-200/90 shadow-xs space-y-2.5 transition-all hover:border-blue-200 cursor-pointer active:scale-[0.995]" title="Click to view full customer details & notes">
+            <!-- Card Header (Customer Identity & Details) -->
             <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3 min-w-0">
-                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-100">
+              <div class="flex items-center gap-2.5 min-w-0 flex-1">
+                <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-100">
                   NG
                 </div>
-                <div class="truncate">
+                <div class="truncate flex-1 min-w-0">
                   <div class="flex items-center gap-1.5">
-                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Neha Gupta</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200/60 shrink-0">Today • 4:00 PM</span>
+                    <h3 class="text-xs font-black text-[#1E293B] truncate">Neha Gupta</h3>
                   </div>
-                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">MAHINDRA XUV700 AX7 L • TD98782</p>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">Mahindra XUV700 AX7 L • TD98782</p>
                 </div>
               </div>
-              <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-1 rounded-full shrink-0 border border-blue-100">CONFIRMED</span>
             </div>
 
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-car-side text-[#007AFF] text-xs"></i>
-                <span class="font-extrabold text-slate-800">XUV700 (Midnight Black)</span>
-              </div>
-              <span class="text-[10px] font-extrabold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">MH-12-AB-9876</span>
-            </div>
+            <!-- Middle Row: Due Time Badge (Left) & Quick Comms (Right) -->
+            <div class="flex items-center justify-between pt-0.5">
+              <!-- Due Time Badge (Left) -->
+              <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50/90 px-3 py-1 rounded-full shrink-0 border border-blue-200/80 uppercase tracking-tight shadow-2xs flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
+                <span>TODAY • 4:00 PM</span>
+              </span>
 
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Executive: <strong class="text-slate-800">Rajesh M.</strong></span>
-              <div class="flex items-center gap-1.5">
-                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589702';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+              <!-- Call & WhatsApp Circular Comms (Right) -->
+              <div class="flex items-center gap-2 shrink-0">
+                <button onclick="event.stopPropagation(); triggerLeadCall('ENQ987875440', '+919876589702');" title="Call" class="w-8 h-8 rounded-full bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/90 flex items-center justify-center active:scale-90 cursor-pointer transition-transform shadow-2xs">
                   <i class="fa-solid fa-phone text-xs"></i>
                 </button>
-                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589702','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+                <button onclick="event.stopPropagation(); triggerLeadWhatsApp('ENQ987875440', '+919876589702');" title="WhatsApp" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200/90 flex items-center justify-center active:scale-90 cursor-pointer transition-transform shadow-2xs">
                   <i class="fa-brands fa-whatsapp text-sm"></i>
                 </button>
-                <button onclick="event.stopPropagation(); alert('Starting Test Drive for Neha Gupta...');" class="px-2.5 py-1 bg-[#007AFF] text-white rounded-lg text-xs font-bold flex items-center gap-1 shadow-xs active:scale-95">
-                  <i class="fa-solid fa-key text-[10px]"></i><span>Start Drive</span>
-                </button>
               </div>
+            </div>
+
+            <!-- Below CTAs: History, Add Comment, Start Drive (No Icons) -->
+            <div class="flex items-center gap-2 pt-2 border-t border-slate-100/90">
+              <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('ENQ987875440');" class="flex-1 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/80 rounded-xl text-xs font-bold transition-colors cursor-pointer active:scale-95 text-center" title="View chronological action history">
+                History (2)
+              </button>
+              <button type="button" onclick="event.stopPropagation(); openLeadCommentsModal('ENQ987875440');" class="flex-1 py-2 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/80 rounded-xl text-xs font-bold transition-colors cursor-pointer active:scale-95 text-center" title="Add or view comments">
+                Add Comment
+              </button>
+              <button onclick="event.stopPropagation(); showAppToast('Starting Test Drive for Neha Gupta...', 'info');" class="flex-1 py-2 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-2xs active:scale-95 transition-all cursor-pointer text-center">
+                Start Drive
+              </button>
             </div>
           </div>
         </div>
@@ -2872,62 +2830,102 @@
           </div>
 
           <!-- Card 3 (Upcoming): Vikram Malhotra -->
-          <div class="td-card upcoming all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+          <div onclick="openFollowUpLeadDetails('ENQ987875375')" class="td-card upcoming all bg-white p-3 rounded-2xl border border-slate-200/90 shadow-xs space-y-2.5 transition-all hover:border-blue-200 cursor-pointer active:scale-[0.995]" title="Click to view full customer details & notes">
+            <!-- Card Header (Customer Identity & Details) -->
             <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3 min-w-0">
-                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-100">
+              <div class="flex items-center gap-2.5 min-w-0 flex-1">
+                <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-100">
                   VM
                 </div>
-                <div class="truncate">
+                <div class="truncate flex-1 min-w-0">
                   <div class="flex items-center gap-1.5">
-                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Vikram Malhotra</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200/60 shrink-0">Tomorrow</span>
+                    <h3 class="text-xs font-black text-[#1E293B] truncate">Vikram Malhotra</h3>
                   </div>
-                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">SCORPIO-N Z8 L • TD98783</p>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">Mahindra Scorpio-N Z8 L • TD98783</p>
                 </div>
               </div>
-              <span class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full shrink-0">UPCOMING</span>
             </div>
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Slot: <strong class="text-slate-800">11:00 AM Tomorrow</strong></span>
-              <div class="flex items-center gap-1.5">
-                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+
+            <!-- Middle Row: Due Time Badge (Left) & Quick Comms (Right) -->
+            <div class="flex items-center justify-between pt-0.5">
+              <!-- Due Time Badge (Left) -->
+              <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50/90 px-3 py-1 rounded-full shrink-0 border border-blue-200/80 uppercase tracking-tight shadow-2xs flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
+                <span>TOMORROW • 11:00 AM</span>
+              </span>
+
+              <!-- Call & WhatsApp Circular Comms (Right) -->
+              <div class="flex items-center gap-2 shrink-0">
+                <button onclick="event.stopPropagation(); triggerLeadCall('ENQ987875375', '+919876589706');" title="Call" class="w-8 h-8 rounded-full bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/90 flex items-center justify-center active:scale-90 cursor-pointer transition-transform shadow-2xs">
                   <i class="fa-solid fa-phone text-xs"></i>
                 </button>
-                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+                <button onclick="event.stopPropagation(); triggerLeadWhatsApp('ENQ987875375', '+919876589706');" title="WhatsApp" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200/90 flex items-center justify-center active:scale-90 cursor-pointer transition-transform shadow-2xs">
                   <i class="fa-brands fa-whatsapp text-sm"></i>
                 </button>
               </div>
+            </div>
+
+            <!-- Below CTAs: History, Add Comment, Reschedule (No Icons) -->
+            <div class="flex items-center gap-2 pt-2 border-t border-slate-100/90">
+              <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('ENQ987875375');" class="flex-1 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/80 rounded-xl text-xs font-bold transition-colors cursor-pointer active:scale-95 text-center" title="View chronological action history">
+                History (1)
+              </button>
+              <button type="button" onclick="event.stopPropagation(); openLeadCommentsModal('ENQ987875375');" class="flex-1 py-2 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/80 rounded-xl text-xs font-bold transition-colors cursor-pointer active:scale-95 text-center" title="Add or view comments">
+                Add Comment
+              </button>
+              <button onclick="event.stopPropagation(); openTestDriveBookingModal('ENQ987875375');" class="flex-1 py-2 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-2xs active:scale-95 transition-all cursor-pointer text-center">
+                Reschedule
+              </button>
             </div>
           </div>
 
           <!-- Card 4 (Completed): Kavita Reddy -->
-          <div class="td-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+          <div onclick="openFollowUpLeadDetails('ENQ987875388')" class="td-card completed all bg-white p-3 rounded-2xl border border-slate-200/90 shadow-xs space-y-2.5 transition-all hover:border-blue-200 cursor-pointer active:scale-[0.995]" title="Click to view full customer details & notes">
+            <!-- Card Header (Customer Identity & Details) -->
             <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3 min-w-0">
-                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-100">
+              <div class="flex items-center gap-2.5 min-w-0 flex-1">
+                <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-100">
                   KR
                 </div>
-                <div class="truncate">
+                <div class="truncate flex-1 min-w-0">
                   <div class="flex items-center gap-1.5">
-                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Kavita Reddy</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200/60 shrink-0">Yesterday</span>
+                    <h3 class="text-xs font-black text-[#1E293B] truncate">Kavita Reddy</h3>
                   </div>
-                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">MAHINDRA XUV400 EV • TD98784</p>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">Mahindra XUV400 EV • TD98784</p>
                 </div>
               </div>
-              <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-1 rounded-full shrink-0 border border-blue-100">COMPLETED</span>
             </div>
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Feedback: <strong class="text-slate-800">High Interest (Loved EV Drive)</strong></span>
-              <div class="flex items-center gap-1.5">
-                <button onclick="event.stopPropagation(); window.location.href='tel:+919876589706';" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+
+            <!-- Middle Row: Due Time Badge (Left) & Quick Comms (Right) -->
+            <div class="flex items-center justify-between pt-0.5">
+              <!-- Due Time Badge (Left) -->
+              <span class="text-[10px] font-extrabold text-slate-600 bg-slate-100 px-3 py-1 rounded-full shrink-0 border border-slate-200/80 uppercase tracking-tight shadow-2xs flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                <span>COMPLETED • YESTERDAY</span>
+              </span>
+
+              <!-- Call & WhatsApp Circular Comms (Right) -->
+              <div class="flex items-center gap-2 shrink-0">
+                <button onclick="event.stopPropagation(); triggerLeadCall('ENQ987875388', '+919876589706');" title="Call" class="w-8 h-8 rounded-full bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/90 flex items-center justify-center active:scale-90 cursor-pointer transition-transform shadow-2xs">
                   <i class="fa-solid fa-phone text-xs"></i>
                 </button>
-                <button onclick="event.stopPropagation(); window.open('https://wa.me/919876589706','_blank');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+                <button onclick="event.stopPropagation(); triggerLeadWhatsApp('ENQ987875388', '+919876589706');" title="WhatsApp" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200/90 flex items-center justify-center active:scale-90 cursor-pointer transition-transform shadow-2xs">
                   <i class="fa-brands fa-whatsapp text-sm"></i>
                 </button>
               </div>
+            </div>
+
+            <!-- Below CTAs: History, Add Comment, Feedback (No Icons) -->
+            <div class="flex items-center gap-2 pt-2 border-t border-slate-100/90">
+              <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('ENQ987875388');" class="flex-1 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/80 rounded-xl text-xs font-bold transition-colors cursor-pointer active:scale-95 text-center" title="View chronological action history">
+                History (4)
+              </button>
+              <button type="button" onclick="event.stopPropagation(); openLeadCommentsModal('ENQ987875388');" class="flex-1 py-2 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/80 rounded-xl text-xs font-bold transition-colors cursor-pointer active:scale-95 text-center" title="Add or view comments">
+                Add Comment
+              </button>
+              <button onclick="event.stopPropagation(); showAppToast('Feedback: High Interest (Loved EV Drive)', 'info');" class="flex-1 py-2 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-2xs active:scale-95 transition-all cursor-pointer text-center">
+                Feedback
+              </button>
             </div>
           </div>
         </div>
@@ -4210,14 +4208,14 @@
     <!-- FLOATING DOCKED BOTTOM NAVIGATION BAR -->
     <nav class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md border border-slate-200/90 py-2 px-2 z-50 rounded-2xl shadow-xl shadow-slate-900/10">
       <div class="flex items-center justify-around">
-        <button id="nav-home" onclick="switchScreen('home')" class="nav-btn flex flex-col items-center gap-0.5 text-[#2563EB] transition-colors">
-          <div class="w-11 h-7.5 rounded-full bg-[#D9EDFF] flex items-center justify-center"><i class="fa-solid fa-house text-sm"></i></div>
-          <span class="text-[10px] font-bold">Home</span>
+        <button id="nav-home" onclick="switchScreen('home')" class="nav-btn flex flex-col items-center gap-0.5 text-[#94A3B8] active:text-slate-600 transition-colors">
+          <div class="w-11 h-7.5 rounded-full flex items-center justify-center"><i class="fa-solid fa-house text-sm"></i></div>
+          <span class="text-[10px] font-medium">Home</span>
         </button>
 
-        <button id="nav-enquiry" onclick="switchScreen('enquiry')" class="nav-btn flex flex-col items-center gap-0.5 text-[#94A3B8] active:text-slate-600 transition-colors">
-          <div class="w-11 h-7.5 rounded-full flex items-center justify-center"><i class="fa-solid fa-magnifying-glass text-sm"></i></div>
-          <span class="text-[10px] font-medium">Enquiry</span>
+        <button id="nav-enquiry" onclick="switchScreen('enquiry')" class="nav-btn flex flex-col items-center gap-0.5 text-[#2563EB] transition-colors">
+          <div class="w-11 h-7.5 rounded-full bg-[#D9EDFF] flex items-center justify-center"><i class="fa-solid fa-magnifying-glass text-sm"></i></div>
+          <span class="text-[10px] font-bold">Enquiry</span>
         </button>
 
         <button id="nav-booking" onclick="switchScreen('booking')" class="nav-btn flex flex-col items-center gap-0.5 text-[#94A3B8] active:text-slate-600 transition-colors">
@@ -4629,51 +4627,48 @@
     </div>
   </div>
 
-  <!-- SWIGGY / ZOMATO DINING SLOT-STYLE TEST DRIVE BOOKING MODAL -->
+  <!-- CLEAN REDESIGNED TEST DRIVE BOOKING MODAL -->
   <div id="testDriveBookingModal" onclick="if(event.target === this) closeTestDriveBookingModal()" style="display: none;" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center z-50 p-0 sm:p-4 transition-all">
     <div class="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-[420px] p-5 space-y-4 shadow-2xl border border-slate-100 relative animate-in slide-in-from-bottom duration-200 max-h-[92vh] overflow-y-auto custom-scroll">
       <!-- Mobile drag handle bar -->
       <div class="w-12 h-1.5 bg-slate-200 rounded-full mx-auto -mt-1 mb-1 sm:hidden"></div>
 
       <!-- Modal Header -->
-      <div class="flex items-start justify-between border-b border-slate-100 pb-3">
-        <div class="flex items-center gap-2.5">
-          <div class="w-10 h-10 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center border border-purple-100 text-base font-black shadow-2xs">
-            <i class="fa-solid fa-car-side"></i>
-          </div>
-          <div>
-            <h3 class="text-sm font-black text-[#1E293B] tracking-tight">Book Test Drive</h3>
-            <p class="text-[10.5px] text-slate-400 font-semibold">Select date & time slot for customer</p>
-          </div>
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div>
+          <h3 class="text-base font-black text-[#1E293B] leading-tight">Book Test Drive</h3>
+          <p class="text-[11px] text-slate-500 font-semibold mt-0.5">Select preferred date, slot & location</p>
         </div>
-        <button type="button" onclick="closeTestDriveBookingModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-slate-800 font-bold flex items-center justify-center text-sm cursor-pointer active:scale-95 transition-transform">
+        <button type="button" onclick="closeTestDriveBookingModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center text-sm cursor-pointer active:scale-95 transition-transform" title="Close">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
-      <!-- Lead Summary Badge -->
-      <div class="bg-gradient-to-r from-blue-50/90 to-indigo-50/90 p-3 rounded-2xl border border-blue-100/90 flex items-center justify-between">
+      <!-- Customer & Vehicle Context (Clean & Minimal) -->
+      <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200/80 flex items-center justify-between">
         <div class="flex items-center gap-2.5 min-w-0">
-          <div id="tdModalLeadAvatar" class="w-9 h-9 rounded-xl bg-[#007AFF] text-white font-black text-xs flex items-center justify-center shrink-0 shadow-2xs">RK</div>
+          <div id="tdModalLeadAvatar" class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#007AFF] to-blue-600 text-white font-black text-xs flex items-center justify-center shrink-0 shadow-2xs">
+            RK
+          </div>
           <div class="truncate">
-            <div class="flex items-center gap-2">
-              <h4 id="tdModalLeadName" class="text-xs font-black text-[#1E293B] truncate">Rahul K.</h4>
-              <span id="tdModalLeadPhone" class="text-[10px] font-semibold text-slate-500">+91 98765 89706</span>
-            </div>
-            <p id="tdModalLeadModel" class="text-[10px] font-bold text-[#007AFF] truncate mt-0.5">Suzuki Brezza ZXi (Petrol MT)</p>
+            <h4 id="tdModalLeadName" class="text-xs font-black text-[#1E293B] truncate leading-tight">Rahul K.</h4>
+            <p id="tdModalLeadPhone" class="text-[10.5px] font-semibold text-slate-500 mt-0.5 truncate">+91 98765 89706</p>
           </div>
         </div>
-        <span class="text-[10px] font-extrabold text-[#007AFF] bg-white px-2 py-0.5 rounded-full border border-blue-200/60 shadow-2xs shrink-0">Follow-up ➔ Test Drive</span>
+        <div class="text-right shrink-0">
+          <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Interested Model</span>
+          <span id="tdModalLeadModel" class="text-xs font-extrabold text-[#007AFF] block mt-0.5 truncate max-w-[150px]">Suzuki Brezza</span>
+        </div>
       </div>
 
-      <!-- STEP 1: DATE SELECTION STRIP (Swiggy / Zomato Dining Slot Strip) -->
+      <!-- STEP 1: DATE SELECTION STRIP -->
       <div class="space-y-2">
         <div class="flex items-center justify-between">
-          <label class="text-xs font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+          <label class="text-[11px] font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
             <i class="fa-regular fa-calendar text-[#007AFF]"></i>
-            <span>1. Select Date</span>
+            <span>Select Date</span>
           </label>
-          <span id="tdSelectedDateLabel" class="text-[11px] font-extrabold text-[#007AFF]">Today, 30 Oct</span>
+          <span id="tdSelectedDateLabel" class="text-xs font-black text-[#007AFF]">Today, 30 Oct</span>
         </div>
         <!-- Horizontal scrollable strip of day cards -->
         <div id="tdDateStripTrack" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 select-none" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
@@ -4681,72 +4676,56 @@
         </div>
       </div>
 
-      <!-- STEP 2: TIME SLOT SELECTION (Swiggy / Zomato categorized slots) -->
-      <div class="space-y-2.5">
+      <!-- STEP 2: TIME SLOT SELECTION -->
+      <div class="space-y-2">
         <div class="flex items-center justify-between">
-          <label class="text-xs font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+          <label class="text-[11px] font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
             <i class="fa-regular fa-clock text-[#007AFF]"></i>
-            <span>2. Select Time Slot</span>
+            <span>Select Time Slot</span>
           </label>
-          <span id="tdSelectedSlotLabel" class="text-[11px] font-extrabold text-[#007AFF]">11:30 AM</span>
+          <span id="tdSelectedSlotLabel" class="text-xs font-black text-[#007AFF]">11:30 AM</span>
         </div>
 
-        <!-- Morning Slots Group -->
-        <div class="space-y-1.5">
-          <div class="text-[10px] font-extrabold text-amber-600 flex items-center gap-1 uppercase tracking-wider">
-            <i class="fa-solid fa-sun text-[11px]"></i>
-            <span>Morning Slots (10:00 AM - 12:00 PM)</span>
-          </div>
-          <div class="grid grid-cols-4 gap-2">
-            <button type="button" onclick="selectTestDriveSlot('10:00 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">10:00 AM</button>
-            <button type="button" onclick="selectTestDriveSlot('10:30 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">10:30 AM</button>
-            <button type="button" onclick="selectTestDriveSlot('11:00 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">11:00 AM</button>
-            <button type="button" onclick="selectTestDriveSlot('11:30 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-black bg-[#007AFF] text-white border-2 border-[#007AFF] shadow-xs active:scale-95 transition-all cursor-pointer">11:30 AM</button>
-          </div>
+        <!-- Period Filter Pills -->
+        <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+          <button type="button" data-period="morning" onclick="filterTdSlotPeriod('morning', this)" class="td-period-btn flex-1 py-1.5 rounded-lg text-center text-xs font-extrabold bg-white text-[#007AFF] shadow-2xs transition-all cursor-pointer">Morning</button>
+          <button type="button" data-period="afternoon" onclick="filterTdSlotPeriod('afternoon', this)" class="td-period-btn flex-1 py-1.5 rounded-lg text-center text-xs font-bold text-slate-600 hover:text-slate-900 transition-all cursor-pointer">Afternoon</button>
+          <button type="button" data-period="evening" onclick="filterTdSlotPeriod('evening', this)" class="td-period-btn flex-1 py-1.5 rounded-lg text-center text-xs font-bold text-slate-600 hover:text-slate-900 transition-all cursor-pointer">Evening</button>
         </div>
 
-        <!-- Afternoon Slots Group -->
-        <div class="space-y-1.5">
-          <div class="text-[10px] font-extrabold text-sky-600 flex items-center gap-1 uppercase tracking-wider">
-            <i class="fa-solid fa-cloud-sun text-[11px]"></i>
-            <span>Afternoon Slots (12:00 PM - 04:00 PM)</span>
-          </div>
-          <div class="grid grid-cols-4 gap-2">
-            <button type="button" onclick="selectTestDriveSlot('12:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">12:30 PM</button>
-            <button type="button" onclick="selectTestDriveSlot('01:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">01:30 PM</button>
-            <button type="button" onclick="selectTestDriveSlot('02:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">02:30 PM</button>
-            <button type="button" onclick="selectTestDriveSlot('03:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">03:30 PM</button>
-          </div>
-        </div>
-
-        <!-- Evening Slots Group -->
-        <div class="space-y-1.5">
-          <div class="text-[10px] font-extrabold text-indigo-600 flex items-center gap-1 uppercase tracking-wider">
-            <i class="fa-solid fa-moon text-[11px]"></i>
-            <span>Evening Slots (04:00 PM - 07:30 PM)</span>
-          </div>
-          <div class="grid grid-cols-4 gap-2">
-            <button type="button" onclick="selectTestDriveSlot('04:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">04:30 PM</button>
-            <button type="button" onclick="selectTestDriveSlot('05:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">05:30 PM</button>
-            <button type="button" onclick="selectTestDriveSlot('06:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">06:30 PM</button>
-            <button type="button" onclick="selectTestDriveSlot('07:15 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">07:15 PM</button>
-          </div>
+        <!-- Clean 4-Column Slots Grid -->
+        <div id="tdSlotsGrid" class="grid grid-cols-4 gap-2 pt-0.5">
+          <!-- Morning -->
+          <button type="button" data-period="morning" onclick="selectTestDriveSlot('10:00 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">10:00 AM</button>
+          <button type="button" data-period="morning" onclick="selectTestDriveSlot('10:30 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">10:30 AM</button>
+          <button type="button" data-period="morning" onclick="selectTestDriveSlot('11:00 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">11:00 AM</button>
+          <button type="button" data-period="morning" onclick="selectTestDriveSlot('11:30 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-black bg-[#007AFF] text-white border-2 border-[#007AFF] shadow-xs active:scale-95 transition-all cursor-pointer">11:30 AM</button>
+          <!-- Afternoon -->
+          <button type="button" data-period="afternoon" onclick="selectTestDriveSlot('12:30 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">12:30 PM</button>
+          <button type="button" data-period="afternoon" onclick="selectTestDriveSlot('01:30 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">01:30 PM</button>
+          <button type="button" data-period="afternoon" onclick="selectTestDriveSlot('02:30 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">02:30 PM</button>
+          <button type="button" data-period="afternoon" onclick="selectTestDriveSlot('03:30 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">03:30 PM</button>
+          <!-- Evening -->
+          <button type="button" data-period="evening" onclick="selectTestDriveSlot('04:30 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">04:30 PM</button>
+          <button type="button" data-period="evening" onclick="selectTestDriveSlot('05:30 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">05:30 PM</button>
+          <button type="button" data-period="evening" onclick="selectTestDriveSlot('06:30 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">06:30 PM</button>
+          <button type="button" data-period="evening" onclick="selectTestDriveSlot('07:15 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">07:15 PM</button>
         </div>
       </div>
 
       <!-- STEP 3: TEST DRIVE LOCATION -->
       <div class="space-y-1.5">
-        <label class="text-xs font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+        <label class="text-[11px] font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
           <i class="fa-solid fa-location-dot text-[#007AFF]"></i>
-          <span>3. Test Drive Location</span>
+          <span>Location</span>
         </label>
         <div class="grid grid-cols-2 gap-2">
-          <button type="button" id="tdLocDealership" onclick="selectTestDriveLocation('Dealership Visit', this)" class="td-loc-pill py-2.5 px-3 rounded-xl border-2 border-[#007AFF] bg-blue-50/70 text-[#007AFF] font-black text-xs flex items-center justify-center gap-2 shadow-2xs active:scale-95 transition-all cursor-pointer">
-            <i class="fa-solid fa-building"></i>
+          <button type="button" id="tdLocDealership" onclick="selectTestDriveLocation('Dealership Visit', this)" class="td-loc-pill py-2.5 px-3 rounded-2xl border-2 border-[#007AFF] bg-blue-50/70 text-[#007AFF] font-black text-xs flex items-center justify-center gap-2 shadow-2xs active:scale-95 transition-all cursor-pointer">
+            <i class="fa-solid fa-building text-xs"></i>
             <span>Dealership Visit</span>
           </button>
-          <button type="button" id="tdLocDoorstep" onclick="selectTestDriveLocation('Customer Doorstep', this)" class="td-loc-pill py-2.5 px-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 font-bold text-xs flex items-center justify-center gap-2 hover:border-blue-200 active:scale-95 transition-all cursor-pointer">
-            <i class="fa-solid fa-house"></i>
+          <button type="button" id="tdLocDoorstep" onclick="selectTestDriveLocation('Customer Doorstep', this)" class="td-loc-pill py-2.5 px-3 rounded-2xl border border-slate-200 bg-white text-slate-700 font-bold text-xs flex items-center justify-center gap-2 hover:border-blue-200 active:scale-95 transition-all cursor-pointer">
+            <i class="fa-solid fa-house text-xs"></i>
             <span>Customer Doorstep</span>
           </button>
         </div>
@@ -4754,23 +4733,22 @@
 
       <!-- STEP 4: OPTIONAL SPECIAL NOTES -->
       <div class="space-y-1">
-        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Remarks / Special Vehicle Variant (Optional)</label>
-        <input type="text" id="tdModalNotesInput" placeholder="e.g. bring Petrol MT variant, customer wants highway drive..." class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:bg-white transition-all">
+        <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Remarks / Special Vehicle Variant (Optional)</label>
+        <input type="text" id="tdModalNotesInput" placeholder="e.g. Petrol MT variant, customer wants highway drive..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:bg-white focus:ring-2 focus:ring-[#007AFF]/20 transition-all">
       </div>
 
       <!-- MODAL FOOTER WITH LIVE SUMMARY & CTA -->
-      <div class="pt-2 border-t border-slate-100 space-y-2.5">
-        <div class="bg-blue-50/70 p-2.5 rounded-xl border border-blue-100 flex items-center justify-between text-xs">
-          <span class="text-slate-500 font-semibold">Slot Summary:</span>
-          <span id="tdSlotSummaryText" class="font-black text-[#007AFF]">Today, 30 Oct @ 11:30 AM (Dealership Visit)</span>
+      <div class="pt-2 border-t border-slate-100 space-y-2">
+        <div class="flex items-center justify-between text-xs px-1">
+          <span class="text-slate-400 font-semibold text-[11px]">Selected Slot:</span>
+          <span id="tdSlotSummaryText" class="font-black text-[#007AFF] text-xs">Today, 30 Oct • 11:30 AM • Dealership Visit</span>
         </div>
         <div class="flex items-center gap-2">
-          <button type="button" onclick="closeTestDriveBookingModal()" class="w-1/3 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs active:scale-95 transition-transform cursor-pointer">
+          <button type="button" onclick="closeTestDriveBookingModal()" class="w-1/3 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xs active:scale-95 transition-transform cursor-pointer">
             Cancel
           </button>
-          <button type="button" onclick="confirmTestDriveBooking()" class="flex-1 py-3 rounded-xl bg-[#007AFF] active:bg-blue-600 text-white font-black text-xs shadow-md shadow-blue-500/25 flex items-center justify-center gap-2 active:scale-95 transition-all cursor-pointer">
-            <i class="fa-solid fa-calendar-check text-xs"></i>
-            <span>Confirm & Move to Test Drive</span>
+          <button type="button" onclick="confirmTestDriveBooking()" class="flex-1 py-2.5 rounded-xl bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white font-black text-xs shadow-md shadow-blue-500/25 flex items-center justify-center active:scale-95 transition-all cursor-pointer">
+            Confirm
           </button>
         </div>
       </div>
@@ -5195,6 +5173,16 @@
     function switchScreen(screenName) {
       try {
         sessionStorage.setItem('activeScreen', screenName);
+        if (window.history && window.history.replaceState && window.location.protocol.startsWith('http')) {
+          const currentUrl = new URL(window.location.href);
+          currentUrl.searchParams.set('screen', screenName);
+          if (screenName === 'lead-profile' && activeProfileLead) {
+            currentUrl.searchParams.set('lead', activeProfileLead.id);
+          } else if (screenName !== 'lead-profile') {
+            currentUrl.searchParams.delete('lead');
+          }
+          window.history.replaceState(null, '', currentUrl.toString());
+        }
       } catch (e) {}
 
       const currentActive = document.querySelector('.app-screen.active');
@@ -6113,7 +6101,7 @@
       'This Week': {
         headerTitle: "WEEKLY TARGET",
         achievedBadge: "75% Achieved",
-        targetTitle: "WEEKLY VEHICLE SALES TARGET",
+        targetTitle: "MONTHLY VEHICLE SALES TARGET",
         targetUnits: "3 of 4 Units Sold",
         targetCircle: "75%",
         progressWidth: "75%",
@@ -6148,7 +6136,7 @@
       'This Month': {
         headerTitle: "MONTHLY TARGET",
         achievedBadge: "80% Achieved",
-        targetTitle: "MARCH VEHICLE SALES TARGET",
+        targetTitle: "MONTHLY VEHICLE SALES TARGET",
         targetUnits: "8 of 10 Units Sold",
         targetCircle: "80%",
         progressWidth: "80%",
@@ -7007,6 +6995,9 @@
       if (!lead) return;
 
       activeProfileLead = lead;
+      try {
+        sessionStorage.setItem('activeProfileLeadId', leadId);
+      } catch (e) {}
       renderFollowUpLeadProfileScreen(lead);
       switchScreen('lead-profile');
     }
@@ -7078,11 +7069,8 @@
       if (!lead) return;
 
       // 1. Comments
-      const commentsCount = document.getElementById('profileCommentsCountBadge');
       const commentsList = document.getElementById('profileCommentsList');
       const comments = lead.comments || [];
-
-      if (commentsCount) commentsCount.innerText = `${comments.length} Note${comments.length === 1 ? '' : 's'}`;
 
       if (commentsList) {
         if (comments.length === 0) {
@@ -7111,11 +7099,8 @@
       }
 
       // 2. History Timeline
-      const historyCount = document.getElementById('profileHistoryCountBadge');
       const historyTimeline = document.getElementById('profileHistoryTimeline');
       const history = lead.history || [];
-
-      if (historyCount) historyCount.innerText = `${history.length} Event${history.length === 1 ? '' : 's'}`;
 
       if (historyTimeline) {
         if (history.length === 0) {
@@ -7153,9 +7138,9 @@
       applyProfileCollapsibleState();
     }
 
-    // Collapsible states for Comments & Remarks and Lead Action History
-    let isProfileCommentsOpen = true;
-    let isProfileHistoryOpen = true;
+    // Collapsible states for Comments & Remarks and Lead Action History (Closed by default)
+    let isProfileCommentsOpen = false;
+    let isProfileHistoryOpen = false;
 
     function toggleProfileComments() {
       isProfileCommentsOpen = !isProfileCommentsOpen;
@@ -7314,9 +7299,38 @@
       window.open(`https://wa.me/${cleanPhone}`, '_blank');
     }
 
-    // Opens the Swiggy / Zomato Dining Slot-style Test Drive Booking Modal
+    // Filter slots by period: morning, afternoon, evening
+    function filterTdSlotPeriod(period, btn) {
+      document.querySelectorAll('.td-period-btn').forEach(b => {
+        b.className = 'td-period-btn flex-1 py-1.5 rounded-lg text-center text-xs font-bold text-slate-600 hover:text-slate-900 transition-all cursor-pointer';
+      });
+      if (btn) {
+        btn.className = 'td-period-btn flex-1 py-1.5 rounded-lg text-center text-xs font-extrabold bg-white text-[#007AFF] shadow-2xs transition-all cursor-pointer';
+      }
+
+      const pills = document.querySelectorAll('.td-slot-pill');
+      pills.forEach(pill => {
+        const p = pill.getAttribute('data-period');
+        if (p === period) {
+          pill.classList.remove('hidden');
+        } else {
+          pill.classList.add('hidden');
+        }
+      });
+    }
+
+    // Opens the Clean Redesigned Test Drive Booking Modal
     function openTestDriveBookingModal(leadId) {
-      const lead = followUpLeadsData.find(l => l.id === leadId);
+      let lead = null;
+      if (leadId) {
+        lead = followUpLeadsData.find(l => l.id === leadId);
+      }
+      if (!lead && activeProfileLead) {
+        lead = activeProfileLead;
+      }
+      if (!lead && typeof followUpLeadsData !== 'undefined' && followUpLeadsData.length > 0) {
+        lead = followUpLeadsData[0];
+      }
       if (!lead) return;
 
       activeTestDriveLead = lead;
@@ -7334,10 +7348,10 @@
       if (avatar) avatar.innerText = lead.initials;
       if (name) name.innerText = lead.name;
       if (phone) phone.innerText = lead.phone;
-      if (model) model.innerText = lead.model;
+      if (model) model.innerText = lead.model ? lead.model.split('(')[0].trim() : 'Suzuki Brezza';
       if (notes) notes.value = '';
 
-      // Populate Swiggy / Zomato style horizontal date strip (7 days)
+      // Populate Clean 7-day horizontal date strip
       const stripTrack = document.getElementById('tdDateStripTrack');
       if (stripTrack) {
         const dateOptions = [
@@ -7353,28 +7367,38 @@
         stripTrack.innerHTML = dateOptions.map((opt, idx) => {
           const isSelected = idx === 0;
           return `
-            <button type="button" onclick="selectTestDriveDate('${opt.label}', this)" class="td-date-card shrink-0 w-[68px] py-2.5 px-1 rounded-2xl text-center border-2 ${isSelected ? 'border-[#007AFF] bg-[#007AFF] text-white shadow-md shadow-blue-500/20' : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-blue-300 hover:bg-blue-50/40'} active:scale-95 transition-all cursor-pointer">
-              <span class="text-[9.5px] font-black uppercase tracking-wider block ${isSelected ? 'text-white/90' : 'text-slate-400'} leading-none">${opt.day}</span>
+            <button type="button" onclick="selectTestDriveDate('${opt.label}', this)" class="td-date-card shrink-0 w-[64px] py-2 px-1 rounded-xl text-center ${isSelected ? 'border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm' : 'border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'} active:scale-95 transition-all cursor-pointer">
+              <span class="text-[9px] font-extrabold uppercase tracking-wide block ${isSelected ? 'text-white/90' : 'text-slate-400'} leading-none">${opt.day}</span>
               <span class="text-base font-black leading-none block my-1 ${isSelected ? 'text-white' : 'text-slate-800'}">${opt.num}</span>
-              <span class="text-[9.5px] font-extrabold uppercase block ${isSelected ? 'text-white/80' : 'text-slate-400'} leading-none">${opt.month}</span>
+              <span class="text-[9px] font-bold uppercase block ${isSelected ? 'text-white/80' : 'text-slate-400'} leading-none">${opt.month}</span>
             </button>
           `;
         }).join('');
       }
 
-      // Reset slot pills selection styling
+      // Reset slot pills styling and show morning slots by default
       document.querySelectorAll('.td-slot-pill').forEach(pill => {
-        pill.className = 'td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer';
+        const p = pill.getAttribute('data-period');
+        if (p === 'morning') {
+          pill.classList.remove('hidden');
+        } else {
+          pill.classList.add('hidden');
+        }
+        pill.className = 'td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer';
         if (pill.innerText.trim() === '11:30 AM') {
           pill.className = 'td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-black bg-[#007AFF] text-white border-2 border-[#007AFF] shadow-xs active:scale-95 transition-all cursor-pointer';
         }
       });
 
+      // Reset period buttons to 'Morning'
+      const morningBtn = document.querySelector('.td-period-btn[data-period="morning"]') || document.querySelectorAll('.td-period-btn')[0];
+      filterTdSlotPeriod('morning', morningBtn);
+
       // Reset location buttons
       const btnDealership = document.getElementById('tdLocDealership');
       const btnDoorstep = document.getElementById('tdLocDoorstep');
-      if (btnDealership) btnDealership.className = 'td-loc-pill py-2.5 px-3 rounded-xl border-2 border-[#007AFF] bg-blue-50/70 text-[#007AFF] font-black text-xs flex items-center justify-center gap-2 shadow-2xs active:scale-95 transition-all cursor-pointer';
-      if (btnDoorstep) btnDoorstep.className = 'td-loc-pill py-2.5 px-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 font-bold text-xs flex items-center justify-center gap-2 hover:border-blue-200 active:scale-95 transition-all cursor-pointer';
+      if (btnDealership) btnDealership.className = 'td-loc-pill py-2.5 px-3 rounded-2xl border-2 border-[#007AFF] bg-blue-50/70 text-[#007AFF] font-black text-xs flex items-center justify-center gap-2 shadow-2xs active:scale-95 transition-all cursor-pointer';
+      if (btnDoorstep) btnDoorstep.className = 'td-loc-pill py-2.5 px-3 rounded-2xl border border-slate-200 bg-white text-slate-700 font-bold text-xs flex items-center justify-center gap-2 hover:border-blue-200 active:scale-95 transition-all cursor-pointer';
 
       updateTestDriveSlotSummary();
 
@@ -7395,43 +7419,43 @@
       activeTestDriveLead = null;
     }
 
-    // Selects active date in the Swiggy / Zomato horizontal date strip
+    // Selects active date in the horizontal date strip
     function selectTestDriveDate(dateStr, el) {
       activeTdDate = dateStr;
       const dateLabel = document.getElementById('tdSelectedDateLabel');
       if (dateLabel) dateLabel.innerText = dateStr;
 
       document.querySelectorAll('.td-date-card').forEach(card => {
-        card.className = 'td-date-card shrink-0 w-[68px] py-2.5 px-1 rounded-2xl text-center border border-slate-200 bg-slate-50 text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 active:scale-95 transition-all cursor-pointer';
+        card.className = 'td-date-card shrink-0 w-[64px] py-2 px-1 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 active:scale-95 transition-all cursor-pointer';
         const daySpan = card.querySelector('span:first-child');
         const numSpan = card.querySelector('span:nth-child(2)');
         const monSpan = card.querySelector('span:last-child');
-        if (daySpan) daySpan.className = 'text-[9.5px] font-extrabold uppercase tracking-wider block text-slate-400 leading-none';
+        if (daySpan) daySpan.className = 'text-[9px] font-extrabold uppercase tracking-wide block text-slate-400 leading-none';
         if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1 text-slate-800';
-        if (monSpan) monSpan.className = 'text-[9.5px] font-bold uppercase block text-slate-400 leading-none';
+        if (monSpan) monSpan.className = 'text-[9px] font-bold uppercase block text-slate-400 leading-none';
       });
 
       if (el) {
-        el.className = 'td-date-card shrink-0 w-[68px] py-2.5 px-1 rounded-2xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-md shadow-blue-500/20 active:scale-95 transition-all cursor-pointer';
+        el.className = 'td-date-card shrink-0 w-[64px] py-2 px-1 rounded-xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm active:scale-95 transition-all cursor-pointer';
         const daySpan = el.querySelector('span:first-child');
         const numSpan = el.querySelector('span:nth-child(2)');
         const monSpan = el.querySelector('span:last-child');
-        if (daySpan) daySpan.className = 'text-[9.5px] font-black uppercase tracking-wider block text-white/90 leading-none';
+        if (daySpan) daySpan.className = 'text-[9px] font-extrabold uppercase tracking-wide block text-white/90 leading-none';
         if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1 text-white';
-        if (monSpan) monSpan.className = 'text-[9.5px] font-extrabold uppercase block text-white/80 leading-none';
+        if (monSpan) monSpan.className = 'text-[9px] font-bold uppercase block text-white/80 leading-none';
       }
 
       updateTestDriveSlotSummary();
     }
 
-    // Selects active time slot in the categorized grid
+    // Selects active time slot in the grid
     function selectTestDriveSlot(slotStr, el) {
       activeTdSlot = slotStr;
       const slotLabel = document.getElementById('tdSelectedSlotLabel');
       if (slotLabel) slotLabel.innerText = slotStr;
 
       document.querySelectorAll('.td-slot-pill').forEach(pill => {
-        pill.className = 'td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer';
+        pill.className = 'td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer';
       });
 
       if (el) {
@@ -7449,11 +7473,11 @@
       const btnDoorstep = document.getElementById('tdLocDoorstep');
 
       if (btnDealership && btnDoorstep) {
-        btnDealership.className = 'td-loc-pill py-2.5 px-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 font-bold text-xs flex items-center justify-center gap-2 hover:border-blue-200 active:scale-95 transition-all cursor-pointer';
-        btnDoorstep.className = 'td-loc-pill py-2.5 px-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 font-bold text-xs flex items-center justify-center gap-2 hover:border-blue-200 active:scale-95 transition-all cursor-pointer';
+        btnDealership.className = 'td-loc-pill py-2.5 px-3 rounded-2xl border border-slate-200 bg-white text-slate-700 font-bold text-xs flex items-center justify-center gap-2 hover:border-blue-200 active:scale-95 transition-all cursor-pointer';
+        btnDoorstep.className = 'td-loc-pill py-2.5 px-3 rounded-2xl border border-slate-200 bg-white text-slate-700 font-bold text-xs flex items-center justify-center gap-2 hover:border-blue-200 active:scale-95 transition-all cursor-pointer';
 
         if (el) {
-          el.className = 'td-loc-pill py-2.5 px-3 rounded-xl border-2 border-[#007AFF] bg-blue-50/70 text-[#007AFF] font-black text-xs flex items-center justify-center gap-2 shadow-2xs active:scale-95 transition-all cursor-pointer';
+          el.className = 'td-loc-pill py-2.5 px-3 rounded-2xl border-2 border-[#007AFF] bg-blue-50/70 text-[#007AFF] font-black text-xs flex items-center justify-center gap-2 shadow-2xs active:scale-95 transition-all cursor-pointer';
         }
       }
 
@@ -7464,7 +7488,7 @@
     function updateTestDriveSlotSummary() {
       const summary = document.getElementById('tdSlotSummaryText');
       if (summary) {
-        summary.innerText = `${activeTdDate} @ ${activeTdSlot} (${activeTdLocation})`;
+        summary.innerText = `${activeTdDate} • ${activeTdSlot} • ${activeTdLocation}`;
       }
     }
 
@@ -7508,43 +7532,55 @@
       const targetSec = isForToday ? document.getElementById('todayTestDrivesSection') : document.getElementById('otherTestDrivesSection');
       if (targetSec) {
         const newCard = document.createElement('div');
-        newCard.className = `td-card ${isForToday ? 'today' : 'upcoming'} all bg-white p-3.5 rounded-2xl border border-purple-200 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer animate-in fade-in duration-300`;
+        newCard.className = `td-card ${isForToday ? 'today' : 'upcoming'} all bg-white p-3 rounded-2xl border border-slate-200/90 shadow-xs space-y-2.5 transition-all hover:border-blue-200 cursor-pointer active:scale-[0.995] animate-in fade-in duration-300`;
+        newCard.onclick = () => openFollowUpLeadDetails(lead.id);
+        newCard.title = 'Click to view full customer details & notes';
         newCard.innerHTML = `
+          <!-- Card Header (Customer Identity & Details) -->
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3 min-w-0">
-              <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 font-black text-xs flex items-center justify-center shrink-0 border border-purple-100">
+            <div class="flex items-center gap-2.5 min-w-0 flex-1">
+              <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs flex items-center justify-center shrink-0 border border-blue-100">
                 ${lead.initials}
               </div>
-              <div class="truncate">
+              <div class="truncate flex-1 min-w-0">
                 <div class="flex items-center gap-1.5">
                   <h3 class="text-xs font-black text-[#1E293B] truncate">${lead.name}</h3>
-                  <span class="text-[9.5px] font-extrabold px-1.5 py-0.2 rounded bg-purple-50 text-purple-700 border border-purple-200 shrink-0">${activeTdDate.split(',')[0]} • ${activeTdSlot}</span>
                 </div>
                 <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">${lead.model} • ${lead.id}</p>
               </div>
             </div>
-            <span class="text-[10px] font-extrabold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full shrink-0 border border-purple-100">SCHEDULED</span>
           </div>
-          <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-car-side text-[#007AFF] text-xs"></i>
-              <span class="font-black text-slate-800">${lead.model.split('(')[0].trim()}</span>
-            </div>
-            <span class="text-[10px] font-extrabold text-slate-700 bg-white px-2 py-0.5 rounded border border-slate-200 shadow-2xs">${activeTdLocation}</span>
-          </div>
-          <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-            <span class="text-[10px] font-semibold text-slate-500">Executive: <strong class="text-slate-800">You</strong></span>
-            <div class="flex items-center gap-1.5">
-              <button onclick="event.stopPropagation(); triggerLeadCall('${lead.id}', '${lead.phone}');" title="Call" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+
+          <!-- Middle Row: Due Time Badge (Left) & Quick Comms (Right) -->
+          <div class="flex items-center justify-between pt-0.5">
+            <!-- Due Time Badge (Left) -->
+            <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50/90 px-3 py-1 rounded-full shrink-0 border border-blue-200/80 uppercase tracking-tight shadow-2xs flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF]"></span>
+              <span>${activeTdDate.toUpperCase()} • ${activeTdSlot}</span>
+            </span>
+
+            <!-- Call & WhatsApp Circular Comms (Right) -->
+            <div class="flex items-center gap-2 shrink-0">
+              <button onclick="event.stopPropagation(); triggerLeadCall('${lead.id}', '${lead.phone}');" title="Call" class="w-8 h-8 rounded-full bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/90 flex items-center justify-center active:scale-90 cursor-pointer transition-transform shadow-2xs">
                 <i class="fa-solid fa-phone text-xs"></i>
               </button>
-              <button onclick="event.stopPropagation(); triggerLeadWhatsApp('${lead.id}', '${lead.phone}');" title="WhatsApp" class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] border border-blue-200 flex items-center justify-center active:scale-90">
+              <button onclick="event.stopPropagation(); triggerLeadWhatsApp('${lead.id}', '${lead.phone}');" title="WhatsApp" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-600 border border-emerald-200/90 flex items-center justify-center active:scale-90 cursor-pointer transition-transform shadow-2xs">
                 <i class="fa-brands fa-whatsapp text-sm"></i>
               </button>
-              <button onclick="event.stopPropagation(); showAppToast('Starting Test Drive for ${lead.name}...', 'info');" class="px-2.5 py-1 bg-[#007AFF] text-white rounded-lg text-xs font-bold flex items-center gap-1 shadow-xs active:scale-95">
-                <i class="fa-solid fa-key text-[10px]"></i><span>Start Drive</span>
-              </button>
             </div>
+          </div>
+
+          <!-- Below CTAs: History, Add Comment, Start Drive (No Icons) -->
+          <div class="flex items-center gap-2 pt-2 border-t border-slate-100/90">
+            <button type="button" onclick="event.stopPropagation(); openLeadHistoryModal('${lead.id}');" class="flex-1 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/80 rounded-xl text-xs font-bold transition-colors cursor-pointer active:scale-95 text-center" title="View chronological action history">
+              History (${lead.history ? lead.history.length : 1})
+            </button>
+            <button type="button" onclick="event.stopPropagation(); openLeadCommentsModal('${lead.id}');" class="flex-1 py-2 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/80 rounded-xl text-xs font-bold transition-colors cursor-pointer active:scale-95 text-center" title="Add or view comments">
+              Add Comment
+            </button>
+            <button onclick="event.stopPropagation(); showAppToast('Starting Test Drive for ${lead.name}...', 'info');" class="flex-1 py-2 bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-2xs active:scale-95 transition-all cursor-pointer text-center">
+              Start Drive
+            </button>
           </div>
         `;
         targetSec.insertBefore(newCard, targetSec.children[1] || null);
@@ -9285,6 +9321,19 @@
         if (targetScreen === 'lead-profile' || targetScreen === 'lead-details') {
           const lId = params.get('lead') || params.get('id') || 'ENQ987875369';
           openFollowUpLeadDetails(lId);
+          if (params.get('expand_comments') === '1' || params.get('expand') === 'comments') {
+            isProfileCommentsOpen = true;
+            applyProfileCollapsibleState();
+          }
+          if (params.get('expand_history') === '1' || params.get('expand') === 'history') {
+            isProfileHistoryOpen = true;
+            applyProfileCollapsibleState();
+          }
+          if (params.get('expand_both') === '1' || params.get('expand') === 'all') {
+            isProfileCommentsOpen = true;
+            isProfileHistoryOpen = true;
+            applyProfileCollapsibleState();
+          }
           if (params.get('collapse_comments') === '1' || params.get('collapse') === 'comments') {
             isProfileCommentsOpen = false;
             applyProfileCollapsibleState();
@@ -9340,15 +9389,39 @@
         updateSalesStepUI();
         showTestLeadSuccessModal();
       }
-      renderFollowUpScreen();
       const hash = (window.location.hash || '').replace('#', '');
+      if (params.get('modal') === 'testdrive' || hash === 'testdrive' || hash === 'modal-testdrive') {
+        const tdL = params.get('lead') || params.get('id') || 'ENQ987875369';
+        setTimeout(() => openTestDriveBookingModal(tdL), 120);
+      }
+      renderFollowUpScreen();
       let savedScreen = null;
-      try { savedScreen = sessionStorage.getItem('activeScreen'); } catch (e) {}
-      const targetScreen = params.get('screen') || (hash === 'activities' || hash === 'followups' ? 'activities' : null) || (savedScreen === 'activities' ? 'activities' : null);
+      let savedLeadId = null;
+      try {
+        savedScreen = sessionStorage.getItem('activeScreen');
+        savedLeadId = sessionStorage.getItem('activeProfileLeadId');
+      } catch (e) {}
+      const targetScreen = params.get('screen') || ((hash && hash !== 'testdrive' && hash !== 'modal-testdrive') ? hash : null) || (savedScreen && savedScreen !== 'home' ? savedScreen : 'lead-profile');
       if (targetScreen) {
         if (targetScreen === 'lead-profile' || targetScreen === 'lead-details') {
-          const lId = params.get('lead') || params.get('id') || 'ENQ987875369';
+          const lId = params.get('lead') || params.get('id') || savedLeadId || 'ENQ987875369';
           openFollowUpLeadDetails(lId);
+          if (params.get('modal') === 'testdrive' || hash === 'testdrive' || hash === 'modal-testdrive') {
+            setTimeout(() => openTestDriveBookingModal(lId), 80);
+          }
+          if (params.get('expand_comments') === '1' || params.get('expand') === 'comments') {
+            isProfileCommentsOpen = true;
+            applyProfileCollapsibleState();
+          }
+          if (params.get('expand_history') === '1' || params.get('expand') === 'history') {
+            isProfileHistoryOpen = true;
+            applyProfileCollapsibleState();
+          }
+          if (params.get('expand_both') === '1' || params.get('expand') === 'all') {
+            isProfileCommentsOpen = true;
+            isProfileHistoryOpen = true;
+            applyProfileCollapsibleState();
+          }
           if (params.get('collapse_comments') === '1' || params.get('collapse') === 'comments') {
             isProfileCommentsOpen = false;
             applyProfileCollapsibleState();

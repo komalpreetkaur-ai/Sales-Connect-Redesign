@@ -1,5 +1,62 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🎯 Target Section Header (Monthly Target)
+
+1. **Updated Target Header Text**:
+   - Changed the target label from `WEEKLY VEHICLE SALES TARGET` to **`MONTHLY VEHICLE SALES TARGET`** across both static HTML and dynamic date-filter configurations.
+
+2. **Visual Verification**:
+   - Screenshot: [screenshot_monthly_target.png](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_monthly_target.png)
+   - Live URL: `http://localhost:9847/?screen=home&v=20261103e`
+
+---
+
+## 📊 Uniform KPI Cards (Unselected "Follow-ups" Card)
+
+1. **Removed "Selected" Style from Follow-ups KPI Card**:
+   - Replaced the thick blue border (`border-2 border-[#007AFF]`), blue tint background (`bg-blue-50/40`), and blue pulsing dot with the standard white card design (`bg-white border border-[#E0E8F5]`).
+   - Softened the icon container to pastel blue (`bg-blue-50 text-[#007AFF]`), matching the styling of Test Drives (purple), Bookings (green), and Deliveries (amber).
+   - Replaced `"Tap to view redesigned leads"` with clean metric subtext: `"3 due today"` with clock icon.
+   - All 4 KPI cards now share a balanced, uniform appearance without any card appearing pre-selected.
+
+2. **Visual Verification**:
+   - Screenshot: [screenshot_kpi_cards_unselected.png](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_kpi_cards_unselected.png)
+   - Live URL: `http://localhost:9847/?screen=home&v=20261103d`
+
+---
+
+## 🧹 Clean Home Screen (Removed Blue Banner & Overdue Card)
+
+1. **Removed "Follow-Up Leads Redesign" Blue Banner**:
+   - The large blue gradient banner (`Follow-Up Leads Redesign • Test Drive CTA • Add Comment • Action History [ Open (6) → ]`) above the 4 KPI cards has been completely removed.
+2. **Removed "Overdue Follow-up: Priya M." Card**:
+   - Removed the yellow warning card (`Overdue Follow-up: Priya M. • Interested in Suzuki Gixxer SF • Due 2h ago`) with its duplicate call, WhatsApp, test drive, and comment buttons from the **Priority Actions Today** section on the Home screen.
+   - Updated the Priority Actions counter badge to reflect the remaining urgent items.
+
+3. **Visual Verification**:
+   - Screenshot: [screenshot_home_cleaned.png](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_cleaned.png)
+   - Live URL: `http://localhost:9847/?screen=home&v=20261103c`
+
+---
+
+## 🚗 Clean Test Drive Booking Modal (Removed "All" Tab & Updated Confirm CTA)
+
+1. **Removed "All (12)" Tab**:
+   - The `[ All (12) ]` period filter tab has been completely removed from the test drive booking slot picker.
+   - The period switcher now features only **`[ Morning ]`**, **`[ Afternoon ]`**, and **`[ Evening ]`** segmented pills.
+   - **`[ Morning ]`** is selected and highlighted by default (`10:00 AM`, `10:30 AM`, `11:00 AM`, `11:30 AM`).
+   - Tapping **`[ Afternoon ]`** or **`[ Evening ]`** seamlessly filters the visible slots to their respective periods in the clean 4-column grid.
+
+2. **Clean "Confirm" Action CTA**:
+   - Changed CTA text from `Confirm Test Drive` to **`Confirm`**.
+   - Removed the calendar check icon for a clean, minimal text-only button appearance matching modern design patterns.
+
+3. **Visual Verification**:
+   - Screenshot captured and verified: [screenshot_testdrive_confirm_cta.png](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_testdrive_confirm_cta.png)
+   - Verified live at `http://localhost:9847/?modal=testdrive`.
+
+---
+
 ## 👤 Dedicated Separate Lead Details & Profile Page
 
 Decoupled the follow-up cards from the generic enquiry details screen. Clicking on any follow-up card now opens a **dedicated Customer & Lead Profile Screen** (`#screen-lead-profile`):
@@ -1190,9 +1247,9 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
 
 - **Screen Title Updated**: Changed the primary header title from `Lead Details` to clean **`Follow up`**.
 - **Streamlined Customer Identity Card**: Removed the `[ • TODAY • 11:30 AM ]` and `[ Hot Priority ]` tags from the customer identity card, creating a clean, vertically balanced card with avatar initials, customer name, phone number, and one-tap Call (`[ 📞 ]`) and WhatsApp (`[ 💬 ]`) action icons.
-- **Collapsible Comments & Remarks**: The entire `Comments & Remarks` section can now be toggled collapsed/expanded by tapping anywhere on its header. Features an interactive right/down chevron, count pill badge (`2 Notes`), inline text composer, quick chips, and chronological comment list.
-- **Collapsible Lead Action History**: The `Lead Action History` section can now be toggled collapsed/expanded independently by tapping its header. Features a count badge (`2 Events`), dynamic chevron indicator, and full chronological timeline audit trail.
-- **Smart Auto-Expansion**: Posting a new comment automatically expands `Comments & Remarks` if it was collapsed, ensuring the user immediately sees their freshly saved remark.
+- **Collapsible Comments & Remarks (Clean Header, Closed by Default)**: The `Comments & Remarks` section starts **closed by default** with a clean header bar showing just the icon, title, and right chevron indicator `[ > ]` (count tag `2 Notes` removed for a minimal look). Tapping anywhere on the header row expands it to reveal the inline text composer, quick template chips, and chronological comment list.
+- **Collapsible Lead Action History (Clean Header, Closed by Default)**: The `Lead Action History` section also starts **closed by default** with just the title and right chevron `[ > ]` (count tag `2 Events` removed). Tapping expands the full chronological timeline.
+- **Smart Auto-Expansion on New Remark**: Posting a new comment automatically expands the `Comments & Remarks` section so the user immediately sees their newly submitted note.
 - **Updated Test Drive CTA**: Updated the primary action button copy to **`Move to Test Drive`** (`[ 🚗 Move to Test Drive → ]`), clearly signaling the workflow progression.
 - **Removed "Recommended" Tag**: Cleaned up the Test Drive Booking card by removing the redundant "Recommended" pill badge from the header.
 - **Fixed Floating Sticky Overlap**: Removed the redundant `sticky bottom-16` floating action bar to eliminate screen collisions.
@@ -1203,10 +1260,89 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
 
 ---
 
-## 🌐 Live Prototype Link
+## 🔄 Direct Landing & Reload Persistence Fix
 
-- **Local HTML File**: [sales_connect_redesign.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/sales_connect_redesign.html)
-- **Live Local Server**: [http://localhost:9847/sales_connect_redesign.html](http://localhost:9847/sales_connect_redesign.html)
+- **Root Cause Identified**: Previously, when refreshing `http://localhost:9847/` or opening `sales_connect_redesign.html`, `handleUrlDeepLinks()` strictly checked `(savedScreen === 'activities' ? 'activities' : null)`. When the user was viewing `#screen-lead-profile`, `savedScreen` evaluated to `null`, causing the app to reset back to `#screen-home` on every reload. Users refreshing their browser to see updates were returned to Home and concluded that their changes did not take effect.
+- **Direct Default Screen**: The application now defaults `targetScreen` to `'lead-profile'` (with `activeProfileLeadId || 'ENQ987875369'`) whenever opened without explicit URL queries. Opening `http://localhost:9847/` or `sales_connect_redesign.html` immediately renders the updated **Follow up** screen.
+- **State & URL Synchronization**:
+  - `switchScreen()` now syncs the browser address bar dynamically via `window.history.replaceState` with `?screen=<screenName>&lead=<leadId>`.
+  - Both `activeScreen` and `activeProfileLeadId` are stored in `sessionStorage` and restored seamlessly upon page reload.
+- **Static HTML Default**: Configured `#screen-lead-profile` as the active screen in static HTML, guaranteeing the Follow up view renders immediately even on local static file preview (`file://`).
+
+| Root URL (`http://127.0.0.1:9847/`) Direct Landing | Follow-Up Leads List (`?screen=activities`) |
+| :---: | :---: |
+| ![Root URL Follow Up Screen](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_root_fixed.png) | ![Activities Screen](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_activities_verified.png) |
+
+---
+
+## 🚗 Clean Book Test Drive Flow & Modal (`#testDriveBookingModal`)
+
+- **Clean Minimal Header**: Replaced the previous purple icon banner with a modern, breathable header (`Book Test Drive`, `Select preferred date, slot & location`) and a clean circular close action button `[ × ]`.
+- **Refined Customer & Car Context**: Replaced the noisy gradient container and `Follow-up ➔ Test Drive` badge with a sleek, minimalist card showing customer avatar (`RK`), name (`Rahul K.`), phone (`+91 98765 89706`), and vehicle model pill (`Suzuki Brezza`).
+- **Interactive Horizontal Date Strip**: 7-day pill carousel with compact padding, distinct day abbreviations, date numerals, and month labels. Solid brand blue (`#007AFF`) indicates the active selection.
+- **Segmented Time Slot Picker**:
+  - Replaced the previous 3 loud colored sections (Morning/Afternoon/Evening) and 12 scattered buttons with an intuitive top segmented period switcher: **`[ All (12) ]  [ Morning ]  [ Afternoon ]  [ Evening ]`**.
+  - Displays a clean, uniform 4-column grid of slot pills with high-contrast active states.
+- **Modern Location Cards**: Two segmented option cards for **`Dealership Visit`** and **`Customer Doorstep`** with clean iconography and active blue border/background styling.
+- **Sleek Notes Input & Live Footer**: Compact optional remarks field and clean summary row (`Today, 30 Oct • 11:30 AM • Dealership Visit`) alongside a prominent full-width **`Confirm Test Drive`** button.
+
+| Clean Book Test Drive Modal |
+| :---: |
+| ![Clean Book Test Drive Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_testdrive_clean_modal.png) |
+
+---
+
+---
+
+## 🏎️ Unified Card Architecture Across Follow-Up & Test Drive Screens
+
+The card architecture has been completely unified across both **Follow-Up Leads** (`#screen-activities`) and **Test Drives** (`#screen-test-drives` & dynamic bookings via `confirmTestDriveBooking()`):
+
+1. **Card Container**: Minimalist `bg-white p-3 rounded-2xl border border-slate-200/90 shadow-xs space-y-2.5` with subtle hover border elevation.
+2. **Top Row (Customer Identity & Model)**:
+   - Initials avatar in soft blue (`w-9 h-9 rounded-xl bg-blue-50 text-[#007AFF] font-black text-xs border border-blue-100`).
+   - Customer name in bold dark slate (`text-xs font-black text-[#1E293B]`).
+   - Car model & unique ID in muted slate (`text-[10px] font-semibold text-slate-500`).
+3. **Middle Row (Slot / Due Time & Comms)**:
+   - Date & time pill badge on left (`text-[10px] font-extrabold text-[#007AFF] bg-blue-50/90 px-3 py-1 rounded-full border border-blue-200/80` with a blue dot indicator).
+   - Circular Phone Call (`[ 📞 ]`) and WhatsApp (`[ 💬 ]`) action icon buttons on the right.
+4. **Bottom Row (Text-Only Actions, Zero Icons)**:
+   - **`History (X)`**: Soft neutral button (`bg-slate-100 hover:bg-slate-200 text-slate-700`).
+   - **`Add Comment`**: Soft blue button (`bg-blue-50 hover:bg-blue-100 text-[#007AFF]`).
+   - **Primary Action**: Solid blue button (`bg-[#007AFF] hover:bg-blue-600 text-white`) — `Test Drive` on follow-up cards; `Start Drive`, `Reschedule`, or `Feedback` on test drive cards.
+
+| Follow-Up Screen Cards | Test Drive Screen Cards (Unified Design) |
+| :---: | :---: |
+| ![Follow-Up Screen Cards](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_followups_parity.png) | ![Test Drive Screen Cards](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_testdrives_unified_cards.png) |
+
+---
+
+## ✅ Comprehensive Verification of Visual Removals & Updates
+
+| Element | Status | Verification Detail |
+| :--- | :---: | :--- |
+| **`2 Notes` Tag** | Removed ✅ | Removed from `Comments & Remarks` header in Lead Profile. |
+| **`2 Events` Tag** | Removed ✅ | Removed from `Lead Action History` header in Lead Profile. |
+| **`All (12)` Tab** | Removed ✅ | Removed from category tabs in Test Drives screen. |
+| **`Follow-Up Leads Redesign` Banner** | Removed ✅ | Removed from Home screen dashboard. |
+| **`Overdue Follow-up: Priya M.` Card** | Removed ✅ | Removed from Home screen priority actions list. |
+| **`FOLLOW-UPS 6` Card Styling** | Normalized ✅ | Replaced selected blue border & solid blue folder icon with neutral white background matching other 3 KPI cards. |
+| **`WEEKLY VEHICLE SALES TARGET`** | Changed ✅ | Renamed to `MONTHLY VEHICLE SALES TARGET` across Home screen and dashboard state models. |
+
+| Lead Profile (Tags Removed) | Home Screen (Clean KPI Cards & Monthly Target) |
+| :---: | :---: |
+| ![Lead Profile Screen](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_lead_profile_notags.png) | ![Home Screen](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_all_verified.png) |
+
+---
+
+## 🌐 Live Prototype Links
+
+- **Test Drives Screen (Unified Cards)**: [http://localhost:9847/?screen=test-drives&v=20261103g](http://localhost:9847/?screen=test-drives&v=20261103g)
+- **Follow-Up Leads Screen**: [http://localhost:9847/?screen=activities&v=20261103g](http://localhost:9847/?screen=activities&v=20261103g)
+- **Home Dashboard**: [http://localhost:9847/?screen=home&v=20261103g](http://localhost:9847/?screen=home&v=20261103g)
+- **Lead Profile Screen**: [http://localhost:9847/?screen=lead-profile&lead=ENQ987875369&v=20261103g](http://localhost:9847/?screen=lead-profile&lead=ENQ987875369&v=20261103g)
+- **Local Files**: [index.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/index.html) • [sales_connect_redesign.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/sales_connect_redesign.html)
+
 
 
 
