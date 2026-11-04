@@ -1348,18 +1348,23 @@ The card architecture has been completely unified across both **Follow-Up Leads*
 
 ---
 
-### 2. Dedicated Test Drive Details Screen (`#screen-test-drive-details`)
-A dedicated screen displaying **only test drive-specific information and outcomes**:
-- **App Bar**: Back button, `Test Drive Details` title, dynamic car model + slot subtitle, and status badge (`SCHEDULED`, `IN NEGOTIATION`, or `CLOSED / LOST`).
-- **Customer Card**: Quick call (`[ 📞 ]`) and WhatsApp (`[ 💬 ]`) actions in whitespace.
-- **Drive Progression Stepper**: 4-stage visual stepper (`Booked ✓` ➔ `DL Verified ✓` ➔ `Drive Ready ●` ➔ `Negotiation / Close`).
-- **Demo Vehicle Information**: Demo car model, powertrain & gearbox (`Diesel • Automatic 4x4`), fleet registration (`MH 02 FJ 4410`), color & trim, odometer & fuel level (`4,820 km, 80% Tank`).
-- **Schedule, Location & Compliance**: Appointment slot, location mode, Driving License verification status (`Verified ✓ DL-042018009214`), assigned consultant, and planned route (`Expressway Loop - 12 km`).
-- **Customer Requirements & Notes**: Specific customer focus points and test drive feedback notes.
+### 2. Clean & Readable Redesign of Test Drive Details Screen
+The previous cluttered 2-column uppercase grids have been completely redesigned for visual clarity, elegance, and effortless scannability:
 
-| Test Drive Details: Top Specs & Stepper | Test Drive Details: Scrolled View with Outcome Card |
+1. **Vehicle Details Card**:
+   - Replaced heavy all-caps labels with a clean, calm key-value list.
+   - Clean horizontal rows: **Model** (`Mahindra Thar Roxx AX7 L`), **Powertrain** (`Diesel • 6-Speed Automatic 4x4`), **Color & Trim** (`Everest White / Black Top`), and **Odometer & Fuel** (`4,820 km • 80% Tank`).
+   - Clean mono badge for registration (`MH 02 FJ 4410`).
+2. **Schedule & Route Card**:
+   - Organized into a structured horizontal row list: **Appointment** (`Today, 30 Oct • 2:30 - 3:15 PM`), **Location** (`Dealership Visit`), **Route** (`Expressway Loop - 12 km`), **Driving License** (`Verified ✓`), and **Consultant** (`Akash G.`).
+   - Soft blue pill for current slot timing (`Today • 2:30 PM`).
+3. **Test Drive Notes Card**:
+   - Removed nested dark grey blocks and heavy bullet points.
+   - Replaced with two clean, readable rounded cards: **Customer Focus** and **Feedback & Impression**, providing ample breathing room and smooth line height.
+
+| Redesigned Top View (Vehicle Details) | Redesigned Scrolled View (Schedule, Notes & Outcome) |
 | :---: | :---: |
-| ![Test Drive Details Screen](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_details_screen.png) | ![Test Drive Scrolled View](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_details_scrolled.png) |
+| ![Clean Top View](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_details_screen.png) | ![Clean Scrolled View](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_clean_readable.png) |
 
 ---
 

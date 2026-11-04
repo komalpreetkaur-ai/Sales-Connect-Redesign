@@ -2996,90 +2996,97 @@
           </div>
         </div>
 
-        <!-- 3. Test Drive Vehicle Specifications Card -->
-        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-3">
-          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-            <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-              <i class="fa-solid fa-car-side text-[#007AFF] text-xs"></i>
-              <span>Demo Vehicle Information</span>
-            </h3>
-            <span id="tdScreenFleetBadge" class="text-[10px] font-mono font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">MH 02 FJ 4410</span>
+        <!-- 3. Vehicle Details -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5">
+          <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-lg bg-blue-50 text-[#007AFF] flex items-center justify-center text-xs">
+                <i class="fa-solid fa-car-side"></i>
+              </div>
+              <h3 class="text-xs font-bold text-slate-800">Vehicle Details</h3>
+            </div>
+            <span id="tdScreenFleetBadge" class="text-[10px] font-mono font-semibold text-slate-600 bg-slate-50 px-2 py-0.5 rounded border border-slate-200/80">MH 02 FJ 4410</span>
           </div>
 
-          <div class="grid grid-cols-2 gap-y-2.5 gap-x-3 text-xs">
-            <div>
-              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Demo Vehicle Model</span>
-              <span id="tdScreenVehicleModel" class="font-extrabold text-slate-800 text-xs block mt-0.5">Mahindra Thar Roxx AX7 L</span>
+          <div class="divide-y divide-slate-100 text-xs">
+            <div class="py-2 flex items-center justify-between gap-3">
+              <span class="text-slate-400 font-medium shrink-0">Model</span>
+              <span id="tdScreenVehicleModel" class="font-bold text-slate-800 text-right truncate">Mahindra Thar Roxx AX7 L</span>
             </div>
-            <div>
-              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Powertrain & Gearbox</span>
-              <span id="tdScreenFuelTrans" class="font-extrabold text-slate-800 text-xs block mt-0.5">Diesel • Automatic (4x4)</span>
+            <div class="py-2 flex items-center justify-between gap-3">
+              <span class="text-slate-400 font-medium shrink-0">Powertrain</span>
+              <span id="tdScreenFuelTrans" class="font-semibold text-slate-700 text-right truncate">Diesel • Automatic (4x4)</span>
             </div>
-            <div>
-              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Color & Trim</span>
-              <span id="tdScreenColor" class="font-semibold text-slate-700 block mt-0.5">Everest White / Black Top</span>
+            <div class="py-2 flex items-center justify-between gap-3">
+              <span class="text-slate-400 font-medium shrink-0">Color & Trim</span>
+              <span id="tdScreenColor" class="font-medium text-slate-700 text-right truncate">Everest White / Black Top</span>
             </div>
-            <div>
-              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Odometer & Fuel Tank</span>
-              <span id="tdScreenOdo" class="font-semibold text-slate-700 block mt-0.5">4,820 km (80% Tank)</span>
+            <div class="py-2 flex items-center justify-between gap-3">
+              <span class="text-slate-400 font-medium shrink-0">Odometer & Fuel</span>
+              <span id="tdScreenOdo" class="font-medium text-slate-700 text-right">4,820 km (80% Tank)</span>
             </div>
           </div>
         </div>
 
-        <!-- 4. Schedule, Location & Compliance Details Card -->
-        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-3">
-          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-            <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-              <i class="fa-regular fa-calendar-check text-[#007AFF] text-xs"></i>
-              <span>Schedule, Location & Compliance</span>
-            </h3>
-            <span id="tdScreenSlotPill" class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">TODAY • 2:30 PM</span>
+        <!-- 4. Schedule & Route -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5">
+          <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-lg bg-blue-50 text-[#007AFF] flex items-center justify-center text-xs">
+                <i class="fa-regular fa-calendar-check"></i>
+              </div>
+              <h3 class="text-xs font-bold text-slate-800">Schedule & Route</h3>
+            </div>
+            <span id="tdScreenSlotPill" class="text-[10px] font-bold text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">Today • 2:30 PM</span>
           </div>
 
-          <div class="grid grid-cols-2 gap-y-2.5 gap-x-3 text-xs">
-            <div>
-              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Appointment Slot</span>
-              <span id="tdScreenSlot" class="font-extrabold text-slate-800 text-xs block mt-0.5">Today, 30 Oct • 2:30 - 3:15 PM</span>
+          <div class="divide-y divide-slate-100 text-xs">
+            <div class="py-2 flex items-center justify-between gap-3">
+              <span class="text-slate-400 font-medium shrink-0">Appointment</span>
+              <span id="tdScreenSlot" class="font-bold text-slate-800 text-right">Today, 30 Oct • 2:30 - 3:15 PM</span>
             </div>
-            <div>
-              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Drive Location / Mode</span>
-              <span id="tdScreenLocation" class="font-extrabold text-slate-800 text-xs block mt-0.5">Dealership Visit</span>
+            <div class="py-2 flex items-center justify-between gap-3">
+              <span class="text-slate-400 font-medium shrink-0">Location</span>
+              <span id="tdScreenLocation" class="font-semibold text-slate-700 text-right">Dealership Visit</span>
             </div>
-            <div>
-              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Driving License (DL)</span>
-              <span id="tdScreenDl" class="font-bold text-emerald-600 block mt-0.5 flex items-center gap-1">
+            <div class="py-2 flex items-center justify-between gap-3">
+              <span class="text-slate-400 font-medium shrink-0">Route</span>
+              <span id="tdScreenRoute" class="font-medium text-slate-700 text-right truncate">Expressway Loop (12 km)</span>
+            </div>
+            <div class="py-2 flex items-center justify-between gap-3">
+              <span class="text-slate-400 font-medium shrink-0">Driving License</span>
+              <span id="tdScreenDl" class="font-semibold text-emerald-600 flex items-center gap-1.5 text-right">
                 <i class="fa-solid fa-circle-check text-xs"></i>
                 <span>Verified (DL-042018009214)</span>
               </span>
             </div>
-            <div>
-              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Assigned Consultant</span>
-              <span id="tdScreenExecutive" class="font-bold text-[#007AFF] block mt-0.5">Akash G. (You)</span>
-            </div>
-            <div class="col-span-2">
-              <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Planned Test Drive Route</span>
-              <span id="tdScreenRoute" class="font-semibold text-slate-700 block mt-0.5">Highway & City Mix (Expressway Loop - 12 km)</span>
+            <div class="py-2 flex items-center justify-between gap-3">
+              <span class="text-slate-400 font-medium shrink-0">Consultant</span>
+              <span id="tdScreenExecutive" class="font-semibold text-slate-700 text-right">Akash G. (You)</span>
             </div>
           </div>
         </div>
 
-        <!-- 5. Test Drive Remarks & Customer Focus -->
+        <!-- 5. Test Drive Notes -->
         <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5">
-          <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-            <i class="fa-regular fa-comment-dots text-[#007AFF] text-xs"></i>
-            <span>Customer Requirements & Test Drive Notes</span>
-          </h3>
-          <div class="bg-slate-50 p-3 rounded-xl border border-slate-200/70 text-xs space-y-2">
-            <div class="flex items-start gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#007AFF] mt-1.5 shrink-0"></span>
-              <p id="tdScreenNotes" class="text-slate-700 leading-snug">
+          <div class="flex items-center gap-2 pb-2 border-b border-slate-100">
+            <div class="w-6 h-6 rounded-lg bg-blue-50 text-[#007AFF] flex items-center justify-center text-xs">
+              <i class="fa-regular fa-comment-dots"></i>
+            </div>
+            <h3 class="text-xs font-bold text-slate-800">Test Drive Notes</h3>
+          </div>
+
+          <div class="space-y-2 text-xs">
+            <div class="bg-slate-50/70 p-2.5 rounded-xl border border-slate-200/60">
+              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wide block mb-1">Customer Focus</span>
+              <p id="tdScreenNotes" class="text-slate-700 leading-relaxed font-medium">
                 Customer comparing with Scorpio-N and wants to check rear seat comfort, highway stability, and ADAS Level 2 features.
               </p>
             </div>
-            <div class="flex items-start gap-2 pt-1 border-t border-slate-200/60">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0"></span>
-              <p id="tdScreenFeedback" class="text-slate-700 leading-snug font-medium">
-                Customer feedback: Highly positive after drive demonstration. Requested formal quotation and financing sheet.
+            <div class="bg-slate-50/70 p-2.5 rounded-xl border border-slate-200/60">
+              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wide block mb-1">Feedback & Impression</span>
+              <p id="tdScreenFeedback" class="text-slate-700 leading-relaxed font-medium">
+                Demonstration completed. Customer requested formal price discount sheet and financing options.
               </p>
             </div>
           </div>
@@ -6871,19 +6878,19 @@
       if (leadRef) leadRef.innerText = `Lead Ref: ${td.leadId || td.id}`;
       if (stageText) stageText.innerText = td.stageText || 'Ready for Negotiation / Close';
       if (stepper) stepper.style.width = td.stepperProgress || '66%';
-      if (fleetBadge) fleetBadge.innerText = td.fleetReg || 'Demo Fleet';
+      if (fleetBadge) fleetBadge.innerText = (td.fleetReg || 'Demo Fleet').replace(' (Demo Fleet)', '');
       if (vehicleModel) vehicleModel.innerText = td.model;
       if (fuelTrans) fuelTrans.innerText = td.fuelTrans;
       if (color) color.innerText = td.color;
       if (odo) odo.innerText = td.odo;
-      if (slotPill) slotPill.innerText = td.slotPill;
+      if (slotPill) slotPill.innerText = (td.slotPill || 'Today').replace('TODAY • ', 'Today • ').replace('TOMORROW • ', 'Tomorrow • ');
       if (slot) slot.innerText = `${td.date} • ${td.slot}`;
       if (loc) loc.innerText = td.location;
       if (dl) dl.innerHTML = `<i class=\"fa-solid fa-circle-check text-xs text-emerald-600\"></i> <span>${td.dlStatus}</span>`;
       if (exec) exec.innerText = td.executive;
       if (route) route.innerText = td.route;
       if (notes) notes.innerText = td.notes;
-      if (feedback) feedback.innerText = `Customer Impression: ${td.feedback}`;
+      if (feedback) feedback.innerText = (td.feedback || '').replace(/^Customer Impression:\s*/i, '');
       if (outcomeBadge) {
         if (td.status === 'In Negotiation') {
           outcomeBadge.innerText = 'IN NEGOTIATION';
