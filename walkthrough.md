@@ -1363,26 +1363,17 @@ A dedicated screen displaying **only test drive-specific information and outcome
 
 ---
 
-### 3. Move to Negotiations & Close Lead Actions
-The bottom of the screen provides two clear, dedicated lifecycle outcomes:
+### 3. Streamlined Single Outcome Card (Direct & To The Point)
+The previous nested boxes and descriptive text blocks have been unified into **one single, clean, to-the-point card**:
+- **Single Card Container**: Clean white card (`bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs`) with a neat header `Next Stage & Lead Outcome` and dynamic badge (`Action Required`, `IN NEGOTIATION`, or `LEAD CLOSED`).
+- **Zero Redundancy**: Removed inner nested boxes, repetitive subheadings ("Advance Lead", "Drop / Close Lead", "Positive Intent", "Lost / Not Interested"), explanatory paragraphs, and the "OR" divider line.
+- **Two Direct Action Buttons**:
+  1. **`[ 🤝 Move to Negotiations → ]`**: Full-width primary solid blue button (`bg-[#007AFF] hover:bg-blue-600 text-white`). Opens `#tdNegotiationModal` to record quotation, benefits, financing, and decision timeline.
+  2. **`[ ✕ Close this Lead ]`**: Full-width soft rose outlined button (`bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200/90`). Opens `#tdCloseLeadModal` to select structured loss reasons and remarks.
 
-1. **Option 1: Move to Negotiations (`#tdNegotiationModal`)**:
-   - Advances customer from test drive to price & discount negotiation stage.
-   - Pre-fills vehicle details and provides inputs for Target Quotation / On-Road Estimate, Requested Benefits / Corporate Discounts, Financing Mode, Expected Decision Timeline, and Negotiation Remarks.
-   - Upon confirmation, updates the lead status badge to **`IN NEGOTIATION`** and advances the stepper.
-2. **Option 2: Close this Lead (`#tdCloseLeadModal`)**:
-   - Closes or drops the lead with structured loss reasons:
-     - *Bought Competitor Vehicle (e.g. Creta / Scorpio / Seltos)*
-     - *Budget / On-Road Price Too High*
-     - *Postponed Car Purchase Decision*
-     - *Dissatisfied with Vehicle Ride / Space*
-     - *Customer Dropped Enquiry / Not Reachable*
-   - Includes feedback/remarks text area.
-   - Upon confirmation, records the reason and updates the status badge to **`CLOSED / LOST`**.
-
-| Move to Negotiations Modal | Close this Lead Modal |
-| :---: | :---: |
-| ![Move to Negotiations Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_negotiation_modal.png) | ![Close this Lead Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_close_lead_modal.png) |
+| Single To-The-Point Outcome Card | Move to Negotiations Modal | Close this Lead Modal |
+| :---: | :---: | :---: |
+| ![Single Outcome Card](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_details_single_card.png) | ![Move to Negotiations](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_negotiation_modal.png) | ![Close Lead Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_close_lead_modal.png) |
 
 ---
 
