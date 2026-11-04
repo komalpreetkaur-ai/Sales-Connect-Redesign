@@ -2914,7 +2914,7 @@
       <!-- ========================================== -->
       <!-- SCREEN: DEDICATED TEST DRIVE DETAILS       -->
       <!-- ========================================== -->
-      <div id="screen-test-drive-details" class="app-screen space-y-3.5 pb-28">
+      <div id="screen-test-drive-details" class="app-screen space-y-3.5">
         <!-- Top App Bar -->
         <div class="flex items-center justify-between border-b border-[#E0E8F5] pb-2.5 pt-1">
           <div class="flex items-center gap-2.5">
@@ -10070,17 +10070,9 @@
           }
           if (params.get('scroll') === 'bottom' || params.get('scroll') === 'outcome') {
             setTimeout(() => {
-              const el = document.getElementById('screen-test-drive-details');
-              if (el) {
-                const closeBtn = el.querySelector('button[onclick="openCloseLeadModal()"]');
-                if (closeBtn) {
-                  closeBtn.scrollIntoView({ block: 'center' });
-                } else {
-                  const main = document.getElementById('mobile-viewport') || document.querySelector('main');
-                  if (main) main.scrollTop = 2500;
-                }
-              }
-            }, 150);
+              const main = document.getElementById('mobile-viewport') || document.querySelector('main');
+              if (main) main.scrollTop = main.scrollHeight;
+            }, 100);
           }
         } else if (targetScreen === 'enquiry') {
           openEnquiryWithTemperature('all');
@@ -10221,17 +10213,9 @@
           }
           if (params.get('scroll') === 'bottom' || params.get('scroll') === 'outcome') {
             setTimeout(() => {
-              const el = document.getElementById('screen-test-drive-details');
-              if (el) {
-                const closeBtn = el.querySelector('button[onclick="openCloseLeadModal()"]');
-                if (closeBtn) {
-                  closeBtn.scrollIntoView({ block: 'center' });
-                } else {
-                  const main = document.getElementById('mobile-viewport') || document.querySelector('main');
-                  if (main) main.scrollTop = 2500;
-                }
-              }
-            }, 150);
+              const main = document.getElementById('mobile-viewport') || document.querySelector('main');
+              if (main) main.scrollTop = main.scrollHeight;
+            }, 100);
           }
         } else {
           switchScreen(targetScreen);

@@ -1371,9 +1371,13 @@ The previous nested boxes and descriptive text blocks have been unified into **o
   1. **`[ Move to Negotiations ]`**: Full-width primary solid blue button (`bg-[#007AFF] hover:bg-blue-600 text-white`) with clean text and zero icons. Opens `#tdNegotiationModal`.
   2. **`[ Close this Lead ]`**: Full-width soft rose outlined button (`bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200/90`) with clean text and zero icons. Opens `#tdCloseLeadModal`.
 
-| Single To-The-Point Outcome Card (No Icons) | Move to Negotiations Modal | Close this Lead Modal |
+- **Removed Redundant White Space**:
+  - Removed duplicate `pb-28` bottom padding from `#screen-test-drive-details`.
+  - Replaced center scroll anchoring with natural bottom alignment (`main.scrollTop = main.scrollHeight`), ensuring the `NEXT STAGE & LEAD OUTCOME` card rests directly above the bottom navigation bar with clean, standard margin and zero excessive white space.
+
+| Compact Outcome Card (No White Space) | Move to Negotiations Modal | Close this Lead Modal |
 | :---: | :---: | :---: |
-| ![Single Outcome Card No Icons](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_no_icons.png) | ![Move to Negotiations No Icon](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_negotiation_no_icon.png) | ![Close Lead Modal No Icon](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_close_no_icon.png) |
+| ![Single Outcome Card No White Space](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_no_whitespace.png) | ![Move to Negotiations No Icon](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_negotiation_no_icon.png) | ![Close Lead Modal No Icon](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_close_no_icon.png) |
 
 ---
 
