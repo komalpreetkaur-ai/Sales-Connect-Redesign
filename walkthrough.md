@@ -1335,13 +1335,67 @@ The card architecture has been completely unified across both **Follow-Up Leads*
 
 ---
 
+## 🏎️ Test Drive Flow: Single "Details" CTA & Dedicated Test Drive Details Screen
+
+### 1. Single "Details" CTA on Test Drive Cards
+- **Removed 3-Button Row**: Replaced the 3 buttons (`[ History (X) ]`, `[ Add Comment ]`, `[ Start Drive / Reschedule / Feedback ]`) on all test drive cards with **ONLY ONE CTA**: **`[ Details → ]`**.
+- **Unified Clean Layout**: Cards display customer name, model, slot badge, and quick phone/WhatsApp buttons, followed by the single full-width `[ Details → ]` button to navigate directly into the test drive screen.
+- **Applied Universally**: Both static cards (`Amit Roy`, `Neha Gupta`, `Vikram Malhotra`, `Kavita Reddy`) and dynamically booked test drives from the booking modal now use the single `[ Details → ]` action.
+
+| Test Drive Screen Cards with Single `[ Details → ]` CTA |
+| :---: |
+| ![Test Drive Cards Single Details CTA](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_single_cta.png) |
+
+---
+
+### 2. Dedicated Test Drive Details Screen (`#screen-test-drive-details`)
+A dedicated screen displaying **only test drive-specific information and outcomes**:
+- **App Bar**: Back button, `Test Drive Details` title, dynamic car model + slot subtitle, and status badge (`SCHEDULED`, `IN NEGOTIATION`, or `CLOSED / LOST`).
+- **Customer Card**: Quick call (`[ 📞 ]`) and WhatsApp (`[ 💬 ]`) actions in whitespace.
+- **Drive Progression Stepper**: 4-stage visual stepper (`Booked ✓` ➔ `DL Verified ✓` ➔ `Drive Ready ●` ➔ `Negotiation / Close`).
+- **Demo Vehicle Information**: Demo car model, powertrain & gearbox (`Diesel • Automatic 4x4`), fleet registration (`MH 02 FJ 4410`), color & trim, odometer & fuel level (`4,820 km, 80% Tank`).
+- **Schedule, Location & Compliance**: Appointment slot, location mode, Driving License verification status (`Verified ✓ DL-042018009214`), assigned consultant, and planned route (`Expressway Loop - 12 km`).
+- **Customer Requirements & Notes**: Specific customer focus points and test drive feedback notes.
+
+| Test Drive Details: Top Specs & Stepper | Test Drive Details: Scrolled View with Outcome Card |
+| :---: | :---: |
+| ![Test Drive Details Screen](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_details_screen.png) | ![Test Drive Scrolled View](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_details_scrolled.png) |
+
+---
+
+### 3. Move to Negotiations & Close Lead Actions
+The bottom of the screen provides two clear, dedicated lifecycle outcomes:
+
+1. **Option 1: Move to Negotiations (`#tdNegotiationModal`)**:
+   - Advances customer from test drive to price & discount negotiation stage.
+   - Pre-fills vehicle details and provides inputs for Target Quotation / On-Road Estimate, Requested Benefits / Corporate Discounts, Financing Mode, Expected Decision Timeline, and Negotiation Remarks.
+   - Upon confirmation, updates the lead status badge to **`IN NEGOTIATION`** and advances the stepper.
+2. **Option 2: Close this Lead (`#tdCloseLeadModal`)**:
+   - Closes or drops the lead with structured loss reasons:
+     - *Bought Competitor Vehicle (e.g. Creta / Scorpio / Seltos)*
+     - *Budget / On-Road Price Too High*
+     - *Postponed Car Purchase Decision*
+     - *Dissatisfied with Vehicle Ride / Space*
+     - *Customer Dropped Enquiry / Not Reachable*
+   - Includes feedback/remarks text area.
+   - Upon confirmation, records the reason and updates the status badge to **`CLOSED / LOST`**.
+
+| Move to Negotiations Modal | Close this Lead Modal |
+| :---: | :---: |
+| ![Move to Negotiations Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_negotiation_modal.png) | ![Close this Lead Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_td_close_lead_modal.png) |
+
+---
+
 ## 🌐 Live Prototype Links
 
-- **Test Drives Screen (Unified Cards)**: [http://localhost:9847/?screen=test-drives&v=20261103g](http://localhost:9847/?screen=test-drives&v=20261103g)
-- **Follow-Up Leads Screen**: [http://localhost:9847/?screen=activities&v=20261103g](http://localhost:9847/?screen=activities&v=20261103g)
-- **Home Dashboard**: [http://localhost:9847/?screen=home&v=20261103g](http://localhost:9847/?screen=home&v=20261103g)
-- **Lead Profile Screen**: [http://localhost:9847/?screen=lead-profile&lead=ENQ987875369&v=20261103g](http://localhost:9847/?screen=lead-profile&lead=ENQ987875369&v=20261103g)
-- **Local Files**: [index.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/index.html) • [sales_connect_redesign.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/sales_connect_redesign.html)
+- **Test Drives Screen (Single Details CTA)**: [http://localhost:9847/?screen=test-drives&v=20261104h](http://localhost:9847/?screen=test-drives&v=20261104h)
+- **Test Drive Details Screen**: [http://localhost:9847/?screen=test-drive-details&td=TD98781&v=20261104h](http://localhost:9847/?screen=test-drive-details&td=TD98781&v=20261104h)
+- **Test Drive Details (Scrolled to Outcomes)**: [http://localhost:9847/?screen=test-drive-details&td=TD98781&scroll=bottom&v=20261104h](http://localhost:9847/?screen=test-drive-details&td=TD98781&scroll=bottom&v=20261104h)
+- **Move to Negotiations Modal**: [http://localhost:9847/?screen=test-drive-details&td=TD98781&modal=negotiation&v=20261104h](http://localhost:9847/?screen=test-drive-details&td=TD98781&modal=negotiation&v=20261104h)
+- **Close this Lead Modal**: [http://localhost:9847/?screen=test-drive-details&td=TD98781&modal=close&v=20261104h](http://localhost:9847/?screen=test-drive-details&td=TD98781&modal=close&v=20261104h)
+- **Follow-Up Leads Screen**: [http://localhost:9847/?screen=activities&v=20261104h](http://localhost:9847/?screen=activities&v=20261104h)
+- **Home Dashboard**: [http://localhost:9847/?screen=home&v=20261104h](http://localhost:9847/?screen=home&v=20261104h)
+- **Local Source Files**: [index.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/index.html) • [sales_connect_redesign.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/sales_connect_redesign.html)
 
 
 
