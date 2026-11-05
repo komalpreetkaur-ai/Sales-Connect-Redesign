@@ -3168,81 +3168,69 @@
           </div>
 
           <!-- Booking Card 1: Confirmed -->
-          <div onclick="openBookingDetails('BK987875311')" class="booking-card confirmed today all bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-              <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
-                <i class="fa-solid fa-receipt text-[#007AFF]"></i>
-                <span>BK987875311 || <span class="text-[#007AFF] font-extrabold">Confirmed</span></span>
-              </div>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-50 text-[#007AFF] border border-blue-100">Deposit Received</span>
-            </div>
-
-            <div class="flex items-start justify-between">
-              <div class="space-y-0.5">
-                <div class="flex items-center gap-2">
-                  <h3 class="text-sm font-black text-[#1E293B]">Mike Alex Tyson</h3>
-                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100"><i class="fa-solid fa-user-check text-[8px]"></i>Booked by Niket K. (You)</span>
+          <div onclick="openBookingDetails('BK987875311')" class="booking-card confirmed today all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 transition-all hover:border-blue-200 cursor-pointer active:scale-[0.995]">
+            <!-- Top: Customer, Car & Token Amount -->
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-100">
+                  MT
                 </div>
-                <p class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-phone text-[10px] text-slate-400 mr-1"></i>+91 98765 89706</p>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-black text-[#1E293B] truncate">Mike Alex Tyson</h3>
+                  <p class="text-xs font-semibold text-slate-600 truncate">Mahindra Thar Roxx</p>
+                  <p class="text-[10px] font-medium text-slate-400">AX7 L Diesel AT — Midnight Black</p>
+                </div>
               </div>
-              <div class="text-right">
-                <span class="text-xs font-black text-[#007AFF]">₹50,000</span>
-                <span class="text-[9px] font-bold text-slate-400 block uppercase">Token Paid</span>
+              <div class="text-right shrink-0">
+                <span class="text-sm font-black text-[#007AFF]">₹50,000</span>
+                <span class="text-[9px] font-bold text-slate-400 block uppercase tracking-tight">Token Paid</span>
               </div>
             </div>
 
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1 text-xs">
-              <div class="flex items-center justify-between">
-                <span class="text-[10px] font-bold text-slate-400 uppercase">VEHICLE DETAILS</span>
-                <span class="text-[10px] font-extrabold text-[#007AFF]">Mahindra Thar Roxx</span>
+            <!-- Bottom Details Bar: Booking Ref, Delivery Date & Details CTA -->
+            <div class="pt-2 border-t border-slate-100/90 flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-2 text-slate-500 font-semibold">
+                <span class="text-slate-700 font-bold"><i class="fa-solid fa-receipt text-[#007AFF] mr-1 text-[9px]"></i>BK987875311</span>
+                <span class="text-slate-300">•</span>
+                <span class="text-slate-600">Delivery: <strong class="text-slate-800">10 Oct 2026</strong></span>
               </div>
-              <p class="font-extrabold text-slate-800">AX7 L Diesel AT — Midnight Black</p>
-            </div>
-
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Delivery: <strong class="text-slate-800">10 Oct 2026</strong></span>
-              <button onclick="event.stopPropagation(); openBookingDetails('BK987875311');" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
-                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              <button type="button" onclick="event.stopPropagation(); openBookingDetails('BK987875311');" class="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/80 rounded-lg text-xs font-bold transition-all flex items-center gap-1 shadow-2xs active:scale-95 cursor-pointer">
+                <span>Details</span>
+                <i class="fa-solid fa-chevron-right text-[8px]"></i>
               </button>
             </div>
           </div>
 
           <!-- Booking Card 2: Pre-booked -->
-          <div onclick="openBookingDetails('BK987875364')" class="booking-card prebooked today all bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-              <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
-                <i class="fa-solid fa-receipt text-[#007AFF]"></i>
-                <span>BK987875364 || <span class="text-[#007AFF] font-extrabold">Pre-booked</span></span>
-              </div>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-50 text-[#007AFF] border border-blue-100">Token Verified</span>
-            </div>
-
-            <div class="flex items-start justify-between">
-              <div class="space-y-0.5">
-                <div class="flex items-center gap-2">
-                  <h3 class="text-sm font-black text-[#1E293B]">Aarti Sharma</h3>
-                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100"><i class="fa-solid fa-user-check text-[8px]"></i>Booked by Niket K. (You)</span>
+          <div onclick="openBookingDetails('BK987875364')" class="booking-card prebooked today all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 transition-all hover:border-blue-200 cursor-pointer active:scale-[0.995]">
+            <!-- Top: Customer, Car & Token Amount -->
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-100">
+                  AS
                 </div>
-                <p class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-phone text-[10px] text-slate-400 mr-1"></i>+91 99102 44331</p>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-black text-[#1E293B] truncate">Aarti Sharma</h3>
+                  <p class="text-xs font-semibold text-slate-600 truncate">Mahindra XUV700</p>
+                  <p class="text-[10px] font-medium text-slate-400">AX7 Petrol AT — Everest White</p>
+                </div>
               </div>
-              <div class="text-right">
-                <span class="text-xs font-black text-[#007AFF]">₹25,000</span>
-                <span class="text-[9px] font-bold text-slate-400 block uppercase">Token Paid</span>
+              <div class="text-right shrink-0">
+                <span class="text-sm font-black text-[#007AFF]">₹25,000</span>
+                <span class="text-[9px] font-bold text-slate-400 block uppercase tracking-tight">Token Paid</span>
               </div>
             </div>
 
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1 text-xs">
-              <div class="flex items-center justify-between">
-                <span class="text-[10px] font-bold text-slate-400 uppercase">VEHICLE DETAILS</span>
-                <span class="text-[10px] font-extrabold text-[#007AFF]">Mahindra XUV700</span>
+            <!-- Bottom Details Bar: Booking Ref, Delivery Date & Details CTA -->
+            <div class="pt-2 border-t border-slate-100/90 flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-2 text-slate-500 font-semibold">
+                <span class="text-slate-700 font-bold"><i class="fa-solid fa-receipt text-[#007AFF] mr-1 text-[9px]"></i>BK987875364</span>
+                <span class="text-slate-300">•</span>
+                <span class="text-slate-600">Delivery: <strong class="text-slate-800">28 Sep 2026</strong></span>
               </div>
-              <p class="font-extrabold text-slate-800">AX7 Petrol Automatic — Everest White</p>
-            </div>
-
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Delivery: <strong class="text-slate-800">28 Sep 2026</strong></span>
-              <button onclick="event.stopPropagation(); openBookingDetails('BK987875364');" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
-                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              <button type="button" onclick="event.stopPropagation(); openBookingDetails('BK987875364');" class="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/80 rounded-lg text-xs font-bold transition-all flex items-center gap-1 shadow-2xs active:scale-95 cursor-pointer">
+                <span>Details</span>
+                <i class="fa-solid fa-chevron-right text-[8px]"></i>
               </button>
             </div>
           </div>
@@ -3256,121 +3244,103 @@
           </div>
 
           <!-- Booking Card 3: Rohan Verma -->
-          <div onclick="openBookingDetails('BK987875399')" class="booking-card confirmed all bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-              <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
-                <i class="fa-solid fa-receipt text-[#007AFF]"></i>
-                <span>BK987875399 || <span class="text-[#007AFF] font-extrabold">Confirmed</span></span>
-              </div>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-50 text-[#007AFF] border border-blue-100">In Transit</span>
-            </div>
-
-            <div class="flex items-start justify-between">
-              <div class="space-y-0.5">
-                <div class="flex items-center gap-2">
-                  <h3 class="text-sm font-black text-[#1E293B]">Rohan Verma</h3>
-                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100"><i class="fa-solid fa-user-check text-[8px]"></i>Booked by Niket K. (You)</span>
+          <div onclick="openBookingDetails('BK987875399')" class="booking-card confirmed all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 transition-all hover:border-blue-200 cursor-pointer active:scale-[0.995]">
+            <!-- Top: Customer, Car & Token Amount -->
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-100">
+                  RV
                 </div>
-                <p class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-phone text-[10px] text-slate-400 mr-1"></i>+91 98100 77665</p>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-black text-[#1E293B] truncate">Rohan Verma</h3>
+                  <p class="text-xs font-semibold text-slate-600 truncate">Scorpio-N Z8 L</p>
+                  <p class="text-[10px] font-medium text-slate-400">4X4 Diesel AT — Deep Forest Green</p>
+                </div>
               </div>
-              <div class="text-right">
-                <span class="text-xs font-black text-[#007AFF]">₹25,000</span>
-                <span class="text-[9px] font-bold text-slate-400 block uppercase">Token Paid</span>
+              <div class="text-right shrink-0">
+                <span class="text-sm font-black text-[#007AFF]">₹25,000</span>
+                <span class="text-[9px] font-bold text-slate-400 block uppercase tracking-tight">Token Paid</span>
               </div>
             </div>
 
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1 text-xs">
-              <div class="flex items-center justify-between">
-                <span class="text-[10px] font-bold text-slate-400 uppercase">VEHICLE DETAILS</span>
-                <span class="text-[10px] font-extrabold text-[#007AFF]">Scorpio-N Z8 L</span>
+            <!-- Bottom Details Bar: Booking Ref, Delivery Date & Details CTA -->
+            <div class="pt-2 border-t border-slate-100/90 flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-2 text-slate-500 font-semibold">
+                <span class="text-slate-700 font-bold"><i class="fa-solid fa-receipt text-[#007AFF] mr-1 text-[9px]"></i>BK987875399</span>
+                <span class="text-slate-300">•</span>
+                <span class="text-slate-600">Delivery: <strong class="text-slate-800">05 Oct 2026</strong></span>
               </div>
-              <p class="font-extrabold text-slate-800">4X4 Diesel AT — Deep Forest Green</p>
-            </div>
-
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Delivery: <strong class="text-slate-800">05 Oct 2026</strong></span>
-              <button onclick="event.stopPropagation(); openBookingDetails('BK987875399');" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
-                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              <button type="button" onclick="event.stopPropagation(); openBookingDetails('BK987875399');" class="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/80 rounded-lg text-xs font-bold transition-all flex items-center gap-1 shadow-2xs active:scale-95 cursor-pointer">
+                <span>Details</span>
+                <i class="fa-solid fa-chevron-right text-[8px]"></i>
               </button>
             </div>
           </div>
 
           <!-- Booking Card 4: Kavita Patel -->
-          <div onclick="openBookingDetails('BK987875412')" class="booking-card confirmed all bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-              <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
-                <i class="fa-solid fa-receipt text-[#007AFF]"></i>
-                <span>BK987875412 || <span class="text-[#007AFF] font-extrabold">Confirmed</span></span>
-              </div>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-50 text-[#007AFF] border border-blue-100">Token Verified</span>
-            </div>
-
-            <div class="flex items-start justify-between">
-              <div class="space-y-0.5">
-                <div class="flex items-center gap-2">
-                  <h3 class="text-sm font-black text-[#1E293B]">Kavita Patel</h3>
-                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100"><i class="fa-solid fa-user-check text-[8px]"></i>Booked by Niket K. (You)</span>
+          <div onclick="openBookingDetails('BK987875412')" class="booking-card confirmed all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 transition-all hover:border-blue-200 cursor-pointer active:scale-[0.995]">
+            <!-- Top: Customer, Car & Token Amount -->
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-100">
+                  KP
                 </div>
-                <p class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-phone text-[10px] text-slate-400 mr-1"></i>+91 97112 33455</p>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-black text-[#1E293B] truncate">Kavita Patel</h3>
+                  <p class="text-xs font-semibold text-slate-600 truncate">Mahindra Thar Roxx</p>
+                  <p class="text-[10px] font-medium text-slate-400">AX5 Diesel MT — Dazzling Silver</p>
+                </div>
               </div>
-              <div class="text-right">
-                <span class="text-xs font-black text-[#007AFF]">₹30,000</span>
-                <span class="text-[9px] font-bold text-slate-400 block uppercase">Token Paid</span>
+              <div class="text-right shrink-0">
+                <span class="text-sm font-black text-[#007AFF]">₹30,000</span>
+                <span class="text-[9px] font-bold text-slate-400 block uppercase tracking-tight">Token Paid</span>
               </div>
             </div>
 
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1 text-xs">
-              <div class="flex items-center justify-between">
-                <span class="text-[10px] font-bold text-slate-400 uppercase">VEHICLE DETAILS</span>
-                <span class="text-[10px] font-extrabold text-[#007AFF]">Mahindra Thar Roxx</span>
+            <!-- Bottom Details Bar: Booking Ref, Delivery Date & Details CTA -->
+            <div class="pt-2 border-t border-slate-100/90 flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-2 text-slate-500 font-semibold">
+                <span class="text-slate-700 font-bold"><i class="fa-solid fa-receipt text-[#007AFF] mr-1 text-[9px]"></i>BK987875412</span>
+                <span class="text-slate-300">•</span>
+                <span class="text-slate-600">Delivery: <strong class="text-slate-800">15 Oct 2026</strong></span>
               </div>
-              <p class="font-extrabold text-slate-800">AX5 Diesel MT (RWD) — Dazzling Silver</p>
-            </div>
-
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Delivery: <strong class="text-slate-800">15 Oct 2026</strong></span>
-              <button onclick="event.stopPropagation(); openBookingDetails('BK987875412');" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
-                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              <button type="button" onclick="event.stopPropagation(); openBookingDetails('BK987875412');" class="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/80 rounded-lg text-xs font-bold transition-all flex items-center gap-1 shadow-2xs active:scale-95 cursor-pointer">
+                <span>Details</span>
+                <i class="fa-solid fa-chevron-right text-[8px]"></i>
               </button>
             </div>
           </div>
 
           <!-- Booking Card 5: Suresh Nair -->
-          <div onclick="openBookingDetails('BK987875450')" class="booking-card confirmed all bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-              <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
-                <i class="fa-solid fa-receipt text-[#007AFF]"></i>
-                <span>BK987875450 || <span class="text-[#007AFF] font-extrabold">Confirmed</span></span>
-              </div>
-              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-50 text-[#007AFF] border border-blue-100">Deposit Received</span>
-            </div>
-
-            <div class="flex items-start justify-between">
-              <div class="space-y-0.5">
-                <div class="flex items-center gap-2">
-                  <h3 class="text-sm font-black text-[#1E293B]">Suresh Nair</h3>
-                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100"><i class="fa-solid fa-user-check text-[8px]"></i>Booked by Niket K. (You)</span>
+          <div onclick="openBookingDetails('BK987875450')" class="booking-card confirmed all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 transition-all hover:border-blue-200 cursor-pointer active:scale-[0.995]">
+            <!-- Top: Customer, Car & Token Amount -->
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-100">
+                  SN
                 </div>
-                <p class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-phone text-[10px] text-slate-400 mr-1"></i>+91 98201 66554</p>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-black text-[#1E293B] truncate">Suresh Nair</h3>
+                  <p class="text-xs font-semibold text-slate-600 truncate">Mahindra XUV700</p>
+                  <p class="text-[10px] font-medium text-slate-400">AX7 L 4WD AT — Napoli Black</p>
+                </div>
               </div>
-              <div class="text-right">
-                <span class="text-xs font-black text-[#007AFF]">₹50,000</span>
-                <span class="text-[9px] font-bold text-slate-400 block uppercase">Token Paid</span>
+              <div class="text-right shrink-0">
+                <span class="text-sm font-black text-[#007AFF]">₹50,000</span>
+                <span class="text-[9px] font-bold text-slate-400 block uppercase tracking-tight">Token Paid</span>
               </div>
             </div>
 
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1 text-xs">
-              <div class="flex items-center justify-between">
-                <span class="text-[10px] font-bold text-slate-400 uppercase">VEHICLE DETAILS</span>
-                <span class="text-[10px] font-extrabold text-[#007AFF]">Mahindra XUV700</span>
+            <!-- Bottom Details Bar: Booking Ref, Delivery Date & Details CTA -->
+            <div class="pt-2 border-t border-slate-100/90 flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-2 text-slate-500 font-semibold">
+                <span class="text-slate-700 font-bold"><i class="fa-solid fa-receipt text-[#007AFF] mr-1 text-[9px]"></i>BK987875450</span>
+                <span class="text-slate-300">•</span>
+                <span class="text-slate-600">Delivery: <strong class="text-slate-800">18 Oct 2026</strong></span>
               </div>
-              <p class="font-extrabold text-slate-800">AX7 L 4WD AT 7-Str — Napoli Black</p>
-            </div>
-
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Delivery: <strong class="text-slate-800">18 Oct 2026</strong></span>
-              <button onclick="event.stopPropagation(); openBookingDetails('BK987875450');" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
-                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              <button type="button" onclick="event.stopPropagation(); openBookingDetails('BK987875450');" class="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/80 rounded-lg text-xs font-bold transition-all flex items-center gap-1 shadow-2xs active:scale-95 cursor-pointer">
+                <span>Details</span>
+                <i class="fa-solid fa-chevron-right text-[8px]"></i>
               </button>
             </div>
           </div>
@@ -3426,84 +3396,68 @@
           </div>
 
           <!-- Card 1 (Today): Rajesh Kumar -->
-          <div class="del-card today completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3 min-w-0">
+          <div class="del-card today completed all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 transition-all hover:border-emerald-200 cursor-pointer active:scale-[0.995]">
+            <!-- Top: Customer, Car & Delivered Status -->
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
                   RK
                 </div>
-                <div class="truncate">
-                  <div class="flex items-center gap-1.5">
-                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Rajesh Kumar</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">Today, 11:30 AM • Bay 1</span>
-                  </div>
-                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">MAHINDRA XUV700 AX7 L • VIN: MA12345678</p>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-black text-[#1E293B] truncate">Rajesh Kumar</h3>
+                  <p class="text-xs font-semibold text-slate-600 truncate">Mahindra XUV700 AX7 L</p>
+                  <p class="text-[10px] font-medium text-slate-400">Midnight Black • AX7 L Diesel AT</p>
                 </div>
               </div>
-              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100 shrink-0 flex items-center gap-1 shadow-2xs">
                 <i class="fa-solid fa-circle-check text-[9px]"></i>
-                <span>DELIVERED ✓</span>
+                <span>Delivered</span>
               </span>
             </div>
 
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
-                <span class="font-extrabold text-slate-800">Midnight Black • AX7 L Diesel AT</span>
+            <!-- Bottom Details Bar: Schedule, Bay & Handover Status -->
+            <div class="pt-2 border-t border-slate-100/90 flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-2 text-slate-500 font-semibold">
+                <span class="text-slate-700 font-bold"><i class="fa-regular fa-clock text-slate-400 mr-1"></i>Today, 11:30 AM</span>
+                <span class="text-slate-300">•</span>
+                <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Bay 1</span>
               </div>
-              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
-            </div>
-
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <div class="flex items-center gap-2 text-[10px] font-semibold text-slate-500">
-                <span>Fastag: <strong class="text-emerald-700">Active</strong></span>
-                <span>•</span>
-                <span>Keys: <strong class="text-slate-800">Handed Over</strong></span>
+              <div class="flex items-center gap-1 text-slate-500 font-medium">
+                <span class="text-emerald-700 font-bold"><i class="fa-solid fa-key text-[9px] mr-0.5"></i>Handover Done</span>
               </div>
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
-                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
-              </span>
             </div>
           </div>
 
           <!-- Card 2 (Today): Ananya Deshmukh -->
-          <div class="del-card today completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3 min-w-0">
+          <div class="del-card today completed all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 transition-all hover:border-emerald-200 cursor-pointer active:scale-[0.995]">
+            <!-- Top: Customer, Car & Delivered Status -->
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
                   AD
                 </div>
-                <div class="truncate">
-                  <div class="flex items-center gap-1.5">
-                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Ananya Deshmukh</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">Today, 2:15 PM • Bay 2</span>
-                  </div>
-                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">THAR ROXX 4X4 • VIN: MA87654321</p>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-black text-[#1E293B] truncate">Ananya Deshmukh</h3>
+                  <p class="text-xs font-semibold text-slate-600 truncate">Thar Roxx 4X4</p>
+                  <p class="text-[10px] font-medium text-slate-400">Everest White • AX7 L AT</p>
                 </div>
               </div>
-              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100 shrink-0 flex items-center gap-1 shadow-2xs">
                 <i class="fa-solid fa-circle-check text-[9px]"></i>
-                <span>DELIVERED ✓</span>
+                <span>Delivered</span>
               </span>
             </div>
 
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
-                <span class="font-extrabold text-slate-800">Everest White • AX7 L AT</span>
+            <!-- Bottom Details Bar: Schedule, Bay & Handover Status -->
+            <div class="pt-2 border-t border-slate-100/90 flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-2 text-slate-500 font-semibold">
+                <span class="text-slate-700 font-bold"><i class="fa-regular fa-clock text-slate-400 mr-1"></i>Today, 2:15 PM</span>
+                <span class="text-slate-300">•</span>
+                <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Bay 2</span>
               </div>
-              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
-            </div>
-
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <div class="flex items-center gap-2 text-[10px] font-semibold text-slate-500">
-                <span>Ribbon: <strong class="text-emerald-700">Ceremony Done</strong></span>
-                <span>•</span>
-                <span>Gate Pass: <strong class="text-slate-800">Issued</strong></span>
+              <div class="flex items-center gap-1 text-slate-500 font-medium">
+                <span class="text-emerald-700 font-bold"><i class="fa-solid fa-key text-[9px] mr-0.5"></i>Handover Done</span>
               </div>
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
-                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
-              </span>
             </div>
           </div>
         </div>
@@ -3516,212 +3470,182 @@
           </div>
 
           <!-- Card 3: Siddharth Kapoor -->
-          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3 min-w-0">
+          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 transition-all hover:border-emerald-200 cursor-pointer active:scale-[0.995]">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
                   SK
                 </div>
-                <div class="truncate">
-                  <div class="flex items-center gap-1.5">
-                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Siddharth Kapoor</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">Yesterday, 3:45 PM • Bay 3</span>
-                  </div>
-                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">SCORPIO-N Z8 L 4X4 • VIN: MA99887766</p>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-black text-[#1E293B] truncate">Siddharth Kapoor</h3>
+                  <p class="text-xs font-semibold text-slate-600 truncate">Scorpio-N Z8 L 4X4</p>
+                  <p class="text-[10px] font-medium text-slate-400">Deep Forest Green • Diesel AT</p>
                 </div>
               </div>
-              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100 shrink-0 flex items-center gap-1 shadow-2xs">
                 <i class="fa-solid fa-circle-check text-[9px]"></i>
-                <span>DELIVERED ✓</span>
+                <span>Delivered</span>
               </span>
             </div>
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
-                <span class="font-extrabold text-slate-800">Deep Forest Green • Diesel AT</span>
+            <div class="pt-2 border-t border-slate-100/90 flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-2 text-slate-500 font-semibold">
+                <span class="text-slate-700 font-bold"><i class="fa-regular fa-clock text-slate-400 mr-1"></i>Yesterday, 3:45 PM</span>
+                <span class="text-slate-300">•</span>
+                <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Bay 3</span>
               </div>
-              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
-            </div>
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Keys: <strong class="text-slate-800">Handed Over (2 Keys)</strong></span>
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
-                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
-              </span>
+              <div class="flex items-center gap-1 text-slate-500 font-medium">
+                <span class="text-emerald-700 font-bold"><i class="fa-solid fa-key text-[9px] mr-0.5"></i>Handover Done</span>
+              </div>
             </div>
           </div>
 
           <!-- Card 4: Meera Sen -->
-          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3 min-w-0">
+          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 transition-all hover:border-emerald-200 cursor-pointer active:scale-[0.995]">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
                   MS
                 </div>
-                <div class="truncate">
-                  <div class="flex items-center gap-1.5">
-                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Meera Sen</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">Yesterday, 5:15 PM • Bay 1</span>
-                  </div>
-                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">BOLERO NEO N10 • VIN: MA44332211</p>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-black text-[#1E293B] truncate">Meera Sen</h3>
+                  <p class="text-xs font-semibold text-slate-600 truncate">Bolero Neo N10</p>
+                  <p class="text-[10px] font-medium text-slate-400">Napoli Black • Diesel MT</p>
                 </div>
               </div>
-              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100 shrink-0 flex items-center gap-1 shadow-2xs">
                 <i class="fa-solid fa-circle-check text-[9px]"></i>
-                <span>DELIVERED ✓</span>
+                <span>Delivered</span>
               </span>
             </div>
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
-                <span class="font-extrabold text-slate-800">Napoli Black • Diesel MT</span>
+            <div class="pt-2 border-t border-slate-100/90 flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-2 text-slate-500 font-semibold">
+                <span class="text-slate-700 font-bold"><i class="fa-regular fa-clock text-slate-400 mr-1"></i>Yesterday, 5:15 PM</span>
+                <span class="text-slate-300">•</span>
+                <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Bay 1</span>
               </div>
-              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
-            </div>
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Fastag: <strong class="text-emerald-700">Active</strong></span>
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
-                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
-              </span>
+              <div class="flex items-center gap-1 text-slate-500 font-medium">
+                <span class="text-emerald-700 font-bold"><i class="fa-solid fa-key text-[9px] mr-0.5"></i>Handover Done</span>
+              </div>
             </div>
           </div>
 
           <!-- Card 5: Vikram Malhotra -->
-          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3 min-w-0">
+          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 transition-all hover:border-emerald-200 cursor-pointer active:scale-[0.995]">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
                   VM
                 </div>
-                <div class="truncate">
-                  <div class="flex items-center gap-1.5">
-                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Vikram Malhotra</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">02 Nov 2026, 12:00 PM • Bay 2</span>
-                  </div>
-                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">THAR ROXX AX7 L • VIN: MA55667788</p>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-black text-[#1E293B] truncate">Vikram Malhotra</h3>
+                  <p class="text-xs font-semibold text-slate-600 truncate">Mahindra Thar Roxx AX7 L</p>
+                  <p class="text-[10px] font-medium text-slate-400">Stealth Black • Diesel AT</p>
                 </div>
               </div>
-              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100 shrink-0 flex items-center gap-1 shadow-2xs">
                 <i class="fa-solid fa-circle-check text-[9px]"></i>
-                <span>DELIVERED ✓</span>
+                <span>Delivered</span>
               </span>
             </div>
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
-                <span class="font-extrabold text-slate-800">Stealth Black • Diesel AT</span>
+            <div class="pt-2 border-t border-slate-100/90 flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-2 text-slate-500 font-semibold">
+                <span class="text-slate-700 font-bold"><i class="fa-regular fa-clock text-slate-400 mr-1"></i>02 Nov 2026, 12:00 PM</span>
+                <span class="text-slate-300">•</span>
+                <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Bay 2</span>
               </div>
-              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
-            </div>
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Documents: <strong class="text-slate-800">Handed Over</strong></span>
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
-                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
-              </span>
+              <div class="flex items-center gap-1 text-slate-500 font-medium">
+                <span class="text-emerald-700 font-bold"><i class="fa-solid fa-key text-[9px] mr-0.5"></i>Handover Done</span>
+              </div>
             </div>
           </div>
 
           <!-- Card 6: Pooja Hegde -->
-          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3 min-w-0">
+          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 transition-all hover:border-emerald-200 cursor-pointer active:scale-[0.995]">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
                   PH
                 </div>
-                <div class="truncate">
-                  <div class="flex items-center gap-1.5">
-                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Pooja Hegde</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">01 Nov 2026, 4:30 PM • Bay 4</span>
-                  </div>
-                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">MAHINDRA XUV700 AX5 • VIN: MA66778899</p>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-black text-[#1E293B] truncate">Pooja Hegde</h3>
+                  <p class="text-xs font-semibold text-slate-600 truncate">Mahindra XUV700 AX5</p>
+                  <p class="text-[10px] font-medium text-slate-400">Dazzling Silver • Petrol MT</p>
                 </div>
               </div>
-              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100 shrink-0 flex items-center gap-1 shadow-2xs">
                 <i class="fa-solid fa-circle-check text-[9px]"></i>
-                <span>DELIVERED ✓</span>
+                <span>Delivered</span>
               </span>
             </div>
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
-                <span class="font-extrabold text-slate-800">Dazzling Silver • Petrol MT</span>
+            <div class="pt-2 border-t border-slate-100/90 flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-2 text-slate-500 font-semibold">
+                <span class="text-slate-700 font-bold"><i class="fa-regular fa-clock text-slate-400 mr-1"></i>01 Nov 2026, 4:30 PM</span>
+                <span class="text-slate-300">•</span>
+                <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Bay 4</span>
               </div>
-              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
-            </div>
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">RC Book: <strong class="text-slate-800">Delivered</strong></span>
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
-                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
-              </span>
+              <div class="flex items-center gap-1 text-slate-500 font-medium">
+                <span class="text-emerald-700 font-bold"><i class="fa-solid fa-key text-[9px] mr-0.5"></i>Handover Done</span>
+              </div>
             </div>
           </div>
 
           <!-- Card 7: Kunal Singhania -->
-          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3 min-w-0">
+          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 transition-all hover:border-emerald-200 cursor-pointer active:scale-[0.995]">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
                   KS
                 </div>
-                <div class="truncate">
-                  <div class="flex items-center gap-1.5">
-                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Kunal Singhania</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">30 Oct 2026, 11:00 AM • Bay 1</span>
-                  </div>
-                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">SCORPIO-N Z8 • VIN: MA77889900</p>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-black text-[#1E293B] truncate">Kunal Singhania</h3>
+                  <p class="text-xs font-semibold text-slate-600 truncate">Scorpio-N Z8</p>
+                  <p class="text-[10px] font-medium text-slate-400">Everest White • Petrol AT</p>
                 </div>
               </div>
-              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100 shrink-0 flex items-center gap-1 shadow-2xs">
                 <i class="fa-solid fa-circle-check text-[9px]"></i>
-                <span>DELIVERED ✓</span>
+                <span>Delivered</span>
               </span>
             </div>
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
-                <span class="font-extrabold text-slate-800">Everest White • Petrol AT</span>
+            <div class="pt-2 border-t border-slate-100/90 flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-2 text-slate-500 font-semibold">
+                <span class="text-slate-700 font-bold"><i class="fa-regular fa-clock text-slate-400 mr-1"></i>30 Oct 2026, 11:00 AM</span>
+                <span class="text-slate-300">•</span>
+                <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Bay 1</span>
               </div>
-              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
-            </div>
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Gate Pass: <strong class="text-slate-800">Issued</strong></span>
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
-                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
-              </span>
+              <div class="flex items-center gap-1 text-slate-500 font-medium">
+                <span class="text-emerald-700 font-bold"><i class="fa-solid fa-key text-[9px] mr-0.5"></i>Handover Done</span>
+              </div>
             </div>
           </div>
 
           <!-- Card 8: Sunita Reddy -->
-          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3 min-w-0">
+          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs space-y-3 transition-all hover:border-emerald-200 cursor-pointer active:scale-[0.995]">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
                 <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
                   SR
                 </div>
-                <div class="truncate">
-                  <div class="flex items-center gap-1.5">
-                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Sunita Reddy</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">28 Oct 2026, 3:30 PM • Bay 2</span>
-                  </div>
-                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">THAR EARTH EDITION 4X4 • VIN: MA88990011</p>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-sm font-black text-[#1E293B] truncate">Sunita Reddy</h3>
+                  <p class="text-xs font-semibold text-slate-600 truncate">Thar Earth Edition 4X4</p>
+                  <p class="text-[10px] font-medium text-slate-400">Desert Fury • Diesel MT</p>
                 </div>
               </div>
-              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100 shrink-0 flex items-center gap-1 shadow-2xs">
                 <i class="fa-solid fa-circle-check text-[9px]"></i>
-                <span>DELIVERED ✓</span>
+                <span>Delivered</span>
               </span>
             </div>
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
-              <div class="flex items-center gap-2">
-                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
-                <span class="font-extrabold text-slate-800">Desert Fury • Diesel MT</span>
+            <div class="pt-2 border-t border-slate-100/90 flex items-center justify-between text-[10px]">
+              <div class="flex items-center gap-2 text-slate-500 font-semibold">
+                <span class="text-slate-700 font-bold"><i class="fa-regular fa-clock text-slate-400 mr-1"></i>28 Oct 2026, 3:30 PM</span>
+                <span class="text-slate-300">•</span>
+                <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-bold">Bay 2</span>
               </div>
-              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
-            </div>
-            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Ceremony: <strong class="text-emerald-700">Completed</strong></span>
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
-                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
-              </span>
+              <div class="flex items-center gap-1 text-slate-500 font-medium">
+                <span class="text-emerald-700 font-bold"><i class="fa-solid fa-key text-[9px] mr-0.5"></i>Handover Done</span>
+              </div>
             </div>
           </div>
         </div>

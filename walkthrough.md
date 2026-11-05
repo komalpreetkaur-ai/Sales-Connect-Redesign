@@ -1452,15 +1452,34 @@ The previous nested boxes and descriptive text blocks have been unified into **o
 
 ---
 
+### 4. Clean & Readable Redesign of Booking & Delivery Cards
+The cluttered, nested box-in-a-box designs across both the **Booking** (`#screen-booking`) and **Deliveries** (`#screen-deliveries`) screens have been redesigned into a clean, modern, breathable 2-tier card structure that matches the design language of Follow-Up and Test Drive cards:
+
+1. **Clean Booking Cards (5 Cards)**:
+   - **Top Tier**: 10×10 rounded initial avatar (`MT`, `AS`, `RV`, `KP`, `SN`), prominent non-truncated customer name, clear car model, and variant/color subtext. On the right: high-contrast token amount (`₹50,000`) with uppercase `TOKEN PAID` subtitle.
+   - **Bottom Tier**: Thin hairline divider (`border-t border-slate-100/90`), booking reference (`BK987875311`) with icon, scheduled delivery date, and a compact, clean `[ Details > ]` action button.
+   - **Eliminated Clutter**: Removed nested gray `bg-slate-50` boxes, redundant `Deposit Received` badges, squeezed `Booked by Niket K. (You)` pills, and oversized buttons.
+
+2. **Clean Delivery Cards (8 Cards)**:
+   - **Top Tier**: 10×10 rounded initial avatar (`RK`, `AD`, `SK`, `MS`, `VM`, `PH`, `KS`, `SR`) in soft emerald, full customer name without truncation, car model, and trim/color subtext. On the right: a clean, subtle `Delivered ✓` badge (`bg-emerald-50 text-emerald-700`).
+   - **Bottom Tier**: Thin hairline divider (`border-t border-slate-100/90`), delivery appointment time with slot tag (`Today, 11:30 AM • Bay 1`), and a neat `Handover Done` key confirmation on the right.
+   - **Eliminated Clutter**: Removed nested `bg-slate-50` car boxes, duplicate `Handover Complete` tags, verbose `Delivered by Niket K. (You)` pills, and cramped truncated text.
+
+| Clean Booking Cards Screen | Clean Delivery Cards Screen |
+| :---: | :---: |
+| ![Clean Booking Cards](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_booking_cards_clean.png) | ![Clean Delivery Cards](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_deliveries_cards_clean.png) |
+
+---
+
 ## 🌐 Live Prototype Links
 
-- **Test Drives Screen (Single Details CTA)**: [http://localhost:9847/?screen=test-drives&v=20261104h](http://localhost:9847/?screen=test-drives&v=20261104h)
-- **Test Drive Details Screen**: [http://localhost:9847/?screen=test-drive-details&td=TD98781&v=20261104h](http://localhost:9847/?screen=test-drive-details&td=TD98781&v=20261104h)
-- **Test Drive Details (Scrolled to Outcomes)**: [http://localhost:9847/?screen=test-drive-details&td=TD98781&scroll=bottom&v=20261104h](http://localhost:9847/?screen=test-drive-details&td=TD98781&scroll=bottom&v=20261104h)
-- **Move to Negotiations Modal**: [http://localhost:9847/?screen=test-drive-details&td=TD98781&modal=negotiation&v=20261104h](http://localhost:9847/?screen=test-drive-details&td=TD98781&modal=negotiation&v=20261104h)
-- **Close this Lead Modal**: [http://localhost:9847/?screen=test-drive-details&td=TD98781&modal=close&v=20261104h](http://localhost:9847/?screen=test-drive-details&td=TD98781&modal=close&v=20261104h)
-- **Follow-Up Leads Screen**: [http://localhost:9847/?screen=activities&v=20261104h](http://localhost:9847/?screen=activities&v=20261104h)
-- **Home Dashboard**: [http://localhost:9847/?screen=home&v=20261104h](http://localhost:9847/?screen=home&v=20261104h)
+- **Booking Screen (Clean & Readable Cards)**: [http://localhost:9847/?screen=booking&v=20261105e](http://localhost:9847/?screen=booking&v=20261105e)
+- **Deliveries Screen (Clean & Readable Cards)**: [http://localhost:9847/?screen=deliveries&v=20261105e](http://localhost:9847/?screen=deliveries&v=20261105e)
+- **Test Drives Screen (Single Details CTA)**: [http://localhost:9847/?screen=test-drives&v=20261105e](http://localhost:9847/?screen=test-drives&v=20261105e)
+- **Test Drive Details Screen**: [http://localhost:9847/?screen=test-drive-details&td=TD98781&v=20261105e](http://localhost:9847/?screen=test-drive-details&td=TD98781&v=20261105e)
+- **Test Drive Details (Scrolled to Outcomes)**: [http://localhost:9847/?screen=test-drive-details&td=TD98781&scroll=bottom&v=20261105e](http://localhost:9847/?screen=test-drive-details&td=TD98781&scroll=bottom&v=20261105e)
+- **Follow-Up Leads Screen**: [http://localhost:9847/?screen=activities&v=20261105e](http://localhost:9847/?screen=activities&v=20261105e)
+- **Home Dashboard**: [http://localhost:9847/?screen=home&v=20261105e](http://localhost:9847/?screen=home&v=20261105e)
 - **Local Source Files**: [index.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/index.html) • [sales_connect_redesign.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/sales_connect_redesign.html)
 
 
