@@ -298,8 +298,8 @@
               <div>
                 <div id="kpiPreBookingsVal" class="text-2xl font-black text-[#1E293B]">5</div>
                 <div id="kpiPreBookingsSub" class="text-[10px] font-bold text-emerald-600 flex items-center gap-1 mt-0.5">
-                  <i class="fa-regular fa-clock"></i>
-                  <span>1 booked today</span>
+                  <i class="fa-solid fa-circle-check text-[10px]"></i>
+                  <span>All booked by you</span>
                 </div>
               </div>
             </div>
@@ -308,13 +308,16 @@
             <div onclick="openDeliveriesScreen()" class="bg-white p-3.5 rounded-2xl border border-[#E0E8F5] shadow-xs space-y-2 cursor-pointer active:scale-[0.98] transition-transform">
               <div class="flex items-center justify-between">
                 <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">DELIVERIES</span>
-                <div class="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-xs font-bold">
+                <div class="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs font-bold">
                   <i class="fa-solid fa-key"></i>
                 </div>
               </div>
               <div>
                 <div id="kpiDeliveriesVal" class="text-2xl font-black text-[#1E293B]">8</div>
-                <div id="kpiDeliveriesSub" class="text-[10px] font-bold text-amber-600 mt-0.5">2 pending sign-off</div>
+                <div id="kpiDeliveriesSub" class="text-[10px] font-bold text-emerald-600 flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i>
+                  <span>All deliveries done</span>
+                </div>
               </div>
             </div>
           </div>
@@ -3128,9 +3131,13 @@
             </button>
             <div>
               <h1 class="text-lg font-black text-[#1E293B] leading-tight">Vehicle Bookings</h1>
-              <p class="text-[10px] font-semibold text-slate-400">Track and manage customer car bookings</p>
+              <p class="text-[10px] font-semibold text-slate-400">All bookings completed by you (5 Bookings)</p>
             </div>
           </div>
+          <span class="text-xs font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100 flex items-center gap-1">
+            <i class="fa-solid fa-circle-check text-[10px]"></i>
+            <span>5 Booked by You</span>
+          </span>
         </div>
 
         <!-- Combined Search Bar & Date Icon Filter -->
@@ -3150,15 +3157,28 @@
           </div>
         </div>
 
+        <!-- Agent Portfolio Info Banner -->
+        <div class="bg-gradient-to-r from-blue-50/80 via-indigo-50/60 to-blue-50/80 rounded-2xl p-3 border border-blue-100/80 flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-[#007AFF] text-white flex items-center justify-center text-xs font-bold shadow-xs">
+              <i class="fa-solid fa-id-badge"></i>
+            </div>
+            <div>
+              <div class="text-xs font-black text-[#1E293B]">Consultant: Niket Kumar (You)</div>
+              <div class="text-[10px] font-medium text-slate-500">Showing all 5 bookings closed & handled by you</div>
+            </div>
+          </div>
+          <span class="text-[10px] font-black text-[#007AFF] bg-white px-2 py-1 rounded-lg border border-blue-100 shadow-2xs">100% Agent Portfolio</span>
+        </div>
 
-        <!-- SECTION 1: TODAY'S BOOKINGS & RECENT CONFIRMATIONS (SHOWN FIRST!) -->
+        <!-- SECTION 1: TODAY'S BOOKINGS -->
         <div id="todayBookingsSection" class="space-y-2.5 pt-1">
           <div class="flex items-center justify-between">
             <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
               <span class="w-2.5 h-2.5 rounded-full bg-[#007AFF] animate-pulse"></span>
-              <span>TODAY'S BOOKING</span>
+              <span>TODAY'S BOOKINGS</span>
             </h3>
-            <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">2 Active Today</span>
+            <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">2 Booked by You</span>
           </div>
 
           <!-- Booking Card 1: Confirmed -->
@@ -3173,7 +3193,10 @@
 
             <div class="flex items-start justify-between">
               <div class="space-y-0.5">
-                <h3 class="text-sm font-black text-[#1E293B]">Mike Alex Tyson</h3>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-sm font-black text-[#1E293B]">Mike Alex Tyson</h3>
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100"><i class="fa-solid fa-user-check text-[8px]"></i>Booked by Niket K. (You)</span>
+                </div>
                 <p class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-phone text-[10px] text-slate-400 mr-1"></i>+91 98765 89706</p>
               </div>
               <div class="text-right">
@@ -3210,7 +3233,10 @@
 
             <div class="flex items-start justify-between">
               <div class="space-y-0.5">
-                <h3 class="text-sm font-black text-[#1E293B]">Aarti Sharma</h3>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-sm font-black text-[#1E293B]">Aarti Sharma</h3>
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100"><i class="fa-solid fa-user-check text-[8px]"></i>Booked by Niket K. (You)</span>
+                </div>
                 <p class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-phone text-[10px] text-slate-400 mr-1"></i>+91 99102 44331</p>
               </div>
               <div class="text-right">
@@ -3236,26 +3262,29 @@
           </div>
         </div>
 
-        <!-- SECTION 2: UPCOMING DELIVERIES & OTHER BOOKINGS (SHOWN SECOND!) -->
+        <!-- SECTION 2: OTHER AGENT BOOKINGS -->
         <div id="otherBookingsSection" class="space-y-2.5 pt-2">
           <div class="flex items-center justify-between">
-            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider">UPCOMING DELIVERIES & OTHER BOOKINGS</h3>
+            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider">ALL COMPLETED AGENT BOOKINGS</h3>
             <span class="text-[10px] font-bold text-slate-500">3 Bookings</span>
           </div>
 
-          <!-- Booking Card 3: Pending Delivery -->
-          <div onclick="openBookingDetails('BK987875399')" class="booking-card pending all bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+          <!-- Booking Card 3: Rohan Verma -->
+          <div onclick="openBookingDetails('BK987875399')" class="booking-card confirmed all bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
             <div class="flex items-center justify-between border-b border-slate-100 pb-2">
               <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
                 <i class="fa-solid fa-receipt text-[#007AFF]"></i>
-                <span>BK987875399 || <span class="text-[#007AFF] font-extrabold">Pending Delivery</span></span>
+                <span>BK987875399 || <span class="text-[#007AFF] font-extrabold">Confirmed</span></span>
               </div>
               <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-50 text-[#007AFF] border border-blue-100">In Transit</span>
             </div>
 
             <div class="flex items-start justify-between">
               <div class="space-y-0.5">
-                <h3 class="text-sm font-black text-[#1E293B]">Rohan Verma</h3>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-sm font-black text-[#1E293B]">Rohan Verma</h3>
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100"><i class="fa-solid fa-user-check text-[8px]"></i>Booked by Niket K. (You)</span>
+                </div>
                 <p class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-phone text-[10px] text-slate-400 mr-1"></i>+91 98100 77665</p>
               </div>
               <div class="text-right">
@@ -3279,6 +3308,86 @@
               </button>
             </div>
           </div>
+
+          <!-- Booking Card 4: Kavita Patel -->
+          <div onclick="openBookingDetails('BK987875412')" class="booking-card confirmed all bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
+                <i class="fa-solid fa-receipt text-[#007AFF]"></i>
+                <span>BK987875412 || <span class="text-[#007AFF] font-extrabold">Confirmed</span></span>
+              </div>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-50 text-[#007AFF] border border-blue-100">Token Verified</span>
+            </div>
+
+            <div class="flex items-start justify-between">
+              <div class="space-y-0.5">
+                <div class="flex items-center gap-2">
+                  <h3 class="text-sm font-black text-[#1E293B]">Kavita Patel</h3>
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100"><i class="fa-solid fa-user-check text-[8px]"></i>Booked by Niket K. (You)</span>
+                </div>
+                <p class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-phone text-[10px] text-slate-400 mr-1"></i>+91 97112 33455</p>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-black text-[#007AFF]">₹30,000</span>
+                <span class="text-[9px] font-bold text-slate-400 block uppercase">Token Paid</span>
+              </div>
+            </div>
+
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1 text-xs">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">VEHICLE DETAILS</span>
+                <span class="text-[10px] font-extrabold text-[#007AFF]">Mahindra Thar Roxx</span>
+              </div>
+              <p class="font-extrabold text-slate-800">AX5 Diesel MT (RWD) — Dazzling Silver</p>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Delivery: <strong class="text-slate-800">15 Oct 2026</strong></span>
+              <button onclick="event.stopPropagation(); openBookingDetails('BK987875412');" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Booking Card 5: Suresh Nair -->
+          <div onclick="openBookingDetails('BK987875450')" class="booking-card confirmed all bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-500">
+                <i class="fa-solid fa-receipt text-[#007AFF]"></i>
+                <span>BK987875450 || <span class="text-[#007AFF] font-extrabold">Confirmed</span></span>
+              </div>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-50 text-[#007AFF] border border-blue-100">Deposit Received</span>
+            </div>
+
+            <div class="flex items-start justify-between">
+              <div class="space-y-0.5">
+                <div class="flex items-center gap-2">
+                  <h3 class="text-sm font-black text-[#1E293B]">Suresh Nair</h3>
+                  <span class="inline-flex items-center gap-1 px-2 py-0.2 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100"><i class="fa-solid fa-user-check text-[8px]"></i>Booked by Niket K. (You)</span>
+                </div>
+                <p class="text-xs font-semibold text-slate-500"><i class="fa-solid fa-phone text-[10px] text-slate-400 mr-1"></i>+91 98201 66554</p>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-black text-[#007AFF]">₹50,000</span>
+                <span class="text-[9px] font-bold text-slate-400 block uppercase">Token Paid</span>
+              </div>
+            </div>
+
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 space-y-1 text-xs">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">VEHICLE DETAILS</span>
+                <span class="text-[10px] font-extrabold text-[#007AFF]">Mahindra XUV700</span>
+              </div>
+              <p class="font-extrabold text-slate-800">AX7 L 4WD AT 7-Str — Napoli Black</p>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Delivery: <strong class="text-slate-800">18 Oct 2026</strong></span>
+              <button onclick="event.stopPropagation(); openBookingDetails('BK987875450');" class="px-3.5 py-1.5 bg-[#007AFF] text-white rounded-xl text-xs font-extrabold shadow-xs active:scale-95 flex items-center gap-1 cursor-pointer">
+                <span>View Details</span><i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -3294,10 +3403,13 @@
             </button>
             <div>
               <h1 class="text-lg font-black text-[#1E293B] leading-tight">Vehicle Deliveries</h1>
-              <p class="text-[10px] font-semibold text-slate-400">Handover schedules & PDI sign-offs</p>
+              <p class="text-[10px] font-semibold text-slate-400">All completed vehicle deliveries & handovers</p>
             </div>
           </div>
-          <span class="text-xs font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">8 Deliveries</span>
+          <span class="text-xs font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100 flex items-center gap-1">
+            <i class="fa-solid fa-circle-check text-[10px]"></i>
+            <span>8 Delivered</span>
+          </span>
         </div>
 
         <!-- Combined Search Bar & Date Icon Filter -->
@@ -3317,138 +3429,327 @@
           </div>
         </div>
 
+        <!-- Deliveries Fulfilled Status Banner -->
+        <div class="bg-gradient-to-r from-emerald-50/80 via-teal-50/60 to-emerald-50/80 rounded-2xl p-3 border border-emerald-100/80 flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xs font-bold shadow-xs">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div>
+              <div class="text-xs font-black text-[#1E293B]">All 8 Deliveries Completed</div>
+              <div class="text-[10px] font-medium text-slate-500">Only completed handovers & deliveries are shown</div>
+            </div>
+          </div>
+          <span class="text-[10px] font-black text-emerald-700 bg-white px-2 py-1 rounded-lg border border-emerald-200 shadow-2xs">100% Fulfilled</span>
+        </div>
 
-        <!-- SECTION 1: TODAY'S DELIVERIES & PDI SIGN-OFFS (SHOWN FIRST!) -->
+        <!-- SECTION 1: TODAY'S DELIVERIES COMPLETED -->
         <div id="todayDeliveriesSection" class="space-y-2.5 pt-1">
           <div class="flex items-center justify-between">
             <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#007AFF] animate-pulse"></span>
-              <span>TODAY'S DELIVERY</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>TODAY'S DELIVERIES COMPLETED</span>
             </h3>
-            <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">2 Pending Sign-off</span>
+            <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-100">2 Delivered Today</span>
           </div>
 
           <!-- Card 1 (Today): Rajesh Kumar -->
-          <div class="del-card today pending all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+          <div class="del-card today completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3 min-w-0">
-                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-100">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
                   RK
                 </div>
                 <div class="truncate">
                   <div class="flex items-center gap-1.5">
                     <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Rajesh Kumar</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">Today • Bay 1</span>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">Today, 11:30 AM • Bay 1</span>
                   </div>
                   <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">MAHINDRA XUV700 AX7 L • VIN: MA12345678</p>
                 </div>
               </div>
-              <span class="text-[10px] font-black text-[#007AFF] bg-blue-50 px-2.5 py-1 rounded-full shrink-0 border border-blue-100">PENDING SIGN-OFF</span>
+              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+                <i class="fa-solid fa-circle-check text-[9px]"></i>
+                <span>DELIVERED ✓</span>
+              </span>
             </div>
 
             <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
               <div class="flex items-center gap-2">
-                <i class="fa-solid fa-key text-[#007AFF] text-xs"></i>
-                <span class="font-extrabold text-slate-800">Midnight Black • AX7 L Diesel</span>
+                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
+                <span class="font-extrabold text-slate-800">Midnight Black • AX7 L Diesel AT</span>
               </div>
-              <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded border border-blue-100">PDI Ready</span>
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
             </div>
 
             <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Fastag: <strong class="text-slate-800">Issued</strong></span>
-              <div class="flex items-center gap-1.5">
-                <button onclick="event.stopPropagation(); alert('PDI Sign-off completed for Rajesh Kumar!');" class="px-2.5 py-1 bg-[#007AFF] text-white rounded-lg text-xs font-bold flex items-center gap-1 shadow-xs active:scale-95">
-                  <i class="fa-solid fa-file-signature text-[10px]"></i><span>Sign-off</span>
-                </button>
+              <div class="flex items-center gap-2 text-[10px] font-semibold text-slate-500">
+                <span>Fastag: <strong class="text-emerald-700">Active</strong></span>
+                <span>•</span>
+                <span>Keys: <strong class="text-slate-800">Handed Over</strong></span>
               </div>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
+                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
+              </span>
             </div>
           </div>
 
           <!-- Card 2 (Today): Ananya Deshmukh -->
-          <div class="del-card today pending all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+          <div class="del-card today completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3 min-w-0">
-                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-100">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
                   AD
                 </div>
                 <div class="truncate">
                   <div class="flex items-center gap-1.5">
                     <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Ananya Deshmukh</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">Today • Bay 2</span>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">Today, 2:15 PM • Bay 2</span>
                   </div>
                   <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">THAR ROXX 4X4 • VIN: MA87654321</p>
                 </div>
               </div>
-              <span class="text-[10px] font-black text-[#007AFF] bg-blue-50 px-2.5 py-1 rounded-full shrink-0 border border-blue-100">READY HANDOVER</span>
+              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+                <i class="fa-solid fa-circle-check text-[9px]"></i>
+                <span>DELIVERED ✓</span>
+              </span>
             </div>
 
             <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
               <div class="flex items-center gap-2">
-                <i class="fa-solid fa-car text-[#007AFF] text-xs"></i>
+                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
                 <span class="font-extrabold text-slate-800">Everest White • AX7 L AT</span>
               </div>
-              <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2 py-0.5 rounded border border-blue-100">Signed Off</span>
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
             </div>
 
             <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Ribbon: <strong class="text-slate-800">Decorated</strong></span>
-              <div class="flex items-center gap-1.5">
-                <button onclick="event.stopPropagation(); alert('Keys handed over to Ananya Deshmukh! Congratulations 🎉');" class="px-2.5 py-1 bg-[#007AFF] text-white rounded-lg text-xs font-bold flex items-center gap-1 shadow-xs active:scale-95">
-                  <i class="fa-solid fa-key text-[10px]"></i><span>Handover</span>
-                </button>
+              <div class="flex items-center gap-2 text-[10px] font-semibold text-slate-500">
+                <span>Ribbon: <strong class="text-emerald-700">Ceremony Done</strong></span>
+                <span>•</span>
+                <span>Gate Pass: <strong class="text-slate-800">Issued</strong></span>
               </div>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
+                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
+              </span>
             </div>
           </div>
         </div>
 
-        <!-- SECTION 2: UPCOMING & RECENT DELIVERIES (SHOWN SECOND!) -->
+        <!-- SECTION 2: PAST DELIVERIES COMPLETED -->
         <div id="otherDeliveriesSection" class="space-y-2.5 pt-2">
           <div class="flex items-center justify-between">
-            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider">UPCOMING & RECENT DELIVERIES</h3>
-            <span class="text-[10px] font-bold text-slate-500">6 Deliveries</span>
+            <h3 class="text-xs font-black text-slate-700 uppercase tracking-wider">PAST DELIVERIES COMPLETED</h3>
+            <span class="text-[10px] font-bold text-slate-500">6 Completed Handovers</span>
           </div>
 
-          <!-- Card 3 (Upcoming): Siddharth Kapoor -->
-          <div class="del-card upcoming all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+          <!-- Card 3: Siddharth Kapoor -->
+          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3 min-w-0">
-                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-100">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
                   SK
                 </div>
                 <div class="truncate">
                   <div class="flex items-center gap-1.5">
                     <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Siddharth Kapoor</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">Tomorrow</span>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">Yesterday, 3:45 PM • Bay 3</span>
                   </div>
-                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">SCORPIO-N Z8 L • VIN: MA99887766</p>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">SCORPIO-N Z8 L 4X4 • VIN: MA99887766</p>
                 </div>
               </div>
-              <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-1 rounded-full shrink-0 border border-blue-100">PDI IN PROGRESS</span>
+              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+                <i class="fa-solid fa-circle-check text-[9px]"></i>
+                <span>DELIVERED ✓</span>
+              </span>
+            </div>
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
+                <span class="font-extrabold text-slate-800">Deep Forest Green • Diesel AT</span>
+              </div>
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
             </div>
             <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Expected: <strong class="text-slate-800">Tomorrow, 11:30 AM</strong></span>
+              <span class="text-[10px] font-semibold text-slate-500">Keys: <strong class="text-slate-800">Handed Over (2 Keys)</strong></span>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
+                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
+              </span>
             </div>
           </div>
 
-          <!-- Card 4 (Delivered): Meera Sen -->
+          <!-- Card 4: Meera Sen -->
           <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3 min-w-0">
-                <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-100">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
                   MS
                 </div>
                 <div class="truncate">
                   <div class="flex items-center gap-1.5">
                     <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Meera Sen</h3>
-                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">Yesterday</span>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">Yesterday, 5:15 PM • Bay 1</span>
                   </div>
                   <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">BOLERO NEO N10 • VIN: MA44332211</p>
                 </div>
               </div>
-              <span class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-1 rounded-full shrink-0 border border-blue-100">DELIVERED</span>
+              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+                <i class="fa-solid fa-circle-check text-[9px]"></i>
+                <span>DELIVERED ✓</span>
+              </span>
+            </div>
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
+                <span class="font-extrabold text-slate-800">Napoli Black • Diesel MT</span>
+              </div>
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
             </div>
             <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
-              <span class="text-[10px] font-semibold text-slate-500">Status: <strong class="text-slate-800">Handover Complete</strong></span>
+              <span class="text-[10px] font-semibold text-slate-500">Fastag: <strong class="text-emerald-700">Active</strong></span>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
+                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
+              </span>
+            </div>
+          </div>
+
+          <!-- Card 5: Vikram Malhotra -->
+          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
+                  VM
+                </div>
+                <div class="truncate">
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Vikram Malhotra</h3>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">02 Nov 2026, 12:00 PM • Bay 2</span>
+                  </div>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">THAR ROXX AX7 L • VIN: MA55667788</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+                <i class="fa-solid fa-circle-check text-[9px]"></i>
+                <span>DELIVERED ✓</span>
+              </span>
+            </div>
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
+                <span class="font-extrabold text-slate-800">Stealth Black • Diesel AT</span>
+              </div>
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
+            </div>
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Documents: <strong class="text-slate-800">Handed Over</strong></span>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
+                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
+              </span>
+            </div>
+          </div>
+
+          <!-- Card 6: Pooja Hegde -->
+          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
+                  PH
+                </div>
+                <div class="truncate">
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Pooja Hegde</h3>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">01 Nov 2026, 4:30 PM • Bay 4</span>
+                  </div>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">MAHINDRA XUV700 AX5 • VIN: MA66778899</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+                <i class="fa-solid fa-circle-check text-[9px]"></i>
+                <span>DELIVERED ✓</span>
+              </span>
+            </div>
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
+                <span class="font-extrabold text-slate-800">Dazzling Silver • Petrol MT</span>
+              </div>
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
+            </div>
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">RC Book: <strong class="text-slate-800">Delivered</strong></span>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
+                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
+              </span>
+            </div>
+          </div>
+
+          <!-- Card 7: Kunal Singhania -->
+          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
+                  KS
+                </div>
+                <div class="truncate">
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Kunal Singhania</h3>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">30 Oct 2026, 11:00 AM • Bay 1</span>
+                  </div>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">SCORPIO-N Z8 • VIN: MA77889900</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+                <i class="fa-solid fa-circle-check text-[9px]"></i>
+                <span>DELIVERED ✓</span>
+              </span>
+            </div>
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
+                <span class="font-extrabold text-slate-800">Everest White • Petrol AT</span>
+              </div>
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
+            </div>
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Gate Pass: <strong class="text-slate-800">Issued</strong></span>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
+                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
+              </span>
+            </div>
+          </div>
+
+          <!-- Card 8: Sunita Reddy -->
+          <div class="del-card completed all bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs space-y-2.5 active:scale-[0.99] transition-transform cursor-pointer">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-100">
+                  SR
+                </div>
+                <div class="truncate">
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="text-xs font-extrabold text-[#1E293B] truncate">Sunita Reddy</h3>
+                    <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700 border border-slate-200 shrink-0">28 Oct 2026, 3:30 PM • Bay 2</span>
+                  </div>
+                  <p class="text-[10px] font-semibold text-slate-500 mt-0.5 truncate">THAR EARTH EDITION 4X4 • VIN: MA88990011</p>
+                </div>
+              </div>
+              <span class="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0 border border-emerald-100 flex items-center gap-1">
+                <i class="fa-solid fa-circle-check text-[9px]"></i>
+                <span>DELIVERED ✓</span>
+              </span>
+            </div>
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200/60 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-car text-emerald-600 text-xs"></i>
+                <span class="font-extrabold text-slate-800">Desert Fury • Diesel MT</span>
+              </div>
+              <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Handover Complete</span>
+            </div>
+            <div class="flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+              <span class="text-[10px] font-semibold text-slate-500">Ceremony: <strong class="text-emerald-700">Completed</strong></span>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-[#007AFF] border border-blue-100">
+                <i class="fa-solid fa-user-check text-[8px]"></i>Delivered by Niket K. (You)
+              </span>
             </div>
           </div>
         </div>
@@ -5654,28 +5955,80 @@
       },
       'BK987875399': {
         id: 'BK987875399',
-        customerName: 'Rupesh Ranjan Bhatt',
+        customerName: 'Rohan Verma',
         phone: '+91 98100 77665',
-        email: 'rupesh.bhatt@gmail.com',
-        address: 'Indirapuram, Ghaziabad, UP',
-        model: 'Suzuki Access 125',
-        variant: 'Special Edition',
-        color: 'Pearl White',
-        exPrice: '₹89,500',
-        tokenPaid: '₹10,000',
-        tokenStatus: 'Token Pending',
-        tokenBadgeClass: 'bg-amber-50 text-amber-600 border-amber-100',
+        email: 'rohan.verma@gmail.com',
+        address: 'Sector 50, Noida, UP',
+        model: 'Mahindra Scorpio-N',
+        variant: 'Z8 L 4X4 Diesel AT',
+        color: 'Deep Forest Green',
+        exPrice: '₹24,50,000',
+        tokenPaid: '₹25,000',
+        tokenStatus: 'In Transit',
+        tokenBadgeClass: 'bg-blue-50 text-[#007AFF] border-blue-100',
         bookingDate: '14/09/2026',
         expectedDelivery: '05/10/2026',
-        paymentMode: 'Pending Verification',
+        paymentMode: 'Net Banking / HDFC',
         txnId: 'TXN1122334455',
-        currentStepIndex: 0,
+        currentStepIndex: 3,
         timeline: [
-          { title: 'Pre-booking Registered', date: '14 Sep 2026, 06:15 PM', desc: 'Lead converted to pre-booking status', completed: true },
-          { title: 'Token Amount Verification', date: 'Pending Confirmation', desc: 'Awaiting banking confirmation for ₹10,000 token', completed: false },
-          { title: 'Vehicle Allotment', date: 'Expected 28 Sep 2026', desc: 'Stock allocation after payment confirmation', completed: false },
-          { title: 'In Transit', date: 'Expected 01 Oct 2026', desc: 'Vehicle movement from warehouse', completed: false },
-          { title: 'Final Delivery & Key Handover', date: 'Expected 05 Oct 2026', desc: 'Customer delivery appointment', completed: false }
+          { title: 'Pre-booking Registered', date: '14 Sep 2026, 06:15 PM', desc: 'Booked by Niket K. (You)', completed: true },
+          { title: 'Token Amount Received (₹25,000)', date: '15 Sep 2026, 11:30 AM', desc: 'Payment verified and receipt generated', completed: true },
+          { title: 'Vehicle Allotment & VIN Tagging', date: '22 Sep 2026, 04:00 PM', desc: 'Chassis VIN #SN887766 allocated', completed: true },
+          { title: 'In Transit / Showroom Dispatch', date: '29 Sep 2026, 10:15 AM', desc: 'En route to dealership stockyard', completed: true },
+          { title: 'Final Delivery & Key Handover', date: 'Expected 05 Oct 2026', desc: 'PDI inspection & handover ceremony scheduled', completed: false }
+        ]
+      },
+      'BK987875412': {
+        id: 'BK987875412',
+        customerName: 'Kavita Patel',
+        phone: '+91 97112 33455',
+        email: 'kavita.patel@gmail.com',
+        address: 'DLF Phase 4, Gurugram, HR',
+        model: 'Mahindra Thar Roxx',
+        variant: 'AX5 Diesel MT (RWD)',
+        color: 'Dazzling Silver',
+        exPrice: '₹16,99,000',
+        tokenPaid: '₹30,000',
+        tokenStatus: 'Token Verified',
+        tokenBadgeClass: 'bg-emerald-50 text-emerald-600 border-emerald-100',
+        bookingDate: '24/09/2026',
+        expectedDelivery: '15/10/2026',
+        paymentMode: 'UPI / Google Pay',
+        txnId: 'TXN5566778899',
+        currentStepIndex: 2,
+        timeline: [
+          { title: 'Pre-booking Registered', date: '24 Sep 2026, 01:20 PM', desc: 'Booked by Niket K. (You)', completed: true },
+          { title: 'Token Amount Received (₹30,000)', date: '24 Sep 2026, 01:45 PM', desc: 'UPI transfer verified', completed: true },
+          { title: 'Vehicle Allotment & VIN Tagging', date: '28 Sep 2026, 12:00 PM', desc: 'Allotted from upcoming dispatch batch', completed: true },
+          { title: 'In Transit / Showroom Dispatch', date: 'Expected 08 Oct 2026', desc: 'Scheduled dispatch from Chakan plant', completed: false },
+          { title: 'Final Delivery & Key Handover', date: 'Expected 15 Oct 2026', desc: 'Customer delivery appointment', completed: false }
+        ]
+      },
+      'BK987875450': {
+        id: 'BK987875450',
+        customerName: 'Suresh Nair',
+        phone: '+91 98201 66554',
+        email: 'suresh.nair@gmail.com',
+        address: 'Powai, Mumbai, MH',
+        model: 'Mahindra XUV700',
+        variant: 'AX7 L 4WD AT 7-Str',
+        color: 'Napoli Black',
+        exPrice: '₹26,90,000',
+        tokenPaid: '₹50,000',
+        tokenStatus: 'Deposit Received',
+        tokenBadgeClass: 'bg-emerald-50 text-emerald-600 border-emerald-100',
+        bookingDate: '26/09/2026',
+        expectedDelivery: '18/10/2026',
+        paymentMode: 'Credit Card / ICICI',
+        txnId: 'TXN7788990011',
+        currentStepIndex: 2,
+        timeline: [
+          { title: 'Pre-booking Registered', date: '26 Sep 2026, 05:00 PM', desc: 'Booked by Niket K. (You)', completed: true },
+          { title: 'Token Amount Received (₹50,000)', date: '26 Sep 2026, 05:15 PM', desc: 'Card swipe approved & verified', completed: true },
+          { title: 'Vehicle Allotment & VIN Tagging', date: '01 Oct 2026, 03:30 PM', desc: 'VIN #XUV700L981 tagged to booking', completed: true },
+          { title: 'In Transit / Showroom Dispatch', date: 'Expected 10 Oct 2026', desc: 'Logistics transit to showroom', completed: false },
+          { title: 'Final Delivery & Key Handover', date: 'Expected 18 Oct 2026', desc: 'Customer handover ceremony', completed: false }
         ]
       }
     };
@@ -6446,9 +6799,9 @@
         kpiTestDrivesVal: "2",
         kpiTestDrivesSub: `<i class="fa-regular fa-clock"></i><span>2 completed today</span>`,
         kpiPreBookingsVal: "1",
-        kpiPreBookingsSub: `<i class="fa-regular fa-clock"></i><span>1 booked today</span>`,
+        kpiPreBookingsSub: `<i class="fa-solid fa-circle-check text-[10px]"></i><span>1 booked by you</span>`,
         kpiDeliveriesVal: "1",
-        kpiDeliveriesSub: "Delivered at 11 AM",
+        kpiDeliveriesSub: `<i class="fa-solid fa-circle-check text-[10px]"></i><span>1 delivered today</span>`,
         priorityBadge: "3 Urgent",
         showUrgent2: false,
         followupCount: "2",
@@ -6480,9 +6833,9 @@
         kpiTestDrivesVal: "3",
         kpiTestDrivesSub: `<i class="fa-regular fa-clock"></i><span>2 scheduled today</span>`,
         kpiPreBookingsVal: "2",
-        kpiPreBookingsSub: `<i class="fa-regular fa-clock"></i><span>1 booked today</span>`,
+        kpiPreBookingsSub: `<i class="fa-solid fa-circle-check text-[10px]"></i><span>All booked by you</span>`,
         kpiDeliveriesVal: "3",
-        kpiDeliveriesSub: "1 pending sign-off",
+        kpiDeliveriesSub: `<i class="fa-solid fa-circle-check text-[10px]"></i><span>All deliveries done</span>`,
         priorityBadge: "5 Urgent",
         showUrgent2: true,
         followupCount: "4",
@@ -6515,9 +6868,9 @@
         kpiTestDrivesVal: "4",
         kpiTestDrivesSub: `<i class="fa-regular fa-clock"></i><span>2 scheduled today</span>`,
         kpiPreBookingsVal: "5",
-        kpiPreBookingsSub: `<i class="fa-regular fa-clock"></i><span>1 booked today</span>`,
+        kpiPreBookingsSub: `<i class="fa-solid fa-circle-check text-[10px]"></i><span>All booked by you</span>`,
         kpiDeliveriesVal: "8",
-        kpiDeliveriesSub: "2 pending sign-off",
+        kpiDeliveriesSub: `<i class="fa-solid fa-circle-check text-[10px]"></i><span>All deliveries done</span>`,
         priorityBadge: "5 Urgent",
         showUrgent2: true,
         followupCount: "6",
@@ -6650,7 +7003,7 @@
       const delVal = document.getElementById('kpiDeliveriesVal');
       if (delVal) delVal.innerText = d.kpiDeliveriesVal;
       const delSub = document.getElementById('kpiDeliveriesSub');
-      if (delSub) delSub.innerText = d.kpiDeliveriesSub;
+      if (delSub) delSub.innerHTML = d.kpiDeliveriesSub;
 
       const pBadge = document.getElementById('priorityBadge');
       if (pBadge) pBadge.innerText = d.priorityBadge;

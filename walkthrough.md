@@ -1,5 +1,51 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 📋 Agent Bookings & Completed Deliveries Strict Filter
+
+### 1. Agent Bookings Flow (All 5 Bookings Handled by Agent)
+- **Home KPI Booking Card**:
+  - Displays **`5`** total bookings with green verified subtext: **`✓ All booked by you`**.
+  - Consistent across all date filters (`Today`: 1 booked by you, `This Week`: All booked by you, `This Month`: All booked by you).
+- **Vehicle Bookings Screen (`#screen-booking`)**:
+  - Subtitle updated to: **`All bookings completed by you (5 Bookings)`** with top header badge **`5 Booked by You`**.
+  - Clear agent attribution banner: **`Consultant: Niket Kumar (You) • Showing all 5 bookings closed & handled by you`**.
+  - All 5 booking cards render with prominent **`Booked by Niket K. (You)`** tags:
+    1. **Mike Alex Tyson** • `BK987875311` (Confirmed • ₹50,000 Token Paid • Thar Roxx AX7 L Diesel AT)
+    2. **Aarti Sharma** • `BK987875364` (Pre-booked • ₹25,000 Token Paid • XUV700 AX7 Petrol AT)
+    3. **Rohan Verma** • `BK987875399` (Confirmed • ₹25,000 Token Paid • Scorpio-N Z8 L 4X4 Diesel AT)
+    4. **Kavita Patel** • `BK987875412` (Confirmed • ₹30,000 Token Paid • Thar Roxx AX5 Diesel MT)
+    5. **Suresh Nair** • `BK987875450` (Confirmed • ₹50,000 Token Paid • XUV700 AX7 L 4WD AT)
+  - Full details modal support for all 5 bookings with complete timeline and verified deposit information.
+
+### 2. Vehicle Deliveries Flow (Strictly Deliveries Done Only)
+- **Home KPI Deliveries Card**:
+  - Displays **`8`** total deliveries with green verified subtext: **`✓ All deliveries done`** in soft emerald container.
+  - Zero mention of "2 pending sign-off" or any pending status.
+- **Vehicle Deliveries Screen (`#screen-deliveries`)**:
+  - Header subtitle: **`All completed vehicle deliveries & handovers`** with badge **`8 Delivered`**.
+  - Fulfilled status banner: **`All 8 Deliveries Completed • Only completed handovers & deliveries are shown • 100% Fulfilled`**.
+  - **Exclusively Completed Deliveries**:
+    - Completely removed all pending sign-offs, pending PDI, upcoming deliveries ("Tomorrow"), and pending action buttons.
+    - Every single card displays **`DELIVERED ✓`** (emerald badge), **`Handover Complete`**, delivery bay, handover timestamp, and **`Delivered by Niket K. (You)`**:
+      1. **Rajesh Kumar** • Today, 11:30 AM • Bay 1 (XUV700 AX7 L • Handover Complete • Fastag Active • Keys Handed Over)
+      2. **Ananya Deshmukh** • Today, 2:15 PM • Bay 2 (Thar Roxx 4X4 • Handover Complete • Ribbon Ceremony Done • Gate Pass Issued)
+      3. **Siddharth Kapoor** • Yesterday, 3:45 PM • Bay 3 (Scorpio-N Z8 L • Handover Complete • Keys Handed Over)
+      4. **Meera Sen** • Yesterday, 5:15 PM • Bay 1 (Bolero Neo N10 • Handover Complete • Fastag Active)
+      5. **Vikram Malhotra** • 02 Nov 2026, 12:00 PM • Bay 2 (Thar Roxx AX7 L • Handover Complete • Documents Handed Over)
+      6. **Pooja Hegde** • 01 Nov 2026, 4:30 PM • Bay 4 (XUV700 AX5 • Handover Complete • RC Delivered)
+      7. **Kunal Singhania** • 30 Oct 2026, 11:00 AM • Bay 1 (Scorpio-N Z8 • Handover Complete • Gate Pass Issued)
+      8. **Sunita Reddy** • 28 Oct 2026, 3:30 PM • Bay 2 (Thar Earth Edition • Handover Complete • Ceremony Completed)
+
+### 📸 Visual Evidence (Bookings & Deliveries)
+
+| Home KPI Cards | Bookings (Agent Portfolio) | Deliveries (Done Only) |
+| :---: | :---: | :---: |
+| ![Home KPI Cards](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_kpi_agent_deliveries.png) | ![All Agent Bookings](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_booking_agent_all.png) | ![Deliveries Done Only](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_deliveries_done_only.png) |
+| *Bookings: 5 (All booked by you) & Deliveries: 8 (All deliveries done).* | *All 5 bookings handled by agent with attribution and verified tokens.* | *All 8 vehicle deliveries marked DELIVERED ✓ with handover details.* |
+
+---
+
+
 ## 🎯 Target Section Header (Monthly Target)
 
 1. **Updated Target Header Text**:
