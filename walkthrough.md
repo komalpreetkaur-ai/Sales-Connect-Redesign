@@ -1471,15 +1471,51 @@ The cluttered, nested box-in-a-box designs across both the **Booking** (`#screen
 
 ---
 
+### 5. Stage-Specific Progression Bars Across All Card Detail Pages
+Unified the interactive lifecycle status bar across all 5 sales pipeline stages using the exact layout from the Drive Progression component:
+- **Consistent Visual Architecture**: White container card (`bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5`), uppercase stage category header on the left, pill badge indicating active step on the right, and a horizontal connected track with checkmarks (`✓`) for completed milestones, an active pulsing halo (`ring-4 ring-blue-100`) for the current step, and numbered badges for upcoming steps.
+- **Stage-Specific Lifecycle Content**:
+  1. **Enquiry Progression** (`#screen-enquiry-details`):
+     - `ENQUIRY PROGRESSION` | `Step 2 of 4: Customer Contacted`
+     - Steps: **New Lead** (✓) → **Contacted** (● Active) → **Qualified** (3) → **Ready for TD** (4).
+     - Replaced the obsolete multi-row button grid with this clean component.
+  2. **Follow-Up Progression** (`#screen-lead-profile`):
+     - `FOLLOW-UP PROGRESSION` | `Step 3 of 4: Discussion Active`
+     - Steps: **Assigned** (✓) → **Contacted** (✓) → **Follow-up Active** (● Active) → **Advance to Drive** (4).
+     - Seamlessly integrated right beneath the Customer Identity card.
+  3. **Drive Progression** (`#screen-test-drive-details`):
+     - `DRIVE PROGRESSION` | `Step 3 of 4: Ready for Drive`
+     - Steps: **Booked** (✓) → **DL Verified** (✓) → **Drive Ready** (● Active) → **Negotiation / Close** (4).
+     - Advances to `Step 4 of 4: In Price Negotiation` when moved to negotiations.
+  4. **Booking Progression** (`#screen-booking-details`):
+     - `BOOKING PROGRESSION` | `Step 3 of 4: Vehicle Allocated`
+     - Steps: **Token Paid** (✓) → **Finance Done** (✓) → **VIN Allocated** (● Active) → **Delivery Ready** (4).
+     - Positioned right below the primary booking token summary.
+  5. **Delivery Progression** (`#screen-delivery-details`):
+     - `DELIVERY PROGRESSION` | `Step 4 of 4: Handover Complete`
+     - Steps: **PDI Passed** (✓) → **RTO & Docs** (✓) → **Ceremony** (✓) → **Delivered ✓** (✓ Completed in emerald).
+     - Created a dedicated delivery details screen accessible by clicking any delivery card.
+
+| Stage 1: Enquiry Details | Stage 2: Follow-up Details | Stage 3: Test Drive Details |
+| :---: | :---: | :---: |
+| ![Enquiry Progression](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_stage1_enquiry_progression.png) | ![Follow-up Progression](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_stage2_followup_progression.png) | ![Test Drive Progression](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_stage3_testdrive_progression.png) |
+
+| Stage 4: Booking Details | Stage 5: Delivery Details |
+| :---: | :---: |
+| ![Booking Progression](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_stage4_booking_progression.png) | ![Delivery Progression](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_stage5_delivery_progression.png) |
+
+---
+
 ## 🌐 Live Prototype Links
 
-- **Booking Screen (Clean & Readable Cards)**: [http://localhost:9847/?screen=booking&v=20261105e](http://localhost:9847/?screen=booking&v=20261105e)
-- **Deliveries Screen (Clean & Readable Cards)**: [http://localhost:9847/?screen=deliveries&v=20261105e](http://localhost:9847/?screen=deliveries&v=20261105e)
-- **Test Drives Screen (Single Details CTA)**: [http://localhost:9847/?screen=test-drives&v=20261105e](http://localhost:9847/?screen=test-drives&v=20261105e)
-- **Test Drive Details Screen**: [http://localhost:9847/?screen=test-drive-details&td=TD98781&v=20261105e](http://localhost:9847/?screen=test-drive-details&td=TD98781&v=20261105e)
-- **Test Drive Details (Scrolled to Outcomes)**: [http://localhost:9847/?screen=test-drive-details&td=TD98781&scroll=bottom&v=20261105e](http://localhost:9847/?screen=test-drive-details&td=TD98781&scroll=bottom&v=20261105e)
-- **Follow-Up Leads Screen**: [http://localhost:9847/?screen=activities&v=20261105e](http://localhost:9847/?screen=activities&v=20261105e)
-- **Home Dashboard**: [http://localhost:9847/?screen=home&v=20261105e](http://localhost:9847/?screen=home&v=20261105e)
+- **Stage 1: Enquiry Details**: [http://localhost:9847/?screen=enquiry-details&id=ENQ987875342&name=Amit+Verma&v=20261105prog](http://localhost:9847/?screen=enquiry-details&id=ENQ987875342&name=Amit+Verma&v=20261105prog)
+- **Stage 2: Follow-Up Lead Profile**: [http://localhost:9847/?screen=lead-profile&lead=ENQ987875369&v=20261105prog](http://localhost:9847/?screen=lead-profile&lead=ENQ987875369&v=20261105prog)
+- **Stage 3: Test Drive Details**: [http://localhost:9847/?screen=test-drive-details&td=TD98781&v=20261105prog](http://localhost:9847/?screen=test-drive-details&td=TD98781&v=20261105prog)
+- **Stage 4: Booking Details**: [http://localhost:9847/?screen=booking-details&id=BK987875311&v=20261105prog](http://localhost:9847/?screen=booking-details&id=BK987875311&v=20261105prog)
+- **Stage 5: Delivery Details**: [http://localhost:9847/?screen=delivery-details&del=DEL9878701&v=20261105prog](http://localhost:9847/?screen=delivery-details&del=DEL9878701&v=20261105prog)
+- **Vehicle Bookings List**: [http://localhost:9847/?screen=booking&v=20261105prog](http://localhost:9847/?screen=booking&v=20261105prog)
+- **Vehicle Deliveries List**: [http://localhost:9847/?screen=deliveries&v=20261105prog](http://localhost:9847/?screen=deliveries&v=20261105prog)
+- **Home Dashboard**: [http://localhost:9847/?screen=home&v=20261105prog](http://localhost:9847/?screen=home&v=20261105prog)
 - **Local Source Files**: [index.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/index.html) • [sales_connect_redesign.html](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/sales_connect_redesign.html)
 
 

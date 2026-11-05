@@ -1330,52 +1330,38 @@
           </div>
         </div>
 
-        <!-- 5 Stages Workflow Grid Component -->
-        <div class="bg-white rounded-2xl border border-[#E0E8F5] p-3.5 shadow-xs space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">STAGE & WORKFLOW</span>
-            <span id="stepperSubtext" class="text-[10px] font-extrabold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">Step 2 of 5: Follow-up</span>
+        <!-- ENQUIRY PROGRESSION STEPPER -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-[10px] font-extrabold uppercase text-slate-400 tracking-wider">Enquiry Progression</span>
+            <span id="enqScreenStageText" class="text-[10px] font-bold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">Step 2 of 4: Customer Contacted</span>
           </div>
-          
-          <!-- 5-Stage Multi-Row Grid Container -->
-          <div id="allStagesGridContainer" class="space-y-2">
-            <!-- Row 1: Stages 1 to 3 -->
-            <div class="grid grid-cols-3 gap-2">
-              <button onclick="setModernStep(this, 1)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-blue-50 text-[#007AFF] font-bold text-[10px] border border-blue-200/80 active:scale-95 transition-all text-center leading-tight space-y-1 cursor-pointer">
-                <i class="fa-solid fa-circle-check text-xs text-[#007AFF]"></i>
-                <span>1. New</span>
-              </button>
 
-              <button onclick="setModernStep(this, 2)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-[#007AFF] text-white font-extrabold text-[10px] shadow-md shadow-blue-500/20 active:scale-95 transition-all text-center leading-tight space-y-1 ring-2 ring-blue-300 cursor-pointer">
-                <span class="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span>
-                <span>2. Follow-up</span>
-              </button>
-
-              <button onclick="setModernStep(this, 3)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 text-slate-600 font-semibold text-[10px] border border-slate-200/70 active:scale-95 transition-all text-center leading-tight space-y-1 cursor-pointer">
-                <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-[9px] font-bold">3</span>
-                <span>3. Test Drive</span>
-              </button>
+          <!-- Stepper Dots -->
+          <div class="flex items-center justify-between relative px-2 pt-1 pb-0.5">
+            <div class="absolute left-6 right-6 top-[18px] h-0.5 bg-slate-100 -z-0 overflow-hidden">
+              <div id="enqStepperProgress" class="h-full bg-[#007AFF] transition-all duration-300" style="width: 33%;"></div>
             </div>
 
-            <!-- Connecting Arrow Line Indicator -->
-            <div class="flex items-center justify-center gap-2 text-slate-300 text-[10px] py-0.5">
-              <span class="h-0.5 flex-1 bg-slate-100 rounded-full"></span>
-              <i class="fa-solid fa-arrow-down-short-wide text-slate-400"></i>
-              <span class="text-[9px] font-bold text-slate-400">NEXT PIPELINE STAGES</span>
-              <span class="h-0.5 flex-1 bg-slate-100 rounded-full"></span>
+            <!-- Step 1: New Lead -->
+            <div onclick="setEnquiryProgressionStep(1)" class="flex flex-col items-center gap-1 z-10 text-center cursor-pointer active:scale-95 transition-transform">
+              <div id="enqStep1Dot" class="w-6 h-6 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center shadow-2xs">✓</div>
+              <span id="enqStep1Label" class="text-[9px] font-bold text-slate-700">New Lead</span>
             </div>
-
-            <!-- Row 2: Stages 4 to 5 -->
-            <div class="grid grid-cols-2 gap-2">
-              <button onclick="setModernStep(this, 4)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 text-slate-600 font-semibold text-[10px] border border-slate-200/70 active:scale-95 transition-all text-center leading-tight space-y-1 cursor-pointer">
-                <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-[9px] font-bold">4</span>
-                <span>4. Negotiation</span>
-              </button>
-
-              <button onclick="setModernStep(this, 5)" class="modern-step-btn flex flex-col items-center justify-center p-2 rounded-xl bg-slate-50 text-slate-600 font-semibold text-[10px] border border-slate-200/70 active:scale-95 transition-all text-center leading-tight space-y-1 cursor-pointer">
-                <span class="w-4 h-4 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-[9px] font-bold">5</span>
-                <span class="text-rose-700">5. Close Lost</span>
-              </button>
+            <!-- Step 2: Contacted -->
+            <div onclick="setEnquiryProgressionStep(2)" class="flex flex-col items-center gap-1 z-10 text-center cursor-pointer active:scale-95 transition-transform">
+              <div id="enqStep2Dot" class="w-6 h-6 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-blue-100 animate-pulse">●</div>
+              <span id="enqStep2Label" class="text-[9px] font-extrabold text-[#007AFF]">Contacted</span>
+            </div>
+            <!-- Step 3: Qualified -->
+            <div onclick="setEnquiryProgressionStep(3)" class="flex flex-col items-center gap-1 z-10 text-center cursor-pointer active:scale-95 transition-transform">
+              <div id="enqStep3Dot" class="w-6 h-6 rounded-full bg-slate-100 text-slate-400 text-[10px] font-bold flex items-center justify-center border border-slate-200">3</div>
+              <span id="enqStep3Label" class="text-[9px] font-semibold text-slate-400">Qualified</span>
+            </div>
+            <!-- Step 4: Ready for TD -->
+            <div onclick="setEnquiryProgressionStep(4)" class="flex flex-col items-center gap-1 z-10 text-center cursor-pointer active:scale-95 transition-transform">
+              <div id="enqStep4Dot" class="w-6 h-6 rounded-full bg-slate-100 text-slate-400 text-[10px] font-bold flex items-center justify-center border border-slate-200">4</div>
+              <span id="enqStep4Label" class="text-[9px] font-semibold text-slate-400">Ready for TD</span>
             </div>
           </div>
         </div>
@@ -2347,6 +2333,42 @@
           </div>
         </div>
 
+        <!-- FOLLOW-UP PROGRESSION STEPPER -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-[10px] font-extrabold uppercase text-slate-400 tracking-wider">Follow-up Progression</span>
+            <span id="fuScreenStageText" class="text-[10px] font-bold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">Step 3 of 4: Discussion Active</span>
+          </div>
+
+          <!-- Stepper Dots -->
+          <div class="flex items-center justify-between relative px-2 pt-1 pb-0.5">
+            <div class="absolute left-6 right-6 top-[18px] h-0.5 bg-slate-100 -z-0 overflow-hidden">
+              <div id="fuStepperProgress" class="h-full bg-[#007AFF] transition-all duration-300" style="width: 66%;"></div>
+            </div>
+
+            <!-- Step 1: Assigned -->
+            <div onclick="setFollowupProgressionStep(1)" class="flex flex-col items-center gap-1 z-10 text-center cursor-pointer active:scale-95 transition-transform">
+              <div id="fuStep1Dot" class="w-6 h-6 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center shadow-2xs">✓</div>
+              <span id="fuStep1Label" class="text-[9px] font-bold text-slate-700">Assigned</span>
+            </div>
+            <!-- Step 2: Contacted -->
+            <div onclick="setFollowupProgressionStep(2)" class="flex flex-col items-center gap-1 z-10 text-center cursor-pointer active:scale-95 transition-transform">
+              <div id="fuStep2Dot" class="w-6 h-6 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center shadow-2xs">✓</div>
+              <span id="fuStep2Label" class="text-[9px] font-bold text-slate-700">Contacted</span>
+            </div>
+            <!-- Step 3: Follow-up Due -->
+            <div onclick="setFollowupProgressionStep(3)" class="flex flex-col items-center gap-1 z-10 text-center cursor-pointer active:scale-95 transition-transform">
+              <div id="fuStep3Dot" class="w-6 h-6 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-blue-100 animate-pulse">●</div>
+              <span id="fuStep3Label" class="text-[9px] font-extrabold text-[#007AFF]">Follow-up Active</span>
+            </div>
+            <!-- Step 4: Advance to Drive -->
+            <div onclick="setFollowupProgressionStep(4)" class="flex flex-col items-center gap-1 z-10 text-center cursor-pointer active:scale-95 transition-transform">
+              <div id="fuStep4Dot" class="w-6 h-6 rounded-full bg-slate-100 text-slate-400 text-[10px] font-bold flex items-center justify-center border border-slate-200">4</div>
+              <span id="fuStep4Label" class="text-[9px] font-semibold text-slate-400">Advance to Drive</span>
+            </div>
+          </div>
+        </div>
+
         <!-- 2. Customer & Vehicle Information Card -->
         <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-3">
           <div class="flex items-center justify-between border-b border-slate-100 pb-2">
@@ -2973,8 +2995,9 @@
 
           <!-- Stepper Dots -->
           <div class="flex items-center justify-between relative px-2 pt-1">
-            <div class="absolute left-6 right-6 top-[18px] h-0.5 bg-slate-100 -z-0"></div>
-            <div id="tdStepperProgress" class="absolute left-6 top-[18px] h-0.5 bg-[#007AFF] -z-0 transition-all duration-300" style="width: 66%;"></div>
+            <div class="absolute left-6 right-6 top-[18px] h-0.5 bg-slate-100 -z-0 overflow-hidden">
+              <div id="tdStepperProgress" class="h-full bg-[#007AFF] transition-all duration-300" style="width: 66%;"></div>
+            </div>
 
             <!-- Step 1 -->
             <div class="flex flex-col items-center gap-1 z-10 text-center">
@@ -3651,6 +3674,121 @@
         </div>
       </div>
 
+      <!-- ========================================== -->
+      <!-- DEDICATED DELIVERY DETAILS SCREEN          -->
+      <!-- ========================================== -->
+      <div id="screen-delivery-details" class="app-screen space-y-4">
+        <!-- Top Navigation Header -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <button onclick="exitDeliveryDetails()" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-700 border border-slate-200 active:bg-slate-100 shadow-xs cursor-pointer active:scale-95 transition-transform">
+              <i class="fa-solid fa-arrow-left text-sm"></i>
+            </button>
+            <div>
+              <h1 class="text-base font-black text-[#1E293B]">Delivery Details</h1>
+              <p id="deldetHeaderSub" class="text-[10px] text-slate-400 font-medium">Ref: DEL9878701</p>
+            </div>
+          </div>
+          <span id="deldetStatusBadge" class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center gap-1 shadow-2xs">
+            <i class="fa-solid fa-circle-check text-[9px]"></i>
+            <span>Delivered ✓</span>
+          </span>
+        </div>
+
+        <!-- Customer Identity & Vehicle Info Card -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs">
+          <div class="flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0 flex-1">
+              <div id="deldetAvatar" class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 font-black text-sm flex items-center justify-center shrink-0 border border-emerald-100">
+                RK
+              </div>
+              <div class="min-w-0 flex-1">
+                <h2 id="deldetCustomerName" class="text-base font-black text-[#1E293B] truncate">Rajesh Kumar</h2>
+                <p id="deldetVehicleModel" class="text-xs font-semibold text-slate-600 truncate">Mahindra XUV700 AX7 L</p>
+                <p id="deldetVariantColor" class="text-[10px] font-medium text-slate-400 truncate">Midnight Black • AX7 L Diesel AT</p>
+              </div>
+            </div>
+            <div class="text-right shrink-0">
+              <span id="deldetBayBadge" class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-bold text-xs border border-slate-200 block">Bay 1</span>
+              <span id="deldetSlotText" class="text-[9px] font-bold text-slate-400 block mt-1">Today, 11:30 AM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DELIVERY PROGRESSION STEPPER -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-[10px] font-extrabold uppercase text-slate-400 tracking-wider">Delivery Progression</span>
+            <span id="delScreenStageText" class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-100">Step 4 of 4: Handover Complete</span>
+          </div>
+
+          <!-- Stepper Dots -->
+          <div class="flex items-center justify-between relative px-2 pt-1 pb-0.5">
+            <div class="absolute left-6 right-6 top-[18px] h-0.5 bg-slate-100 -z-0 overflow-hidden">
+              <div id="delStepperProgress" class="h-full bg-emerald-500 transition-all duration-300" style="width: 100%;"></div>
+            </div>
+
+            <!-- Step 1: PDI Done -->
+            <div class="flex flex-col items-center gap-1 z-10 text-center">
+              <div class="w-6 h-6 rounded-full bg-emerald-600 text-white text-[10px] font-bold flex items-center justify-center shadow-2xs">✓</div>
+              <span class="text-[9px] font-bold text-slate-700">PDI Passed</span>
+            </div>
+            <!-- Step 2: Docs & RTO -->
+            <div class="flex flex-col items-center gap-1 z-10 text-center">
+              <div class="w-6 h-6 rounded-full bg-emerald-600 text-white text-[10px] font-bold flex items-center justify-center shadow-2xs">✓</div>
+              <span class="text-[9px] font-bold text-slate-700">RTO & Docs</span>
+            </div>
+            <!-- Step 3: Ceremony -->
+            <div class="flex flex-col items-center gap-1 z-10 text-center">
+              <div class="w-6 h-6 rounded-full bg-emerald-600 text-white text-[10px] font-bold flex items-center justify-center shadow-2xs">✓</div>
+              <span class="text-[9px] font-bold text-slate-700">Ceremony</span>
+            </div>
+            <!-- Step 4: Delivered -->
+            <div class="flex flex-col items-center gap-1 z-10 text-center">
+              <div class="w-6 h-6 rounded-full bg-emerald-600 text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-emerald-100 shadow-2xs">✓</div>
+              <span class="text-[9px] font-extrabold text-emerald-700">Delivered ✓</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Handover & Compliance Details Card -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5">
+          <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+            <h3 class="text-xs font-bold text-slate-800 flex items-center gap-2">
+              <i class="fa-solid fa-clipboard-check text-emerald-600"></i>
+              <span>Handover & Gate Verification</span>
+            </h3>
+            <span id="deldetGatePass" class="text-[10px] font-mono font-bold text-slate-600 bg-slate-50 px-2 py-0.5 rounded border border-slate-200">GP-88992</span>
+          </div>
+
+          <div class="divide-y divide-slate-100 text-xs">
+            <div class="py-2 flex items-center justify-between">
+              <span class="text-slate-400 font-medium">VIN / Chassis</span>
+              <span id="deldetVin" class="font-mono font-bold text-slate-800">MA88991204</span>
+            </div>
+            <div class="py-2 flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Fastag Status</span>
+              <span id="deldetFastag" class="font-bold text-emerald-700 flex items-center gap-1"><i class="fa-solid fa-circle-check text-xs"></i> Active & Tagged</span>
+            </div>
+            <div class="py-2 flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Key Handover</span>
+              <span id="deldetKeys" class="font-bold text-slate-800 flex items-center gap-1"><i class="fa-solid fa-key text-[#007AFF] text-xs"></i> Handed Over (2 Smart Keys)</span>
+            </div>
+            <div class="py-2 flex items-center justify-between">
+              <span class="text-slate-400 font-medium">Delivered By</span>
+              <span id="deldetConsultant" class="font-bold text-slate-800">Niket Kumar (You)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action CTA -->
+        <div class="pt-2">
+          <button onclick="exitDeliveryDetails()" class="w-full py-3 bg-white text-slate-700 font-bold rounded-2xl text-xs border border-slate-200 active:bg-slate-50 cursor-pointer shadow-xs">
+            Back to Deliveries
+          </button>
+        </div>
+      </div>
+
       <!-- DEDICATED BOOKING DETAILS SCREEN -->
       <div id="screen-booking-details" class="app-screen space-y-4">
         <!-- Top Navigation Header -->
@@ -3677,6 +3815,42 @@
             <div class="text-right">
               <span id="bdetTokenPaid" class="text-sm font-black text-[#007AFF]">₹50,000</span>
               <span class="text-[9px] font-bold text-slate-400 block uppercase">Token Paid</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOOKING PROGRESSION STEPPER -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-[10px] font-extrabold uppercase text-slate-400 tracking-wider">Booking Progression</span>
+            <span id="bdetProgressionBadge" class="text-[10px] font-bold text-[#007AFF] bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">Step 3 of 4: Vehicle Allocated</span>
+          </div>
+
+          <!-- Stepper Dots -->
+          <div class="flex items-center justify-between relative px-2 pt-1 pb-0.5">
+            <div class="absolute left-6 right-6 top-[18px] h-0.5 bg-slate-100 -z-0 overflow-hidden">
+              <div id="bdetStepperProgress" class="h-full bg-[#007AFF] transition-all duration-300" style="width: 66%;"></div>
+            </div>
+
+            <!-- Step 1: Token Paid -->
+            <div onclick="setBookingProgressionStep(1)" class="flex flex-col items-center gap-1 z-10 text-center cursor-pointer active:scale-95 transition-transform">
+              <div id="bdetStep1Dot" class="w-6 h-6 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center shadow-2xs">✓</div>
+              <span id="bdetStep1Label" class="text-[9px] font-bold text-slate-700">Token Paid</span>
+            </div>
+            <!-- Step 2: Finance Approved -->
+            <div onclick="setBookingProgressionStep(2)" class="flex flex-col items-center gap-1 z-10 text-center cursor-pointer active:scale-95 transition-transform">
+              <div id="bdetStep2Dot" class="w-6 h-6 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center shadow-2xs">✓</div>
+              <span id="bdetStep2Label" class="text-[9px] font-bold text-slate-700">Finance Done</span>
+            </div>
+            <!-- Step 3: VIN Allocated -->
+            <div onclick="setBookingProgressionStep(3)" class="flex flex-col items-center gap-1 z-10 text-center cursor-pointer active:scale-95 transition-transform">
+              <div id="bdetStep3Dot" class="w-6 h-6 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-blue-100 animate-pulse">●</div>
+              <span id="bdetStep3Label" class="text-[9px] font-extrabold text-[#007AFF]">VIN Allocated</span>
+            </div>
+            <!-- Step 4: Delivery Ready -->
+            <div onclick="setBookingProgressionStep(4)" class="flex flex-col items-center gap-1 z-10 text-center cursor-pointer active:scale-95 transition-transform">
+              <div id="bdetStep4Dot" class="w-6 h-6 rounded-full bg-slate-100 text-slate-400 text-[10px] font-bold flex items-center justify-center border border-slate-200">4</div>
+              <span id="bdetStep4Label" class="text-[9px] font-semibold text-slate-400">Delivery Ready</span>
             </div>
           </div>
         </div>
@@ -5929,6 +6103,51 @@
       }
     };
 
+    function setBookingProgressionStep(stepNum) {
+      const badgeEl = document.getElementById('bdetProgressionBadge');
+      const stepper = document.getElementById('bdetStepperProgress');
+      const step1Dot = document.getElementById('bdetStep1Dot');
+      const step2Dot = document.getElementById('bdetStep2Dot');
+      const step3Dot = document.getElementById('bdetStep3Dot');
+      const step4Dot = document.getElementById('bdetStep4Dot');
+      const step1Label = document.getElementById('bdetStep1Label');
+      const step2Label = document.getElementById('bdetStep2Label');
+      const step3Label = document.getElementById('bdetStep3Label');
+      const step4Label = document.getElementById('bdetStep4Label');
+
+      const badges = [
+        "Step 1 of 4: Token Paid",
+        "Step 2 of 4: Finance Approved",
+        "Step 3 of 4: Vehicle Allocated",
+        "Step 4 of 4: Ready for Delivery"
+      ];
+      const widths = ["0%", "33%", "66%", "100%"];
+
+      if (badgeEl && badges[stepNum - 1]) badgeEl.innerText = badges[stepNum - 1];
+      if (stepper) stepper.style.width = widths[stepNum - 1];
+
+      const dots = [step1Dot, step2Dot, step3Dot, step4Dot];
+      const textEls = [step1Label, step2Label, step3Label, step4Label];
+
+      dots.forEach((dot, idx) => {
+        const i = idx + 1;
+        if (!dot) return;
+        if (i < stepNum) {
+          dot.className = "w-6 h-6 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center shadow-2xs";
+          dot.innerHTML = "✓";
+          if (textEls[idx]) textEls[idx].className = "text-[9px] font-bold text-slate-700";
+        } else if (i === stepNum) {
+          dot.className = "w-6 h-6 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-blue-100 animate-pulse";
+          dot.innerHTML = "●";
+          if (textEls[idx]) textEls[idx].className = "text-[9px] font-extrabold text-[#007AFF]";
+        } else {
+          dot.className = "w-6 h-6 rounded-full bg-slate-100 text-slate-400 text-[10px] font-bold flex items-center justify-center border border-slate-200";
+          dot.innerHTML = i;
+          if (textEls[idx]) textEls[idx].className = "text-[9px] font-semibold text-slate-400";
+        }
+      });
+    }
+
     function openBookingDetails(bookingId) {
       const data = bookingMockData[bookingId] || bookingMockData['BK987875311'];
       
@@ -5955,6 +6174,12 @@
       document.getElementById('bdetExpectedDelivery').innerText = data.expectedDelivery;
       document.getElementById('bdetPaymentMode').innerText = data.paymentMode;
       document.getElementById('bdetTxnId').innerText = data.txnId;
+
+      let bStep = 3;
+      if (data.id === 'BK987875412') bStep = 1;
+      else if (data.id === 'BK987875399') bStep = 2;
+      else if (data.id === 'BK987875364' || data.id === 'BK987875450') bStep = 4;
+      setBookingProgressionStep(bStep);
       
       const timelineContainer = document.getElementById('bdetTimeline');
       timelineContainer.innerHTML = '';
@@ -6229,12 +6454,68 @@
       }
     }
 
+    function setEnquiryProgressionStep(stepNum) {
+      const stageText = document.getElementById('enqScreenStageText');
+      const stepper = document.getElementById('enqStepperProgress');
+      const step1Dot = document.getElementById('enqStep1Dot');
+      const step2Dot = document.getElementById('enqStep2Dot');
+      const step3Dot = document.getElementById('enqStep3Dot');
+      const step4Dot = document.getElementById('enqStep4Dot');
+      const step1Label = document.getElementById('enqStep1Label');
+      const step2Label = document.getElementById('enqStep2Label');
+      const step3Label = document.getElementById('enqStep3Label');
+      const step4Label = document.getElementById('enqStep4Label');
+
+      const badges = [
+        "Step 1 of 4: New Enquiry Received",
+        "Step 2 of 4: Customer Contacted",
+        "Step 3 of 4: Requirements Qualified",
+        "Step 4 of 4: Ready for Test Drive"
+      ];
+      const widths = ["0%", "33%", "66%", "100%"];
+
+      if (stageText && badges[stepNum - 1]) stageText.innerText = badges[stepNum - 1];
+      if (stepper) stepper.style.width = widths[stepNum - 1];
+
+      const dots = [step1Dot, step2Dot, step3Dot, step4Dot];
+      const textEls = [step1Label, step2Label, step3Label, step4Label];
+
+      dots.forEach((dot, idx) => {
+        const i = idx + 1;
+        if (!dot) return;
+        if (i < stepNum) {
+          dot.className = "w-6 h-6 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center shadow-2xs";
+          dot.innerHTML = "✓";
+          if (textEls[idx]) textEls[idx].className = "text-[9px] font-bold text-slate-700";
+        } else if (i === stepNum) {
+          dot.className = "w-6 h-6 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-blue-100 animate-pulse";
+          dot.innerHTML = "●";
+          if (textEls[idx]) textEls[idx].className = "text-[9px] font-extrabold text-[#007AFF]";
+        } else {
+          dot.className = "w-6 h-6 rounded-full bg-slate-100 text-slate-400 text-[10px] font-bold flex items-center justify-center border border-slate-200";
+          dot.innerHTML = i;
+          if (textEls[idx]) textEls[idx].className = "text-[9px] font-semibold text-slate-400";
+        }
+      });
+    }
+
     function openEnquiryDetails(name, id) {
-      document.getElementById('detail-customer-name').innerText = name;
-      document.getElementById('detail-enq-id').innerText = id;
+      const nameEl = document.getElementById('detail-customer-name');
+      const idEl = document.getElementById('detail-enq-id');
+      if (nameEl) nameEl.innerText = name || 'Customer';
+      if (idEl) idEl.innerText = id || 'ENQ987875311';
       activeLeadContext.name = name;
       activeLeadContext.id = id;
+
+      let initialStep = 2;
+      if (id === 'ENQ987875311' || id === 'ENQ987875324') initialStep = 1;
+      else if (id === 'ENQ987875333' || id === 'ENQ987875342' || id === 'ENQ987875355') initialStep = 2;
+      else if (id === 'ENQ987875364' || id === 'ENQ987875399') initialStep = 3;
+      else if (id === 'ENQ987875368' || id === 'ENQ987875412') initialStep = 4;
+      setEnquiryProgressionStep(initialStep);
+
       switchScreen('enquiry-details');
+      resetScrollToTop();
     }
 
     // Current active lead context for activities flow
@@ -7396,6 +7677,162 @@
       });
     }
 
+    const deliveriesMockData = {
+      'DEL9878701': {
+        id: 'DEL9878701',
+        name: 'Rajesh Kumar',
+        initials: 'RK',
+        phone: '+91 98765 89706',
+        model: 'Mahindra XUV700 AX7 L',
+        variantColor: 'Midnight Black • AX7 L Diesel AT',
+        bay: 'Bay 1',
+        slot: 'Today, 11:30 AM',
+        gatePass: 'GP-88992',
+        vin: 'MA88991204',
+        fastag: 'Active & Tagged',
+        keys: 'Handed Over (2 Smart Keys)',
+        consultant: 'Niket Kumar (You)'
+      },
+      'DEL9878702': {
+        id: 'DEL9878702',
+        name: 'Ananya Deshmukh',
+        initials: 'AD',
+        phone: '+91 99102 44331',
+        model: 'Thar Roxx 4X4',
+        variantColor: 'Everest White • AX7 L AT',
+        bay: 'Bay 2',
+        slot: 'Today, 2:15 PM',
+        gatePass: 'GP-88995',
+        vin: 'MA88991218',
+        fastag: 'Active & Tagged',
+        keys: 'Handed Over (2 Smart Keys)',
+        consultant: 'Niket Kumar (You)'
+      },
+      'DEL9878703': {
+        id: 'DEL9878703',
+        name: 'Siddharth Kapoor',
+        initials: 'SK',
+        phone: '+91 98201 66554',
+        model: 'Scorpio-N Z8 L 4X4',
+        variantColor: 'Deep Forest Green • Diesel AT',
+        bay: 'Bay 3',
+        slot: 'Yesterday, 3:45 PM',
+        gatePass: 'GP-88970',
+        vin: 'MA88991192',
+        fastag: 'Active & Tagged',
+        keys: 'Handed Over (2 Smart Keys)',
+        consultant: 'Niket Kumar (You)'
+      },
+      'DEL9878704': {
+        id: 'DEL9878704',
+        name: 'Meera Sen',
+        initials: 'MS',
+        phone: '+91 97112 33455',
+        model: 'Bolero Neo N10',
+        variantColor: 'Napoli Black • Diesel MT',
+        bay: 'Bay 1',
+        slot: 'Yesterday, 5:15 PM',
+        gatePass: 'GP-88968',
+        vin: 'MA88991185',
+        fastag: 'Active & Tagged',
+        keys: 'Handed Over (2 Keys + Manual)',
+        consultant: 'Niket Kumar (You)'
+      },
+      'DEL9878705': {
+        id: 'DEL9878705',
+        name: 'Vikram Malhotra',
+        initials: 'VM',
+        phone: '+91 98991 22334',
+        model: 'Mahindra Thar Roxx AX7 L',
+        variantColor: 'Stealth Black • Diesel AT',
+        bay: 'Bay 2',
+        slot: '02 Nov 2026, 12:00 PM',
+        gatePass: 'GP-88944',
+        vin: 'MA88991170',
+        fastag: 'Active & Tagged',
+        keys: 'Handed Over (2 Smart Keys)',
+        consultant: 'Niket Kumar (You)'
+      },
+      'DEL9878706': {
+        id: 'DEL9878706',
+        name: 'Pooja Hegde',
+        initials: 'PH',
+        phone: '+91 98103 44556',
+        model: 'Mahindra XUV700 AX5',
+        variantColor: 'Dazzling Silver • Petrol MT',
+        bay: 'Bay 4',
+        slot: '01 Nov 2026, 4:30 PM',
+        gatePass: 'GP-88931',
+        vin: 'MA88991155',
+        fastag: 'Active & Tagged',
+        keys: 'Handed Over (2 Smart Keys)',
+        consultant: 'Niket Kumar (You)'
+      },
+      'DEL9878707': {
+        id: 'DEL9878707',
+        name: 'Kunal Singhania',
+        initials: 'KS',
+        phone: '+91 99204 55667',
+        model: 'Scorpio-N Z8',
+        variantColor: 'Everest White • Petrol AT',
+        bay: 'Bay 1',
+        slot: '30 Oct 2026, 11:00 AM',
+        gatePass: 'GP-88912',
+        vin: 'MA88991138',
+        fastag: 'Active & Tagged',
+        keys: 'Handed Over (2 Smart Keys)',
+        consultant: 'Niket Kumar (You)'
+      },
+      'DEL9878708': {
+        id: 'DEL9878708',
+        name: 'Sunita Reddy',
+        initials: 'SR',
+        phone: '+91 98305 66778',
+        model: 'Thar Earth Edition 4X4',
+        variantColor: 'Desert Fury • Diesel MT',
+        bay: 'Bay 2',
+        slot: '28 Oct 2026, 3:30 PM',
+        gatePass: 'GP-88899',
+        vin: 'MA88991110',
+        fastag: 'Active & Tagged',
+        keys: 'Handed Over (2 Smart Keys)',
+        consultant: 'Niket Kumar (You)'
+      }
+    };
+
+    function openDeliveryDetails(delId) {
+      const data = deliveriesMockData[delId] || deliveriesMockData['DEL9878701'];
+      const sub = document.getElementById('deldetHeaderSub');
+      const avatar = document.getElementById('deldetAvatar');
+      const name = document.getElementById('deldetCustomerName');
+      const model = document.getElementById('deldetVehicleModel');
+      const variant = document.getElementById('deldetVariantColor');
+      const bay = document.getElementById('deldetBayBadge');
+      const slot = document.getElementById('deldetSlotText');
+      const gate = document.getElementById('deldetGatePass');
+      const vin = document.getElementById('deldetVin');
+      const consultant = document.getElementById('deldetConsultant');
+
+      if (sub) sub.innerText = 'Ref: ' + data.id;
+      if (avatar) avatar.innerText = data.initials;
+      if (name) name.innerText = data.name;
+      if (model) model.innerText = data.model;
+      if (variant) variant.innerText = data.variantColor;
+      if (bay) bay.innerText = data.bay;
+      if (slot) slot.innerText = data.slot;
+      if (gate) gate.innerText = data.gatePass;
+      if (vin) vin.innerText = data.vin;
+      if (consultant) consultant.innerText = data.consultant;
+
+      switchScreen('delivery-details');
+      resetScrollToTop();
+    }
+
+    function exitDeliveryDetails() {
+      switchScreen('deliveries');
+      resetScrollToTop();
+    }
+
     // =========================================================================
     // FOLLOW-UP LEADS ENGINE, TEST DRIVE BOOKING & ACTION HISTORY TIMELINE
     // =========================================================================
@@ -7948,6 +8385,51 @@
       renderFollowUpScreen();
     }
 
+    function setFollowupProgressionStep(stepNum) {
+      const stageText = document.getElementById('fuScreenStageText');
+      const stepper = document.getElementById('fuStepperProgress');
+      const step1Dot = document.getElementById('fuStep1Dot');
+      const step2Dot = document.getElementById('fuStep2Dot');
+      const step3Dot = document.getElementById('fuStep3Dot');
+      const step4Dot = document.getElementById('fuStep4Dot');
+      const step1Label = document.getElementById('fuStep1Label');
+      const step2Label = document.getElementById('fuStep2Label');
+      const step3Label = document.getElementById('fuStep3Label');
+      const step4Label = document.getElementById('fuStep4Label');
+
+      const badges = [
+        "Step 1 of 4: Lead Assigned",
+        "Step 2 of 4: First Contact Made",
+        "Step 3 of 4: Discussion Active",
+        "Step 4 of 4: Advance to Drive / Negotiation"
+      ];
+      const widths = ["0%", "33%", "66%", "100%"];
+
+      if (stageText && badges[stepNum - 1]) stageText.innerText = badges[stepNum - 1];
+      if (stepper) stepper.style.width = widths[stepNum - 1];
+
+      const dots = [step1Dot, step2Dot, step3Dot, step4Dot];
+      const textEls = [step1Label, step2Label, step3Label, step4Label];
+
+      dots.forEach((dot, idx) => {
+        const i = idx + 1;
+        if (!dot) return;
+        if (i < stepNum) {
+          dot.className = "w-6 h-6 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center shadow-2xs";
+          dot.innerHTML = "✓";
+          if (textEls[idx]) textEls[idx].className = "text-[9px] font-bold text-slate-700";
+        } else if (i === stepNum) {
+          dot.className = "w-6 h-6 rounded-full bg-[#007AFF] text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-blue-100 animate-pulse";
+          dot.innerHTML = "●";
+          if (textEls[idx]) textEls[idx].className = "text-[9px] font-extrabold text-[#007AFF]";
+        } else {
+          dot.className = "w-6 h-6 rounded-full bg-slate-100 text-slate-400 text-[10px] font-bold flex items-center justify-center border border-slate-200";
+          dot.innerHTML = i;
+          if (textEls[idx]) textEls[idx].className = "text-[9px] font-semibold text-slate-400";
+        }
+      });
+    }
+
     function renderFollowUpLeadProfileScreen(lead) {
       if (!lead) return;
 
@@ -7956,6 +8438,13 @@
       const statusText = document.getElementById('profileStatusBadgeText');
       if (subtitle) subtitle.innerText = `${lead.id} • ${lead.dueText}`;
       if (statusText) statusText.innerText = lead.status;
+
+      // Stepper Progression
+      let fuStep = 3;
+      if (lead.status === 'In Negotiation' || lead.status === 'Won') fuStep = 4;
+      else if (lead.status === 'New') fuStep = 1;
+      else if (lead.status === 'Contacted') fuStep = 2;
+      setFollowupProgressionStep(fuStep);
 
       // Identity Card
       const avatar = document.getElementById('profileLeadAvatar');
@@ -10316,6 +10805,8 @@
           }
         } else if (targetScreen === 'booking-details') {
           openBookingDetails('BK987875364');
+        } else if (targetScreen === 'delivery-details' || targetScreen === 'delivery') {
+          openDeliveryDetails('DEL9878701');
         } else if (targetScreen === 'test-drive-details' || targetScreen === 'testdrive-details') {
           const tdId = params.get('td') || params.get('id') || 'TD98781';
           openTestDriveDetails(tdId);
@@ -10418,6 +10909,10 @@
           }
         } else if (targetScreen === 'booking-details') {
           openBookingDetails(params.get('id') || 'BK987875311');
+        } else if (targetScreen === 'delivery-details' || targetScreen === 'delivery') {
+          openDeliveryDetails(params.get('del') || params.get('id') || 'DEL9878701');
+        } else if (targetScreen === 'enquiry-details') {
+          openEnquiryDetails(params.get('name') || 'Swati Jain', params.get('id') || 'ENQ987875399');
         } else if (targetScreen === 'activities' || targetScreen === 'followups') {
           openFollowUpsScreen();
           if (params.get('modal') === 'testdrive') {
