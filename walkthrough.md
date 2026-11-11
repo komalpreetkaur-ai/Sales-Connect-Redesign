@@ -30,11 +30,11 @@
   - Subtitle updated to: **`All bookings completed by you (5 Bookings)`** with top header badge **`5 Booked by You`**.
   - Clear agent attribution banner: **`Consultant: Niket Kumar (You) • Showing all 5 bookings closed & handled by you`**.
   - All 5 booking cards render with prominent **`Booked by Niket K. (You)`** tags:
-    1. **Mike Alex Tyson** • `BK987875311` (Confirmed • ₹50,000 Token Paid • Thar Roxx AX7 L Diesel AT)
-    2. **Aarti Sharma** • `BK987875364` (Pre-booked • ₹25,000 Token Paid • XUV700 AX7 Petrol AT)
-    3. **Rohan Verma** • `BK987875399` (Confirmed • ₹25,000 Token Paid • Scorpio-N Z8 L 4X4 Diesel AT)
-    4. **Kavita Patel** • `BK987875412` (Confirmed • ₹30,000 Token Paid • Thar Roxx AX5 Diesel MT)
-    5. **Suresh Nair** • `BK987875450` (Confirmed • ₹50,000 Token Paid • XUV700 AX7 L 4WD AT)
+    1. **Mike Alex Tyson** • `BK987875311` (Confirmed • ₹50,000 Amount Paid • Thar Roxx AX7 L Diesel AT)
+    2. **Aarti Sharma** • `BK987875364` (Pre-booked • ₹25,000 Amount Paid • XUV700 AX7 Petrol AT)
+    3. **Rohan Verma** • `BK987875399` (Confirmed • ₹25,000 Amount Paid • Scorpio-N Z8 L 4X4 Diesel AT)
+    4. **Kavita Patel** • `BK987875412` (Confirmed • ₹30,000 Amount Paid • Thar Roxx AX5 Diesel MT)
+    5. **Suresh Nair** • `BK987875450` (Confirmed • ₹50,000 Amount Paid • XUV700 AX7 L 4WD AT)
   - Full details modal support for all 5 bookings with complete timeline and verified deposit information.
 
 ### 2. Vehicle Deliveries Flow (Strictly Deliveries Done Only)
@@ -61,7 +61,7 @@
 | Home KPI Cards | Bookings (Agent Portfolio) | Deliveries (Done Only) |
 | :---: | :---: | :---: |
 | ![Home KPI Cards](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_kpi_agent_deliveries.png) | ![All Agent Bookings](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_booking_agent_all.png) | ![Deliveries Done Only](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_deliveries_done_only.png) |
-| *Bookings: 5 (All booked by you) & Deliveries: 8 (All deliveries done).* | *All 5 bookings handled by agent with attribution and verified tokens.* | *All 8 vehicle deliveries marked DELIVERED ✓ with handover details.* |
+| *Bookings: 5 (All booked by you) & Deliveries: 8 (All deliveries done).* | *All 5 bookings handled by agent with attribution and verified advance amounts.* | *All 8 vehicle deliveries marked DELIVERED ✓ with handover details.* |
 
 ---
 
@@ -401,7 +401,7 @@ Removed the `[ 📞 Call Customer ]` and `[ 💬 WhatsApp ]` quick action button
 
 ### ✨ Changes Applied
 1. **Removed Action Buttons Row**: Removed `#bdetCallBtn` ("Call Customer") and `#bdetWaBtn` ("WhatsApp") alongside their enclosing grid container from `#screen-booking-details`.
-2. **Clean Banner Presentation**: The main Booking Info banner card now cleanly showcases the Booking ID, Customer Name, Token Amount, and Token status pill without visual clutter.
+2. **Clean Banner Presentation**: The main Booking Info banner card now cleanly showcases the Booking ID, Customer Name, Booking Amount, and Deposit status pill without visual clutter.
 3. **Safe Script Updating**: Safely updated `openBookingDetails(bookingId)` to eliminate DOM references to the removed buttons, preventing any null pointer exceptions while retaining full functionality across all booking records.
 4. **100% Parity Verified**: `index.html` and `sales_connect_redesign.html` maintain complete 0-diff parity.
 
@@ -555,7 +555,7 @@ Addressed the user requests:
 1. **Priority Actions Today (5 High-Priority Automotive Tasks)**:
    - **Overdue Follow-up** (Priya M. • Negotiation): 2h overdue alert with phone and WhatsApp actions.
    - **Test Drive Confirmation** (Shreya S. • Test Drive): 10:30 AM Home Test Drive Baleno confirmation.
-   - **Advance Token Pending** (Rupesh Bhatt • Booking): ₹50,000 token clearance alert.
+   - **Advance Amount Pending** (Rupesh Bhatt • Booking): ₹50,000 deposit clearance alert.
    - **Delivery PDI Sign-off** (Vikram Malhotra • Delivery Ready): 4:00 PM Grand Vitara delivery & gate-pass clearance.
    - **Loan Disbursal Action** (Amit Patel • Financing): Expiring bank sanction letter follow-up.
    - Updated urgent badge indicator to `5 Urgent`.
@@ -607,7 +607,7 @@ Built an interactive **Notifications Center** screen (`#screen-notifications`) w
    - **New Lead Assigned**: Shows priority badge (`Hot Priority`) and deep-links directly to the lead.
    - **Test Drive in 30 Mins**: Shows scheduled slot (`2:30 PM`) and opens the Test Drives schedule.
    - **Follow-up Call Due**: Highlights overdue action (`Mohit Kumar`) and links to log activities.
-   - **Token Received (₹50,000)**: Verified booking alert deep-linking into booking details (`BK987875364`).
+   - **Amount Received (₹50,000)**: Verified booking alert deep-linking into booking details (`BK987875364`).
    - **Delivery Ready**: PDI completion notice linking to the deliveries screen.
    - **Target Progress 🎯**: Weekly goal milestone update.
 4. **Mark As Read & Deep-Linking**:
@@ -1205,7 +1205,7 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
    - **Redesigned Vehicle Booking Cards**:
      - **Customer Details**: Name (e.g. `Mike Alex Tyson`, `Aarti Sharma`), Phone Number, and Email ID.
      - **Status Badges**: Clean pill badges e.g. `Confirmed` (blue), `Pending Delivery` (amber), `Pre-booked` (indigo).
-     - **Car Specifications Card**: Car Model (e.g. `Mahindra Thar Roxx`, `Mahindra XUV700`), Variant (e.g. `AX7 L Diesel AT`), Colour (e.g. `Midnight Black`), and Token Amount Paid (e.g. `₹21,000`).
+     - **Car Specifications Card**: Car Model (e.g. `Mahindra Thar Roxx`, `Mahindra XUV700`), Variant (e.g. `AX7 L Diesel AT`), Colour (e.g. `Midnight Black`), and Amount Paid (e.g. `₹21,000`).
      - **Delivery & Quick Actions**: Expected delivery date and one-touch **Call** and **WhatsApp** CTAs.
    - **`Pre-booking` Quick Action CTA (Dashboard Home)**: Tapping the green **Pre-booking** card on the main dashboard directly opens the **New Vehicle Booking Form** (`#screen-booking-create`).
    - **`+ New Booking` Floating CTA**: Opens the redesigned single-page booking form from the Bookings list screen.
@@ -1218,7 +1218,7 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
    - **Vehicle & Booking Details Section**:
      - `Car Model*` (Dropdown selector: Mahindra Thar Roxx, XUV700, Scorpio-N, Thar 4x4, XUV400 EV, Bolero Neo).
      - `Variant` & `Colour` input fields.
-     - `Token Amount (₹)` & `Expected Delivery Date`.
+     - `Booking Amount (₹)` & `Expected Delivery Date`.
    - **Action CTAs**:
      - **Cancel CTA**: Discards changes and returns to the Bookings list.
      - **Submit Booking CTA**: Validates mandatory fields, creates a new booking card dynamically on `#screen-booking`, alerts success, and updates total count.
@@ -1231,7 +1231,7 @@ Eliminated noisy multi-colored UI elements (green, purple, amber, cyan, rose, in
    - **Payment & Delivery Details Card**: Booking Date, Expected Delivery Date, Payment Mode (e.g. UPI / NetBanking), and Transaction ID.
    - **Interactive 5-Step Booking Status Timeline**:
      - Visual vertical progress tracker with numbered step icons & green completion checkmarks.
-     - Tracks steps: `Pre-booking Registered` -> `Token Amount Received` -> `Vehicle Allotment & VIN Tagging` -> `In Transit / Showroom Dispatch` -> `Final Delivery & Key Handover`.
+     - Tracks steps: `Pre-booking Registered` -> `Amount Received` -> `Vehicle Allotment & VIN Tagging` -> `In Transit / Showroom Dispatch` -> `Final Delivery & Key Handover`.
    - **Action CTAs**: Includes `Download Booking Receipt PDF` button with confirmation toast and `Back to Bookings` CTA.
 
 ---
@@ -1456,7 +1456,7 @@ The previous nested boxes and descriptive text blocks have been unified into **o
 The cluttered, nested box-in-a-box designs across both the **Booking** (`#screen-booking`) and **Deliveries** (`#screen-deliveries`) screens have been redesigned into a clean, modern, breathable 2-tier card structure that matches the design language of Follow-Up and Test Drive cards:
 
 1. **Clean Booking Cards (5 Cards)**:
-   - **Top Tier**: 10×10 rounded initial avatar (`MT`, `AS`, `RV`, `KP`, `SN`), prominent non-truncated customer name, clear car model, and variant/color subtext. On the right: high-contrast token amount (`₹50,000`) with uppercase `TOKEN PAID` subtitle.
+   - **Top Tier**: 10×10 rounded initial avatar (`MT`, `AS`, `RV`, `KP`, `SN`), prominent non-truncated customer name, clear car model, and variant/color subtext. On the right: high-contrast booking amount (`₹50,000`) with uppercase `AMOUNT PAID` subtitle.
    - **Bottom Tier**: Thin hairline divider (`border-t border-slate-100/90`), booking reference (`BK987875311`) with icon, scheduled delivery date, and a compact, clean `[ Details > ]` action button.
    - **Eliminated Clutter**: Removed nested gray `bg-slate-50` boxes, redundant `Deposit Received` badges, squeezed `Booked by Niket K. (You)` pills, and oversized buttons.
 
@@ -1489,8 +1489,8 @@ Unified the interactive lifecycle status bar across all 5 sales pipeline stages 
      - Advances to `Step 4 of 4: In Price Negotiation` when moved to negotiations.
   4. **Booking Progression** (`#screen-booking-details`):
      - `BOOKING PROGRESSION` | `Step 3 of 4: Vehicle Allocated`
-     - Steps: **Token Paid** (✓) → **Finance Done** (✓) → **VIN Allocated** (● Active) → **Delivery Ready** (4).
-     - Positioned right below the primary booking token summary.
+     - Steps: **Amount Paid** (✓) → **Finance Done** (✓) → **VIN Allocated** (● Active) → **Delivery Ready** (4).
+     - Positioned right below the primary booking amount summary.
   5. **Delivery Progression** (`#screen-delivery-details`):
      - `DELIVERY PROGRESSION` | `Step 4 of 4: Handover Complete`
      - Steps: **PDI Passed** (✓) → **RTO & Docs** (✓) → **Ceremony** (✓) → **Delivered ✓** (✓ Completed in emerald).
