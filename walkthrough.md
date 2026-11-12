@@ -1,36 +1,38 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
-## 📅 Test Drive Booking Modal: Unified All-Slots Grid, 5-Day Strip & Custom Calendar Picker
+## 📱 Dedicated Book Test Drive Screen & Header Calendar Custom Date Trigger
 
-1. **Unified Time Slots Grid (All Slots Visible, No Division)**:
-   - Completely removed period tab division (`[ Morning ]`, `[ Afternoon ]`, `[ Evening ]`).
-   - All 12 dealership time slots are now directly visible and selectable in a clean 4-column grid (3 rows of 4):
-     - `10:00 AM`, `10:30 AM`, `11:00 AM`, `11:30 AM`
-     - `12:30 PM`, `01:30 PM`, `02:30 PM`, `03:30 PM`
-     - `04:30 PM`, `05:30 PM`, `06:30 PM`, `07:15 PM`
-   - Active slot is clearly highlighted in solid primary blue with high contrast (`#007AFF`).
+1. **Dedicated Full Screen (Converted from Popup Modal)**:
+   - Replaced modal popup with a dedicated full screen (`#screen-book-test-drive`) within the app's standard navigation flow.
+   - Includes top navigation bar with back button (`←`), title (`Book Test Drive`), subtext (`Select preferred date, slot & location`), and `NEW BOOKING` badge.
+   - Smooth transitions to and from the previous screen (whether coming from Follow-Up cards or Lead Profile).
 
-2. **Streamlined 5-Day Selection Strip**:
-   - Replaced 7-day strip with **exactly 5 quick-pick days**:
+2. **Streamlined 5-Day Strip (No Separate Custom Card)**:
+   - Removed the separate `CUSTOM 📅 DATE` tile from the date strip.
+   - The strip strictly contains **exactly 5 quick-pick days** in a balanced 5-column grid:
      - `TODAY 30 OCT`
      - `TOMORROW 31 OCT`
      - `SAT 01 NOV`
      - `SUN 02 NOV`
      - `MON 03 NOV`
-   - All 5 days fit smoothly side by side across mobile screen width.
 
-3. **Calendar Icon for Custom Date Selection**:
-   - Added a quick-access calendar trigger button (`[ 📅 ]`) in the header next to the selected date.
-   - Added a dedicated 6th tile alongside the 5 days labeled **`CUSTOM 📅 DATE`**.
-   - Tapping either opens the native calendar date picker.
-   - When a custom date is selected (e.g. `12 Nov`), the custom tile highlights in solid blue (`THU 12 NOV`), the header label reflects `Thu, 12 Nov`, and the bottom summary updates dynamically.
+3. **Calendar Icon in Header as Custom Date Picker**:
+   - The calendar icon button `[ 📅 ]` right beside `Today, 30 Oct` in the section header acts as the custom date picker trigger.
+   - Tapping it opens the native HTML5 calendar picker to select any date.
+   - When a custom date is selected (e.g., `Thu, 12 Nov`), the header label updates (`Thu, 12 Nov`), the preset 5-day cards un-highlight unless matched, and the bottom summary bar updates dynamically (`Thu, 12 Nov • 02:30 PM • Dealership Visit`).
 
-4. **Visual Verification**:
+4. **All 12 Dealership Time Slots Visible (No Division)**:
+   - All 12 time slots are displayed simultaneously in a 4-column grid (3 rows of 4) without tabs or period division:
+     - `10:00 AM`, `10:30 AM`, `11:00 AM`, `11:30 AM`
+     - `12:30 PM`, `01:30 PM`, `02:30 PM`, `03:30 PM`
+     - `04:30 PM`, `05:30 PM`, `06:30 PM`, `07:15 PM`
 
-| Default State (5 Days + All 12 Slots) | Custom Date & Afternoon Slot Selected |
-| :---: | :---: |
-| ![Test Drive Default](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_testdrive_modal_default.png) | ![Custom Date Selected](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_testdrive_modal_custom_date_selected.png) |
-| *Clean 5-day strip with custom calendar trigger and all 12 slots visible at once without tab division.* | *Custom date selected from calendar picker with custom tile highlighted and slot updated.* |
+5. **Visual Verification**:
+
+| Dedicated Screen (Default 5 Days) | Custom Date Selected via Calendar Icon | Bottom Scrolled View (Summary & CTA) |
+| :---: | :---: | :---: |
+| ![Default Screen](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_book_test_drive_screen_default.png) | ![Custom Date](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_book_test_drive_screen_custom_date.png) | ![Scrolled View](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_book_test_drive_screen_scrolled.png) |
+| *Full screen with top app bar, 5-day grid & calendar icon next to date.* | *Date chosen via calendar icon (`Thu, 12 Nov`) with 02:30 PM slot.* | *Fully scrollable with summary, Cancel and Confirm Test Drive CTAs.* |
 
 ---
 

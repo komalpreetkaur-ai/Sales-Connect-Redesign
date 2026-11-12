@@ -3143,6 +3143,134 @@
       </div>
 
       <!-- ========================================== -->
+      <!-- SCREEN: DEDICATED BOOK TEST DRIVE SCREEN   -->
+      <!-- ========================================== -->
+      <div id="screen-book-test-drive" class="app-screen space-y-3.5 pb-28">
+        <!-- Top App Bar -->
+        <div class="flex items-center justify-between border-b border-[#E0E8F5] pb-2.5 pt-1">
+          <div class="flex items-center gap-2.5">
+            <button type="button" onclick="goBackFromBookTestDrive()" class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-700 border border-slate-200 active:bg-slate-100 shadow-xs cursor-pointer transition-transform active:scale-95" title="Back">
+              <i class="fa-solid fa-arrow-left text-sm"></i>
+            </button>
+            <div>
+              <h1 class="text-base font-black text-[#1E293B] leading-tight">Book Test Drive</h1>
+              <p class="text-[10px] font-semibold text-slate-500">Select preferred date, slot & location</p>
+            </div>
+          </div>
+          <span class="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full border bg-blue-50 text-[#007AFF] border-blue-200 tracking-wider shadow-2xs">
+            NEW BOOKING
+          </span>
+        </div>
+
+        <!-- 1. Customer & Vehicle Context Card -->
+        <div class="bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-xs flex items-center justify-between">
+          <div class="flex items-center gap-3 min-w-0">
+            <div id="tdScreenLeadAvatar" class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#007AFF] to-blue-600 text-white font-black text-xs flex items-center justify-center shrink-0 shadow-2xs">
+              RK
+            </div>
+            <div class="truncate">
+              <h4 id="tdScreenLeadName" class="text-xs font-black text-[#1E293B] truncate leading-tight">Rahul K.</h4>
+              <p id="tdScreenLeadPhone" class="text-[11px] font-semibold text-slate-500 mt-0.5 truncate">+91 98765 89706</p>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Interested Model</span>
+            <span id="tdScreenLeadModel" class="text-xs font-extrabold text-[#007AFF] block mt-0.5 truncate max-w-[150px]">Suzuki Brezza ZXi</span>
+          </div>
+        </div>
+
+        <!-- 2. Step 1: Date Selection (5 Days + Header Calendar Icon) -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5">
+          <div class="flex items-center justify-between">
+            <label class="text-[11px] font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+              <i class="fa-regular fa-calendar text-[#007AFF]"></i>
+              <span>Select Date</span>
+            </label>
+            <div class="flex items-center gap-2">
+              <span id="tdSelectedDateLabel" class="text-xs font-black text-[#007AFF]">Today, 30 Oct</span>
+              <!-- Calendar trigger icon button for custom date selection -->
+              <label for="tdCustomDateInput" onclick="const inp = document.getElementById('tdCustomDateInput'); if(inp && inp.showPicker) { try { inp.showPicker(); } catch(e){} }" class="w-7 h-7 rounded-lg bg-blue-50 hover:bg-blue-100 border border-blue-200/80 text-[#007AFF] flex items-center justify-center cursor-pointer active:scale-95 transition-all shadow-2xs relative shrink-0" title="Select custom date from calendar">
+                <i class="fa-regular fa-calendar-days text-xs"></i>
+                <input type="date" id="tdCustomDateInput" onchange="handleCustomDateSelect(this.value)" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
+              </label>
+            </div>
+          </div>
+
+          <!-- Exactly 5 Quick-Pick Days (NO custom card, just 5 days spanning the grid) -->
+          <div id="tdDateStripTrack" class="grid grid-cols-5 gap-1.5 select-none">
+            <!-- Exactly 5 dynamic day cards populated by JS -->
+          </div>
+        </div>
+
+        <!-- 3. Step 2: Time Slot Selection (All 12 Slots Visible, No Division) -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5">
+          <div class="flex items-center justify-between">
+            <label class="text-[11px] font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+              <i class="fa-regular fa-clock text-[#007AFF]"></i>
+              <span>Select Time Slot</span>
+            </label>
+            <span id="tdSelectedSlotLabel" class="text-xs font-black text-[#007AFF]">11:30 AM</span>
+          </div>
+
+          <!-- Clean 4-Column Grid of all 12 dealership slots (3 rows of 4) -->
+          <div id="tdSlotsGrid" class="grid grid-cols-4 gap-2 pt-0.5">
+            <button type="button" onclick="selectTestDriveSlot('10:00 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">10:00 AM</button>
+            <button type="button" onclick="selectTestDriveSlot('10:30 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">10:30 AM</button>
+            <button type="button" onclick="selectTestDriveSlot('11:00 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">11:00 AM</button>
+            <button type="button" onclick="selectTestDriveSlot('11:30 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-black bg-[#007AFF] text-white border-2 border-[#007AFF] shadow-xs active:scale-95 transition-all cursor-pointer">11:30 AM</button>
+            <button type="button" onclick="selectTestDriveSlot('12:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">12:30 PM</button>
+            <button type="button" onclick="selectTestDriveSlot('01:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">01:30 PM</button>
+            <button type="button" onclick="selectTestDriveSlot('02:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">02:30 PM</button>
+            <button type="button" onclick="selectTestDriveSlot('03:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">03:30 PM</button>
+            <button type="button" onclick="selectTestDriveSlot('04:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">04:30 PM</button>
+            <button type="button" onclick="selectTestDriveSlot('05:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">05:30 PM</button>
+            <button type="button" onclick="selectTestDriveSlot('06:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">06:30 PM</button>
+            <button type="button" onclick="selectTestDriveSlot('07:15 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">07:15 PM</button>
+          </div>
+        </div>
+
+        <!-- 4. Step 3: Location Selection -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2">
+          <label class="text-[11px] font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-location-dot text-[#007AFF]"></i>
+            <span>Drive Location</span>
+          </label>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" id="tdLocDealership" onclick="selectTestDriveLocation('Dealership Visit', this)" class="td-loc-pill py-2.5 px-3 rounded-2xl border-2 border-[#007AFF] bg-blue-50/70 text-[#007AFF] font-black text-xs flex items-center justify-center gap-2 shadow-2xs active:scale-95 transition-all cursor-pointer">
+              <i class="fa-solid fa-building text-xs"></i>
+              <span>Dealership Visit</span>
+            </button>
+            <button type="button" id="tdLocDoorstep" onclick="selectTestDriveLocation('Customer Doorstep', this)" class="td-loc-pill py-2.5 px-3 rounded-2xl border border-slate-200 bg-white text-slate-700 font-bold text-xs flex items-center justify-center gap-2 hover:border-blue-200 active:scale-95 transition-all cursor-pointer">
+              <i class="fa-solid fa-house text-xs"></i>
+              <span>Customer Doorstep</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 5. Step 4: Remarks / Special Vehicle Variant -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-1.5">
+          <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Remarks / Special Vehicle Variant (Optional)</label>
+          <input type="text" id="tdScreenNotesInput" placeholder="e.g. Petrol MT variant, customer wants highway drive..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:bg-white focus:ring-2 focus:ring-[#007AFF]/20 transition-all">
+        </div>
+
+        <!-- 6. Bottom Summary Bar & Confirmation Action -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5">
+          <div class="flex items-center justify-between text-xs px-1">
+            <span class="text-slate-400 font-semibold text-[11px]">Selected Slot:</span>
+            <span id="tdSlotSummaryText" class="font-black text-[#007AFF] text-xs">Today, 30 Oct • 11:30 AM • Dealership Visit</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="goBackFromBookTestDrive()" class="w-1/3 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xs active:scale-95 transition-transform cursor-pointer">
+              Cancel
+            </button>
+            <button type="button" onclick="confirmTestDriveBooking()" class="flex-1 py-2.5 rounded-xl bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white font-black text-xs shadow-md shadow-blue-500/25 flex items-center justify-center active:scale-95 transition-all cursor-pointer">
+              Confirm Test Drive
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
       <!-- SCREEN: REDESIGNED VEHICLE BOOKINGS        -->
       <!-- ========================================== -->
       <div id="screen-booking" class="app-screen space-y-3.5">
@@ -5183,141 +5311,6 @@
     </div>
   </div>
 
-  <!-- CLEAN REDESIGNED TEST DRIVE BOOKING MODAL -->
-  <div id="testDriveBookingModal" onclick="if(event.target === this) closeTestDriveBookingModal()" style="display: none;" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center z-50 p-0 sm:p-4 transition-all">
-    <div class="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-[420px] p-5 space-y-4 shadow-2xl border border-slate-100 relative animate-in slide-in-from-bottom duration-200 max-h-[92vh] overflow-y-auto custom-scroll">
-      <!-- Mobile drag handle bar -->
-      <div class="w-12 h-1.5 bg-slate-200 rounded-full mx-auto -mt-1 mb-1 sm:hidden"></div>
-
-      <!-- Modal Header -->
-      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <div>
-          <h3 class="text-base font-black text-[#1E293B] leading-tight">Book Test Drive</h3>
-          <p class="text-[11px] text-slate-500 font-semibold mt-0.5">Select preferred date, slot & location</p>
-        </div>
-        <button type="button" onclick="closeTestDriveBookingModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center text-sm cursor-pointer active:scale-95 transition-transform" title="Close">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <!-- Customer & Vehicle Context (Clean & Minimal) -->
-      <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200/80 flex items-center justify-between">
-        <div class="flex items-center gap-2.5 min-w-0">
-          <div id="tdModalLeadAvatar" class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#007AFF] to-blue-600 text-white font-black text-xs flex items-center justify-center shrink-0 shadow-2xs">
-            RK
-          </div>
-          <div class="truncate">
-            <h4 id="tdModalLeadName" class="text-xs font-black text-[#1E293B] truncate leading-tight">Rahul K.</h4>
-            <p id="tdModalLeadPhone" class="text-[10.5px] font-semibold text-slate-500 mt-0.5 truncate">+91 98765 89706</p>
-          </div>
-        </div>
-        <div class="text-right shrink-0">
-          <span class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider block">Interested Model</span>
-          <span id="tdModalLeadModel" class="text-xs font-extrabold text-[#007AFF] block mt-0.5 truncate max-w-[150px]">Suzuki Brezza</span>
-        </div>
-      </div>
-
-      <!-- STEP 1: DATE SELECTION (5 DAYS + CALENDAR ICON) -->
-      <div class="space-y-2">
-        <div class="flex items-center justify-between">
-          <label class="text-[11px] font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
-            <i class="fa-regular fa-calendar text-[#007AFF]"></i>
-            <span>Select Date</span>
-          </label>
-          <div class="flex items-center gap-2">
-            <span id="tdSelectedDateLabel" class="text-xs font-black text-[#007AFF]">Today, 30 Oct</span>
-            <!-- Quick calendar trigger button in header -->
-            <label for="tdCustomDateInput" onclick="const inp = document.getElementById('tdCustomDateInput'); if(inp && inp.showPicker) { try { inp.showPicker(); } catch(e){} }" class="w-7 h-7 rounded-lg bg-blue-50 hover:bg-blue-100 border border-blue-200/80 text-[#007AFF] flex items-center justify-center cursor-pointer active:scale-95 transition-all shadow-2xs relative" title="Select custom date from calendar">
-              <i class="fa-regular fa-calendar-days text-xs"></i>
-              <input type="date" id="tdCustomDateInput" onchange="handleCustomDateSelect(this.value)" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
-            </label>
-          </div>
-        </div>
-
-        <!-- 5 Days + Dedicated Calendar Custom Date Tile -->
-        <div class="flex items-center gap-1.5 select-none">
-          <div id="tdDateStripTrack" class="flex-1 grid grid-cols-5 gap-1.5">
-            <!-- Exactly 5 dynamic day cards populated by JS -->
-          </div>
-          <!-- 6th Tile: Dedicated Calendar Icon for Custom Date Selection -->
-          <label for="tdCustomDateInputStrip" id="tdCustomDateTile" onclick="const inp = document.getElementById('tdCustomDateInputStrip'); if(inp && inp.showPicker) { try { inp.showPicker(); } catch(e){} }" class="shrink-0 w-[58px] py-2 px-1 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 active:scale-95 transition-all cursor-pointer relative flex flex-col items-center justify-center shadow-2xs" title="Select custom date from calendar">
-            <span id="tdCustomTileTop" class="text-[8.5px] font-extrabold uppercase tracking-tight block text-slate-400 leading-none">CUSTOM</span>
-            <i id="tdCustomTileIcon" class="fa-regular fa-calendar-days text-base text-[#007AFF] my-1"></i>
-            <span id="tdCustomTileBottom" class="text-[8.5px] font-bold uppercase block text-slate-500 leading-none">DATE</span>
-            <input type="date" id="tdCustomDateInputStrip" onchange="handleCustomDateSelect(this.value)" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
-          </label>
-        </div>
-      </div>
-
-      <!-- STEP 2: TIME SLOT SELECTION (ALL SLOTS SHOWN TOGETHER, NO DIVISION) -->
-      <div class="space-y-2">
-        <div class="flex items-center justify-between">
-          <label class="text-[11px] font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
-            <i class="fa-regular fa-clock text-[#007AFF]"></i>
-            <span>Select Time Slot</span>
-          </label>
-          <span id="tdSelectedSlotLabel" class="text-xs font-black text-[#007AFF]">11:30 AM</span>
-        </div>
-
-        <!-- Clean Grid: All 12 Slots Visible At Once (No Period Division / Tabs) -->
-        <div id="tdSlotsGrid" class="grid grid-cols-4 gap-2 pt-0.5">
-          <button type="button" onclick="selectTestDriveSlot('10:00 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">10:00 AM</button>
-          <button type="button" onclick="selectTestDriveSlot('10:30 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">10:30 AM</button>
-          <button type="button" onclick="selectTestDriveSlot('11:00 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">11:00 AM</button>
-          <button type="button" onclick="selectTestDriveSlot('11:30 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-black bg-[#007AFF] text-white border-2 border-[#007AFF] shadow-xs active:scale-95 transition-all cursor-pointer">11:30 AM</button>
-          <button type="button" onclick="selectTestDriveSlot('12:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">12:30 PM</button>
-          <button type="button" onclick="selectTestDriveSlot('01:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">01:30 PM</button>
-          <button type="button" onclick="selectTestDriveSlot('02:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">02:30 PM</button>
-          <button type="button" onclick="selectTestDriveSlot('03:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">03:30 PM</button>
-          <button type="button" onclick="selectTestDriveSlot('04:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">04:30 PM</button>
-          <button type="button" onclick="selectTestDriveSlot('05:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">05:30 PM</button>
-          <button type="button" onclick="selectTestDriveSlot('06:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">06:30 PM</button>
-          <button type="button" onclick="selectTestDriveSlot('07:15 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">07:15 PM</button>
-        </div>
-      </div>
-
-      <!-- STEP 3: TEST DRIVE LOCATION -->
-      <div class="space-y-1.5">
-        <label class="text-[11px] font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
-          <i class="fa-solid fa-location-dot text-[#007AFF]"></i>
-          <span>Location</span>
-        </label>
-        <div class="grid grid-cols-2 gap-2">
-          <button type="button" id="tdLocDealership" onclick="selectTestDriveLocation('Dealership Visit', this)" class="td-loc-pill py-2.5 px-3 rounded-2xl border-2 border-[#007AFF] bg-blue-50/70 text-[#007AFF] font-black text-xs flex items-center justify-center gap-2 shadow-2xs active:scale-95 transition-all cursor-pointer">
-            <i class="fa-solid fa-building text-xs"></i>
-            <span>Dealership Visit</span>
-          </button>
-          <button type="button" id="tdLocDoorstep" onclick="selectTestDriveLocation('Customer Doorstep', this)" class="td-loc-pill py-2.5 px-3 rounded-2xl border border-slate-200 bg-white text-slate-700 font-bold text-xs flex items-center justify-center gap-2 hover:border-blue-200 active:scale-95 transition-all cursor-pointer">
-            <i class="fa-solid fa-house text-xs"></i>
-            <span>Customer Doorstep</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- STEP 4: OPTIONAL SPECIAL NOTES -->
-      <div class="space-y-1">
-        <label class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Remarks / Special Vehicle Variant (Optional)</label>
-        <input type="text" id="tdModalNotesInput" placeholder="e.g. Petrol MT variant, customer wants highway drive..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 outline-none focus:border-[#007AFF] focus:bg-white focus:ring-2 focus:ring-[#007AFF]/20 transition-all">
-      </div>
-
-      <!-- MODAL FOOTER WITH LIVE SUMMARY & CTA -->
-      <div class="pt-2 border-t border-slate-100 space-y-2">
-        <div class="flex items-center justify-between text-xs px-1">
-          <span class="text-slate-400 font-semibold text-[11px]">Selected Slot:</span>
-          <span id="tdSlotSummaryText" class="font-black text-[#007AFF] text-xs">Today, 30 Oct • 11:30 AM • Dealership Visit</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <button type="button" onclick="closeTestDriveBookingModal()" class="w-1/3 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xs active:scale-95 transition-transform cursor-pointer">
-            Cancel
-          </button>
-          <button type="button" onclick="confirmTestDriveBooking()" class="flex-1 py-2.5 rounded-xl bg-[#007AFF] hover:bg-blue-600 active:bg-blue-700 text-white font-black text-xs shadow-md shadow-blue-500/25 flex items-center justify-center active:scale-95 transition-all cursor-pointer">
-            Confirm
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- DEDICATED LEAD COMMENTS & REMARKS MODAL (Triggered by Comment CTA) -->
   <div id="leadCommentsModal" onclick="if(event.target === this) closeLeadCommentsModal()" style="display: none;" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center z-50 p-0 sm:p-4 transition-all">
     <div class="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-[430px] p-5 space-y-3.5 shadow-2xl border border-slate-100 max-h-[88vh] overflow-y-auto custom-scroll relative animate-in slide-in-from-bottom-6 duration-300">
@@ -5927,7 +5920,7 @@
       const currentActive = document.querySelector('.app-screen.active');
       if (currentActive && currentActive.id) {
         const currentId = currentActive.id.replace('screen-', '');
-        if (currentId !== 'enquiry-details' && currentId !== 'activities' && currentId !== 'lead-profile' && currentId !== 'sales-enquiry' && currentId !== 'service-enquiry' && currentId !== 'other-enquiry' && currentId !== 'booking-details') {
+        if (currentId !== 'enquiry-details' && currentId !== 'activities' && currentId !== 'lead-profile' && currentId !== 'book-test-drive' && currentId !== 'sales-enquiry' && currentId !== 'service-enquiry' && currentId !== 'other-enquiry' && currentId !== 'booking-details') {
           lastActiveScreen = currentId;
         }
       }
@@ -5948,7 +5941,7 @@
         if(label) label.classList.replace('font-bold', 'font-medium');
       });
 
-      const navKey = (screenName === 'enquiry-details' || screenName === 'activities' || screenName === 'lead-profile' || screenName === 'sales-enquiry' || screenName === 'service-enquiry' || screenName === 'other-enquiry') ? 'enquiry' : ((screenName === 'booking-create' || screenName === 'booking-details') ? 'booking' : screenName);
+      const navKey = (screenName === 'enquiry-details' || screenName === 'activities' || screenName === 'lead-profile' || screenName === 'book-test-drive' || screenName === 'sales-enquiry' || screenName === 'service-enquiry' || screenName === 'other-enquiry') ? 'enquiry' : ((screenName === 'booking-create' || screenName === 'booking-details') ? 'booking' : screenName);
       const activeNavBtn = document.getElementById('nav-' + navKey);
       if(activeNavBtn) {
         activeNavBtn.classList.remove('text-[#94A3B8]');
@@ -8736,25 +8729,7 @@
       window.open(`https://wa.me/${cleanPhone}`, '_blank');
     }
 
-    // Helper to reset the dedicated custom date tile
-    function resetCustomDateTile() {
-      const tile = document.getElementById('tdCustomDateTile');
-      if (tile) {
-        tile.className = 'shrink-0 w-[58px] py-2 px-1 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 active:scale-95 transition-all cursor-pointer relative flex flex-col items-center justify-center shadow-2xs';
-        const top = document.getElementById('tdCustomTileTop');
-        const icon = document.getElementById('tdCustomTileIcon');
-        const bottom = document.getElementById('tdCustomTileBottom');
-        if (top) { top.innerText = 'CUSTOM'; top.className = 'text-[8.5px] font-extrabold uppercase tracking-tight block text-slate-400 leading-none'; }
-        if (icon) { icon.className = 'fa-regular fa-calendar-days text-base text-[#007AFF] my-1'; icon.innerHTML = ''; }
-        if (bottom) { bottom.innerText = 'DATE'; bottom.className = 'text-[8.5px] font-bold uppercase block text-slate-500 leading-none'; }
-      }
-      const inp = document.getElementById('tdCustomDateInput');
-      const inpStrip = document.getElementById('tdCustomDateInputStrip');
-      if (inp) inp.value = '';
-      if (inpStrip) inpStrip.value = '';
-    }
-
-    // Handles custom date selection from the native calendar picker
+    // Handles custom date selection from the native calendar picker (using the header calendar icon)
     function handleCustomDateSelect(dateValue) {
       if (!dateValue) return;
       const parts = dateValue.split('-');
@@ -8777,7 +8752,7 @@
       const dateLabel = document.getElementById('tdSelectedDateLabel');
       if (dateLabel) dateLabel.innerText = formattedDate;
 
-      // Check if it matches any of the 5 preset cards
+      // Check if custom date matches any of the 5 preset cards
       let matchedCard = null;
       document.querySelectorAll('.td-date-card').forEach(card => {
         const num = card.querySelector('span:nth-child(2)')?.innerText.trim();
@@ -8785,44 +8760,31 @@
         if (num === dayNum && mon === monthName.toUpperCase()) {
           matchedCard = card;
         } else {
-          card.className = 'td-date-card w-full py-2 px-0.5 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 active:scale-95 transition-all cursor-pointer';
+          card.className = 'td-date-card w-full py-2.5 px-0.5 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 active:scale-95 transition-all cursor-pointer';
           const daySpan = card.querySelector('span:first-child');
           const numSpan = card.querySelector('span:nth-child(2)');
           const monSpan = card.querySelector('span:last-child');
           if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-slate-400 leading-none';
-          if (numSpan) numSpan.className = 'text-sm font-black leading-none block my-1 text-slate-800';
+          if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1.5 text-slate-800';
           if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-slate-400 leading-none';
         }
       });
 
       if (matchedCard) {
-        matchedCard.className = 'td-date-card w-full py-2 px-0.5 rounded-xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm active:scale-95 transition-all cursor-pointer';
+        matchedCard.className = 'td-date-card w-full py-2.5 px-0.5 rounded-xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm active:scale-95 transition-all cursor-pointer';
         const daySpan = matchedCard.querySelector('span:first-child');
         const numSpan = matchedCard.querySelector('span:nth-child(2)');
         const monSpan = matchedCard.querySelector('span:last-child');
         if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-white/90 leading-none';
-        if (numSpan) numSpan.className = 'text-sm font-black leading-none block my-1 text-white';
+        if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1.5 text-white';
         if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-white/80 leading-none';
-        resetCustomDateTile();
-      } else {
-        // Date outside 5 cards: highlight custom date tile in active blue!
-        const tile = document.getElementById('tdCustomDateTile');
-        if (tile) {
-          tile.className = 'shrink-0 w-[58px] py-2 px-1 rounded-xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm active:scale-95 transition-all cursor-pointer relative flex flex-col items-center justify-center';
-          const top = document.getElementById('tdCustomTileTop');
-          const icon = document.getElementById('tdCustomTileIcon');
-          const bottom = document.getElementById('tdCustomTileBottom');
-          if (top) { top.innerText = dayName.toUpperCase(); top.className = 'text-[8.5px] font-extrabold uppercase tracking-tight block text-white/90 leading-none'; }
-          if (icon) { icon.className = 'text-sm font-black leading-none block my-1 text-white not-italic'; icon.innerHTML = dayNum; }
-          if (bottom) { bottom.innerText = monthName.toUpperCase(); bottom.className = 'text-[8.5px] font-bold uppercase block text-white/80 leading-none'; }
-        }
       }
 
       updateTestDriveSlotSummary();
     }
 
-    // Opens the Clean Redesigned Test Drive Booking Modal
-    function openTestDriveBookingModal(leadId) {
+    // Opens the Dedicated Book Test Drive Screen (Full Screen, not popup)
+    function openBookTestDriveScreen(leadId) {
       let lead = null;
       if (leadId) {
         lead = followUpLeadsData.find(l => l.id === leadId);
@@ -8840,20 +8802,24 @@
       activeTdSlot = '11:30 AM';
       activeTdLocation = 'Dealership Visit';
 
-      // Update lead preview in modal
-      const avatar = document.getElementById('tdModalLeadAvatar');
-      const name = document.getElementById('tdModalLeadName');
-      const phone = document.getElementById('tdModalLeadPhone');
-      const model = document.getElementById('tdModalLeadModel');
-      const notes = document.getElementById('tdModalNotesInput');
+      // Update lead preview in dedicated screen
+      const avatar = document.getElementById('tdScreenLeadAvatar');
+      const name = document.getElementById('tdScreenLeadName');
+      const phone = document.getElementById('tdScreenLeadPhone');
+      const model = document.getElementById('tdScreenLeadModel');
+      const notes = document.getElementById('tdScreenNotesInput');
 
       if (avatar) avatar.innerText = lead.initials;
       if (name) name.innerText = lead.name;
       if (phone) phone.innerText = lead.phone;
-      if (model) model.innerText = lead.model ? lead.model.split('(')[0].trim() : 'Suzuki Brezza';
+      if (model) model.innerText = lead.model ? lead.model.split('(')[0].trim() : 'Suzuki Brezza ZXi';
       if (notes) notes.value = '';
 
-      // Populate Clean exactly 5-day date strip
+      // Reset date label in header
+      const dateLabel = document.getElementById('tdSelectedDateLabel');
+      if (dateLabel) dateLabel.innerText = 'Today, 30 Oct';
+
+      // Populate Clean exactly 5-day date strip (NO custom card, just 5 days spanning 5 cols)
       const stripTrack = document.getElementById('tdDateStripTrack');
       if (stripTrack) {
         const dateOptions = [
@@ -8867,16 +8833,14 @@
         stripTrack.innerHTML = dateOptions.map((opt, idx) => {
           const isSelected = idx === 0;
           return `
-            <button type="button" onclick="selectTestDriveDate('${opt.label}', this)" class="td-date-card w-full py-2 px-0.5 rounded-xl text-center ${isSelected ? 'border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm' : 'border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'} active:scale-95 transition-all cursor-pointer">
+            <button type="button" onclick="selectTestDriveDate('${opt.label}', this)" class="td-date-card w-full py-2.5 px-0.5 rounded-xl text-center ${isSelected ? 'border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm' : 'border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'} active:scale-95 transition-all cursor-pointer">
               <span class="text-[8.5px] font-extrabold uppercase tracking-wide block ${isSelected ? 'text-white/90' : 'text-slate-400'} leading-none">${opt.day}</span>
-              <span class="text-sm font-black leading-none block my-1 ${isSelected ? 'text-white' : 'text-slate-800'}">${opt.num}</span>
+              <span class="text-base font-black leading-none block my-1.5 ${isSelected ? 'text-white' : 'text-slate-800'}">${opt.num}</span>
               <span class="text-[8.5px] font-bold uppercase block ${isSelected ? 'text-white/80' : 'text-slate-400'} leading-none">${opt.month}</span>
             </button>
           `;
         }).join('');
       }
-
-      resetCustomDateTile();
 
       // Reset all 12 slot pills styling - all visible, none divided/hidden
       document.querySelectorAll('.td-slot-pill').forEach(pill => {
@@ -8888,6 +8852,9 @@
         }
       });
 
+      const slotLabel = document.getElementById('tdSelectedSlotLabel');
+      if (slotLabel) slotLabel.innerText = '11:30 AM';
+
       // Reset location buttons
       const btnDealership = document.getElementById('tdLocDealership');
       const btnDoorstep = document.getElementById('tdLocDoorstep');
@@ -8896,21 +8863,26 @@
 
       updateTestDriveSlotSummary();
 
-      const modal = document.getElementById('testDriveBookingModal');
-      if (modal) {
-        modal.style.display = 'flex';
-        modal.classList.remove('hidden');
+      // Switch to the dedicated full screen
+      switchScreen('book-test-drive');
+    }
+
+    // Alias for backwards compatibility
+    function openTestDriveBookingModal(leadId) {
+      openBookTestDriveScreen(leadId);
+    }
+
+    // Back navigation from Book Test Drive Screen
+    function goBackFromBookTestDrive() {
+      if (lastActiveScreen === 'lead-profile' && activeTestDriveLead) {
+        openLeadProfile(activeTestDriveLead.id);
+      } else {
+        switchScreen(lastActiveScreen || 'activities');
       }
     }
 
-    // Closes the Test Drive Booking Modal
     function closeTestDriveBookingModal() {
-      const modal = document.getElementById('testDriveBookingModal');
-      if (modal) {
-        modal.style.display = 'none';
-        modal.classList.add('hidden');
-      }
-      activeTestDriveLead = null;
+      goBackFromBookTestDrive();
     }
 
     // Selects active date in the 5-day strip
@@ -8920,26 +8892,25 @@
       if (dateLabel) dateLabel.innerText = dateStr;
 
       document.querySelectorAll('.td-date-card').forEach(card => {
-        card.className = 'td-date-card w-full py-2 px-0.5 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 active:scale-95 transition-all cursor-pointer';
+        card.className = 'td-date-card w-full py-2.5 px-0.5 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 active:scale-95 transition-all cursor-pointer';
         const daySpan = card.querySelector('span:first-child');
         const numSpan = card.querySelector('span:nth-child(2)');
         const monSpan = card.querySelector('span:last-child');
         if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-slate-400 leading-none';
-        if (numSpan) numSpan.className = 'text-sm font-black leading-none block my-1 text-slate-800';
+        if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1.5 text-slate-800';
         if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-slate-400 leading-none';
       });
 
       if (el) {
-        el.className = 'td-date-card w-full py-2 px-0.5 rounded-xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm active:scale-95 transition-all cursor-pointer';
+        el.className = 'td-date-card w-full py-2.5 px-0.5 rounded-xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm active:scale-95 transition-all cursor-pointer';
         const daySpan = el.querySelector('span:first-child');
         const numSpan = el.querySelector('span:nth-child(2)');
         const monSpan = el.querySelector('span:last-child');
         if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-white/90 leading-none';
-        if (numSpan) numSpan.className = 'text-sm font-black leading-none block my-1 text-white';
+        if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1.5 text-white';
         if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-white/80 leading-none';
       }
 
-      resetCustomDateTile();
       updateTestDriveSlotSummary();
     }
 
@@ -8991,7 +8962,7 @@
     function confirmTestDriveBooking() {
       if (!activeTestDriveLead) return;
       const lead = activeTestDriveLead;
-      const notesVal = document.getElementById('tdModalNotesInput')?.value.trim();
+      const notesVal = (document.getElementById('tdScreenNotesInput') || document.getElementById('tdModalNotesInput'))?.value.trim();
 
       // Change status to Test Drive
       lead.status = 'Test Drive';
@@ -10983,6 +10954,21 @@
           openBookingDetails(params.get('id') || 'BK987875311');
         } else if (targetScreen === 'delivery-details' || targetScreen === 'delivery') {
           openDeliveryDetails(params.get('del') || params.get('id') || 'DEL9878701');
+        } else if (targetScreen === 'book-test-drive' || targetScreen === 'book-testdrive') {
+          openBookTestDriveScreen(params.get('lead') || 'ENQ987875369');
+          if (params.get('demo_custom_date')) {
+            handleCustomDateSelect(params.get('demo_custom_date'));
+          }
+          if (params.get('demo_slot')) {
+            const slotPill = Array.from(document.querySelectorAll('.td-slot-pill')).find(p => p.innerText.trim() === params.get('demo_slot'));
+            if (slotPill) selectTestDriveSlot(params.get('demo_slot'), slotPill);
+          }
+          if (params.get('scroll') === 'bottom') {
+            setTimeout(() => {
+              const main = document.getElementById('mainScrollContainer') || document.querySelector('main');
+              if (main) main.scrollTop = main.scrollHeight;
+            }, 100);
+          }
         } else if (targetScreen === 'enquiry-details') {
           openEnquiryDetails(params.get('name') || 'Swati Jain', params.get('id') || 'ENQ987875399');
         } else if (targetScreen === 'activities' || targetScreen === 'followups') {
