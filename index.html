@@ -5217,22 +5217,39 @@
         </div>
       </div>
 
-      <!-- STEP 1: DATE SELECTION STRIP -->
+      <!-- STEP 1: DATE SELECTION (5 DAYS + CALENDAR ICON) -->
       <div class="space-y-2">
         <div class="flex items-center justify-between">
           <label class="text-[11px] font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
             <i class="fa-regular fa-calendar text-[#007AFF]"></i>
             <span>Select Date</span>
           </label>
-          <span id="tdSelectedDateLabel" class="text-xs font-black text-[#007AFF]">Today, 30 Oct</span>
+          <div class="flex items-center gap-2">
+            <span id="tdSelectedDateLabel" class="text-xs font-black text-[#007AFF]">Today, 30 Oct</span>
+            <!-- Quick calendar trigger button in header -->
+            <label for="tdCustomDateInput" onclick="const inp = document.getElementById('tdCustomDateInput'); if(inp && inp.showPicker) { try { inp.showPicker(); } catch(e){} }" class="w-7 h-7 rounded-lg bg-blue-50 hover:bg-blue-100 border border-blue-200/80 text-[#007AFF] flex items-center justify-center cursor-pointer active:scale-95 transition-all shadow-2xs relative" title="Select custom date from calendar">
+              <i class="fa-regular fa-calendar-days text-xs"></i>
+              <input type="date" id="tdCustomDateInput" onchange="handleCustomDateSelect(this.value)" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
+            </label>
+          </div>
         </div>
-        <!-- Horizontal scrollable strip of day cards -->
-        <div id="tdDateStripTrack" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 select-none" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
-          <!-- Dynamically populated day cards -->
+
+        <!-- 5 Days + Dedicated Calendar Custom Date Tile -->
+        <div class="flex items-center gap-1.5 select-none">
+          <div id="tdDateStripTrack" class="flex-1 grid grid-cols-5 gap-1.5">
+            <!-- Exactly 5 dynamic day cards populated by JS -->
+          </div>
+          <!-- 6th Tile: Dedicated Calendar Icon for Custom Date Selection -->
+          <label for="tdCustomDateInputStrip" id="tdCustomDateTile" onclick="const inp = document.getElementById('tdCustomDateInputStrip'); if(inp && inp.showPicker) { try { inp.showPicker(); } catch(e){} }" class="shrink-0 w-[58px] py-2 px-1 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 active:scale-95 transition-all cursor-pointer relative flex flex-col items-center justify-center shadow-2xs" title="Select custom date from calendar">
+            <span id="tdCustomTileTop" class="text-[8.5px] font-extrabold uppercase tracking-tight block text-slate-400 leading-none">CUSTOM</span>
+            <i id="tdCustomTileIcon" class="fa-regular fa-calendar-days text-base text-[#007AFF] my-1"></i>
+            <span id="tdCustomTileBottom" class="text-[8.5px] font-bold uppercase block text-slate-500 leading-none">DATE</span>
+            <input type="date" id="tdCustomDateInputStrip" onchange="handleCustomDateSelect(this.value)" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
+          </label>
         </div>
       </div>
 
-      <!-- STEP 2: TIME SLOT SELECTION -->
+      <!-- STEP 2: TIME SLOT SELECTION (ALL SLOTS SHOWN TOGETHER, NO DIVISION) -->
       <div class="space-y-2">
         <div class="flex items-center justify-between">
           <label class="text-[11px] font-black text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
@@ -5242,30 +5259,20 @@
           <span id="tdSelectedSlotLabel" class="text-xs font-black text-[#007AFF]">11:30 AM</span>
         </div>
 
-        <!-- Period Filter Pills -->
-        <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
-          <button type="button" data-period="morning" onclick="filterTdSlotPeriod('morning', this)" class="td-period-btn flex-1 py-1.5 rounded-lg text-center text-xs font-extrabold bg-white text-[#007AFF] shadow-2xs transition-all cursor-pointer">Morning</button>
-          <button type="button" data-period="afternoon" onclick="filterTdSlotPeriod('afternoon', this)" class="td-period-btn flex-1 py-1.5 rounded-lg text-center text-xs font-bold text-slate-600 hover:text-slate-900 transition-all cursor-pointer">Afternoon</button>
-          <button type="button" data-period="evening" onclick="filterTdSlotPeriod('evening', this)" class="td-period-btn flex-1 py-1.5 rounded-lg text-center text-xs font-bold text-slate-600 hover:text-slate-900 transition-all cursor-pointer">Evening</button>
-        </div>
-
-        <!-- Clean 4-Column Slots Grid -->
+        <!-- Clean Grid: All 12 Slots Visible At Once (No Period Division / Tabs) -->
         <div id="tdSlotsGrid" class="grid grid-cols-4 gap-2 pt-0.5">
-          <!-- Morning -->
-          <button type="button" data-period="morning" onclick="selectTestDriveSlot('10:00 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">10:00 AM</button>
-          <button type="button" data-period="morning" onclick="selectTestDriveSlot('10:30 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">10:30 AM</button>
-          <button type="button" data-period="morning" onclick="selectTestDriveSlot('11:00 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">11:00 AM</button>
-          <button type="button" data-period="morning" onclick="selectTestDriveSlot('11:30 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-black bg-[#007AFF] text-white border-2 border-[#007AFF] shadow-xs active:scale-95 transition-all cursor-pointer">11:30 AM</button>
-          <!-- Afternoon -->
-          <button type="button" data-period="afternoon" onclick="selectTestDriveSlot('12:30 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">12:30 PM</button>
-          <button type="button" data-period="afternoon" onclick="selectTestDriveSlot('01:30 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">01:30 PM</button>
-          <button type="button" data-period="afternoon" onclick="selectTestDriveSlot('02:30 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">02:30 PM</button>
-          <button type="button" data-period="afternoon" onclick="selectTestDriveSlot('03:30 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">03:30 PM</button>
-          <!-- Evening -->
-          <button type="button" data-period="evening" onclick="selectTestDriveSlot('04:30 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">04:30 PM</button>
-          <button type="button" data-period="evening" onclick="selectTestDriveSlot('05:30 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">05:30 PM</button>
-          <button type="button" data-period="evening" onclick="selectTestDriveSlot('06:30 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">06:30 PM</button>
-          <button type="button" data-period="evening" onclick="selectTestDriveSlot('07:15 PM', this)" class="td-slot-pill hidden py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">07:15 PM</button>
+          <button type="button" onclick="selectTestDriveSlot('10:00 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">10:00 AM</button>
+          <button type="button" onclick="selectTestDriveSlot('10:30 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">10:30 AM</button>
+          <button type="button" onclick="selectTestDriveSlot('11:00 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">11:00 AM</button>
+          <button type="button" onclick="selectTestDriveSlot('11:30 AM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-black bg-[#007AFF] text-white border-2 border-[#007AFF] shadow-xs active:scale-95 transition-all cursor-pointer">11:30 AM</button>
+          <button type="button" onclick="selectTestDriveSlot('12:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">12:30 PM</button>
+          <button type="button" onclick="selectTestDriveSlot('01:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">01:30 PM</button>
+          <button type="button" onclick="selectTestDriveSlot('02:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">02:30 PM</button>
+          <button type="button" onclick="selectTestDriveSlot('03:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">03:30 PM</button>
+          <button type="button" onclick="selectTestDriveSlot('04:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">04:30 PM</button>
+          <button type="button" onclick="selectTestDriveSlot('05:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">05:30 PM</button>
+          <button type="button" onclick="selectTestDriveSlot('06:30 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">06:30 PM</button>
+          <button type="button" onclick="selectTestDriveSlot('07:15 PM', this)" class="td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer">07:15 PM</button>
         </div>
       </div>
 
@@ -8729,24 +8736,89 @@
       window.open(`https://wa.me/${cleanPhone}`, '_blank');
     }
 
-    // Filter slots by period: morning, afternoon, evening
-    function filterTdSlotPeriod(period, btn) {
-      document.querySelectorAll('.td-period-btn').forEach(b => {
-        b.className = 'td-period-btn flex-1 py-1.5 rounded-lg text-center text-xs font-bold text-slate-600 hover:text-slate-900 transition-all cursor-pointer';
-      });
-      if (btn) {
-        btn.className = 'td-period-btn flex-1 py-1.5 rounded-lg text-center text-xs font-extrabold bg-white text-[#007AFF] shadow-2xs transition-all cursor-pointer';
+    // Helper to reset the dedicated custom date tile
+    function resetCustomDateTile() {
+      const tile = document.getElementById('tdCustomDateTile');
+      if (tile) {
+        tile.className = 'shrink-0 w-[58px] py-2 px-1 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 active:scale-95 transition-all cursor-pointer relative flex flex-col items-center justify-center shadow-2xs';
+        const top = document.getElementById('tdCustomTileTop');
+        const icon = document.getElementById('tdCustomTileIcon');
+        const bottom = document.getElementById('tdCustomTileBottom');
+        if (top) { top.innerText = 'CUSTOM'; top.className = 'text-[8.5px] font-extrabold uppercase tracking-tight block text-slate-400 leading-none'; }
+        if (icon) { icon.className = 'fa-regular fa-calendar-days text-base text-[#007AFF] my-1'; icon.innerHTML = ''; }
+        if (bottom) { bottom.innerText = 'DATE'; bottom.className = 'text-[8.5px] font-bold uppercase block text-slate-500 leading-none'; }
       }
+      const inp = document.getElementById('tdCustomDateInput');
+      const inpStrip = document.getElementById('tdCustomDateInputStrip');
+      if (inp) inp.value = '';
+      if (inpStrip) inpStrip.value = '';
+    }
 
-      const pills = document.querySelectorAll('.td-slot-pill');
-      pills.forEach(pill => {
-        const p = pill.getAttribute('data-period');
-        if (p === period) {
-          pill.classList.remove('hidden');
+    // Handles custom date selection from the native calendar picker
+    function handleCustomDateSelect(dateValue) {
+      if (!dateValue) return;
+      const parts = dateValue.split('-');
+      const year = parseInt(parts[0], 10);
+      const month = parseInt(parts[1], 10) - 1;
+      const day = parseInt(parts[2], 10);
+      const d = new Date(year, month, day);
+
+      const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+      const dayName = daysOfWeek[d.getDay()];
+      const monthName = months[d.getMonth()];
+      const dayNum = day < 10 ? '0' + day : '' + day;
+      const formattedDate = `${dayName}, ${dayNum} ${monthName}`;
+
+      activeTdDate = formattedDate;
+
+      // Update header date label
+      const dateLabel = document.getElementById('tdSelectedDateLabel');
+      if (dateLabel) dateLabel.innerText = formattedDate;
+
+      // Check if it matches any of the 5 preset cards
+      let matchedCard = null;
+      document.querySelectorAll('.td-date-card').forEach(card => {
+        const num = card.querySelector('span:nth-child(2)')?.innerText.trim();
+        const mon = card.querySelector('span:last-child')?.innerText.trim().toUpperCase();
+        if (num === dayNum && mon === monthName.toUpperCase()) {
+          matchedCard = card;
         } else {
-          pill.classList.add('hidden');
+          card.className = 'td-date-card w-full py-2 px-0.5 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 active:scale-95 transition-all cursor-pointer';
+          const daySpan = card.querySelector('span:first-child');
+          const numSpan = card.querySelector('span:nth-child(2)');
+          const monSpan = card.querySelector('span:last-child');
+          if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-slate-400 leading-none';
+          if (numSpan) numSpan.className = 'text-sm font-black leading-none block my-1 text-slate-800';
+          if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-slate-400 leading-none';
         }
       });
+
+      if (matchedCard) {
+        matchedCard.className = 'td-date-card w-full py-2 px-0.5 rounded-xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm active:scale-95 transition-all cursor-pointer';
+        const daySpan = matchedCard.querySelector('span:first-child');
+        const numSpan = matchedCard.querySelector('span:nth-child(2)');
+        const monSpan = matchedCard.querySelector('span:last-child');
+        if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-white/90 leading-none';
+        if (numSpan) numSpan.className = 'text-sm font-black leading-none block my-1 text-white';
+        if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-white/80 leading-none';
+        resetCustomDateTile();
+      } else {
+        // Date outside 5 cards: highlight custom date tile in active blue!
+        const tile = document.getElementById('tdCustomDateTile');
+        if (tile) {
+          tile.className = 'shrink-0 w-[58px] py-2 px-1 rounded-xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm active:scale-95 transition-all cursor-pointer relative flex flex-col items-center justify-center';
+          const top = document.getElementById('tdCustomTileTop');
+          const icon = document.getElementById('tdCustomTileIcon');
+          const bottom = document.getElementById('tdCustomTileBottom');
+          if (top) { top.innerText = dayName.toUpperCase(); top.className = 'text-[8.5px] font-extrabold uppercase tracking-tight block text-white/90 leading-none'; }
+          if (icon) { icon.className = 'text-sm font-black leading-none block my-1 text-white not-italic'; icon.innerHTML = dayNum; }
+          if (bottom) { bottom.innerText = monthName.toUpperCase(); bottom.className = 'text-[8.5px] font-bold uppercase block text-white/80 leading-none'; }
+        }
+      }
+
+      updateTestDriveSlotSummary();
     }
 
     // Opens the Clean Redesigned Test Drive Booking Modal
@@ -8781,7 +8853,7 @@
       if (model) model.innerText = lead.model ? lead.model.split('(')[0].trim() : 'Suzuki Brezza';
       if (notes) notes.value = '';
 
-      // Populate Clean 7-day horizontal date strip
+      // Populate Clean exactly 5-day date strip
       const stripTrack = document.getElementById('tdDateStripTrack');
       if (stripTrack) {
         const dateOptions = [
@@ -8789,40 +8861,32 @@
           { day: 'TOMORROW', num: '31', month: 'OCT', label: 'Tomorrow, 31 Oct' },
           { day: 'SAT', num: '01', month: 'NOV', label: 'Sat, 01 Nov' },
           { day: 'SUN', num: '02', month: 'NOV', label: 'Sun, 02 Nov' },
-          { day: 'MON', num: '03', month: 'NOV', label: 'Mon, 03 Nov' },
-          { day: 'TUE', num: '04', month: 'NOV', label: 'Tue, 04 Nov' },
-          { day: 'WED', num: '05', month: 'NOV', label: 'Wed, 05 Nov' }
+          { day: 'MON', num: '03', month: 'NOV', label: 'Mon, 03 Nov' }
         ];
 
         stripTrack.innerHTML = dateOptions.map((opt, idx) => {
           const isSelected = idx === 0;
           return `
-            <button type="button" onclick="selectTestDriveDate('${opt.label}', this)" class="td-date-card shrink-0 w-[64px] py-2 px-1 rounded-xl text-center ${isSelected ? 'border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm' : 'border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'} active:scale-95 transition-all cursor-pointer">
-              <span class="text-[9px] font-extrabold uppercase tracking-wide block ${isSelected ? 'text-white/90' : 'text-slate-400'} leading-none">${opt.day}</span>
-              <span class="text-base font-black leading-none block my-1 ${isSelected ? 'text-white' : 'text-slate-800'}">${opt.num}</span>
-              <span class="text-[9px] font-bold uppercase block ${isSelected ? 'text-white/80' : 'text-slate-400'} leading-none">${opt.month}</span>
+            <button type="button" onclick="selectTestDriveDate('${opt.label}', this)" class="td-date-card w-full py-2 px-0.5 rounded-xl text-center ${isSelected ? 'border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm' : 'border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'} active:scale-95 transition-all cursor-pointer">
+              <span class="text-[8.5px] font-extrabold uppercase tracking-wide block ${isSelected ? 'text-white/90' : 'text-slate-400'} leading-none">${opt.day}</span>
+              <span class="text-sm font-black leading-none block my-1 ${isSelected ? 'text-white' : 'text-slate-800'}">${opt.num}</span>
+              <span class="text-[8.5px] font-bold uppercase block ${isSelected ? 'text-white/80' : 'text-slate-400'} leading-none">${opt.month}</span>
             </button>
           `;
         }).join('');
       }
 
-      // Reset slot pills styling and show morning slots by default
+      resetCustomDateTile();
+
+      // Reset all 12 slot pills styling - all visible, none divided/hidden
       document.querySelectorAll('.td-slot-pill').forEach(pill => {
-        const p = pill.getAttribute('data-period');
-        if (p === 'morning') {
-          pill.classList.remove('hidden');
-        } else {
-          pill.classList.add('hidden');
-        }
-        pill.className = 'td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer';
+        pill.classList.remove('hidden');
         if (pill.innerText.trim() === '11:30 AM') {
           pill.className = 'td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-black bg-[#007AFF] text-white border-2 border-[#007AFF] shadow-xs active:scale-95 transition-all cursor-pointer';
+        } else {
+          pill.className = 'td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer';
         }
       });
-
-      // Reset period buttons to 'Morning'
-      const morningBtn = document.querySelector('.td-period-btn[data-period="morning"]') || document.querySelectorAll('.td-period-btn')[0];
-      filterTdSlotPeriod('morning', morningBtn);
 
       // Reset location buttons
       const btnDealership = document.getElementById('tdLocDealership');
@@ -8849,32 +8913,33 @@
       activeTestDriveLead = null;
     }
 
-    // Selects active date in the horizontal date strip
+    // Selects active date in the 5-day strip
     function selectTestDriveDate(dateStr, el) {
       activeTdDate = dateStr;
       const dateLabel = document.getElementById('tdSelectedDateLabel');
       if (dateLabel) dateLabel.innerText = dateStr;
 
       document.querySelectorAll('.td-date-card').forEach(card => {
-        card.className = 'td-date-card shrink-0 w-[64px] py-2 px-1 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 active:scale-95 transition-all cursor-pointer';
+        card.className = 'td-date-card w-full py-2 px-0.5 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 active:scale-95 transition-all cursor-pointer';
         const daySpan = card.querySelector('span:first-child');
         const numSpan = card.querySelector('span:nth-child(2)');
         const monSpan = card.querySelector('span:last-child');
-        if (daySpan) daySpan.className = 'text-[9px] font-extrabold uppercase tracking-wide block text-slate-400 leading-none';
-        if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1 text-slate-800';
-        if (monSpan) monSpan.className = 'text-[9px] font-bold uppercase block text-slate-400 leading-none';
+        if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-slate-400 leading-none';
+        if (numSpan) numSpan.className = 'text-sm font-black leading-none block my-1 text-slate-800';
+        if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-slate-400 leading-none';
       });
 
       if (el) {
-        el.className = 'td-date-card shrink-0 w-[64px] py-2 px-1 rounded-xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm active:scale-95 transition-all cursor-pointer';
+        el.className = 'td-date-card w-full py-2 px-0.5 rounded-xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm active:scale-95 transition-all cursor-pointer';
         const daySpan = el.querySelector('span:first-child');
         const numSpan = el.querySelector('span:nth-child(2)');
         const monSpan = el.querySelector('span:last-child');
-        if (daySpan) daySpan.className = 'text-[9px] font-extrabold uppercase tracking-wide block text-white/90 leading-none';
-        if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1 text-white';
-        if (monSpan) monSpan.className = 'text-[9px] font-bold uppercase block text-white/80 leading-none';
+        if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-white/90 leading-none';
+        if (numSpan) numSpan.className = 'text-sm font-black leading-none block my-1 text-white';
+        if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-white/80 leading-none';
       }
 
+      resetCustomDateTile();
       updateTestDriveSlotSummary();
     }
 
@@ -10864,7 +10929,14 @@
       const hash = (window.location.hash || '').replace('#', '');
       if (params.get('modal') === 'testdrive' || hash === 'testdrive' || hash === 'modal-testdrive') {
         const tdL = params.get('lead') || params.get('id') || 'ENQ987875369';
-        setTimeout(() => openTestDriveBookingModal(tdL), 120);
+        openTestDriveBookingModal(tdL);
+        if (params.get('demo_custom_date')) {
+          handleCustomDateSelect(params.get('demo_custom_date'));
+        }
+        if (params.get('demo_slot')) {
+          const slotPill = Array.from(document.querySelectorAll('.td-slot-pill')).find(p => p.innerText.trim() === params.get('demo_slot'));
+          if (slotPill) selectTestDriveSlot(params.get('demo_slot'), slotPill);
+        }
       }
       renderFollowUpScreen();
       let savedScreen = null;
@@ -10915,9 +10987,6 @@
           openEnquiryDetails(params.get('name') || 'Swati Jain', params.get('id') || 'ENQ987875399');
         } else if (targetScreen === 'activities' || targetScreen === 'followups') {
           openFollowUpsScreen();
-          if (params.get('modal') === 'testdrive') {
-            openTestDriveBookingModal(params.get('lead') || 'ENQ987875369');
-          }
           if (params.get('comments_lead')) {
             openLeadCommentsModal(params.get('comments_lead'));
             if (params.get('demo_comment')) {

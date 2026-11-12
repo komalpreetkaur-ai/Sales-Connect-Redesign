@@ -1,5 +1,39 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 📅 Test Drive Booking Modal: Unified All-Slots Grid, 5-Day Strip & Custom Calendar Picker
+
+1. **Unified Time Slots Grid (All Slots Visible, No Division)**:
+   - Completely removed period tab division (`[ Morning ]`, `[ Afternoon ]`, `[ Evening ]`).
+   - All 12 dealership time slots are now directly visible and selectable in a clean 4-column grid (3 rows of 4):
+     - `10:00 AM`, `10:30 AM`, `11:00 AM`, `11:30 AM`
+     - `12:30 PM`, `01:30 PM`, `02:30 PM`, `03:30 PM`
+     - `04:30 PM`, `05:30 PM`, `06:30 PM`, `07:15 PM`
+   - Active slot is clearly highlighted in solid primary blue with high contrast (`#007AFF`).
+
+2. **Streamlined 5-Day Selection Strip**:
+   - Replaced 7-day strip with **exactly 5 quick-pick days**:
+     - `TODAY 30 OCT`
+     - `TOMORROW 31 OCT`
+     - `SAT 01 NOV`
+     - `SUN 02 NOV`
+     - `MON 03 NOV`
+   - All 5 days fit smoothly side by side across mobile screen width.
+
+3. **Calendar Icon for Custom Date Selection**:
+   - Added a quick-access calendar trigger button (`[ 📅 ]`) in the header next to the selected date.
+   - Added a dedicated 6th tile alongside the 5 days labeled **`CUSTOM 📅 DATE`**.
+   - Tapping either opens the native calendar date picker.
+   - When a custom date is selected (e.g. `12 Nov`), the custom tile highlights in solid blue (`THU 12 NOV`), the header label reflects `Thu, 12 Nov`, and the bottom summary updates dynamically.
+
+4. **Visual Verification**:
+
+| Default State (5 Days + All 12 Slots) | Custom Date & Afternoon Slot Selected |
+| :---: | :---: |
+| ![Test Drive Default](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_testdrive_modal_default.png) | ![Custom Date Selected](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_testdrive_modal_custom_date_selected.png) |
+| *Clean 5-day strip with custom calendar trigger and all 12 slots visible at once without tab division.* | *Custom date selected from calendar picker with custom tile highlighted and slot updated.* |
+
+---
+
 ## 🧹 Banner Removal (Clean Bookings & Deliveries Screens)
 
 1. **Removed Consultant Banner from Vehicle Bookings**:
