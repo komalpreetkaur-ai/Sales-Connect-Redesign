@@ -5625,43 +5625,49 @@
 
   <!-- DEDICATED IN-APP CALENDAR POPUP MODAL FOR BOOK TEST DRIVE -->
   <div id="testDriveCalendarModal" onclick="if(event.target === this) closeTestDriveCalendarModal()" style="display: none;" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-50 p-4 transition-all">
-    <div class="bg-white rounded-2xl w-full max-w-[315px] p-4.5 space-y-3 shadow-2xl border border-slate-200/90 relative animate-in fade-in zoom-in-95 duration-150">
+    <div class="bg-white rounded-3xl w-full max-w-[335px] p-5 space-y-4 shadow-2xl border border-slate-100 relative animate-in fade-in zoom-in-95 duration-200">
       
-      <!-- Calendar Header: Month/Year Dropdown & Nav Arrows (Matching Screenshot) -->
-      <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
-        <div class="flex items-center gap-1.5 cursor-pointer hover:opacity-80" onclick="nextTestDriveCalMonth()">
-          <span id="tdCalMonthYearText" class="text-sm font-black text-slate-800 tracking-tight">November 2026</span>
-          <i class="fa-solid fa-caret-down text-[11px] text-slate-500"></i>
+      <!-- Calendar Header: Month/Year Display & Horizontal Chevron Navigation -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center border border-blue-100 shadow-2xs shrink-0">
+            <i class="fa-regular fa-calendar-days text-sm"></i>
+          </div>
+          <div>
+            <h3 id="tdCalMonthYearText" class="text-sm font-black text-slate-900 tracking-tight leading-tight">October 2026</h3>
+            <p class="text-[9.5px] font-semibold text-slate-400">Select test drive date</p>
+          </div>
         </div>
-        <div class="flex items-center gap-1">
-          <button type="button" onclick="prevTestDriveCalMonth()" class="w-7 h-7 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-600 flex items-center justify-center text-xs active:scale-95 transition-transform cursor-pointer" title="Previous Month">
-            <i class="fa-solid fa-arrow-up text-xs"></i>
+        <div class="flex items-center gap-1.5">
+          <button type="button" onclick="prevTestDriveCalMonth()" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-xs active:scale-95 transition-all cursor-pointer" title="Previous Month">
+            <i class="fa-solid fa-chevron-left text-[11px]"></i>
           </button>
-          <button type="button" onclick="nextTestDriveCalMonth()" class="w-7 h-7 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-600 flex items-center justify-center text-xs active:scale-95 transition-transform cursor-pointer" title="Next Month">
-            <i class="fa-solid fa-arrow-down text-xs"></i>
+          <button type="button" onclick="nextTestDriveCalMonth()" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-xs active:scale-95 transition-all cursor-pointer" title="Next Month">
+            <i class="fa-solid fa-chevron-right text-[11px]"></i>
           </button>
-          <button type="button" onclick="closeTestDriveCalendarModal()" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center text-xs active:scale-95 transition-transform cursor-pointer ml-1" title="Close">
+          <button type="button" onclick="closeTestDriveCalendarModal()" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-800 flex items-center justify-center text-xs active:scale-95 transition-all cursor-pointer ml-1" title="Close">
             <i class="fa-solid fa-xmark text-xs"></i>
           </button>
         </div>
       </div>
 
       <!-- Weekday Headers (S M T W T F S) -->
-      <div class="grid grid-cols-7 gap-1 text-center text-xs font-black text-slate-500 select-none">
+      <div class="grid grid-cols-7 gap-1 text-center text-[10.5px] font-bold text-slate-400 select-none uppercase tracking-wider">
         <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
       </div>
 
       <!-- Days Grid (42 cells: prev month trailing + current month + next month leading) -->
-      <div id="tdCalDaysGrid" class="grid grid-cols-7 gap-1 text-center text-xs select-none">
+      <div id="tdCalDaysGrid" class="grid grid-cols-7 gap-1 text-center text-xs select-none min-h-[210px] items-center">
         <!-- Dynamically rendered by JS -->
       </div>
 
-      <!-- Calendar Footer: Clear and Today (Matching Screenshot) -->
-      <div class="flex items-center justify-between border-t border-slate-100 pt-2.5 px-1">
-        <button type="button" onclick="clearTestDriveCal()" class="text-xs font-extrabold text-[#007AFF] hover:text-blue-700 active:scale-95 transition-transform cursor-pointer">
-          Clear
+      <!-- Calendar Footer: Clear and Today -->
+      <div class="flex items-center justify-between border-t border-slate-100 pt-3 px-1">
+        <button type="button" onclick="clearTestDriveCal()" class="px-3 py-1.5 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-800 hover:bg-slate-100 active:scale-95 transition-all cursor-pointer flex items-center gap-1.5">
+          <i class="fa-solid fa-rotate-left text-[10px]"></i>
+          <span>Clear</span>
         </button>
-        <button type="button" onclick="todayTestDriveCal()" class="text-xs font-extrabold text-[#007AFF] hover:text-blue-700 active:scale-95 transition-transform cursor-pointer">
+        <button type="button" onclick="todayTestDriveCal()" class="px-4 py-1.5 rounded-xl text-xs font-black bg-blue-50 hover:bg-blue-100 text-[#007AFF] border border-blue-200/80 active:scale-95 transition-all cursor-pointer shadow-2xs">
           Today
         </button>
       </div>
@@ -8774,16 +8780,86 @@
     }
 
     // ==========================================
-    // IN-APP TEST DRIVE CALENDAR POPUP MODAL
+    // IN-APP TEST DRIVE CALENDAR & CUSTOM CARD LOGIC
     // ==========================================
     let tdCalYear = 2026;
-    let tdCalMonth = 10; // 0-indexed: 9 = October, 10 = November
-    let tdCalSelected = { year: 2026, month: 10, day: 12 }; // Default to Nov 12 as in reference mockup
+    let tdCalMonth = 9; // 0-indexed: 9 = October, 10 = November
+    let tdCalSelected = { year: 2026, month: 9, day: 30 }; // Default to Today (30 Oct 2026)
+
+    // Preset 5 days
+    const presetDateOptions = [
+      { day: 'TODAY', num: '30', month: 'OCT', label: 'Today, 30 Oct', y: 2026, m: 9, d: 30 },
+      { day: 'TOMORROW', num: '31', month: 'OCT', label: 'Tomorrow, 31 Oct', y: 2026, m: 9, d: 31 },
+      { day: 'SAT', num: '01', month: 'NOV', label: 'Sat, 01 Nov', y: 2026, m: 10, d: 1 },
+      { day: 'SUN', num: '02', month: 'NOV', label: 'Sun, 02 Nov', y: 2026, m: 10, d: 2 },
+      { day: 'MON', num: '03', month: 'NOV', label: 'Mon, 03 Nov', y: 2026, m: 10, d: 3 }
+    ];
+
+    // Holds custom date card data when custom date feature is used (placed before Today)
+    let customTestDriveDate = null;
 
     const tdMonthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const tdMonthShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const tdDayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+    // Renders the horizontal date strip (inserts custom card before Today when custom date feature is used)
+    function renderTestDriveDateStrip() {
+      const stripTrack = document.getElementById('tdDateStripTrack');
+      if (!stripTrack) return;
+
+      let cards = [];
+      // If custom date feature is used, insert that day's card BEFORE the Today card!
+      if (customTestDriveDate) {
+        cards.push({
+          isCustom: true,
+          day: customTestDriveDate.day,
+          num: customTestDriveDate.num,
+          month: customTestDriveDate.month,
+          label: customTestDriveDate.label
+        });
+      }
+
+      // Add the standard preset days
+      presetDateOptions.forEach(p => {
+        cards.push({
+          isCustom: false,
+          day: p.day,
+          num: p.num,
+          month: p.month,
+          label: p.label
+        });
+      });
+
+      // Update grid columns: 6 columns when custom card is present, 5 columns normally
+      stripTrack.className = `grid ${cards.length === 6 ? 'grid-cols-6' : 'grid-cols-5'} gap-1.5 select-none`;
+
+      stripTrack.innerHTML = cards.map(card => {
+        const isSelected = activeTdDate === card.label;
+        return `
+          <button type="button" onclick="selectTestDriveDate('${card.label}', ${card.isCustom})" class="td-date-card w-full py-2.5 px-0.5 rounded-xl text-center ${isSelected ? 'border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm' : 'border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'} active:scale-95 transition-all cursor-pointer ${card.isCustom ? 'ring-2 ring-blue-400/40' : ''}">
+            <span class="text-[8.5px] font-extrabold uppercase tracking-wide block ${isSelected ? 'text-white/90' : 'text-slate-400'} leading-none">${card.day}</span>
+            <span class="text-base font-black leading-none block my-1.5 ${isSelected ? 'text-white' : 'text-slate-800'}">${card.num}</span>
+            <span class="text-[8.5px] font-bold uppercase block ${isSelected ? 'text-white/80' : 'text-slate-400'} leading-none">${card.month}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    // Selects a date card from the horizontal strip
+    function selectTestDriveDate(dateStr, isCustom) {
+      activeTdDate = dateStr;
+      if (!isCustom) {
+        // When clicking a preset day card, custom date feature is cleared
+        customTestDriveDate = null;
+      }
+      const dateLabel = document.getElementById('tdSelectedDateLabel');
+      if (dateLabel) dateLabel.innerText = dateStr;
+
+      renderTestDriveDateStrip();
+      updateTestDriveSlotSummary();
+    }
+
+    // Opens the in-app calendar popup modal
     function openTestDriveCalendarModal() {
       // Sync calendar view with current activeTdDate if available
       if (activeTdDate) {
@@ -8804,6 +8880,7 @@
       }
     }
 
+    // Closes the in-app calendar popup modal
     function closeTestDriveCalendarModal() {
       const modal = document.getElementById('testDriveCalendarModal');
       if (modal) {
@@ -8830,6 +8907,7 @@
       renderTestDriveCalendar();
     }
 
+    // Renders the calendar days grid
     function renderTestDriveCalendar() {
       const headerText = document.getElementById('tdCalMonthYearText');
       if (headerText) {
@@ -8845,10 +8923,10 @@
 
       let html = '';
 
-      // Trailing days from previous month
+      // Trailing days from previous month (muted, clean)
       for (let i = firstDayIndex - 1; i >= 0; i--) {
         const d = prevMonthTotalDays - i;
-        html += `<span class="h-8 flex items-center justify-center text-xs text-slate-300 font-medium select-none">${d}</span>`;
+        html += `<span class="w-8 h-8 mx-auto flex items-center justify-center text-xs text-slate-300 font-medium select-none pointer-events-none">${d}</span>`;
       }
 
       // Current month days
@@ -8858,12 +8936,17 @@
 
         if (isSelected) {
           html += `
-            <button type="button" onclick="selectCalendarDay(${tdCalYear}, ${tdCalMonth}, ${day})" class="w-8 h-8 mx-auto rounded-full bg-[#007AFF] text-white font-black text-xs flex items-center justify-center shadow-xs active:scale-95 transition-all cursor-pointer">
+            <button type="button" onclick="selectCalendarDay(${tdCalYear}, ${tdCalMonth}, ${day})" class="w-8 h-8 mx-auto rounded-full bg-[#007AFF] text-white font-black text-xs flex items-center justify-center shadow-md shadow-blue-500/25 active:scale-95 transition-all cursor-pointer">
               ${day}
+            </button>`;
+        } else if (isToday) {
+          html += `
+            <button type="button" onclick="selectCalendarDay(${tdCalYear}, ${tdCalMonth}, ${day})" class="w-8 h-8 mx-auto rounded-full bg-blue-50 hover:bg-blue-100 text-[#007AFF] font-black text-xs flex items-center justify-center border border-blue-200/80 active:scale-95 transition-all cursor-pointer relative" title="Today">
+              <span>${day}</span>
             </button>`;
         } else {
           html += `
-            <button type="button" onclick="selectCalendarDay(${tdCalYear}, ${tdCalMonth}, ${day})" class="w-8 h-8 mx-auto rounded-full hover:bg-blue-50 text-slate-700 font-bold text-xs flex items-center justify-center ${isToday ? 'border border-[#007AFF] text-[#007AFF]' : ''} active:scale-95 transition-all cursor-pointer">
+            <button type="button" onclick="selectCalendarDay(${tdCalYear}, ${tdCalMonth}, ${day})" class="w-8 h-8 mx-auto rounded-full hover:bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center active:scale-95 transition-all cursor-pointer">
               ${day}
             </button>`;
         }
@@ -8874,12 +8957,13 @@
       const targetCells = totalRendered > 35 ? 42 : 35;
       const nextDays = targetCells - totalRendered;
       for (let day = 1; day <= nextDays; day++) {
-        html += `<span class="h-8 flex items-center justify-center text-xs text-slate-300 font-medium select-none">${day}</span>`;
+        html += `<span class="w-8 h-8 mx-auto flex items-center justify-center text-xs text-slate-300 font-medium select-none pointer-events-none">${day}</span>`;
       }
 
       grid.innerHTML = html;
     }
 
+    // Handles date selection inside the calendar popup
     function selectCalendarDay(year, month, day) {
       tdCalSelected = { year, month, day };
       tdCalYear = year;
@@ -8887,64 +8971,65 @@
 
       const d = new Date(year, month, day);
       const dayName = tdDayNames[d.getDay()];
+      const dayUpper = dayName.toUpperCase();
       const monthShort = tdMonthShort[month];
+      const monthUpper = monthShort.toUpperCase();
       const dayPadded = day < 10 ? '0' + day : '' + day;
 
       let formattedDate = `${dayName}, ${dayPadded} ${monthShort}`;
-      if (year === 2026 && month === 9 && day === 30) {
-        formattedDate = 'Today, 30 Oct';
-      } else if (year === 2026 && month === 9 && day === 31) {
-        formattedDate = 'Tomorrow, 31 Oct';
-      }
 
-      activeTdDate = formattedDate;
+      // Check if custom date matches any of the 5 preset days
+      const matchedPreset = presetDateOptions.find(p => p.y === year && p.m === month && p.d === day);
+
+      if (matchedPreset) {
+        // If user picked a preset day (e.g. 30 Oct or 31 Oct), use that preset card directly
+        customTestDriveDate = null;
+        activeTdDate = matchedPreset.label;
+      } else {
+        // Custom date used: create a card BEFORE Today's card and highlight it!
+        customTestDriveDate = {
+          day: dayUpper,
+          num: dayPadded,
+          month: monthUpper,
+          label: formattedDate,
+          y: year,
+          m: month,
+          d: day
+        };
+        activeTdDate = formattedDate;
+      }
 
       // Update header date label
       const dateLabel = document.getElementById('tdSelectedDateLabel');
-      if (dateLabel) dateLabel.innerText = formattedDate;
+      if (dateLabel) dateLabel.innerText = activeTdDate;
 
-      // Check if custom date matches any of the 5 preset cards
-      let matchedCard = null;
-      document.querySelectorAll('.td-date-card').forEach(card => {
-        const num = card.querySelector('span:nth-child(2)')?.innerText.trim();
-        const mon = card.querySelector('span:last-child')?.innerText.trim().toUpperCase();
-        if (num === dayPadded && mon === monthShort.toUpperCase()) {
-          matchedCard = card;
-        } else {
-          card.className = 'td-date-card w-full py-2.5 px-0.5 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 active:scale-95 transition-all cursor-pointer';
-          const daySpan = card.querySelector('span:first-child');
-          const numSpan = card.querySelector('span:nth-child(2)');
-          const monSpan = card.querySelector('span:last-child');
-          if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-slate-400 leading-none';
-          if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1.5 text-slate-800';
-          if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-slate-400 leading-none';
-        }
-      });
-
-      if (matchedCard) {
-        matchedCard.className = 'td-date-card w-full py-2.5 px-0.5 rounded-xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm active:scale-95 transition-all cursor-pointer';
-        const daySpan = matchedCard.querySelector('span:first-child');
-        const numSpan = matchedCard.querySelector('span:nth-child(2)');
-        const monSpan = matchedCard.querySelector('span:last-child');
-        if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-white/90 leading-none';
-        if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1.5 text-white';
-        if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-white/80 leading-none';
-      }
+      // Re-render strip (custom card is placed before Today and highlighted)
+      renderTestDriveDateStrip();
 
       updateTestDriveSlotSummary();
       closeTestDriveCalendarModal();
-      showAppToast(`Date selected: ${formattedDate}`, 'info');
+      showAppToast(`Date selected: ${activeTdDate}`, 'info');
     }
 
+    // Clears custom date selection and resets to Today
     function clearTestDriveCal() {
-      selectCalendarDay(2026, 9, 30);
+      customTestDriveDate = null;
+      activeTdDate = 'Today, 30 Oct';
+      tdCalSelected = { year: 2026, month: 9, day: 30 };
+      const dateLabel = document.getElementById('tdSelectedDateLabel');
+      if (dateLabel) dateLabel.innerText = activeTdDate;
+      renderTestDriveDateStrip();
+      updateTestDriveSlotSummary();
+      closeTestDriveCalendarModal();
+      showAppToast('Date reset to Today', 'info');
     }
 
+    // Instantly selects Today
     function todayTestDriveCal() {
-      selectCalendarDay(2026, 9, 30);
+      clearTestDriveCal();
     }
 
-    // Handles custom date selection from program / URL params
+    // Programmatic custom date handler (supports YYYY-MM-DD)
     function handleCustomDateSelect(dateValue) {
       if (!dateValue) return;
       const parts = dateValue.split('-');
@@ -8952,60 +9037,6 @@
       const month = parseInt(parts[1], 10) - 1;
       const day = parseInt(parts[2], 10);
       selectCalendarDay(year, month, day);
-    }
-
-    // Legacy date handler
-    function _legacyHandleCustomDateSelect(dateValue) {
-      if (!dateValue) return;
-      const parts = dateValue.split('-');
-      const year = parseInt(parts[0], 10);
-      const month = parseInt(parts[1], 10) - 1;
-      const day = parseInt(parts[2], 10);
-      const d = new Date(year, month, day);
-
-      const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-      const dayName = daysOfWeek[d.getDay()];
-      const monthName = months[d.getMonth()];
-      const dayNum = day < 10 ? '0' + day : '' + day;
-      const formattedDate = `${dayName}, ${dayNum} ${monthName}`;
-
-      activeTdDate = formattedDate;
-
-      // Update header date label
-      const dateLabel = document.getElementById('tdSelectedDateLabel');
-      if (dateLabel) dateLabel.innerText = formattedDate;
-
-      // Check if custom date matches any of the 5 preset cards
-      let matchedCard = null;
-      document.querySelectorAll('.td-date-card').forEach(card => {
-        const num = card.querySelector('span:nth-child(2)')?.innerText.trim();
-        const mon = card.querySelector('span:last-child')?.innerText.trim().toUpperCase();
-        if (num === dayNum && mon === monthName.toUpperCase()) {
-          matchedCard = card;
-        } else {
-          card.className = 'td-date-card w-full py-2.5 px-0.5 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 active:scale-95 transition-all cursor-pointer';
-          const daySpan = card.querySelector('span:first-child');
-          const numSpan = card.querySelector('span:nth-child(2)');
-          const monSpan = card.querySelector('span:last-child');
-          if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-slate-400 leading-none';
-          if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1.5 text-slate-800';
-          if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-slate-400 leading-none';
-        }
-      });
-
-      if (matchedCard) {
-        matchedCard.className = 'td-date-card w-full py-2.5 px-0.5 rounded-xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm active:scale-95 transition-all cursor-pointer';
-        const daySpan = matchedCard.querySelector('span:first-child');
-        const numSpan = matchedCard.querySelector('span:nth-child(2)');
-        const monSpan = matchedCard.querySelector('span:last-child');
-        if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-white/90 leading-none';
-        if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1.5 text-white';
-        if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-white/80 leading-none';
-      }
-
-      updateTestDriveSlotSummary();
     }
 
     // Opens the Dedicated Book Test Drive Screen (Full Screen, not popup)
@@ -9026,6 +9057,7 @@
       activeTdDate = 'Today, 30 Oct';
       activeTdSlot = '11:30 AM';
       activeTdLocation = 'Dealership Visit';
+      customTestDriveDate = null; // Custom card only shows when custom date feature is used!
 
       // Update lead preview in dedicated screen
       const avatar = document.getElementById('tdScreenLeadAvatar');
@@ -9044,28 +9076,8 @@
       const dateLabel = document.getElementById('tdSelectedDateLabel');
       if (dateLabel) dateLabel.innerText = 'Today, 30 Oct';
 
-      // Populate Clean exactly 5-day date strip (NO custom card, just 5 days spanning 5 cols)
-      const stripTrack = document.getElementById('tdDateStripTrack');
-      if (stripTrack) {
-        const dateOptions = [
-          { day: 'TODAY', num: '30', month: 'OCT', label: 'Today, 30 Oct' },
-          { day: 'TOMORROW', num: '31', month: 'OCT', label: 'Tomorrow, 31 Oct' },
-          { day: 'SAT', num: '01', month: 'NOV', label: 'Sat, 01 Nov' },
-          { day: 'SUN', num: '02', month: 'NOV', label: 'Sun, 02 Nov' },
-          { day: 'MON', num: '03', month: 'NOV', label: 'Mon, 03 Nov' }
-        ];
-
-        stripTrack.innerHTML = dateOptions.map((opt, idx) => {
-          const isSelected = idx === 0;
-          return `
-            <button type="button" onclick="selectTestDriveDate('${opt.label}', this)" class="td-date-card w-full py-2.5 px-0.5 rounded-xl text-center ${isSelected ? 'border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm' : 'border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'} active:scale-95 transition-all cursor-pointer">
-              <span class="text-[8.5px] font-extrabold uppercase tracking-wide block ${isSelected ? 'text-white/90' : 'text-slate-400'} leading-none">${opt.day}</span>
-              <span class="text-base font-black leading-none block my-1.5 ${isSelected ? 'text-white' : 'text-slate-800'}">${opt.num}</span>
-              <span class="text-[8.5px] font-bold uppercase block ${isSelected ? 'text-white/80' : 'text-slate-400'} leading-none">${opt.month}</span>
-            </button>
-          `;
-        }).join('');
-      }
+      // Render the date strip (only 5 preset days by default)
+      renderTestDriveDateStrip();
 
       // Reset all 12 slot pills styling - all visible, none divided/hidden
       document.querySelectorAll('.td-slot-pill').forEach(pill => {
@@ -9076,9 +9088,6 @@
           pill.className = 'td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer';
         }
       });
-
-      const slotLabel = document.getElementById('tdSelectedSlotLabel');
-      if (slotLabel) slotLabel.innerText = '11:30 AM';
 
       // Reset location buttons
       const btnDealership = document.getElementById('tdLocDealership');
@@ -9108,71 +9117,6 @@
 
     function closeTestDriveBookingModal() {
       goBackFromBookTestDrive();
-    }
-
-    // Selects active date in the 5-day strip
-    function selectTestDriveDate(dateStr, el) {
-      activeTdDate = dateStr;
-      const dateLabel = document.getElementById('tdSelectedDateLabel');
-      if (dateLabel) dateLabel.innerText = dateStr;
-
-      document.querySelectorAll('.td-date-card').forEach(card => {
-        card.className = 'td-date-card w-full py-2.5 px-0.5 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 active:scale-95 transition-all cursor-pointer';
-        const daySpan = card.querySelector('span:first-child');
-        const numSpan = card.querySelector('span:nth-child(2)');
-        const monSpan = card.querySelector('span:last-child');
-        if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-slate-400 leading-none';
-        if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1.5 text-slate-800';
-        if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-slate-400 leading-none';
-      });
-
-      if (el) {
-        el.className = 'td-date-card w-full py-2.5 px-0.5 rounded-xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm active:scale-95 transition-all cursor-pointer';
-        const daySpan = el.querySelector('span:first-child');
-        const numSpan = el.querySelector('span:nth-child(2)');
-        const monSpan = el.querySelector('span:last-child');
-        if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-white/90 leading-none';
-        if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1.5 text-white';
-        if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-white/80 leading-none';
-      }
-
-      updateTestDriveSlotSummary();
-    }
-
-    // Selects active time slot in the grid
-    function selectTestDriveSlot(slotStr, el) {
-      activeTdSlot = slotStr;
-      const slotLabel = document.getElementById('tdSelectedSlotLabel');
-      if (slotLabel) slotLabel.innerText = slotStr;
-
-      document.querySelectorAll('.td-slot-pill').forEach(pill => {
-        pill.className = 'td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:border-blue-300 active:scale-95 transition-all cursor-pointer';
-      });
-
-      if (el) {
-        el.className = 'td-slot-pill py-2 px-1 rounded-xl text-center text-xs font-black bg-[#007AFF] text-white border-2 border-[#007AFF] shadow-xs active:scale-95 transition-all cursor-pointer';
-      }
-
-      updateTestDriveSlotSummary();
-    }
-
-    // Selects test drive location (Dealership vs Customer Doorstep)
-    function selectTestDriveLocation(locStr, el) {
-      activeTdLocation = locStr;
-
-      const btnDealership = document.getElementById('tdLocDealership');
-      const btnDoorstep = document.getElementById('tdLocDoorstep');
-
-      if (btnDealership && btnDoorstep) {
-        btnDealership.className = 'td-loc-pill py-2.5 px-3 rounded-2xl border border-slate-200 bg-white text-slate-700 font-bold text-xs flex items-center justify-center gap-2 hover:border-blue-200 active:scale-95 transition-all cursor-pointer';
-        btnDoorstep.className = 'td-loc-pill py-2.5 px-3 rounded-2xl border border-slate-200 bg-white text-slate-700 font-bold text-xs flex items-center justify-center gap-2 hover:border-blue-200 active:scale-95 transition-all cursor-pointer';
-
-        if (el) {
-          el.className = 'td-loc-pill py-2.5 px-3 rounded-2xl border-2 border-[#007AFF] bg-blue-50/70 text-[#007AFF] font-black text-xs flex items-center justify-center gap-2 shadow-2xs active:scale-95 transition-all cursor-pointer';
-        }
-      }
-
-      updateTestDriveSlotSummary();
     }
 
     // Updates live slot summary badge in the modal footer

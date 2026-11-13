@@ -1,5 +1,28 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 📅 Polished Calendar Design & Dynamic Custom Date Card (Placed Before Today)
+
+1. **Polished In-App Calendar Popup (`#testDriveCalendarModal`)**:
+   - Redesigned header with icon badge, title (`October 2026`), subtitle (`Select test drive date`), standard horizontal month chevrons (`‹` and `›`), and top-right close button (`✕`).
+   - Clean weekday labels (`S  M  T  W  T  F  S`) in subtle muted slate.
+   - Removed awkward competing border outlines around "Today"; today now features a soft blue tint, while the actively selected day is highlighted in solid vibrant brand blue (`bg-[#007AFF] text-white`).
+   - Generous card padding (`p-5 rounded-3xl`) ensuring the footer (`Clear` with reset icon and `Today` primary pill) has ample breathing space with no bottom clipping.
+
+2. **Dynamic Custom Date Card (Placed Before Today)**:
+   - **Default State**: Only the 5 preset quick-pick days (`TODAY 30 OCT`, `TOMORROW 31 OCT`, `SAT 01 NOV`, `SUN 02 NOV`, `MON 03 NOV`) are shown in a 5-column grid.
+   - **Custom Date Feature Used**: When any custom date is picked from the calendar (e.g. `Wed, 07 Oct` or `Thu, 12 Nov`), a dedicated card for that day is dynamically created and inserted **BEFORE the Today card** (`WED 07 OCT`).
+   - **Highlighted State**: The custom date card is highlighted in solid blue (`#007AFF`) with white text and ring accent.
+   - **Conditional Visibility**: If the user resets via `Clear` or taps `Today`, or clicks on any preset card, the custom date card is removed, returning to the clean 5-day strip.
+
+3. **Visual Verification**:
+
+| Redesigned Calendar Popup | Custom Date Card Before Today (`WED 07 OCT`) | Default Strip (5 Days, No Custom Card) |
+| :---: | :---: | :---: |
+| ![Redesigned Calendar](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_calendar_popup_redesigned.png) | ![Custom Card Before Today](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_custom_date_card_before_today.png) | ![Default 5 Days](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_book_test_drive_screen_default_no_custom.png) |
+| *Polished calendar popup with horizontal chevrons, clean day cells, and spacious footer.* | *Custom date `07 Oct` placed before `TODAY 30 OCT` and highlighted in solid blue.* | *Default clean 5-day strip when custom date feature is not used.* |
+
+---
+
 ## 📅 In-App Calendar Popup Modal for Test Drive Date Selection
 
 1. **In-App Calendar Popup Modal (Replacing Browser Native Picker)**:
