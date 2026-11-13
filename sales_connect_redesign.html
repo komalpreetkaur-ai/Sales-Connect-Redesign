@@ -3188,11 +3188,10 @@
             </label>
             <div class="flex items-center gap-2">
               <span id="tdSelectedDateLabel" class="text-xs font-black text-[#007AFF]">Today, 30 Oct</span>
-              <!-- Calendar trigger icon button for custom date selection -->
-              <label for="tdCustomDateInput" onclick="const inp = document.getElementById('tdCustomDateInput'); if(inp && inp.showPicker) { try { inp.showPicker(); } catch(e){} }" class="w-7 h-7 rounded-lg bg-blue-50 hover:bg-blue-100 border border-blue-200/80 text-[#007AFF] flex items-center justify-center cursor-pointer active:scale-95 transition-all shadow-2xs relative shrink-0" title="Select custom date from calendar">
+              <!-- Calendar trigger button to open in-app calendar popup -->
+              <button type="button" onclick="openTestDriveCalendarModal()" class="w-7 h-7 rounded-lg bg-blue-50 hover:bg-blue-100 border border-blue-200/80 text-[#007AFF] flex items-center justify-center cursor-pointer active:scale-95 transition-all shadow-2xs shrink-0" title="Open Calendar Popup">
                 <i class="fa-regular fa-calendar-days text-xs"></i>
-                <input type="date" id="tdCustomDateInput" onchange="handleCustomDateSelect(this.value)" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
-              </label>
+              </button>
             </div>
           </div>
 
@@ -5622,6 +5621,51 @@
   <div id="appToastNotification" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[110] bg-slate-900/95 backdrop-blur-md text-white px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-2.5 text-xs font-semibold border border-white/10 transition-all duration-300 max-w-[90%] pointer-events-none">
     <span id="appToastIcon" class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] shrink-0"><i class="fa-solid fa-check"></i></span>
     <span id="appToastMessage">Action completed successfully</span>
+  </div>
+
+  <!-- DEDICATED IN-APP CALENDAR POPUP MODAL FOR BOOK TEST DRIVE -->
+  <div id="testDriveCalendarModal" onclick="if(event.target === this) closeTestDriveCalendarModal()" style="display: none;" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-50 p-4 transition-all">
+    <div class="bg-white rounded-2xl w-full max-w-[315px] p-4.5 space-y-3 shadow-2xl border border-slate-200/90 relative animate-in fade-in zoom-in-95 duration-150">
+      
+      <!-- Calendar Header: Month/Year Dropdown & Nav Arrows (Matching Screenshot) -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+        <div class="flex items-center gap-1.5 cursor-pointer hover:opacity-80" onclick="nextTestDriveCalMonth()">
+          <span id="tdCalMonthYearText" class="text-sm font-black text-slate-800 tracking-tight">November 2026</span>
+          <i class="fa-solid fa-caret-down text-[11px] text-slate-500"></i>
+        </div>
+        <div class="flex items-center gap-1">
+          <button type="button" onclick="prevTestDriveCalMonth()" class="w-7 h-7 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-600 flex items-center justify-center text-xs active:scale-95 transition-transform cursor-pointer" title="Previous Month">
+            <i class="fa-solid fa-arrow-up text-xs"></i>
+          </button>
+          <button type="button" onclick="nextTestDriveCalMonth()" class="w-7 h-7 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-600 flex items-center justify-center text-xs active:scale-95 transition-transform cursor-pointer" title="Next Month">
+            <i class="fa-solid fa-arrow-down text-xs"></i>
+          </button>
+          <button type="button" onclick="closeTestDriveCalendarModal()" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center text-xs active:scale-95 transition-transform cursor-pointer ml-1" title="Close">
+            <i class="fa-solid fa-xmark text-xs"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Weekday Headers (S M T W T F S) -->
+      <div class="grid grid-cols-7 gap-1 text-center text-xs font-black text-slate-500 select-none">
+        <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+      </div>
+
+      <!-- Days Grid (42 cells: prev month trailing + current month + next month leading) -->
+      <div id="tdCalDaysGrid" class="grid grid-cols-7 gap-1 text-center text-xs select-none">
+        <!-- Dynamically rendered by JS -->
+      </div>
+
+      <!-- Calendar Footer: Clear and Today (Matching Screenshot) -->
+      <div class="flex items-center justify-between border-t border-slate-100 pt-2.5 px-1">
+        <button type="button" onclick="clearTestDriveCal()" class="text-xs font-extrabold text-[#007AFF] hover:text-blue-700 active:scale-95 transition-transform cursor-pointer">
+          Clear
+        </button>
+        <button type="button" onclick="todayTestDriveCal()" class="text-xs font-extrabold text-[#007AFF] hover:text-blue-700 active:scale-95 transition-transform cursor-pointer">
+          Today
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- DATE RANGE PICKER MODAL -->
@@ -8729,8 +8773,189 @@
       window.open(`https://wa.me/${cleanPhone}`, '_blank');
     }
 
-    // Handles custom date selection from the native calendar picker (using the header calendar icon)
+    // ==========================================
+    // IN-APP TEST DRIVE CALENDAR POPUP MODAL
+    // ==========================================
+    let tdCalYear = 2026;
+    let tdCalMonth = 10; // 0-indexed: 9 = October, 10 = November
+    let tdCalSelected = { year: 2026, month: 10, day: 12 }; // Default to Nov 12 as in reference mockup
+
+    const tdMonthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const tdMonthShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const tdDayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    function openTestDriveCalendarModal() {
+      // Sync calendar view with current activeTdDate if available
+      if (activeTdDate) {
+        const mIdx = tdMonthShort.findIndex(m => activeTdDate.includes(m));
+        if (mIdx !== -1) {
+          tdCalMonth = mIdx;
+          const matchNum = activeTdDate.match(/\b\d{1,2}\b/);
+          if (matchNum) {
+            tdCalSelected = { year: 2026, month: mIdx, day: parseInt(matchNum[0], 10) };
+          }
+        }
+      }
+      renderTestDriveCalendar();
+      const modal = document.getElementById('testDriveCalendarModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.style.display = 'flex';
+      }
+    }
+
+    function closeTestDriveCalendarModal() {
+      const modal = document.getElementById('testDriveCalendarModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      }
+    }
+
+    function prevTestDriveCalMonth() {
+      tdCalMonth--;
+      if (tdCalMonth < 0) {
+        tdCalMonth = 11;
+        tdCalYear--;
+      }
+      renderTestDriveCalendar();
+    }
+
+    function nextTestDriveCalMonth() {
+      tdCalMonth++;
+      if (tdCalMonth > 11) {
+        tdCalMonth = 0;
+        tdCalYear++;
+      }
+      renderTestDriveCalendar();
+    }
+
+    function renderTestDriveCalendar() {
+      const headerText = document.getElementById('tdCalMonthYearText');
+      if (headerText) {
+        headerText.innerText = `${tdMonthNames[tdCalMonth]} ${tdCalYear}`;
+      }
+
+      const grid = document.getElementById('tdCalDaysGrid');
+      if (!grid) return;
+
+      const firstDayIndex = new Date(tdCalYear, tdCalMonth, 1).getDay(); // 0 = Sun
+      const totalDays = new Date(tdCalYear, tdCalMonth + 1, 0).getDate();
+      const prevMonthTotalDays = new Date(tdCalYear, tdCalMonth, 0).getDate();
+
+      let html = '';
+
+      // Trailing days from previous month
+      for (let i = firstDayIndex - 1; i >= 0; i--) {
+        const d = prevMonthTotalDays - i;
+        html += `<span class="h-8 flex items-center justify-center text-xs text-slate-300 font-medium select-none">${d}</span>`;
+      }
+
+      // Current month days
+      for (let day = 1; day <= totalDays; day++) {
+        const isSelected = tdCalSelected && tdCalSelected.year === tdCalYear && tdCalSelected.month === tdCalMonth && tdCalSelected.day === day;
+        const isToday = tdCalYear === 2026 && tdCalMonth === 9 && day === 30;
+
+        if (isSelected) {
+          html += `
+            <button type="button" onclick="selectCalendarDay(${tdCalYear}, ${tdCalMonth}, ${day})" class="w-8 h-8 mx-auto rounded-full bg-[#007AFF] text-white font-black text-xs flex items-center justify-center shadow-xs active:scale-95 transition-all cursor-pointer">
+              ${day}
+            </button>`;
+        } else {
+          html += `
+            <button type="button" onclick="selectCalendarDay(${tdCalYear}, ${tdCalMonth}, ${day})" class="w-8 h-8 mx-auto rounded-full hover:bg-blue-50 text-slate-700 font-bold text-xs flex items-center justify-center ${isToday ? 'border border-[#007AFF] text-[#007AFF]' : ''} active:scale-95 transition-all cursor-pointer">
+              ${day}
+            </button>`;
+        }
+      }
+
+      // Leading days for next month to complete 35 or 42 cells
+      const totalRendered = firstDayIndex + totalDays;
+      const targetCells = totalRendered > 35 ? 42 : 35;
+      const nextDays = targetCells - totalRendered;
+      for (let day = 1; day <= nextDays; day++) {
+        html += `<span class="h-8 flex items-center justify-center text-xs text-slate-300 font-medium select-none">${day}</span>`;
+      }
+
+      grid.innerHTML = html;
+    }
+
+    function selectCalendarDay(year, month, day) {
+      tdCalSelected = { year, month, day };
+      tdCalYear = year;
+      tdCalMonth = month;
+
+      const d = new Date(year, month, day);
+      const dayName = tdDayNames[d.getDay()];
+      const monthShort = tdMonthShort[month];
+      const dayPadded = day < 10 ? '0' + day : '' + day;
+
+      let formattedDate = `${dayName}, ${dayPadded} ${monthShort}`;
+      if (year === 2026 && month === 9 && day === 30) {
+        formattedDate = 'Today, 30 Oct';
+      } else if (year === 2026 && month === 9 && day === 31) {
+        formattedDate = 'Tomorrow, 31 Oct';
+      }
+
+      activeTdDate = formattedDate;
+
+      // Update header date label
+      const dateLabel = document.getElementById('tdSelectedDateLabel');
+      if (dateLabel) dateLabel.innerText = formattedDate;
+
+      // Check if custom date matches any of the 5 preset cards
+      let matchedCard = null;
+      document.querySelectorAll('.td-date-card').forEach(card => {
+        const num = card.querySelector('span:nth-child(2)')?.innerText.trim();
+        const mon = card.querySelector('span:last-child')?.innerText.trim().toUpperCase();
+        if (num === dayPadded && mon === monthShort.toUpperCase()) {
+          matchedCard = card;
+        } else {
+          card.className = 'td-date-card w-full py-2.5 px-0.5 rounded-xl text-center border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50 active:scale-95 transition-all cursor-pointer';
+          const daySpan = card.querySelector('span:first-child');
+          const numSpan = card.querySelector('span:nth-child(2)');
+          const monSpan = card.querySelector('span:last-child');
+          if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-slate-400 leading-none';
+          if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1.5 text-slate-800';
+          if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-slate-400 leading-none';
+        }
+      });
+
+      if (matchedCard) {
+        matchedCard.className = 'td-date-card w-full py-2.5 px-0.5 rounded-xl text-center border-2 border-[#007AFF] bg-[#007AFF] text-white shadow-sm active:scale-95 transition-all cursor-pointer';
+        const daySpan = matchedCard.querySelector('span:first-child');
+        const numSpan = matchedCard.querySelector('span:nth-child(2)');
+        const monSpan = matchedCard.querySelector('span:last-child');
+        if (daySpan) daySpan.className = 'text-[8.5px] font-extrabold uppercase tracking-wide block text-white/90 leading-none';
+        if (numSpan) numSpan.className = 'text-base font-black leading-none block my-1.5 text-white';
+        if (monSpan) monSpan.className = 'text-[8.5px] font-bold uppercase block text-white/80 leading-none';
+      }
+
+      updateTestDriveSlotSummary();
+      closeTestDriveCalendarModal();
+      showAppToast(`Date selected: ${formattedDate}`, 'info');
+    }
+
+    function clearTestDriveCal() {
+      selectCalendarDay(2026, 9, 30);
+    }
+
+    function todayTestDriveCal() {
+      selectCalendarDay(2026, 9, 30);
+    }
+
+    // Handles custom date selection from program / URL params
     function handleCustomDateSelect(dateValue) {
+      if (!dateValue) return;
+      const parts = dateValue.split('-');
+      const year = parseInt(parts[0], 10);
+      const month = parseInt(parts[1], 10) - 1;
+      const day = parseInt(parts[2], 10);
+      selectCalendarDay(year, month, day);
+    }
+
+    // Legacy date handler
+    function _legacyHandleCustomDateSelect(dateValue) {
       if (!dateValue) return;
       const parts = dateValue.split('-');
       const year = parseInt(parts[0], 10);
@@ -10962,6 +11187,18 @@
           if (params.get('demo_slot')) {
             const slotPill = Array.from(document.querySelectorAll('.td-slot-pill')).find(p => p.innerText.trim() === params.get('demo_slot'));
             if (slotPill) selectTestDriveSlot(params.get('demo_slot'), slotPill);
+          }
+          if (params.get('calendar') === 'popup' || params.get('cal') === '1' || params.get('cal') === 'popup' || params.get('modal') === 'calendar') {
+            if (params.get('cal_month')) {
+              tdCalMonth = parseInt(params.get('cal_month'), 10);
+            }
+            if (params.get('cal_day')) {
+              const d = parseInt(params.get('cal_day'), 10);
+              tdCalSelected = { year: 2026, month: tdCalMonth, day: d };
+            }
+            setTimeout(() => {
+              openTestDriveCalendarModal();
+            }, 50);
           }
           if (params.get('scroll') === 'bottom') {
             setTimeout(() => {

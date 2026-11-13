@@ -1,5 +1,29 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 📅 In-App Calendar Popup Modal for Test Drive Date Selection
+
+1. **In-App Calendar Popup Modal (Replacing Browser Native Picker)**:
+   - Replaced browser native `<input type="date">` with a custom in-app popup modal (`#testDriveCalendarModal`) triggered by tapping the calendar icon button `[ 📅 ]` next to the date header.
+   - Cleanly contained within the mobile viewport with a subtle dimmed backdrop (`bg-slate-900/60 backdrop-blur-xs`), eliminating overflowing browser popups.
+
+2. **Matching Reference Layout & Controls**:
+   - **Header**: Month & Year dropdown (`November 2026 ▼`), previous month arrow (`↑`), next month arrow (`↓`), and close button (`✕`).
+   - **Weekday Headers**: `S  M  T  W  T  F  S` in high-legibility bold text.
+   - **Day Grid**: Trailing previous month days, active interactive current month days, and leading next month days.
+   - **Selected Day**: Highlighted in vibrant brand blue pill (`bg-[#007AFF] text-white font-black`).
+   - **Action Footer**:
+     - `Clear`: Resets selection to `Today, 30 Oct`.
+     - `Today`: Instantly selects today's date.
+
+3. **Visual Verification**:
+
+| Calendar Popup (November 2026 - Nov 12 Selected) | Calendar Popup (October 2026 - Today 30 Oct) |
+| :---: | :---: |
+| ![November 12 Popup](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_calendar_popup_november_12.png) | ![October 30 Popup](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_calendar_popup_november.png) |
+| *In-app calendar popup matching reference mockup with November 2026, navigation arrows, day headers, Nov 12 pill, and Clear/Today.* | *Default October 2026 view with Today (30 Oct) highlighted and backdrop dimming.* |
+
+---
+
 ## 📱 Dedicated Book Test Drive Screen & Header Calendar Custom Date Trigger
 
 1. **Dedicated Full Screen (Converted from Popup Modal)**:
