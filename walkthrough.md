@@ -17,7 +17,8 @@
 
 3. **Integrated Activities Tab Directly on Enquiry Details (`#detail-tab-activities`)**:
    - Upgraded Enquiry Details navigation to a 4-tab bar: `General`, `Product`, `Activities (7)`, and `History`.
-   - Activities tab features a header control card (`Lead Activities (7)`), `+ Add Activity` CTA button, and horizontal filter chips (`All (7)`, `Follow-ups (3)`, `Comments (2)`, `Test Drives (1)`, `Brochures (1)`).
+   - Activities tab features a clean header card (`Lead Activities (7)` & `All interactions & notes for this lead`) with horizontal filter chips (`All (7)`, `Follow-ups (3)`, `Comments (2)`, `Test Drives (1)`, `Brochures (1)`).
+   - Removed the duplicate in-card `+ Add Activity` button to keep the header minimal and distraction-free, centralizing all activity addition to the prominent floating `+ Activities` speed-dial action.
    - Rich interactive timeline with activity logs, badge indicators, call-back buttons, and metadata.
    - All modal submissions automatically prepend to the timeline, increment counter badges, trigger toast confirmations, and switch directly to the Activities tab without ever leaving Enquiry Details.
 
@@ -25,7 +26,7 @@
 
 | Floating `+ Activities` Button | Floating Speed-Dial Actions Menu | Integrated Activities Tab Feed |
 | :---: | :---: | :---: |
-| ![Floating Button](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiry_details_general_floating_btn.png) | ![Floating Menu Open](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiry_details_floating_menu_open.png) | ![Activities Tab](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiry_details_activities_tab.png) |
+| ![Floating Button](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiry_details_general_floating_btn.png) | ![Floating Menu Open](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiry_details_floating_menu_open.png) | ![Activities Tab](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiry_details_activities_tab_clean.png) |
 | *Floating `+ Activities` pill button at bottom-right above navigation bar.* | *Speed-dial menu expanded with Add Follow Up, Comment, Test Drive, Brochure, and Auto-Comment.* | *Dedicated Activities tab on Enquiry Details with filter chips and timeline cards.* |
 
 | In-Page Add Follow Up Modal | In-Page Add Comment Modal |
