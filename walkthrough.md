@@ -1,5 +1,25 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🎨 Unified Pill Design for "Add Enquiry" (Matching Add Activity / Activities)
+
+1. **Floating Action Button (`#fabAddEnquiry`)**:
+   - Redesigned from the heavy dark-blue gradient (`bg-gradient-to-r from-[#007AFF] to-blue-600 text-white`) to match the exact aesthetic of the `+ Activities` button (`#floatingActivitiesBtn`).
+   - Clean, lightweight white pill (`bg-white rounded-full border border-[#BFDBFE]`) with soft shadow (`shadow-lg shadow-blue-500/15`).
+   - Bold blue typography and plus indicator (`text-[#007AFF] font-bold text-xs`) for quick thumb-reach access.
+   - Positioned cleanly at `bottom-20 right-4` on both the Home and Enquiries screens.
+
+2. **Header Action CTA on Enquiries Screen**:
+   - Updated the top action button to the matching rounded pill style with `border-[#BFDBFE]` and `text-[#007AFF]`, maintaining 100% design harmony.
+
+3. **Visual Verification**:
+
+| Floating `+ Add Enquiry` on Home Screen | Floating & Header `+ Add Enquiry` on Enquiries Screen |
+| :---: | :---: |
+| ![Home Add Enquiry](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_add_enquiry_new.png) | ![Enquiry Screen Add Enquiry](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiry_screen_new.png) |
+| *Floating `+ Add Enquiry` pill button matching the `+ Activities` design.* | *Unified pill button styling across the search filter header and bottom floating action.* |
+
+---
+
 ## ⚡ Integrated Activities & Floating Action Menu on Enquiry Details
 
 1. **Floating `+ Activities` Action Button (`#floatingActivitiesBtn`)**:

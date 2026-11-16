@@ -489,9 +489,9 @@
             </button>
 
             <!-- Add Enquiry CTA Button -->
-            <button onclick="openAddEnquiryModal()" class="px-3.5 py-2.5 bg-[#007AFF] active:bg-blue-600 text-white rounded-xl text-xs font-bold shadow-sm flex items-center gap-1.5 shrink-0 active:scale-95 transition-transform cursor-pointer">
-              <i class="fa-solid fa-plus text-xs"></i>
-              <span>Add Enquiry</span>
+            <button onclick="openAddEnquiryModal()" class="px-3.5 py-2 bg-white hover:bg-blue-50/80 active:scale-95 text-[#007AFF] rounded-full text-xs font-bold shadow-xs flex items-center gap-1.5 shrink-0 transition-transform cursor-pointer border border-[#BFDBFE]">
+              <span class="text-sm font-extrabold leading-none text-[#007AFF]">+</span>
+              <span class="text-xs font-bold text-[#007AFF] tracking-tight">Add Enquiry</span>
             </button>
           </div>
         </div>
@@ -5079,12 +5079,10 @@
 
     </main>
 
-    <!-- FLOATING ADD ENQUIRY ACTION BUTTON (FAB) -->
-    <button id="fabAddEnquiry" onclick="openAddEnquiryModal()" class="absolute bottom-20 right-4 bg-gradient-to-r from-[#007AFF] to-blue-600 hover:from-blue-600 hover:to-blue-700 active:scale-95 text-white px-4 py-2.5 rounded-full shadow-lg shadow-blue-500/40 flex items-center gap-2 font-black text-xs transition-all z-40 cursor-pointer border border-white/20">
-      <div class="w-5 h-5 rounded-full bg-white/25 flex items-center justify-center text-[10px]">
-        <i class="fa-solid fa-plus"></i>
-      </div>
-      <span>Add Enquiry</span>
+    <!-- FLOATING ADD ENQUIRY ACTION BUTTON (FAB) (MATCHES ACTIVITIES BUTTON DESIGN) -->
+    <button id="fabAddEnquiry" onclick="openAddEnquiryModal()" class="absolute bottom-20 right-4 z-40 bg-white hover:bg-blue-50/80 active:scale-95 text-[#007AFF] px-4 py-2 rounded-full shadow-lg shadow-blue-500/15 flex items-center gap-1.5 font-bold text-xs transition-all cursor-pointer border border-[#BFDBFE]">
+      <span class="text-base font-extrabold leading-none text-[#007AFF]">+</span>
+      <span class="text-xs font-bold text-[#007AFF] tracking-tight">Add Enquiry</span>
     </button>
 
     <!-- FLOATING ACTIVITIES BUTTON ON ENQUIRY DETAILS (MATCHES USER SPECIFICATION) -->
