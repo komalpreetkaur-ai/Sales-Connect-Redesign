@@ -1,5 +1,40 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## ⚡ Integrated Activities & Floating Action Menu on Enquiry Details
+
+1. **Floating `+ Activities` Action Button (`#floatingActivitiesBtn`)**:
+   - Styled exactly to the reference mockup with a clean pill shape, soft blue background tint (`#EFF6FF`), delicate border (`#BFDBFE`), and bold blue text `+ Activities`.
+   - Fixed at `bottom-20 right-4` directly above the docked bottom navigation bar, floating over the customer details for 1-tap thumb reach.
+   - Visible exclusively while viewing customer enquiry details (`screen-enquiry-details`).
+
+2. **Floating Speed-Dial Quick Actions Menu (`#floatingActivitiesMenu`)**:
+   - Tapping `+ Activities` opens an animated floating speed-dial menu with a backdrop dimming layer:
+     - 📞 **Add Follow Up**: Opens direct in-page follow-up scheduler modal.
+     - 💬 **Add Comment**: Opens direct in-page comment/remark modal with categorization tags.
+     - 🚗 **Book Test Drive**: Opens full test-drive booking screen pre-filled for Anita Meti.
+     - 📄 **Send Brochure**: Opens digital brochure share modal (WhatsApp / Email / SMS).
+     - 🤖 **Auto-Comment**: Quick 1-tap status updates (e.g. *Called, customer busy*, *Price shared on WhatsApp*).
+
+3. **Integrated Activities Tab Directly on Enquiry Details (`#detail-tab-activities`)**:
+   - Upgraded Enquiry Details navigation to a 4-tab bar: `General`, `Product`, `Activities (7)`, and `History`.
+   - Activities tab features a header control card (`Lead Activities (7)`), `+ Add Activity` CTA button, and horizontal filter chips (`All (7)`, `Follow-ups (3)`, `Comments (2)`, `Test Drives (1)`, `Brochures (1)`).
+   - Rich interactive timeline with activity logs, badge indicators, call-back buttons, and metadata.
+   - All modal submissions automatically prepend to the timeline, increment counter badges, trigger toast confirmations, and switch directly to the Activities tab without ever leaving Enquiry Details.
+
+4. **Visual Verification**:
+
+| Floating `+ Activities` Button | Floating Speed-Dial Actions Menu | Integrated Activities Tab Feed |
+| :---: | :---: | :---: |
+| ![Floating Button](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiry_details_general_floating_btn.png) | ![Floating Menu Open](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiry_details_floating_menu_open.png) | ![Activities Tab](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiry_details_activities_tab.png) |
+| *Floating `+ Activities` pill button at bottom-right above navigation bar.* | *Speed-dial menu expanded with Add Follow Up, Comment, Test Drive, Brochure, and Auto-Comment.* | *Dedicated Activities tab on Enquiry Details with filter chips and timeline cards.* |
+
+| In-Page Add Follow Up Modal | In-Page Add Comment Modal |
+| :---: | :---: |
+| ![Add Follow Up Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiry_details_add_followup_modal.png) | ![Add Comment Modal](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_enquiry_details_add_comment_modal.png) |
+| *Direct follow-up scheduler over Enquiry Details with Date, Time, Stage, and Priority.* | *Direct comment modal over Enquiry Details with tag selector and discussion notes.* |
+
+---
+
 ## 📅 Polished Calendar Design & Dynamic Custom Date Card (Placed Before Today)
 
 1. **Polished In-App Calendar Popup (`#testDriveCalendarModal`)**:

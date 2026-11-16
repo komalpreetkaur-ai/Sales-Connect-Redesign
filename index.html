@@ -1370,8 +1370,11 @@
         <div class="bg-slate-100/90 p-1 rounded-2xl border border-slate-200/70 flex items-center text-xs font-bold gap-1 shadow-2xs">
           <button onclick="setDetailTab('general', this)" class="detail-tab-btn flex-1 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs text-center cursor-pointer transition-all">General</button>
           <button onclick="setDetailTab('product', this)" class="detail-tab-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all">Product</button>
+          <button onclick="setDetailTab('activities', this)" class="detail-tab-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1">
+            <span>Activities</span>
+            <span id="enqDetailsTabCount" class="text-[9px] font-black bg-blue-100 text-[#007AFF] px-1.5 py-0.2 rounded-full">7</span>
+          </button>
           <button onclick="setDetailTab('history', this)" class="detail-tab-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all">History</button>
-          <button id="detailTabCtaBtn" onclick="openLeadActivitiesScreen()" class="py-1.5 px-3 rounded-xl bg-blue-50 text-[#007AFF] hover:bg-blue-100/80 border border-blue-200/60 font-bold text-center flex items-center gap-1 shrink-0 cursor-pointer transition-all active:scale-95"><i class="fa-solid fa-plus text-[10px]"></i> Activities</button>
         </div>
 
         <!-- TAB CONTENT 1: GENERAL -->
@@ -1401,6 +1404,13 @@
                 <div><span class="text-[9px] text-slate-400 font-bold block uppercase">REMARKS</span><span class="font-bold text-slate-800">Testing remark</span></div>
                 <div><span class="text-[9px] text-slate-400 font-bold block uppercase">STAGE</span><span class="font-bold text-slate-800">Negotiation</span></div>
                 <div><span class="text-[9px] text-slate-400 font-bold block uppercase">STATUS</span><span class="font-bold text-emerald-600">Open</span></div>
+              </div>
+              <div class="pt-2 border-t border-slate-200/60 flex items-center justify-between">
+                <span class="text-[10px] font-semibold text-slate-500"><span id="upcomingActCountNote">7</span> total activities recorded</span>
+                <button type="button" onclick="setDetailTab('activities', document.querySelectorAll('.detail-tab-btn')[2])" class="text-[11px] font-extrabold text-[#007AFF] hover:underline flex items-center gap-1 cursor-pointer">
+                  <span>View Activities</span>
+                  <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                </button>
               </div>
             </div>
           </div>
@@ -1601,6 +1611,199 @@
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 4: ACTIVITIES (INTEGRATED ON ENQUIRY DETAILS) -->
+        <div id="detail-tab-activities" class="detail-tab-content hidden space-y-3">
+          <!-- Activities Control Card -->
+          <div class="bg-white rounded-2xl border border-[#E0E8F5] p-3.5 shadow-xs space-y-2.5">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs font-black text-slate-800 uppercase tracking-wider block">Lead Activities (<span id="enqActHeaderCount">7</span>)</span>
+                <span id="enqActSubtitle" class="text-[10px] font-semibold text-slate-400">All interactions & notes for this lead</span>
+              </div>
+              <button type="button" onclick="toggleFloatingActivitiesMenu()" class="px-3 py-1.5 rounded-xl bg-blue-50 text-[#007AFF] hover:bg-blue-100 border border-blue-200/80 font-bold text-xs flex items-center gap-1 active:scale-95 transition-all cursor-pointer shadow-2xs">
+                <i class="fa-solid fa-plus text-[10px]"></i>
+                <span>Add Activity</span>
+              </button>
+            </div>
+
+            <!-- Filter Chips -->
+            <div class="flex items-center gap-1.5 overflow-x-auto custom-scroll pt-1 pb-0.5 text-[11px] font-bold">
+              <button type="button" onclick="filterEnquiryActivities('all', this)" class="enq-act-filter-chip px-2.5 py-1 rounded-lg bg-[#007AFF] text-white shadow-2xs whitespace-nowrap cursor-pointer transition-all">All (<span id="enqActFilterAllCount">7</span>)</button>
+              <button type="button" onclick="filterEnquiryActivities('followup', this)" class="enq-act-filter-chip px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">Follow-ups (<span id="enqActFilterFuCount">3</span>)</button>
+              <button type="button" onclick="filterEnquiryActivities('comment', this)" class="enq-act-filter-chip px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">Comments (<span id="enqActFilterCommCount">2</span>)</button>
+              <button type="button" onclick="filterEnquiryActivities('testdrive', this)" class="enq-act-filter-chip px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">Test Drives (<span id="enqActFilterTdCount">1</span>)</button>
+              <button type="button" onclick="filterEnquiryActivities('brochure', this)" class="enq-act-filter-chip px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all">Brochures (<span id="enqActFilterBrCount">1</span>)</button>
+            </div>
+          </div>
+
+          <!-- Dynamic Activities Timeline Feed -->
+          <div id="enquiryActivitiesFeedContainer" class="space-y-3">
+            <!-- 1. Upcoming Follow Up (Active) -->
+            <div class="enq-activity-item bg-white rounded-2xl border border-blue-200/90 p-3.5 shadow-xs space-y-3 relative overflow-hidden" data-type="followup">
+              <div class="absolute top-0 left-0 bottom-0 w-1 bg-[#007AFF]"></div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center border border-blue-100 font-bold shrink-0">
+                    <i class="fa-solid fa-phone-volume text-xs"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-xs font-black text-slate-800">Follow-up Scheduled</span>
+                      <span class="text-[9px] font-black uppercase text-amber-700 bg-amber-50 px-2 py-0.2 rounded-full border border-amber-200">Due Soon</span>
+                    </div>
+                    <span class="text-[10px] text-slate-400 font-semibold">24th Aug 2026, 08:14 PM</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">Open</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50/70 p-2.5 rounded-xl border border-slate-100">
+                <div>
+                  <span class="text-[9px] font-bold text-slate-400 uppercase block">Stage</span>
+                  <span class="font-extrabold text-slate-800">Negotiation</span>
+                </div>
+                <div>
+                  <span class="text-[9px] font-bold text-slate-400 uppercase block">Priority</span>
+                  <span class="font-extrabold text-rose-600">🔥 Hot Lead</span>
+                </div>
+                <div class="col-span-2 pt-1 border-t border-slate-100">
+                  <span class="text-[9px] font-bold text-slate-400 uppercase block">Discussion Notes</span>
+                  <p class="font-semibold text-slate-700 text-xs mt-0.5">Testing remark - Customer requested final festive discount quote with zero-dep insurance.</p>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-1 border-t border-slate-100 text-xs">
+                <span class="text-[10px] font-semibold text-slate-400">Assigned: Swati Jain</span>
+                <div class="flex items-center gap-2">
+                  <button type="button" onclick="showAppToast('Dialing customer...', 'info')" class="text-xs font-bold text-[#007AFF] hover:underline flex items-center gap-1 cursor-pointer">
+                    <i class="fa-solid fa-phone text-[10px]"></i>
+                    <span>Call</span>
+                  </button>
+                  <button type="button" onclick="markEnquiryActivityDone(this)" class="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200/80 text-[10px] font-extrabold active:scale-95 cursor-pointer">
+                    ✓ Complete
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Comment: Finance Discussion -->
+            <div class="enq-activity-item bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5" data-type="comment">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 font-bold shrink-0">
+                    <i class="fa-solid fa-comment-dots text-xs"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-xs font-black text-slate-800">Niket Kumar (You)</span>
+                      <span class="text-[9px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.2 rounded border border-blue-100">Price & EMI</span>
+                    </div>
+                    <span class="text-[10px] text-slate-400 font-semibold">22nd Aug 2026, 04:30 PM</span>
+                  </div>
+                </div>
+                <span class="text-[10px] text-slate-400 font-semibold">2 days ago</span>
+              </div>
+              <p class="text-xs font-semibold text-slate-700 bg-slate-50/70 p-2.5 rounded-xl border border-slate-100 leading-relaxed">
+                Customer visited dealership showroom. Highly interested in Brezza ZXi Petrol MT. Agreed to proceed if delivery is scheduled before Diwali.
+              </p>
+            </div>
+
+            <!-- 3. Test Drive: Confirmed -->
+            <div class="enq-activity-item bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-3" data-type="testdrive">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center border border-purple-100 font-bold shrink-0">
+                    <i class="fa-solid fa-car-side text-xs"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-black text-slate-800 block">Test Drive Booked</span>
+                    <span class="text-[10px] text-slate-400 font-semibold">Fri, 30 Oct 2026 • 11:30 AM</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-100">Confirmed</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50/70 p-2.5 rounded-xl border border-slate-100">
+                <div>
+                  <span class="text-[9px] font-bold text-slate-400 uppercase block">Vehicle</span>
+                  <span class="font-extrabold text-slate-800">Suzuki Brezza ZXi</span>
+                </div>
+                <div>
+                  <span class="text-[9px] font-bold text-slate-400 uppercase block">Type</span>
+                  <span class="font-bold text-slate-700">Dealership Visit</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Follow Up: Contacted (Completed) -->
+            <div class="enq-activity-item bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5 opacity-90" data-type="followup">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-xl bg-slate-100 text-emerald-600 flex items-center justify-center border border-slate-200 font-bold shrink-0">
+                    <i class="fa-solid fa-check text-xs"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-xs font-black text-slate-800">Introductory Call</span>
+                      <span class="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.2 rounded">Completed</span>
+                    </div>
+                    <span class="text-[10px] text-slate-400 font-semibold">20th Aug 2026, 11:00 AM</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-semibold text-slate-400">Done</span>
+              </div>
+              <p class="text-xs font-medium text-slate-600 bg-slate-50 p-2 rounded-xl border border-slate-100">
+                Initial qualification call completed. Customer budget is 11-12 Lakhs with old car exchange interest.
+              </p>
+            </div>
+
+            <!-- 5. Brochure: Sent on WhatsApp -->
+            <div class="enq-activity-item bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5" data-type="brochure">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100 font-bold shrink-0">
+                    <i class="fa-solid fa-file-pdf text-xs"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-xs font-black text-slate-800">Brochure Sent</span>
+                      <span class="text-[9px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-100">WhatsApp</span>
+                    </div>
+                    <span class="text-[10px] text-slate-400 font-semibold">19th Aug 2026, 02:15 PM</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-bold text-emerald-600">Delivered</span>
+              </div>
+              <div class="flex items-center justify-between text-xs bg-slate-50 p-2 rounded-xl border border-slate-100">
+                <div class="flex items-center gap-2 min-w-0">
+                  <i class="fa-solid fa-paperclip text-slate-400 text-xs"></i>
+                  <span class="font-bold text-slate-700 truncate text-[11px]">Brezza_Official_Brochure_2026.pdf</span>
+                </div>
+                <button type="button" onclick="showAppToast('Opening brochure preview...', 'info')" class="text-[10.5px] font-bold text-[#007AFF] hover:underline shrink-0">View</button>
+              </div>
+            </div>
+
+            <!-- 6. Comment: Color Preference -->
+            <div class="enq-activity-item bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5" data-type="comment">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 font-bold shrink-0">
+                    <i class="fa-solid fa-comment-dots text-xs"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-xs font-black text-slate-800">Swati Jain</span>
+                      <span class="text-[9px] font-bold text-indigo-600 bg-indigo-50 px-1.5 py-0.2 rounded border border-indigo-100">Color Choice</span>
+                    </div>
+                    <span class="text-[10px] text-slate-400 font-semibold">18th Aug 2026, 05:20 PM</span>
+                  </div>
+                </div>
+                <span class="text-[10px] text-slate-400 font-semibold">6 days ago</span>
+              </div>
+              <p class="text-xs font-semibold text-slate-700 bg-slate-50/70 p-2.5 rounded-xl border border-slate-100 leading-relaxed">
+                Customer prefers Magma Grey or Pearl Arctic White with black roof dual-tone. Advised waiting time of 10-15 days.
+              </p>
             </div>
           </div>
         </div>
@@ -4888,6 +5091,76 @@
       <span>Add Enquiry</span>
     </button>
 
+    <!-- FLOATING ACTIVITIES BUTTON ON ENQUIRY DETAILS (MATCHES USER SPECIFICATION) -->
+    <button id="floatingActivitiesBtn" onclick="toggleFloatingActivitiesMenu()" class="hidden absolute bottom-20 right-4 z-40 bg-white hover:bg-blue-50/80 active:scale-95 text-[#007AFF] px-4 py-2 rounded-full shadow-lg shadow-blue-500/15 flex items-center gap-1.5 font-bold text-xs transition-all cursor-pointer border border-[#BFDBFE]">
+      <span class="text-base font-extrabold leading-none text-[#007AFF]">+</span>
+      <span class="text-xs font-bold text-[#007AFF] tracking-tight">Activities</span>
+    </button>
+
+    <!-- FLOATING ACTIVITIES BACKDROP & SPEED-DIAL ACTION MENU -->
+    <div id="floatingActivitiesBackdrop" onclick="closeFloatingActivitiesMenu()" class="hidden absolute inset-0 bg-slate-900/25 backdrop-blur-2xs z-40 transition-opacity"></div>
+    <div id="floatingActivitiesMenu" class="hidden absolute bottom-32 right-4 z-50 w-64 bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-2 space-y-1 animate-scale-up">
+      <div class="flex items-center justify-between px-2.5 py-1.5 border-b border-slate-100">
+        <span class="text-[10px] font-black uppercase text-slate-400 tracking-wider">Quick Activities</span>
+        <button type="button" onclick="closeFloatingActivitiesMenu()" class="w-5 h-5 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-600 text-xs cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Option 1: Add Follow Up -->
+      <button type="button" onclick="openEnquiryActivityModal('followup')" class="w-full flex items-center gap-2.5 p-2 rounded-xl hover:bg-blue-50 text-left transition-all group cursor-pointer">
+        <div class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center group-hover:bg-[#007AFF] group-hover:text-white transition-colors shrink-0">
+          <i class="fa-solid fa-phone-volume text-xs"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="text-xs font-bold text-slate-800 group-hover:text-[#007AFF]">Add Follow Up</div>
+          <div class="text-[10px] text-slate-400 truncate">Schedule next call or visit</div>
+        </div>
+      </button>
+
+      <!-- Option 2: Add Comment -->
+      <button type="button" onclick="openEnquiryActivityModal('comment')" class="w-full flex items-center gap-2.5 p-2 rounded-xl hover:bg-emerald-50 text-left transition-all group cursor-pointer">
+        <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors shrink-0">
+          <i class="fa-solid fa-comment-dots text-xs"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="text-xs font-bold text-slate-800 group-hover:text-emerald-600">Add Comment</div>
+          <div class="text-[10px] text-slate-400 truncate">Customer notes & remarks</div>
+        </div>
+      </button>
+
+      <!-- Option 3: Book Test Drive -->
+      <button type="button" onclick="openEnquiryActivityModal('testdrive')" class="w-full flex items-center gap-2.5 p-2 rounded-xl hover:bg-purple-50 text-left transition-all group cursor-pointer">
+        <div class="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center group-hover:bg-purple-600 group-hover:text-white transition-colors shrink-0">
+          <i class="fa-solid fa-car-side text-xs"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="text-xs font-bold text-slate-800 group-hover:text-purple-600">Book Test Drive</div>
+          <div class="text-[10px] text-slate-400 truncate">Date, slot & model booking</div>
+        </div>
+      </button>
+
+      <!-- Option 4: Send Brochure -->
+      <button type="button" onclick="openEnquiryActivityModal('brochure')" class="w-full flex items-center gap-2.5 p-2 rounded-xl hover:bg-amber-50 text-left transition-all group cursor-pointer">
+        <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:bg-amber-600 group-hover:text-white transition-colors shrink-0">
+          <i class="fa-solid fa-file-pdf text-xs"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="text-xs font-bold text-slate-800 group-hover:text-amber-600">Send Brochure</div>
+          <div class="text-[10px] text-slate-400 truncate">WhatsApp or Email catalog</div>
+        </div>
+      </button>
+
+      <!-- Option 5: Auto-Comment -->
+      <button type="button" onclick="openEnquiryActivityModal('autocomment')" class="w-full flex items-center gap-2.5 p-2 rounded-xl hover:bg-indigo-50 text-left transition-all group cursor-pointer">
+        <div class="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors shrink-0">
+          <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="text-xs font-bold text-slate-800 group-hover:text-indigo-600">Auto-Comment</div>
+          <div class="text-[10px] text-slate-400 truncate">One-tap quick remarks</div>
+        </div>
+      </button>
+    </div>
+
     <!-- FLOATING DOCKED BOTTOM NAVIGATION BAR -->
     <nav class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md border border-slate-200/90 py-2 px-2 z-50 rounded-2xl shadow-xl shadow-slate-900/10">
       <div class="flex items-center justify-around">
@@ -5674,6 +5947,219 @@
     </div>
   </div>
 
+  <!-- ENQUIRY DETAILS: ADD FOLLOW UP MODAL -->
+  <div id="enquiryAddFollowUpModal" onclick="if(event.target === this) closeEnquiryActivityModal('followup')" style="display: none;" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-50 p-4 transition-all">
+    <div class="bg-white rounded-3xl w-full max-w-[360px] p-5 space-y-3.5 shadow-2xl border border-slate-100 relative animate-in fade-in zoom-in-95 duration-200">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center border border-blue-100 shadow-2xs shrink-0">
+            <i class="fa-solid fa-phone-volume text-sm"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-slate-900 tracking-tight leading-tight">Add Follow Up</h3>
+            <p id="enqModalFollowUpSub" class="text-[9.5px] font-semibold text-slate-400">Lead: Rupesh Ranjan Bhatt • ENQ987875364</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeEnquiryActivityModal('followup')" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-800 flex items-center justify-center text-xs active:scale-95 transition-all cursor-pointer">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 text-xs">
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Followup Date*</label>
+          <input id="enqFollowupDateInput" type="date" value="2026-10-24" class="w-full p-2 border border-slate-200 rounded-xl bg-slate-50/50 text-slate-800 font-semibold outline-none focus:border-[#007AFF] text-xs">
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Followup Time*</label>
+          <input id="enqFollowupTimeInput" type="time" value="14:44" class="w-full p-2 border border-slate-200 rounded-xl bg-slate-50/50 text-slate-800 font-semibold outline-none focus:border-[#007AFF] text-xs">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 text-xs">
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Stage*</label>
+          <select id="enqFollowupStageInput" class="w-full p-2 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF] text-xs">
+            <option>New</option>
+            <option>Contacted</option>
+            <option selected>Discussion Active</option>
+            <option>Negotiation</option>
+            <option>Ready for TD</option>
+            <option>Won</option>
+          </select>
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Priority</label>
+          <select id="enqFollowupPriorityInput" class="w-full p-2 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF] text-xs">
+            <option selected>🔥 Hot</option>
+            <option>⚡ Warm</option>
+            <option>❄️ Cold</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="text-xs">
+        <label class="font-bold text-slate-700 block mb-1">Remarks / Discussion Notes*</label>
+        <textarea id="enqFollowupRemarksInput" rows="2" placeholder="Enter customer discussion details or callback notes..." class="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50/50 text-slate-800 font-medium outline-none focus:border-[#007AFF] text-xs resize-none"></textarea>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-1 border-t border-slate-100">
+        <button type="button" onclick="closeEnquiryActivityModal('followup')" class="px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 active:scale-95 cursor-pointer">Cancel</button>
+        <button type="button" onclick="submitEnquiryFollowUpDirect()" class="px-4 py-1.5 rounded-xl bg-[#007AFF] hover:bg-blue-600 text-white text-xs font-bold shadow-sm active:scale-95 transition-all cursor-pointer flex items-center gap-1.5">
+          <i class="fa-solid fa-check text-[10px]"></i>
+          <span>Save Follow Up</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENQUIRY DETAILS: ADD COMMENT MODAL -->
+  <div id="enquiryAddCommentModal" onclick="if(event.target === this) closeEnquiryActivityModal('comment')" style="display: none;" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-50 p-4 transition-all">
+    <div class="bg-white rounded-3xl w-full max-w-[360px] p-5 space-y-3.5 shadow-2xl border border-slate-100 relative animate-in fade-in zoom-in-95 duration-200">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 shadow-2xs shrink-0">
+            <i class="fa-solid fa-comment-dots text-sm"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-slate-900 tracking-tight leading-tight">Add Comment</h3>
+            <p id="enqModalCommentSub" class="text-[9.5px] font-semibold text-slate-400">Lead: Rupesh Ranjan Bhatt • ENQ987875364</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeEnquiryActivityModal('comment')" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-800 flex items-center justify-center text-xs active:scale-95 transition-all cursor-pointer">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
+      <div class="space-y-1.5">
+        <label class="text-[11px] font-bold text-slate-700 block">Topic / Tag</label>
+        <div class="flex items-center gap-1.5 overflow-x-auto custom-scroll pb-1">
+          <button type="button" onclick="selectEnqCommentTag('General', this)" class="enq-comm-tag-pill px-2.5 py-1 rounded-lg text-[10.5px] font-bold bg-[#007AFF] text-white cursor-pointer transition-all">General</button>
+          <button type="button" onclick="selectEnqCommentTag('Price & EMI', this)" class="enq-comm-tag-pill px-2.5 py-1 rounded-lg text-[10.5px] font-bold bg-slate-100 text-slate-600 hover:text-slate-800 cursor-pointer transition-all">Price & EMI</button>
+          <button type="button" onclick="selectEnqCommentTag('Variant / Specs', this)" class="enq-comm-tag-pill px-2.5 py-1 rounded-lg text-[10.5px] font-bold bg-slate-100 text-slate-600 hover:text-slate-800 cursor-pointer transition-all">Variant</button>
+          <button type="button" onclick="selectEnqCommentTag('Color Choice', this)" class="enq-comm-tag-pill px-2.5 py-1 rounded-lg text-[10.5px] font-bold bg-slate-100 text-slate-600 hover:text-slate-800 cursor-pointer transition-all">Color</button>
+        </div>
+      </div>
+
+      <div class="text-xs">
+        <label class="font-bold text-slate-700 block mb-1">Comment Text*</label>
+        <textarea id="enqCommentTextInput" rows="3" placeholder="Write internal agent notes or customer feedback..." class="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50/50 text-slate-800 font-medium outline-none focus:border-[#007AFF] text-xs resize-none"></textarea>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-1 border-t border-slate-100">
+        <button type="button" onclick="closeEnquiryActivityModal('comment')" class="px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 active:scale-95 cursor-pointer">Cancel</button>
+        <button type="button" onclick="submitEnquiryCommentDirect()" class="px-4 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm active:scale-95 transition-all cursor-pointer flex items-center gap-1.5">
+          <i class="fa-solid fa-paper-plane text-[10px]"></i>
+          <span>Post Comment</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENQUIRY DETAILS: SEND BROCHURE MODAL -->
+  <div id="enquirySendBrochureModal" onclick="if(event.target === this) closeEnquiryActivityModal('brochure')" style="display: none;" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-50 p-4 transition-all">
+    <div class="bg-white rounded-3xl w-full max-w-[360px] p-5 space-y-3.5 shadow-2xl border border-slate-100 relative animate-in fade-in zoom-in-95 duration-200">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100 shadow-2xs shrink-0">
+            <i class="fa-solid fa-file-pdf text-sm"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-slate-900 tracking-tight leading-tight">Send Brochure</h3>
+            <p id="enqModalBrochureSub" class="text-[9.5px] font-semibold text-slate-400">Share catalog with customer</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeEnquiryActivityModal('brochure')" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-800 flex items-center justify-center text-xs active:scale-95 transition-all cursor-pointer">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
+      <div class="space-y-2 text-xs">
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Select Model Brochure</label>
+          <select id="enqBrochureSelect" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-slate-800 font-semibold outline-none focus:border-[#007AFF]">
+            <option selected>Suzuki Brezza 2026 (Official E-Brochure)</option>
+            <option>Swift Dzire 2026 E-Brochure</option>
+            <option>Baleno Premium Hatchback Brochure</option>
+            <option>Grand Vitara Hybrid Brochure</option>
+          </select>
+        </div>
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Delivery Channel</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" onclick="selectBrochureChannel('whatsapp', this)" class="brochure-channel-btn p-2 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-700 font-bold flex flex-col items-center gap-1 cursor-pointer">
+              <i class="fa-brands fa-whatsapp text-sm text-emerald-600"></i>
+              <span class="text-[10px]">WhatsApp</span>
+            </button>
+            <button type="button" onclick="selectBrochureChannel('email', this)" class="brochure-channel-btn p-2 rounded-xl border border-slate-200 bg-white text-slate-600 hover:border-slate-300 font-bold flex flex-col items-center gap-1 cursor-pointer">
+              <i class="fa-regular fa-envelope text-sm"></i>
+              <span class="text-[10px]">Email</span>
+            </button>
+            <button type="button" onclick="selectBrochureChannel('sms', this)" class="brochure-channel-btn p-2 rounded-xl border border-slate-200 bg-white text-slate-600 hover:border-slate-300 font-bold flex flex-col items-center gap-1 cursor-pointer">
+              <i class="fa-solid fa-comment-sms text-sm"></i>
+              <span class="text-[10px]">SMS</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-1 border-t border-slate-100">
+        <button type="button" onclick="closeEnquiryActivityModal('brochure')" class="px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 active:scale-95 cursor-pointer">Cancel</button>
+        <button type="button" onclick="submitEnquiryBrochureDirect()" class="px-4 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold shadow-sm active:scale-95 transition-all cursor-pointer flex items-center gap-1.5">
+          <i class="fa-solid fa-paper-plane text-[10px]"></i>
+          <span>Send Now</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENQUIRY DETAILS: AUTO-COMMENT MODAL -->
+  <div id="enquiryAutoCommentModal" onclick="if(event.target === this) closeEnquiryActivityModal('autocomment')" style="display: none;" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center z-50 p-4 transition-all">
+    <div class="bg-white rounded-3xl w-full max-w-[360px] p-5 space-y-3.5 shadow-2xl border border-slate-100 relative animate-in fade-in zoom-in-95 duration-200">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100 shadow-2xs shrink-0">
+            <i class="fa-solid fa-wand-magic-sparkles text-sm"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-slate-900 tracking-tight leading-tight">Auto-Comment</h3>
+            <p class="text-[9.5px] font-semibold text-slate-400">1-Tap Quick Remarks</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeEnquiryActivityModal('autocomment')" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-800 flex items-center justify-center text-xs active:scale-95 transition-all cursor-pointer">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
+      <div class="space-y-2 text-xs">
+        <button type="button" onclick="postAutoCommentPreset('Customer requested callback tomorrow between 2 PM and 4 PM.')" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/50 text-left font-semibold text-slate-800 transition-all flex items-center justify-between group cursor-pointer">
+          <span>📞 Callback requested for tomorrow</span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-400 group-hover:text-indigo-600"></i>
+        </button>
+        <button type="button" onclick="postAutoCommentPreset('Customer inquired about 80% bank loan EMI and festive cashback discount.')" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/50 text-left font-semibold text-slate-800 transition-all flex items-center justify-between group cursor-pointer">
+          <span>💰 Inquired about EMI & Festive Discount</span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-400 group-hover:text-indigo-600"></i>
+        </button>
+        <button type="button" onclick="postAutoCommentPreset('Customer interested in exchanging old Swift car; quotation shared.')" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/50 text-left font-semibold text-slate-800 transition-all flex items-center justify-between group cursor-pointer">
+          <span>🔄 Exchange old car evaluation requested</span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-400 group-hover:text-indigo-600"></i>
+        </button>
+        <button type="button" onclick="postAutoCommentPreset('Shared official price list and variant brochure on WhatsApp.')" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/50 text-left font-semibold text-slate-800 transition-all flex items-center justify-between group cursor-pointer">
+          <span>📄 Sent brochure & price list on WhatsApp</span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-400 group-hover:text-indigo-600"></i>
+        </button>
+        <button type="button" onclick="postAutoCommentPreset('Customer will visit dealership showroom with family this Sunday.')" class="w-full p-2.5 rounded-xl border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/50 text-left font-semibold text-slate-800 transition-all flex items-center justify-between group cursor-pointer">
+          <span>🚗 Showroom visit planned with family</span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-400 group-hover:text-indigo-600"></i>
+        </button>
+      </div>
+
+      <div class="flex items-center justify-end pt-1 border-t border-slate-100">
+        <button type="button" onclick="closeEnquiryActivityModal('autocomment')" class="px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 active:scale-95 cursor-pointer">Close</button>
+      </div>
+    </div>
+  </div>
+
   <!-- DATE RANGE PICKER MODAL -->
   <div id="dateRangePickerModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-end sm:items-center justify-center z-50 p-2 sm:p-4">
     <div class="bg-white rounded-3xl w-full max-w-[380px] p-5 space-y-4 shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto custom-scroll relative">
@@ -6014,9 +6500,20 @@
           fab.classList.add('hidden');
         }
       }
+
+      const actFab = document.getElementById('floatingActivitiesBtn');
+      if (actFab) {
+        if (screenName === 'enquiry-details') {
+          actFab.classList.remove('hidden');
+        } else {
+          actFab.classList.add('hidden');
+          closeFloatingActivitiesMenu();
+        }
+      }
     }
 
     function goBackFromDetails() {
+      closeFloatingActivitiesMenu();
       switchScreen(lastActiveScreen || 'home');
     }
 
@@ -6552,20 +7049,388 @@
     function openEnquiryDetails(name, id) {
       const nameEl = document.getElementById('detail-customer-name');
       const idEl = document.getElementById('detail-enq-id');
-      if (nameEl) nameEl.innerText = name || 'Customer';
-      if (idEl) idEl.innerText = id || 'ENQ987875311';
-      activeLeadContext.name = name;
-      activeLeadContext.id = id;
+      const customerName = name || 'Rupesh Ranjan Bhatt';
+      const leadId = id || 'ENQ987875364';
+      if (nameEl) nameEl.innerText = customerName;
+      if (idEl) idEl.innerText = leadId;
+      activeLeadContext.name = customerName;
+      activeLeadContext.id = leadId;
+
+      const actSub = document.getElementById('enqActSubtitle');
+      if (actSub) actSub.innerText = `All interactions & notes for ${customerName}`;
+      const fSub = document.getElementById('enqModalFollowUpSub');
+      if (fSub) fSub.innerText = `Lead: ${customerName} • ${leadId}`;
+      const cSub = document.getElementById('enqModalCommentSub');
+      if (cSub) cSub.innerText = `Lead: ${customerName} • ${leadId}`;
+      const bSub = document.getElementById('enqModalBrochureSub');
+      if (bSub) bSub.innerText = `Share catalog with ${customerName}`;
 
       let initialStep = 2;
-      if (id === 'ENQ987875311' || id === 'ENQ987875324') initialStep = 1;
-      else if (id === 'ENQ987875333' || id === 'ENQ987875342' || id === 'ENQ987875355') initialStep = 2;
-      else if (id === 'ENQ987875364' || id === 'ENQ987875399') initialStep = 3;
-      else if (id === 'ENQ987875368' || id === 'ENQ987875412') initialStep = 4;
+      if (leadId === 'ENQ987875311' || leadId === 'ENQ987875324') initialStep = 1;
+      else if (leadId === 'ENQ987875333' || leadId === 'ENQ987875342' || leadId === 'ENQ987875355') initialStep = 2;
+      else if (leadId === 'ENQ987875364' || leadId === 'ENQ987875399') initialStep = 3;
+      else if (leadId === 'ENQ987875368' || leadId === 'ENQ987875412') initialStep = 4;
       setEnquiryProgressionStep(initialStep);
+
+      // Default to General tab on entry
+      const genBtn = document.querySelectorAll('.detail-tab-btn')[0];
+      if (genBtn) setDetailTab('general', genBtn);
 
       switchScreen('enquiry-details');
       resetScrollToTop();
+    }
+
+    // Open floating activities menu on Enquiry Details
+    function openFloatingActivitiesMenu() {
+      const menu = document.getElementById('floatingActivitiesMenu');
+      const backdrop = document.getElementById('floatingActivitiesBackdrop');
+      if (menu) menu.classList.remove('hidden');
+      if (backdrop) backdrop.classList.remove('hidden');
+    }
+
+    function toggleFloatingActivitiesMenu() {
+      const menu = document.getElementById('floatingActivitiesMenu');
+      if (menu && menu.classList.contains('hidden')) {
+        openFloatingActivitiesMenu();
+      } else {
+        closeFloatingActivitiesMenu();
+      }
+    }
+
+    function closeFloatingActivitiesMenu() {
+      const menu = document.getElementById('floatingActivitiesMenu');
+      const backdrop = document.getElementById('floatingActivitiesBackdrop');
+      if (menu) menu.classList.add('hidden');
+      if (backdrop) backdrop.classList.add('hidden');
+    }
+
+    function openEnquiryActivityModal(type) {
+      closeFloatingActivitiesMenu();
+      const currentName = activeLeadContext.name || document.getElementById('detail-customer-name')?.innerText || 'Customer';
+      const currentId = activeLeadContext.id || document.getElementById('detail-enq-id')?.innerText || 'ENQ987875364';
+
+      if (type === 'testdrive') {
+        openTestDriveBookingModal(currentId);
+        return;
+      }
+
+      const modalMap = {
+        followup: 'enquiryAddFollowUpModal',
+        comment: 'enquiryAddCommentModal',
+        brochure: 'enquirySendBrochureModal',
+        autocomment: 'enquiryAutoCommentModal'
+      };
+
+      const modalId = modalMap[type];
+      if (!modalId) return;
+
+      if (type === 'followup') {
+        const sub = document.getElementById('enqModalFollowUpSub');
+        if (sub) sub.innerText = `Lead: ${currentName} • ${currentId}`;
+      } else if (type === 'comment') {
+        const sub = document.getElementById('enqModalCommentSub');
+        if (sub) sub.innerText = `Lead: ${currentName} • ${currentId}`;
+      } else if (type === 'brochure') {
+        const sub = document.getElementById('enqModalBrochureSub');
+        if (sub) sub.innerText = `Share catalog with ${currentName}`;
+      }
+
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.style.display = 'flex';
+      }
+    }
+
+    function closeEnquiryActivityModal(type) {
+      const modalMap = {
+        followup: 'enquiryAddFollowUpModal',
+        comment: 'enquiryAddCommentModal',
+        brochure: 'enquirySendBrochureModal',
+        autocomment: 'enquiryAutoCommentModal'
+      };
+      const modalId = modalMap[type];
+      if (!modalId) return;
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      }
+    }
+
+    let activeEnqCommentTag = 'General';
+    function selectEnqCommentTag(tag, btn) {
+      activeEnqCommentTag = tag;
+      document.querySelectorAll('.enq-comm-tag-pill').forEach(b => {
+        b.className = 'enq-comm-tag-pill px-2.5 py-1 rounded-lg text-[10.5px] font-bold bg-slate-100 text-slate-600 hover:text-slate-800 cursor-pointer transition-all';
+      });
+      if (btn) {
+        btn.className = 'enq-comm-tag-pill px-2.5 py-1 rounded-lg text-[10.5px] font-bold bg-[#007AFF] text-white cursor-pointer transition-all';
+      }
+    }
+
+    let activeBrochureChannel = 'WhatsApp';
+    function selectBrochureChannel(channel, btn) {
+      activeBrochureChannel = channel === 'whatsapp' ? 'WhatsApp' : channel === 'email' ? 'Email' : 'SMS';
+      document.querySelectorAll('.brochure-channel-btn').forEach(b => {
+        b.className = 'brochure-channel-btn p-2 rounded-xl border border-slate-200 bg-white text-slate-600 hover:border-slate-300 font-bold flex flex-col items-center gap-1 cursor-pointer';
+      });
+      if (btn) {
+        btn.className = 'brochure-channel-btn p-2 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-700 font-bold flex flex-col items-center gap-1 cursor-pointer';
+      }
+    }
+
+    function filterEnquiryActivities(filterType, btn) {
+      document.querySelectorAll('.enq-act-filter-chip').forEach(b => {
+        b.className = 'enq-act-filter-chip px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 hover:text-slate-800 whitespace-nowrap cursor-pointer transition-all';
+      });
+      if (btn) {
+        btn.className = 'enq-act-filter-chip px-2.5 py-1 rounded-lg bg-[#007AFF] text-white shadow-2xs whitespace-nowrap cursor-pointer transition-all';
+      }
+
+      const items = document.querySelectorAll('.enq-activity-item');
+      items.forEach(item => {
+        if (filterType === 'all' || item.getAttribute('data-type') === filterType) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    }
+
+    function submitEnquiryFollowUpDirect() {
+      const dateVal = document.getElementById('enqFollowupDateInput')?.value || '2026-10-24';
+      const timeVal = document.getElementById('enqFollowupTimeInput')?.value || '14:44';
+      const stageVal = document.getElementById('enqFollowupStageInput')?.value || 'Discussion Active';
+      const priorityVal = document.getElementById('enqFollowupPriorityInput')?.value || '🔥 Hot Lead';
+      const remarksVal = document.getElementById('enqFollowupRemarksInput')?.value || 'Customer requested follow-up discussion.';
+
+      const dObj = new Date(dateVal);
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const formattedDate = !isNaN(dObj.getTime()) ? `${dObj.getDate()}th ${months[dObj.getMonth()]} ${dObj.getFullYear()}` : dateVal;
+
+      const container = document.getElementById('enquiryActivitiesFeedContainer');
+      if (container) {
+        const newCard = document.createElement('div');
+        newCard.className = 'enq-activity-item bg-white rounded-2xl border border-blue-200/90 p-3.5 shadow-xs space-y-3 relative overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200';
+        newCard.setAttribute('data-type', 'followup');
+        newCard.innerHTML = `
+          <div class="absolute top-0 left-0 bottom-0 w-1 bg-[#007AFF]"></div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-xl bg-blue-50 text-[#007AFF] flex items-center justify-center border border-blue-100 font-bold shrink-0">
+                <i class="fa-solid fa-phone-volume text-xs"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-xs font-black text-slate-800">Follow-up Scheduled</span>
+                  <span class="text-[9px] font-black uppercase text-[#007AFF] bg-blue-50 px-2 py-0.2 rounded-full border border-blue-200">Just Now</span>
+                </div>
+                <span class="text-[10px] text-slate-400 font-semibold">${formattedDate}, ${timeVal}</span>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">Open</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50/70 p-2.5 rounded-xl border border-slate-100">
+            <div>
+              <span class="text-[9px] font-bold text-slate-400 uppercase block">Stage</span>
+              <span class="font-extrabold text-slate-800">${stageVal}</span>
+            </div>
+            <div>
+              <span class="text-[9px] font-bold text-slate-400 uppercase block">Priority</span>
+              <span class="font-extrabold text-rose-600">${priorityVal}</span>
+            </div>
+            <div class="col-span-2 pt-1 border-t border-slate-100">
+              <span class="text-[9px] font-bold text-slate-400 uppercase block">Discussion Notes</span>
+              <p class="font-semibold text-slate-700 text-xs mt-0.5">${remarksVal}</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between pt-1 border-t border-slate-100 text-xs">
+            <span class="text-[10px] font-semibold text-slate-400">Assigned: Niket Kumar (You)</span>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="showAppToast('Dialing customer...', 'info')" class="text-xs font-bold text-[#007AFF] hover:underline flex items-center gap-1 cursor-pointer">
+                <i class="fa-solid fa-phone text-[10px]"></i>
+                <span>Call</span>
+              </button>
+              <button type="button" onclick="markEnquiryActivityDone(this)" class="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200/80 text-[10px] font-extrabold active:scale-95 cursor-pointer">
+                ✓ Complete
+              </button>
+            </div>
+          </div>
+        `;
+        container.prepend(newCard);
+      }
+
+      incrementEnquiryActivityCount('followup');
+      closeEnquiryActivityModal('followup');
+      showAppToast('Follow-up scheduled on Enquiry Details!', 'success');
+      
+      // Auto switch to Activities tab to see it
+      const actTabBtn = document.querySelectorAll('.detail-tab-btn')[2];
+      if (actTabBtn) setDetailTab('activities', actTabBtn);
+    }
+
+    function submitEnquiryCommentDirect() {
+      const text = document.getElementById('enqCommentTextInput')?.value?.trim();
+      if (!text) {
+        showAppToast('Please enter a comment', 'info');
+        return;
+      }
+
+      const container = document.getElementById('enquiryActivitiesFeedContainer');
+      if (container) {
+        const newCard = document.createElement('div');
+        newCard.className = 'enq-activity-item bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5 animate-in fade-in slide-in-from-top-2 duration-200';
+        newCard.setAttribute('data-type', 'comment');
+        newCard.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 font-bold shrink-0">
+                <i class="fa-solid fa-comment-dots text-xs"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-xs font-black text-slate-800">Niket Kumar (You)</span>
+                  <span class="text-[9px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.2 rounded border border-blue-100">${activeEnqCommentTag}</span>
+                </div>
+                <span class="text-[10px] text-slate-400 font-semibold">Just now</span>
+              </div>
+            </div>
+            <span class="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">New</span>
+          </div>
+          <p class="text-xs font-semibold text-slate-700 bg-slate-50/70 p-2.5 rounded-xl border border-slate-100 leading-relaxed">
+            ${text}
+          </p>
+        `;
+        container.prepend(newCard);
+      }
+
+      // Reset text
+      const input = document.getElementById('enqCommentTextInput');
+      if (input) input.value = '';
+
+      incrementEnquiryActivityCount('comment');
+      closeEnquiryActivityModal('comment');
+      showAppToast('Comment posted to Enquiry Details!', 'success');
+
+      const actTabBtn = document.querySelectorAll('.detail-tab-btn')[2];
+      if (actTabBtn) setDetailTab('activities', actTabBtn);
+    }
+
+    function submitEnquiryBrochureDirect() {
+      const brochure = document.getElementById('enqBrochureSelect')?.value || 'Suzuki Brezza 2026';
+      const container = document.getElementById('enquiryActivitiesFeedContainer');
+      if (container) {
+        const newCard = document.createElement('div');
+        newCard.className = 'enq-activity-item bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5 animate-in fade-in slide-in-from-top-2 duration-200';
+        newCard.setAttribute('data-type', 'brochure');
+        newCard.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100 font-bold shrink-0">
+                <i class="fa-solid fa-file-pdf text-xs"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-xs font-black text-slate-800">Brochure Sent</span>
+                  <span class="text-[9px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-100">${activeBrochureChannel}</span>
+                </div>
+                <span class="text-[10px] text-slate-400 font-semibold">Just now</span>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-emerald-600">Delivered</span>
+          </div>
+          <div class="flex items-center justify-between text-xs bg-slate-50 p-2 rounded-xl border border-slate-100">
+            <div class="flex items-center gap-2 min-w-0">
+              <i class="fa-solid fa-paperclip text-slate-400 text-xs"></i>
+              <span class="font-bold text-slate-700 truncate text-[11px]">${brochure}</span>
+            </div>
+            <button type="button" onclick="showAppToast('Opening brochure preview...', 'info')" class="text-[10.5px] font-bold text-[#007AFF] hover:underline shrink-0">View</button>
+          </div>
+        `;
+        container.prepend(newCard);
+      }
+
+      incrementEnquiryActivityCount('brochure');
+      closeEnquiryActivityModal('brochure');
+      showAppToast(`Brochure sent via ${activeBrochureChannel}!`, 'success');
+
+      const actTabBtn = document.querySelectorAll('.detail-tab-btn')[2];
+      if (actTabBtn) setDetailTab('activities', actTabBtn);
+    }
+
+    function postAutoCommentPreset(text) {
+      const container = document.getElementById('enquiryActivitiesFeedContainer');
+      if (container) {
+        const newCard = document.createElement('div');
+        newCard.className = 'enq-activity-item bg-white rounded-2xl border border-slate-200/90 p-3.5 shadow-xs space-y-2.5 animate-in fade-in slide-in-from-top-2 duration-200';
+        newCard.setAttribute('data-type', 'comment');
+        newCard.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100 font-bold shrink-0">
+                <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-xs font-black text-slate-800">Niket Kumar (You)</span>
+                  <span class="text-[9px] font-bold text-purple-600 bg-purple-50 px-1.5 py-0.2 rounded border border-purple-100">Quick Log</span>
+                </div>
+                <span class="text-[10px] text-slate-400 font-semibold">Just now</span>
+              </div>
+            </div>
+            <span class="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">New</span>
+          </div>
+          <p class="text-xs font-semibold text-slate-700 bg-slate-50/70 p-2.5 rounded-xl border border-slate-100 leading-relaxed">
+            ${text}
+          </p>
+        `;
+        container.prepend(newCard);
+      }
+
+      incrementEnquiryActivityCount('comment');
+      closeEnquiryActivityModal('autocomment');
+      showAppToast('Quick remark logged to Enquiry Details!', 'success');
+
+      const actTabBtn = document.querySelectorAll('.detail-tab-btn')[2];
+      if (actTabBtn) setDetailTab('activities', actTabBtn);
+    }
+
+    function incrementEnquiryActivityCount(type) {
+      const allEl = document.getElementById('enqActFilterAllCount');
+      const headEl = document.getElementById('enqActHeaderCount');
+      const tabEl = document.getElementById('enqDetailsTabCount');
+      const upNote = document.getElementById('upcomingActCountNote');
+      if (allEl) allEl.innerText = parseInt(allEl.innerText || '7', 10) + 1;
+      if (headEl) headEl.innerText = parseInt(headEl.innerText || '7', 10) + 1;
+      if (tabEl) tabEl.innerText = parseInt(tabEl.innerText || '7', 10) + 1;
+      if (upNote) upNote.innerText = parseInt(upNote.innerText || '7', 10) + 1;
+
+      if (type === 'followup') {
+        const fuEl = document.getElementById('enqActFilterFuCount');
+        if (fuEl) fuEl.innerText = parseInt(fuEl.innerText || '3', 10) + 1;
+      } else if (type === 'comment') {
+        const commEl = document.getElementById('enqActFilterCommCount');
+        if (commEl) commEl.innerText = parseInt(commEl.innerText || '2', 10) + 1;
+      } else if (type === 'brochure') {
+        const brEl = document.getElementById('enqActFilterBrCount');
+        if (brEl) brEl.innerText = parseInt(brEl.innerText || '1', 10) + 1;
+      }
+    }
+
+    function markEnquiryActivityDone(btn) {
+      if (!btn) return;
+      const card = btn.closest('.enq-activity-item');
+      if (card) {
+        card.classList.add('opacity-75');
+        const badge = card.querySelector('span.text-emerald-600');
+        if (badge) {
+          badge.className = 'text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200';
+          badge.innerText = 'Completed';
+        }
+      }
+      btn.outerHTML = '<span class="text-[10px] font-bold text-emerald-600">✓ Done</span>';
+      showAppToast('Activity marked as completed', 'success');
     }
 
     // Current active lead context for activities flow
@@ -6962,10 +7827,10 @@
 
     function setDetailTab(tabName, btn) {
       document.querySelectorAll('.detail-tab-btn').forEach(t => {
-        t.className = 'detail-tab-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all';
+        t.className = 'detail-tab-btn flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 font-bold text-center cursor-pointer transition-all flex items-center justify-center gap-1';
       });
       if (btn) {
-        btn.className = 'detail-tab-btn flex-1 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs text-center cursor-pointer transition-all';
+        btn.className = 'detail-tab-btn flex-1 py-1.5 rounded-xl bg-white text-[#007AFF] font-black shadow-2xs text-center cursor-pointer transition-all flex items-center justify-center gap-1';
       }
 
       document.querySelectorAll('.detail-tab-content').forEach(c => c.classList.add('hidden'));
@@ -11150,8 +12015,21 @@
               if (main) main.scrollTop = main.scrollHeight;
             }, 100);
           }
-        } else if (targetScreen === 'enquiry-details') {
-          openEnquiryDetails(params.get('name') || 'Swati Jain', params.get('id') || 'ENQ987875399');
+        } else if (targetScreen === 'enquiry-details' || targetScreen === 'enquirydetails') {
+          openEnquiryDetails(params.get('customer') || params.get('name') || 'Swati Jain', params.get('enq_id') || params.get('id') || 'ENQ987875399');
+          if (params.get('tab')) {
+            const tabIdx = params.get('tab') === 'activities' ? 2 : params.get('tab') === 'product' ? 1 : params.get('tab') === 'history' ? 3 : 0;
+            const tabBtn = document.querySelectorAll('.detail-tab-btn')[tabIdx];
+            if (tabBtn) setDetailTab(params.get('tab'), tabBtn);
+          }
+          if (params.get('menu') === 'open') {
+            openFloatingActivitiesMenu();
+          }
+          if (params.get('modal') === 'followup') {
+            openEnquiryActivityModal('followup');
+          } else if (params.get('modal') === 'comment') {
+            openEnquiryActivityModal('comment');
+          }
         } else if (targetScreen === 'activities' || targetScreen === 'followups') {
           openFollowUpsScreen();
           if (params.get('comments_lead')) {
