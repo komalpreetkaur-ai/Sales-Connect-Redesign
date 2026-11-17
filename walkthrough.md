@@ -1,5 +1,23 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## ⚡ Header Renamed: "ACTION PENDING" on Home Screen
+
+1. **Renamed Section Header**:
+   - Updated `PRIORITY ACTIONS TODAY` to **`ACTION PENDING`**, providing a concise, accurate automotive CRM label that reflects overdue follow-ups, pending test drive confirmations, cheque clearances, and sign-offs.
+   - Retained the pulse alert indicator dot (`bg-rose-500 animate-ping`).
+
+2. **Synchronized Status Badge**:
+   - Updated the badge indicator from `4 Urgent` to **`4 Pending`** (and dynamically adapts to `3 Pending`, `5 Pending` across time filters).
+
+3. **Visual Verification**:
+
+| Updated Header: ACTION PENDING |
+| :---: |
+| ![Action Pending](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_home_action_pending.png) |
+| *Home screen showing clean `ACTION PENDING` heading with `4 Pending` badge.* |
+
+---
+
 ## 🚀 Floating "Quick Enquiries" Speed-Dial Action Menu (Matching Quick Activities)
 
 1. **Floating Action Menu Design (`#floatingAddEnquiryMenu`)**:
