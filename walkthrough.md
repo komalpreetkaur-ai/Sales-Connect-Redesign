@@ -1,5 +1,30 @@
 # Walkthrough - Sales Connect Mobile Redesign
 
+## 🚀 Floating "Quick Enquiries" Speed-Dial Action Menu (Matching Quick Activities)
+
+1. **Floating Action Menu Design (`#floatingAddEnquiryMenu`)**:
+   - Matches the exact design language of the Quick Activities speed-dial menu (`media_1794894154955_179c25de.png`):
+     - Floating white card (`w-64 bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-2 space-y-1 animate-scale-up`) anchored right above the floating `+ Add Enquiry` button at `bottom-32 right-4`.
+     - Full viewport backdrop dimming layer (`#floatingAddEnquiryBackdrop`) with `bg-slate-900/25 backdrop-blur-2xs`.
+     - Header featuring uppercase muted category title (`QUICK ENQUIRIES`), subtle divider line, and a round `✕` close button.
+   - Replaces the former clumsy bottom-sheet modal (`categorySelectModal`) with an instant, lightweight speed-dial popup.
+
+2. **5 Action Options with Distinct Colored Badges**:
+   - 🚗 **Sales Enquiry** (Blue badge: `bg-blue-50 text-[#007AFF]`): Vehicle purchases & new models (`selectEnquiryCategory('Sales')`).
+   - 🔄 **Exchange Enquiry** (Emerald badge: `bg-emerald-50 text-emerald-600`): Old car valuation & trade-in (`selectAddEnquiryExchange()`).
+   - 📅 **Book Test Drive** (Purple badge: `bg-purple-50 text-purple-600`): Date, slot & model booking (`selectAddEnquiryTestDrive()`).
+   - 🔧 **Service Enquiry** (Amber badge: `bg-amber-50 text-amber-600`): Maintenance & workshop visits (`selectEnquiryCategory('Service')`).
+   - 💬 **Other Enquiry** (Indigo badge: `bg-indigo-50 text-indigo-600`): General requests & support (`selectEnquiryCategory('Other')`).
+
+3. **Visual Verification**:
+
+| Quick Enquiries on Home Screen | Quick Enquiries on Enquiries Screen |
+| :---: | :---: |
+| ![Quick Enquiries Home](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_add_enquiry_speed_dial_home.png) | ![Quick Enquiries Screen](file:///Users/komalpreet/.gemini/antigravity/brain/841d8135-5e2d-494d-8f72-ecf6fb143304/screenshot_add_enquiry_speed_dial_enquiry.png) |
+| *Floating `Quick Enquiries` menu on Home matching reference mockup.* | *Floating `Quick Enquiries` menu on Enquiries list screen.* |
+
+---
+
 ## 🎨 Unified Pill Design for "Add Enquiry" (Matching Add Activity / Activities)
 
 1. **Floating Action Button (`#fabAddEnquiry`)**:
